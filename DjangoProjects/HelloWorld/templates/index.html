@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<title>FiveZedThreeSix</title>
+    	<link href="/static/homepage/css/styles.css" rel="stylesheet" type="text/css" />
+    	<script src="/static/homepage/js/jquery.js"></script>
+		<script type="text/javascript" src="/static/homepage/js/clock2.js"></script>
+		<script type="text/javascript" src="/static/homepage/js/jQueryRotate.2.2.js"></script>
+  	</head>
+  	<body class="keBody">
+		<h1 class="keTitle">{{ first }}</h1>
+		<div class="kePublic">
+			<div id="date">{{ date }}</div>
+			<!--效果html开始-->
+			<div id="centered"> 
+  				<div id="html5-clock" ></div>
+			</div>
+			<script type="text/javascript">        
+				var config = {        		
+					/*the name of the div containing the clock*/
+					divId: "html5-clock",        		        
+					/*set to false if you don't want to use the second hand*/		
+					useSecondHand: "true",        		
+					/*width and height of the clock*/
+					clockWidthAndHeight: "200",      		
+					/*location of the images*/
+					clockFaceImg: "/static/homepage/images/bg/clockBg.png",
+					hourHandImg: "/static/homepage/images/bg/hourHand.png",
+					minuteHandImg: "/static/homepage/images/bg/minuteHand.png",
+					secondHandImg: "/static/homepage/images/bg/secondHand.png", 
+					/*location of the high res images for retina display*/
+					clockFaceHighResImg: "/static/homepage/images/bg/clockBgHighRes.png",
+					hourHandHighResImg: "/static/homepage/images/bg/hourHandHighRes.png",
+					minuteHandHighResImg: "/static/homepage/images/bg/minuteHandHighRes.png",
+					secondHandHighResImg: "/static/homepage/images/bg/secondHandHighRes.png",
+					/*Set true to make hand move at steady speed*/
+					smoothRotation: "false",        		
+					/*speed of the second hand. Lower is faster. */
+					/*Must be under 1000. */
+					/*If smooth rotation is true, this does nothing.*/
+					secondHandSpeed: "100"        		        		
+				};        	
+				var myhtml5Clock = new html5Clock(config);        
+		</script> 
+		<!--效果html结束-->
+		</div>
+		<div class="keBottom">
+			<br/>
+			<p class="keTxtP">----Seven</p>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,65 @@
+#!/bin/bash
+# vim: set sw=4 ts=4 et:
+#The first line is job name, and the next is the job.
+#And add "#" to pause the job , uncomment it for restart.
+
+print_help() {
+
+cat << HELP
+USAGE:
+	cron_ctrl [jobname --option][--help]
+
+--start    start the job specified by name options.
+
+--stop    stop the job specified by name options.
+
+--list    list all the job.
+
+HELP
+exit 0
+}
+
+#start
+# This can be expanded for test whether the job has been stopped or started.
+if [ "$#" = "2" ];then
+	case $2 in
+		"--start")
+					if [ -d "/tmp/newCrontab" ];then
+						crontab -l > /tmp/newCrontab
+					elif [ -d "/tmp" ];then
+						crontab -l > /tmp/newCrontab
+					else
+						echo "Can't find the temp space."
+						exit 1
+					fi
+					sed -i "/$1/{ n; s/^#//; }" /tmp/newCrontab
+					crontab /tmp/newCrontab
+					echo "Start $1 successfully!"
+					exit 0
+					;;
+		"--stop")
+					if [ -d "/tmp/newCrontab" ];then
+						crontab -l > /tmp/newCrontab
+					elif [ -d "/tmp" ];then
+						crontab -l > /tmp/newCrontab
+					else
+						echo "Can't find the temp space."
+						exit 1
+					fi
+					sed -i "/$1/{ n; s/^/#/; }" /tmp/newCrontab
+					crontab /tmp/newCrontab
+					echo "Stop $1 successfully!"
+					exit 0
+					;;
+		"--list")
+					crontab -l;;  
+		*)
+					echo "ERROR:the option is invalid.";;
+	esac
+elif [ "$#" = "1" ] && [ "$1" = "--help" ];then
+	print_help
+else
+	echo "ERROR:Arguments are not valid.Please use --help."
+fi
+
+	

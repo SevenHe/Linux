@@ -1,0 +1,89 @@
+#!/bin/bash
+# description: cpu_recorder, just record 2 days for now. 
+# save the records in the RECORDS_FILE by using sar.
+# if this want to be the service, must be placed into /etc/init.d
+# so it can use status.
+EXEC_PATH=./recorder/daemon
+EXEC=cpu_recorder
+PID_FILE=/var/run/cpu_recorder.pid
+DAEMON=./recorder/daemon/cpu_recorder
+# the log file is in the ./records.log!
+RECORDS_FILE=./recorder/daemon/records.log
+
+if ! [ -f $EXEC_PATH/$EXEC ];then
+	mkdir -p $EXEC_PATH &> rcd_install.log
+	find $EXEC &> rcd_install.log
+	if [ $? = "0" ];then
+		mv $EXEC $EXEC_PATH/ &> rcd_install.log
+	else
+		echo "Can't find the service file:$EXEC."
+	fi
+	# if there is no problem, delete the log.
+	rm rcd_install.log
+fi
+	
+if ! [ -x $EXEC_PATH/$EXEC ];then
+    echo "The program needs to be granted executable permission."
+    exit 1
+fi
+
+# check sar is installed.
+sar -u &> tmp
+if [ $? = "0" ];then
+	echo "Load preconditions successfully..."
+	rm tmp
+else
+	echo "This program needs sar package in the sysstat or others..."
+	echo "So please install the sysstat package."
+	exit 1
+fi
+
+stop()
+{
+    echo "Stoping $EXEC ..."
+    killall $DAEMON > /dev/null
+    if [ $? = "0" ];then
+    	sleep 1
+    	echo "Shutting down $EXEC: [ OK ]"
+    fi
+    
+}
+
+start()
+{
+    echo "Starting $EXEC ..."
+    if [ -e $RECORDES_FILE ];then
+    	$DAEMON > /dev/null 
+    	sleep 1
+    	echo "Starting $EXEC: [ OK ]"
+    fi
+}
+
+restart()
+{
+    stop
+    start
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        restart
+        ;;
+    status)
+    	echo '====================================='
+    	ps -e|grep cpu_recorder
+    	if ! [ $? = "0" ]; then
+    		echo "There is no recorder starting!"
+    	fi
+    	;;
+    *)
+        echo "Usage: service $EXEC {start|stop|restart|status}"
+        exit 1
+esac
+exit $?

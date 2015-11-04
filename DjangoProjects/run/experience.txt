@@ -1,0 +1,191 @@
+the server port must be not in the url, because it's a server port.
+
+
+install the nginx manually.
+
+
+enter the module directory.
+
+
+check out all from foot to head.
+
+
+(the name of the dir must be' templatetags, and must {% load .. %})
+Any custom tags should be placed into an app, which have the same hierarchy with 'models.py' and 'views.py'!
+
+Sometimes, you do not need to customize tags, you just use the css to style you web page, and it's pithy and powerful!
+/********************************************************/
+/*              The module advanced                     */
+/********************************************************/
+
+to use |safe for unuse the escaped, but it is always safe to use the model just.
+Ex:
+Auto-escaping is on by default. Hello {{ name }}
+
+{% autoescape off %}
+    This will not be auto-escaped: {{ data }}.
+
+    Nor this: {{ other_data }}
+    {% autoescape on %}
+        Auto-escaping applies again: {{ name }}
+    {% endautoescape %}
+{% endautoescape %}
+
+to use a dir templateTags, and a __init__.py to tell python this is a dir with python codes.
+Ex tag:
+poll_extras.py---
+"from django import template
+
+register = template.Library()"
+		|
+		|
+{% load poll_extras %}  --- to load the customed model by ourselves.
+
+Own filters!
+@register.filter(name='cut')
+def cut(value, arg):
+    return value.replace(arg, '')
+
+@register.filter
+def lower(value):
+    return value.lower()
+    
+Own tags! This must return a node that extends the template.Node!    
+from django import template
+
+register = template.Library()
+
+def do_current_time("parser", "token"):------!!
+    try:
+        # split_contents() knows not to split quoted strings.
+        tag_name, format_string = token.split_contents()
+    except ValueError:
+        msg = '%r tag requires a single argument' % token.split_contents()[0]
+        raise template.TemplateSyntaxError(msg)
+    return CurrentTimeNode(format_string[1:-1])
+    
+import datetime
+
+class CurrentTimeNode(template.Node):
+    def __init__(self, format_string):
+        self.format_string = str(format_string)
+
+    def render(self, context):
+        now = datetime.datetime.now()
+        return now.strftime(self.format_string)
+        
+register.tag('current_time', do_current_time)/@register.tag
+
+for use:
+'{% get_current_time "%Y-%M-%d %I:%M %p" as my_current_time %}'
+'<p>The current time is {{ my_current_time }}.</p>'
+import re
+
+class CurrentTimeNode3(template.Node):
+    def __init__(self, format_string, var_name):
+        self.format_string = str(format_string)
+        self.var_name = var_name
+
+    def render(self, context):
+        now = datetime.datetime.now()
+        context[self.var_name] = now.strftime(self.format_string)
+        return ''
+
+def do_current_time(parser, token):
+    # This version uses a regular expression to parse tag contents.
+    try:
+        # Splitting by None == splitting by spaces.
+        tag_name, arg = token.contents.split(None, 1)
+    except ValueError:
+        msg = '%r tag requires arguments' % token.contents[0]
+        raise template.TemplateSyntaxError(msg)
+
+    m = re.search(r'(.*?) as (\w+)', arg)
+    if m:
+        fmt, var_name = m.groups()
+    else:
+        msg = '%r tag had invalid arguments' % tag_name
+        raise template.TemplateSyntaxError(msg)
+
+    if not (fmt[0] == fmt[-1] and fmt[0] in ('"', "'")):
+        msg = "%r tag's argument should be in quotes" % tag_name
+        raise template.TemplateSyntaxError(msg)
+
+    return CurrentTimeNode3(fmt[1:-1], var_name)
+    
+
+# parse is to analysis until the tag 'endcomment', but the 'endcomment' is still in use, so we should delete_first_token() to handle it.
+def do_comment(parser, token):
+    nodelist = parser.parse(('endcomment',)) # the begin tag 'comment' until the 'endcomment' nodelist.
+    parser.delete_first_token()
+    return CommentNode()
+
+class CommentNode(template.Node):
+    def render(self, context):     # the content between 'comment' and 'endcomment'
+        return ''
+        
+        
+        
+An example that analysing to a tag and save the content:
+{% upper %}
+    This will appear in uppercase, {{ user_name }}.
+{% endupper %}
+
+def do_upper(parser, token):
+    nodelist = parser.parse(('endupper',))
+    parser.delete_first_token()
+    return UpperNode(nodelist)
+
+class UpperNode(template.Node):
+    def __init__(self, nodelist):
+        self.nodelist = nodelist
+
+    def render(self, context):
+        output = self.nodelist.render(context)
+        return output.upper()
+
+
+
+# a inclusion tag, to render other models rather than itself.
+@register.inclusion_tag('link.html', takes_context=True)
+def jump_link(context):
+    return {
+        'link': context['home_link'],
+        'title': context['home_title'],
+    }
+    
+    
+    
+    
+# a custom Template loader to  load templates from a .zip python package.
+from django.conf import settings
+from django.template import TemplateDoesNotExist
+import zipfile
+
+def load_template_source(template_name, template_dirs=None):
+    "Template loader that loads templates from a ZIP file."
+
+    template_zipfiles = getattr(settings, "TEMPLATE_ZIP_FILES", [])
+
+    # Try each ZIP file in TEMPLATE_ZIP_FILES.
+    for fname in template_zipfiles:
+        try:
+            z = zipfile.ZipFile(fname)
+            source = z.read(template_name)
+        except (IOError, KeyError):
+            continue
+        z.close()
+        # We found a template, so return the source.
+        template_path = "%s:%s" % (fname, template_name)
+        return (source, template_path)
+
+    # If we reach here, the template couldn't be loaded
+    raise TemplateDoesNotExist(template_name)
+
+# This loader is always usable (since zipfile is included with Python)
+load_template_source.is_usable = True
+# And the final step is to add it into TEMPLATE_LOADERS!
+
+
+
+

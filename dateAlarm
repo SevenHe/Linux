@@ -1,0 +1,3 @@
+# (put your own initials here)echo the date to the console every
+# dateAlarm
+0,15,30,45 18-06 * * * /bin/echo 'date' > /dev/console
