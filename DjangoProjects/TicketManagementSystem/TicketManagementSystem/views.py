@@ -14,10 +14,12 @@ def index(request):
 
 
 def hello(request):
+	"""
     context = {}
     context['hello'] = 'Hello World!'
     return render(request, 'hello.html', context)
-  
+  	"""
+	return HttpResponse("Hello, World!")
     
 def testdb_insert(request):
 	test1 = Test(name='w3cschool.cc')

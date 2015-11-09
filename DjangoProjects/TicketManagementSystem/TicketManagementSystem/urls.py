@@ -20,4 +20,5 @@ from TicketManagementSystem.views import *
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 	url(r'^$', index),
+	url(r'^hello/$', hello),
 ]
