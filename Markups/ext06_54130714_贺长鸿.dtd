@@ -1,0 +1,9 @@
+<!ELEMENT root (student)>
+<!ELEMENT student (name subjects avg)>
+<!ATTLIST student id ID #REQUIRED>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT avg (#PCDATA)>
+<!ELEMENT subjects (grade)>
+<!ATTLIST subjects name CDATA #REQUIRED>
+<!ELEMENT grade (#PCDATA)>
+

@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE root SYSTEM "ext06_54130714_贺长鸿.dtd">
+<root>
+	<student id="001">
+		<name>zhangsan</name>
+		<subjects>
+			<subject name="compilation way">
+				<grade>79</grade>
+			</subject>
+			<subject name="C program design">
+				<grade>85</grade>
+			</subject>
+			<subject name="data structure">
+				<grade>93</grade>
+			</subject>
+		</subjects>
+		<avg>85.37</avg>
+	</student>
+	<student id="002">
+		<name>lisi</name>
+		<subjects>
+			<subject name="computation complexity">
+				<grade>72</grade>
+			</subject>
+			<subject name="partial differential equation">
+				<grade>86</grade>
+			</subject>
+			<subject name="computation method">
+				<grade>95</grade>
+			</subject>
+		</subjects>
+		<avg>84.33</avg>
+	</student>
+	<student id="003">
+		<name>wangwu</name>
+		<subjects>
+			<subject name="molecular track theory">
+				<grade>79</grade>
+			</subject>
+			<subject name="organic chemistry">
+				<grade>80</grade>
+			</subject>
+			<subject name="">
+				<grade>88</grade>
+			</subject>
+			<subject name="molecular biology">
+				<grade>98</grade>
+			</subject>
+		</subjects>
+		<avg>86.25</avg>
+	</student>
+</root>
+
