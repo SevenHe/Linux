@@ -1,0 +1,173 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+	margin: 0;
+	padding: 0;
+	position: relative;
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	background-image: url(../images/1.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+	text-shadow:
+    	0px 1px 0px #c0c0c0,
+    	0px 2px 0px #b0b0b0,
+    	0px 3px 0px #a0a0a0,
+    	0px 4px 0px #909090,
+    	0px 5px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* for freedom */
+div {
+	display: block;
+	/*background: url(../images/1.jpg) #333;
+	background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+	background-size: cover;
+	background: -moz-linear-gradient(360deg, #ace, #f96);
+  	background: -webkit-gradient(linear,0 50%,100% 50%,from(#ace),to(#f96));
+  	background: -webkit-linear-gradient(360deg, #ace, #f96);
+  	background: -o-linear-gradient(360deg, #ace, #f96);
+	*/
+	-webkit-animation: 10s infinite linear animate;
+    animation: 10s infinite linear animate;
+}
+
+/* migrate the animation to the js to enhance /augmentcompatibility!*/
+div:before {
+    z-index: -1;
+}
+@keyframes animate {
+    0% {
+        color: #000;
+    }
+    50% {
+        color: #03FCF5;
+    }
+	100% {
+		color: #000;
+	}
+}
+
+#line1 {
+	margin-top: 8%;
+	margin-left: 30%;
+	font-family: "微软雅黑", "Dosis", sans-serif;
+	font-size: 350%;
+	font-weight: bold;
+	color: rgba(87,40,183,0.7);
+}
+
+#line2 {
+	margin-left: 40%;
+	margin-top: 1%;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 250%;
+	color: rgba(87,40,183,0.7);
+}
+
+#line3 {
+	margin-top: 2%;
+	margin-left: 60%;
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: bold;
+	font-size: 200%;
+	color: #FFFFFF;
+}
+
+/*if you want to change the font-size, you have to set the default value in case a error coming*/
+/* when the bg image is not available, replace it by the bg color.*/
+button {
+	width: 25%;
+	display: inline-block;
+	background: inherit;
+	background-color: transparent;
+	margin-left: 42%;
+	padding: 2% 2%;
+	font-size: 180%;
+	white-space: nowrap;
+	color: rgba(47,67,208,1);
+	box-shadow: 0 5px 0 inherit;
+	text-shadow: 5px 5px 5px ;
+	outline: none;
+	border: 0;
+	border-radius: 10%;
+	-webkit-transition: all .1s linear;
+	-moz-transition: all .1s linear;
+	transition: all .1s linear;
+	-webkit-animation: 8s infinite linear text-change;
+	animation: 8s infinite linear text-change;
+}
+
+button:before {
+	z-index: -2;
+}
+@keyframes text-change {
+	0% {
+		color: rgba(47,67,208,1);
+	}
+	50% {
+		color: rgba(122,130,220,0.2);
+	}
+	100% {
+		color: rgba(47,67,208,1);
+	}
+}
+
+/* some browser did not support pseudo-class*/
+button:hover {
+	font-size: 210%;
+	color: rgba(55,201,249,1);
+	-webkit-transition-duration: 1s;
+	-moz-transition-duration: 1s;
+	transition-duration: 1s;
+	-webkit-transform: rotateY(360deg);
+	-moz-transform: rotateY(360deg);
+	-ms-transform: rotateY(360deg);
+	transform: rotateY(360deg);
+	/* some browser is not shown correct as expected!
+	-webkit-transform: translateY(-4px);
+	-moz-transform: translateY(-4px);
+	-ms-transform: translateY(-4px);
+	transform: translateY(-4px);
+	text-shadow:
+    	0px 1px 0px #c0c0c0,
+    	0px 2px 0px #b0b0b0,
+    	0px 3px 0px #a0a0a0,
+    	0px 4px 0px #909090,
+    	0px 5px 10px rgba(0, 0, 0, 0.6);
+	background-color: rgba(55,55,55,0.7);
+	*/
+}
+
+button:active {
+	-webkit-transition-duration: .1s;
+	-moz-transition-duration: .1s;
+	transition-duration: .1s;
+	-webkit-transform: translateY(3px);
+	-moz-transform: translateY(3px);
+	-ms-transform: translateY(3px);
+	transform: translateY(3px);
+	-webkit-animation: paused;
+	animation: paused;
+}
+
+#arrow {
+	overflow: visible;
+	margin-left: 10%;
+	width: 13%;
+	height: 13%;
+	vertical-align: middle;
+}

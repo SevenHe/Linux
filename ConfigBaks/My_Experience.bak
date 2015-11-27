@@ -1,0 +1,5 @@
+1.
+	There is a problem that confuses me.
+	It is if I am a DBA, and use the identifier to connect the database to the Django, 
+	if my web site is suffered a cyber attack, can he get the DBA authority to do something about database?
+	Whereas Django settings is compressed, it can be menaced latently?
