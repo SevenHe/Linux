@@ -2,7 +2,8 @@
 # Even though the constans is the number, need to be incorporated with quotes.
 
 Mgr='manage.py'
-DATABASE='/etc/init.d/oracle-xe'
+#DATABASE='/etc/init.d/oracle-xe'
+DATABASE='/etc/init.d/mysql'
 if [ -f $Mgr ] && [ $# = "0" ]; then
 	$DATABASE status > /dev/null 
 	if [ $? != "0" ]; then

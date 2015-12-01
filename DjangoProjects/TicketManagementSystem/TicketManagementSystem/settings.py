@@ -78,12 +78,12 @@ WSGI_APPLICATION = 'TicketManagementSystem.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.oracle',
-        'NAME': 'XE',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'web_db',
         'USER': 'SEVEN',
         'PASSWORD': 'Seven1001',
-        'HOST':'ubuntu',
-        'PORT':'1521',
+        'HOST':'127.0.0.1',
+        'PORT':'3306',
     }
 }
 
