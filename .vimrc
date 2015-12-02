@@ -24,6 +24,10 @@ Plugin 'Lokaltog/vim-powerline'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+"syntax enable
+"colorscheme monokai
+" my style with zsh
+hi Comment ctermfg=0 cterm=bold
 set hlsearch
 set tabstop=4
 map <CR> :nohl <CR>
