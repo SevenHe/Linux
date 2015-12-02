@@ -3438,3 +3438,314 @@ Sun Nov  8 05:12:55 2015 - spawned uWSGI worker 1 (pid: 3130, cores: 1)
 Sun Nov  8 05:12:55 2015 - spawned uWSGI worker 2 (pid: 3131, cores: 1)
 Sun Nov  8 05:12:55 2015 - spawned uWSGI worker 3 (pid: 3132, cores: 1)
 Sun Nov  8 05:12:55 2015 - spawned uWSGI worker 4 (pid: 3133, cores: 1)
+Wed Dec  2 18:48:14 2015 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Dec  2 18:48:14 2015] ***
+Wed Dec  2 18:48:14 2015 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Dec  2 18:48:14 2015 - os: Linux-4.2.0-19-generic #23-Ubuntu SMP Wed Nov 11 11:39:30 UTC 2015
+Wed Dec  2 18:48:14 2015 - nodename: Kubuntu
+Wed Dec  2 18:48:14 2015 - machine: x86_64
+Wed Dec  2 18:48:14 2015 - clock source: unix
+Wed Dec  2 18:48:14 2015 - detected number of CPU cores: 4
+Wed Dec  2 18:48:14 2015 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Dec  2 18:48:14 2015 - detected binary path: /usr/local/bin/uwsgi
+Wed Dec  2 18:48:14 2015 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Dec  2 18:48:14 2015 - your processes number limit is 15207
+Wed Dec  2 18:48:14 2015 - your memory page size is 4096 bytes
+Wed Dec  2 18:48:14 2015 - detected max file descriptor number: 1024
+Wed Dec  2 18:48:14 2015 - lock engine: pthread robust mutexes
+Wed Dec  2 18:48:14 2015 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Dec  2 18:48:14 2015 - uwsgi socket 0 bound to TCP address 127.0.0.1:9090 fd 3
+Wed Dec  2 18:48:14 2015 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Dec  2 18:48:14 2015 - *** Python threads support is disabled. You can enable it with --enable-threads ***
+Wed Dec  2 18:48:14 2015 - Python main interpreter initialized at 0x1ea5050
+Wed Dec  2 18:48:14 2015 - your server socket listen backlog is limited to 100 connections
+Wed Dec  2 18:48:14 2015 - your mercy for graceful operations on workers is 60 seconds
+Wed Dec  2 18:48:14 2015 - mapped 363800 bytes (355 KB) for 4 cores
+Wed Dec  2 18:48:14 2015 - *** Operational MODE: preforking ***
+Wed Dec  2 10:48:16 2015 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
+Wed Dec  2 10:48:16 2015 - WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x1ea5050 pid: 3448 (default app)
+Wed Dec  2 10:48:16 2015 - *** uWSGI is running in multiple interpreter mode ***
+Wed Dec  2 10:48:16 2015 - spawned uWSGI master process (pid: 3448)
+Wed Dec  2 10:48:16 2015 - spawned uWSGI worker 1 (pid: 3462, cores: 1)
+Wed Dec  2 10:48:16 2015 - spawned uWSGI worker 2 (pid: 3463, cores: 1)
+Wed Dec  2 10:48:16 2015 - spawned uWSGI worker 3 (pid: 3464, cores: 1)
+Wed Dec  2 10:48:16 2015 - spawned uWSGI worker 4 (pid: 3465, cores: 1)
+[pid: 3465|app: 0|req: 1/1] 49.140.62.120 () {44 vars in 732 bytes} [Wed Dec  2 10:48:24 2015] GET / => generated 826 bytes in 585 msecs (HTTP/1.1 200) 2 headers in 88 bytes (1 switches on core 0)
+Wed Dec  2 19:06:45 2015 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Dec  2 19:06:45 2015] ***
+Wed Dec  2 19:06:45 2015 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Dec  2 19:06:45 2015 - os: Linux-4.2.0-19-generic #23-Ubuntu SMP Wed Nov 11 11:39:30 UTC 2015
+Wed Dec  2 19:06:45 2015 - nodename: Kubuntu
+Wed Dec  2 19:06:45 2015 - machine: x86_64
+Wed Dec  2 19:06:45 2015 - clock source: unix
+Wed Dec  2 19:06:45 2015 - detected number of CPU cores: 4
+Wed Dec  2 19:06:45 2015 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Dec  2 19:06:45 2015 - detected binary path: /usr/local/bin/uwsgi
+Wed Dec  2 19:06:45 2015 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Dec  2 19:06:45 2015 - *** WARNING: you are running uWSGI without its master process manager ***
+Wed Dec  2 19:06:45 2015 - your processes number limit is 15207
+Wed Dec  2 19:06:45 2015 - your memory page size is 4096 bytes
+Wed Dec  2 19:06:45 2015 - detected max file descriptor number: 1024
+Wed Dec  2 19:06:45 2015 - lock engine: pthread robust mutexes
+Wed Dec  2 19:06:45 2015 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Dec  2 19:06:45 2015 - uwsgi socket 0 bound to UNIX address TicketManagementSystem.sock fd 3
+Wed Dec  2 19:06:45 2015 - probably another instance of uWSGI is running on the same address (127.0.0.1:9090).
+Wed Dec  2 19:06:45 2015 - bind(): Address already in use [core/socket.c line 769]
+Wed Dec  2 19:17:52 2015 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Dec  2 19:17:52 2015] ***
+Wed Dec  2 19:17:52 2015 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Dec  2 19:17:52 2015 - os: Linux-4.2.0-19-generic #23-Ubuntu SMP Wed Nov 11 11:39:30 UTC 2015
+Wed Dec  2 19:17:52 2015 - nodename: Kubuntu
+Wed Dec  2 19:17:52 2015 - machine: x86_64
+Wed Dec  2 19:17:52 2015 - clock source: unix
+Wed Dec  2 19:17:52 2015 - detected number of CPU cores: 4
+Wed Dec  2 19:17:52 2015 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Dec  2 19:17:52 2015 - detected binary path: /usr/local/bin/uwsgi
+Wed Dec  2 19:17:52 2015 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Dec  2 19:17:52 2015 - your processes number limit is 15207
+Wed Dec  2 19:17:52 2015 - your memory page size is 4096 bytes
+Wed Dec  2 19:17:52 2015 - detected max file descriptor number: 1024
+Wed Dec  2 19:17:52 2015 - lock engine: pthread robust mutexes
+Wed Dec  2 19:17:52 2015 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Dec  2 19:17:52 2015 - probably another instance of uWSGI is running on the same address (127.0.0.1:9090).
+Wed Dec  2 19:17:52 2015 - bind(): Address already in use [core/socket.c line 769]
+Wed Dec  2 19:33:51 2015 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Dec  2 19:33:51 2015] ***
+Wed Dec  2 19:33:51 2015 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Dec  2 19:33:51 2015 - os: Linux-4.2.0-19-generic #23-Ubuntu SMP Wed Nov 11 11:39:30 UTC 2015
+Wed Dec  2 19:33:51 2015 - nodename: Kubuntu
+Wed Dec  2 19:33:51 2015 - machine: x86_64
+Wed Dec  2 19:33:51 2015 - clock source: unix
+Wed Dec  2 19:33:51 2015 - detected number of CPU cores: 4
+Wed Dec  2 19:33:51 2015 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Dec  2 19:33:51 2015 - detected binary path: /usr/local/bin/uwsgi
+Wed Dec  2 19:33:51 2015 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Dec  2 19:33:51 2015 - *** WARNING: you are running uWSGI without its master process manager ***
+Wed Dec  2 19:33:51 2015 - your processes number limit is 15207
+Wed Dec  2 19:33:51 2015 - your memory page size is 4096 bytes
+Wed Dec  2 19:33:51 2015 - detected max file descriptor number: 1024
+Wed Dec  2 19:33:51 2015 - lock engine: pthread robust mutexes
+Wed Dec  2 19:33:51 2015 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Dec  2 19:33:51 2015 - uwsgi socket 0 bound to UNIX address TicketManagementSystem.sock fd 3
+Wed Dec  2 19:33:51 2015 - uwsgi socket 1 bound to TCP address 127.0.0.1:9090 fd 4
+Wed Dec  2 19:33:51 2015 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Dec  2 19:33:51 2015 - *** Python threads support is disabled. You can enable it with --enable-threads ***
+Wed Dec  2 19:33:51 2015 - Python main interpreter initialized at 0x25a0df0
+Wed Dec  2 19:33:51 2015 - your server socket listen backlog is limited to 100 connections
+Wed Dec  2 19:33:51 2015 - your mercy for graceful operations on workers is 60 seconds
+Wed Dec  2 19:33:51 2015 - mapped 291040 bytes (284 KB) for 4 cores
+Wed Dec  2 19:33:51 2015 - *** Operational MODE: preforking ***
+Traceback (most recent call last):
+  File "./TMS_wsgi.py", line 17, in <module>
+    from uwsgidecorators import timer  
+  File "/usr/local/lib/python2.7/dist-packages/uwsgidecorators.py", line 14, in <module>
+    "you have to enable the uWSGI master process to use this module")
+Exception: you have to enable the uWSGI master process to use this module
+Wed Dec  2 11:33:52 2015 - unable to load app 0 (mountpoint='') (callable not found or import error)
+Wed Dec  2 11:33:52 2015 - *** no app loaded. going in full dynamic mode ***
+Wed Dec  2 11:33:52 2015 - *** uWSGI is running in multiple interpreter mode ***
+Wed Dec  2 11:33:52 2015 - spawned uWSGI worker 1 (pid: 10781, cores: 1)
+Wed Dec  2 11:33:52 2015 - spawned uWSGI worker 2 (pid: 10797, cores: 1)
+Wed Dec  2 11:33:52 2015 - spawned uWSGI worker 3 (pid: 10798, cores: 1)
+Wed Dec  2 11:33:52 2015 - spawned uWSGI worker 4 (pid: 10799, cores: 1)
+Wed Dec  2 19:35:03 2015 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Dec  2 19:35:03 2015] ***
+Wed Dec  2 19:35:03 2015 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Dec  2 19:35:03 2015 - os: Linux-4.2.0-19-generic #23-Ubuntu SMP Wed Nov 11 11:39:30 UTC 2015
+Wed Dec  2 19:35:03 2015 - nodename: Kubuntu
+Wed Dec  2 19:35:03 2015 - machine: x86_64
+Wed Dec  2 19:35:03 2015 - clock source: unix
+Wed Dec  2 19:35:03 2015 - detected number of CPU cores: 4
+Wed Dec  2 19:35:03 2015 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Dec  2 19:35:03 2015 - detected binary path: /usr/local/bin/uwsgi
+Wed Dec  2 19:35:03 2015 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Dec  2 19:35:03 2015 - *** WARNING: you are running uWSGI without its master process manager ***
+Wed Dec  2 19:35:03 2015 - your processes number limit is 15207
+Wed Dec  2 19:35:03 2015 - your memory page size is 4096 bytes
+Wed Dec  2 19:35:03 2015 - detected max file descriptor number: 1024
+Wed Dec  2 19:35:03 2015 - lock engine: pthread robust mutexes
+Wed Dec  2 19:35:03 2015 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Dec  2 19:35:03 2015 - uwsgi socket 0 bound to UNIX address TicketManagementSystem.sock fd 3
+Wed Dec  2 19:35:03 2015 - uwsgi socket 1 bound to TCP address 127.0.0.1:9090 fd 4
+Wed Dec  2 19:35:03 2015 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Dec  2 19:35:03 2015 - *** Python threads support is disabled. You can enable it with --enable-threads ***
+Wed Dec  2 19:35:03 2015 - Python main interpreter initialized at 0x1c1fdf0
+Wed Dec  2 19:35:03 2015 - your server socket listen backlog is limited to 100 connections
+Wed Dec  2 19:35:03 2015 - your mercy for graceful operations on workers is 60 seconds
+Wed Dec  2 19:35:03 2015 - mapped 291040 bytes (284 KB) for 4 cores
+Wed Dec  2 19:35:03 2015 - *** Operational MODE: preforking ***
+Traceback (most recent call last):
+  File "./TMS_wsgi.py", line 17, in <module>
+    from uwsgidecorators import timer  
+  File "/usr/local/lib/python2.7/dist-packages/uwsgidecorators.py", line 14, in <module>
+    "you have to enable the uWSGI master process to use this module")
+Exception: you have to enable the uWSGI master process to use this module
+Wed Dec  2 11:35:04 2015 - unable to load app 0 (mountpoint='') (callable not found or import error)
+Wed Dec  2 11:35:04 2015 - *** no app loaded. going in full dynamic mode ***
+Wed Dec  2 11:35:04 2015 - *** uWSGI is running in multiple interpreter mode ***
+Wed Dec  2 11:35:04 2015 - spawned uWSGI worker 1 (pid: 11053, cores: 1)
+Wed Dec  2 11:35:04 2015 - spawned uWSGI worker 2 (pid: 11067, cores: 1)
+Wed Dec  2 11:35:04 2015 - spawned uWSGI worker 3 (pid: 11068, cores: 1)
+Wed Dec  2 11:35:04 2015 - spawned uWSGI worker 4 (pid: 11069, cores: 1)
+Wed Dec  2 11:35:17 2015 - --- no python application found, check your startup logs for errors ---
+[pid: 11069|app: -1|req: -1/1] 127.0.0.1 () {42 vars in 662 bytes} [Wed Dec  2 11:35:17 2015] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+Wed Dec  2 11:35:17 2015 - --- no python application found, check your startup logs for errors ---
+[pid: 11069|app: -1|req: -1/2] 127.0.0.1 () {44 vars in 633 bytes} [Wed Dec  2 11:35:17 2015] GET /favicon.ico => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+Wed Dec  2 19:36:04 2015 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Dec  2 19:36:04 2015] ***
+Wed Dec  2 19:36:04 2015 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Dec  2 19:36:04 2015 - os: Linux-4.2.0-19-generic #23-Ubuntu SMP Wed Nov 11 11:39:30 UTC 2015
+Wed Dec  2 19:36:04 2015 - nodename: Kubuntu
+Wed Dec  2 19:36:04 2015 - machine: x86_64
+Wed Dec  2 19:36:04 2015 - clock source: unix
+Wed Dec  2 19:36:04 2015 - detected number of CPU cores: 4
+Wed Dec  2 19:36:04 2015 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Dec  2 19:36:04 2015 - detected binary path: /usr/local/bin/uwsgi
+Wed Dec  2 19:36:04 2015 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Dec  2 19:36:04 2015 - *** WARNING: you are running uWSGI without its master process manager ***
+Wed Dec  2 19:36:04 2015 - your processes number limit is 15207
+Wed Dec  2 19:36:04 2015 - your memory page size is 4096 bytes
+Wed Dec  2 19:36:04 2015 - detected max file descriptor number: 1024
+Wed Dec  2 19:36:04 2015 - lock engine: pthread robust mutexes
+Wed Dec  2 19:36:04 2015 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Dec  2 19:36:04 2015 - uwsgi socket 0 bound to UNIX address TicketManagementSystem.sock fd 3
+Wed Dec  2 19:36:04 2015 - uwsgi socket 1 bound to TCP address 127.0.0.1:9090 fd 4
+Wed Dec  2 19:36:04 2015 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Dec  2 19:36:04 2015 - *** Python threads support is disabled. You can enable it with --enable-threads ***
+Wed Dec  2 19:36:04 2015 - Python main interpreter initialized at 0x1f8adf0
+Wed Dec  2 19:36:04 2015 - your server socket listen backlog is limited to 100 connections
+Wed Dec  2 19:36:04 2015 - your mercy for graceful operations on workers is 60 seconds
+Wed Dec  2 19:36:04 2015 - mapped 291040 bytes (284 KB) for 4 cores
+Wed Dec  2 19:36:04 2015 - *** Operational MODE: preforking ***
+Traceback (most recent call last):
+  File "./TMS_wsgi.py", line 17, in <module>
+    from uwsgidecorators import timer  
+  File "/usr/local/lib/python2.7/dist-packages/uwsgidecorators.py", line 14, in <module>
+    "you have to enable the uWSGI master process to use this module")
+Exception: you have to enable the uWSGI master process to use this module
+Wed Dec  2 11:36:04 2015 - unable to load app 0 (mountpoint='') (callable not found or import error)
+Wed Dec  2 11:36:04 2015 - *** no app loaded. going in full dynamic mode ***
+Wed Dec  2 11:36:04 2015 - *** uWSGI is running in multiple interpreter mode ***
+Wed Dec  2 11:36:04 2015 - spawned uWSGI worker 1 (pid: 11249, cores: 1)
+Wed Dec  2 11:36:04 2015 - spawned uWSGI worker 2 (pid: 11263, cores: 1)
+Wed Dec  2 11:36:04 2015 - spawned uWSGI worker 3 (pid: 11264, cores: 1)
+Wed Dec  2 11:36:04 2015 - spawned uWSGI worker 4 (pid: 11265, cores: 1)
+Wed Dec  2 11:36:10 2015 - --- no python application found, check your startup logs for errors ---
+[pid: 11265|app: -1|req: -1/1] 127.0.0.1 () {42 vars in 662 bytes} [Wed Dec  2 11:36:10 2015] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+Wed Dec  2 11:36:10 2015 - --- no python application found, check your startup logs for errors ---
+[pid: 11265|app: -1|req: -1/2] 127.0.0.1 () {44 vars in 633 bytes} [Wed Dec  2 11:36:10 2015] GET /favicon.ico => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+Wed Dec  2 19:47:16 2015 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Dec  2 19:47:16 2015] ***
+Wed Dec  2 19:47:16 2015 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Dec  2 19:47:16 2015 - os: Linux-4.2.0-19-generic #23-Ubuntu SMP Wed Nov 11 11:39:30 UTC 2015
+Wed Dec  2 19:47:16 2015 - nodename: Kubuntu
+Wed Dec  2 19:47:16 2015 - machine: x86_64
+Wed Dec  2 19:47:16 2015 - clock source: unix
+Wed Dec  2 19:47:16 2015 - detected number of CPU cores: 4
+Wed Dec  2 19:47:16 2015 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Dec  2 19:47:16 2015 - detected binary path: /usr/local/bin/uwsgi
+Wed Dec  2 19:47:16 2015 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Dec  2 19:47:16 2015 - *** WARNING: you are running uWSGI without its master process manager ***
+Wed Dec  2 19:47:16 2015 - your processes number limit is 15207
+Wed Dec  2 19:47:16 2015 - your memory page size is 4096 bytes
+Wed Dec  2 19:47:16 2015 - detected max file descriptor number: 1024
+Wed Dec  2 19:47:16 2015 - lock engine: pthread robust mutexes
+Wed Dec  2 19:47:16 2015 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Dec  2 19:47:16 2015 - uwsgi socket 0 bound to UNIX address TicketManagementSystem.sock fd 3
+Wed Dec  2 19:47:16 2015 - uwsgi socket 1 bound to UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
+Wed Dec  2 19:47:16 2015 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Dec  2 19:47:16 2015 - *** Python threads support is disabled. You can enable it with --enable-threads ***
+Wed Dec  2 19:47:16 2015 - Python main interpreter initialized at 0x1082ef0
+Wed Dec  2 19:47:16 2015 - your server socket listen backlog is limited to 100 connections
+Wed Dec  2 19:47:16 2015 - your mercy for graceful operations on workers is 60 seconds
+Wed Dec  2 19:47:16 2015 - mapped 291040 bytes (284 KB) for 4 cores
+Wed Dec  2 19:47:16 2015 - *** Operational MODE: preforking ***
+Traceback (most recent call last):
+  File "./TMS_wsgi.py", line 17, in <module>
+    from uwsgidecorators import timer  
+  File "/usr/local/lib/python2.7/dist-packages/uwsgidecorators.py", line 14, in <module>
+    "you have to enable the uWSGI master process to use this module")
+Exception: you have to enable the uWSGI master process to use this module
+Wed Dec  2 11:47:16 2015 - unable to load app 0 (mountpoint='') (callable not found or import error)
+Wed Dec  2 11:47:16 2015 - *** no app loaded. going in full dynamic mode ***
+Wed Dec  2 11:47:16 2015 - *** uWSGI is running in multiple interpreter mode ***
+Wed Dec  2 11:47:16 2015 - spawned uWSGI worker 1 (pid: 13006, cores: 1)
+Wed Dec  2 11:47:16 2015 - spawned uWSGI worker 2 (pid: 13020, cores: 1)
+Wed Dec  2 11:47:16 2015 - spawned uWSGI worker 3 (pid: 13021, cores: 1)
+Wed Dec  2 11:47:16 2015 - spawned uWSGI worker 4 (pid: 13022, cores: 1)
+Wed Dec  2 11:49:11 2015 - --- no python application found, check your startup logs for errors ---
+[pid: 13021|app: -1|req: -1/1] 127.0.0.1 () {40 vars in 631 bytes} [Wed Dec  2 11:49:11 2015] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+Wed Dec  2 11:49:12 2015 - --- no python application found, check your startup logs for errors ---
+[pid: 13021|app: -1|req: -1/2] 127.0.0.1 () {40 vars in 580 bytes} [Wed Dec  2 11:49:12 2015] GET /favicon.ico => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+Wed Dec  2 19:55:03 2015 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Dec  2 19:55:03 2015] ***
+Wed Dec  2 19:55:03 2015 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Dec  2 19:55:03 2015 - os: Linux-4.2.0-19-generic #23-Ubuntu SMP Wed Nov 11 11:39:30 UTC 2015
+Wed Dec  2 19:55:03 2015 - nodename: Kubuntu
+Wed Dec  2 19:55:03 2015 - machine: x86_64
+Wed Dec  2 19:55:03 2015 - clock source: unix
+Wed Dec  2 19:55:03 2015 - detected number of CPU cores: 4
+Wed Dec  2 19:55:03 2015 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Dec  2 19:55:03 2015 - detected binary path: /usr/local/bin/uwsgi
+Wed Dec  2 19:55:03 2015 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Dec  2 19:55:03 2015 - *** WARNING: you are running uWSGI without its master process manager ***
+Wed Dec  2 19:55:03 2015 - your processes number limit is 15207
+Wed Dec  2 19:55:03 2015 - your memory page size is 4096 bytes
+Wed Dec  2 19:55:03 2015 - detected max file descriptor number: 1024
+Wed Dec  2 19:55:03 2015 - lock engine: pthread robust mutexes
+Wed Dec  2 19:55:03 2015 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Dec  2 19:55:03 2015 - uwsgi socket 0 bound to UNIX address TicketManagementSystem.sock fd 3
+Wed Dec  2 19:55:03 2015 - uwsgi socket 1 bound to UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
+Wed Dec  2 19:55:03 2015 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Dec  2 19:55:03 2015 - *** Python threads support is disabled. You can enable it with --enable-threads ***
+Wed Dec  2 19:55:03 2015 - Python main interpreter initialized at 0xfd8de0
+Wed Dec  2 19:55:03 2015 - your server socket listen backlog is limited to 100 connections
+Wed Dec  2 19:55:03 2015 - your mercy for graceful operations on workers is 60 seconds
+Wed Dec  2 19:55:03 2015 - mapped 291040 bytes (284 KB) for 4 cores
+Wed Dec  2 19:55:03 2015 - *** Operational MODE: preforking ***
+ImportError: Import by filename is not supported.
+Wed Dec  2 19:55:03 2015 - unable to load app 0 (mountpoint='') (callable not found or import error)
+Wed Dec  2 19:55:03 2015 - *** no app loaded. going in full dynamic mode ***
+Wed Dec  2 19:55:03 2015 - *** uWSGI is running in multiple interpreter mode ***
+Wed Dec  2 19:55:03 2015 - spawned uWSGI worker 1 (pid: 14127, cores: 1)
+Wed Dec  2 19:55:03 2015 - spawned uWSGI worker 2 (pid: 14136, cores: 1)
+Wed Dec  2 19:55:03 2015 - spawned uWSGI worker 3 (pid: 14138, cores: 1)
+Wed Dec  2 19:55:03 2015 - spawned uWSGI worker 4 (pid: 14139, cores: 1)
+Wed Dec  2 19:55:48 2015 - --- no python application found, check your startup logs for errors ---
+[pid: 14138|app: -1|req: -1/1] 127.0.0.1 () {42 vars in 662 bytes} [Wed Dec  2 19:55:48 2015] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+Wed Dec  2 19:55:48 2015 - --- no python application found, check your startup logs for errors ---
+[pid: 14138|app: -1|req: -1/2] 127.0.0.1 () {44 vars in 633 bytes} [Wed Dec  2 19:55:48 2015] GET /favicon.ico => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+Wed Dec  2 19:55:49 2015 - --- no python application found, check your startup logs for errors ---
+[pid: 14138|app: -1|req: -1/3] 127.0.0.1 () {42 vars in 662 bytes} [Wed Dec  2 19:55:49 2015] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+Wed Dec  2 19:55:49 2015 - --- no python application found, check your startup logs for errors ---
+[pid: 14138|app: -1|req: -1/4] 127.0.0.1 () {44 vars in 633 bytes} [Wed Dec  2 19:55:49 2015] GET /favicon.ico => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+Wed Dec  2 19:55:53 2015 - --- no python application found, check your startup logs for errors ---
+[pid: 14138|app: -1|req: -1/5] 49.140.62.120 () {40 vars in 639 bytes} [Wed Dec  2 19:55:53 2015] GET / => generated 21 bytes in 0 msecs (HTTP/1.1 500) 2 headers in 83 bytes (0 switches on core 0)
+Wed Dec  2 19:59:17 2015 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Dec  2 19:59:17 2015] ***
+Wed Dec  2 19:59:17 2015 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Dec  2 19:59:17 2015 - os: Linux-4.2.0-19-generic #23-Ubuntu SMP Wed Nov 11 11:39:30 UTC 2015
+Wed Dec  2 19:59:17 2015 - nodename: Kubuntu
+Wed Dec  2 19:59:17 2015 - machine: x86_64
+Wed Dec  2 19:59:17 2015 - clock source: unix
+Wed Dec  2 19:59:17 2015 - detected number of CPU cores: 4
+Wed Dec  2 19:59:17 2015 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Dec  2 19:59:17 2015 - detected binary path: /usr/local/bin/uwsgi
+Wed Dec  2 19:59:17 2015 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Dec  2 19:59:17 2015 - your processes number limit is 15207
+Wed Dec  2 19:59:17 2015 - your memory page size is 4096 bytes
+Wed Dec  2 19:59:17 2015 - detected max file descriptor number: 1024
+Wed Dec  2 19:59:17 2015 - lock engine: pthread robust mutexes
+Wed Dec  2 19:59:17 2015 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Dec  2 19:59:17 2015 - uwsgi socket 0 bound to UNIX address TicketManagementSystem.sock fd 3
+Wed Dec  2 19:59:17 2015 - uwsgi socket 1 bound to UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
+Wed Dec  2 19:59:17 2015 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Dec  2 19:59:17 2015 - *** Python threads support is disabled. You can enable it with --enable-threads ***
+Wed Dec  2 19:59:17 2015 - Python main interpreter initialized at 0x1808fb0
+Wed Dec  2 19:59:17 2015 - your server socket listen backlog is limited to 100 connections
+Wed Dec  2 19:59:17 2015 - your mercy for graceful operations on workers is 60 seconds
+Wed Dec  2 19:59:17 2015 - mapped 363800 bytes (355 KB) for 4 cores
+Wed Dec  2 19:59:17 2015 - *** Operational MODE: preforking ***
+Wed Dec  2 11:59:17 2015 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
+Wed Dec  2 11:59:17 2015 - WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x1808fb0 pid: 14923 (default app)
+Wed Dec  2 11:59:17 2015 - mountpoint  already configured. skip.
+Wed Dec  2 11:59:17 2015 - *** uWSGI is running in multiple interpreter mode ***
+Wed Dec  2 11:59:17 2015 - spawned uWSGI master process (pid: 14923)
+Wed Dec  2 11:59:17 2015 - spawned uWSGI worker 1 (pid: 14937, cores: 1)
+Wed Dec  2 11:59:17 2015 - spawned uWSGI worker 2 (pid: 14938, cores: 1)
+Wed Dec  2 11:59:17 2015 - spawned uWSGI worker 3 (pid: 14939, cores: 1)
+Wed Dec  2 11:59:17 2015 - spawned uWSGI worker 4 (pid: 14940, cores: 1)
+[pid: 14940|app: 0|req: 1/1] 49.140.62.120 () {42 vars in 670 bytes} [Wed Dec  2 12:00:10 2015] GET / => generated 826 bytes in 28 msecs (HTTP/1.1 200) 2 headers in 88 bytes (1 switches on core 0)
+[pid: 14938|app: 0|req: 1/2] 49.140.62.120 () {42 vars in 676 bytes} [Wed Dec  2 13:00:08 2015] GET / => generated 826 bytes in 29 msecs (HTTP/1.1 200) 2 headers in 88 bytes (1 switches on core 0)
+[pid: 14940|app: 0|req: 2/3] 101.200.77.100 () {32 vars in 354 bytes} [Wed Dec  2 13:27:02 2015] GET / => generated 826 bytes in 1 msecs (HTTP/1.1 200) 2 headers in 88 bytes (1 switches on core 0)

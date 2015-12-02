@@ -15,8 +15,10 @@ use Tie::File;
 =begin old_method
 	open(CONF, "+<$ARGV[0]") or die "This configuration file is not valid.";
 =cut
+
 tie my @contents, "Tie::File", "$ARGV[0]" or die "This config file is not valid!!\n";
-$option = $ARGV[1]; # This time, ARGV is a scalar. @ is better to use when the variable is an array rather than a scalar!!
+$option = $ARGV[1]; 
+# This time, ARGV is a scalar. @ is better to use when the variable is an array rather than a scalar!!
 $result = 0;
 @dirs = ("static", "media");
 OUT:for(@contents)

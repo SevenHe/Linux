@@ -1,7 +1,7 @@
 <uwsgi>
-	<socket>127.0.0.1:9090</socket>
+	<socket>%work_and_app%.sock</socket>
 	<module>TMS_wsgi</module>
 	<processes>4</processes>
 	<logdate>true</logdate>
-	<daemonize>/home/seven0vm/Code/DjangoProjects/run/log/uwsgi.log</daemonize>
+	<daemonize>~/Code/DjangoProjects/run/log/uwsgi.log</daemonize>
 </uwsgi>
