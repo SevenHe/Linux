@@ -19,7 +19,7 @@ class client:
         
         self._sock.settimeout(3)
         self._SALT = ''
-        self._server = "10.100.61.3" # "auth.jlu.edu.cn"
+        self._svr = "10.100.61.3" # "auth.jlu.edu.cn"
         self._username = "hech5513"
         self._password = "010178"
         self._host_name = "SEVEN"
@@ -29,21 +29,22 @@ class client:
         self.EXCEPTION = False
         self.DEBUG = True
 
-    def challenge(self, svr,ran):
+    def challenge(self, svr, ran):
+        # a server restricted format.
         while True:
             t = struct.pack("<H", int(ran)%(0xFFFF))
-            sock.sendto("\x01\x02"+t+"\x09"+"\x00"*15, (svr, 61440))
-        try:
-            data, address = sock.recvfrom(1024)
-        except:
-            if DEBUG:
-                print '[challenge] timeout, retrying...'
+            self._sock.sendto("\x01\x02"+t+"\x09"+"\x00"*15, (svr, 61440))
+            try:
+                data, address = sock.recvfrom(1024)
+            except:
+                if DEBUG:
+                    print '[challenge] timeout, retrying...'
             continue
         
-        if address == (svr, 61440):
-            break;
-        else:
-            continue
+            if address == (svr, 61440):
+                break
+            else:
+                continue
         if DEBUG:
             print '[DEBUG] challenge:\n' + data.encode('hex')
         if data[0] != '\x02':
@@ -52,16 +53,17 @@ class client:
         return data[4:8]
 
 
-def md5sum(sock):
+# encrypted.
+def md5sum(msg):
     m = md5()
-    m.update(sock)
+    m.update(msg)
     return m.digest()
 
 def dump(n):
-    sock = '%x' % n
-    if len(sock) & 1:
-        sock = '0' + sock
-    return sock.decode('hex')
+    dump_str = '%x' % n
+    if len(dump_str) & 1:
+         dump_str = '0' + dump_str
+    return dump_str.decode('hex')
 
 def ror(md5, pwd):
     ret = ''
@@ -70,7 +72,7 @@ def ror(md5, pwd):
         ret += chr(((x<<3)&0xFF) + (x>>5))
     return ret
 
-def keep_alive_package_builder(number,random,tail,type=1,first=False):
+def keep_alive_package_builder(number, random, tail, type=1, first=False):
     data = '\x07'+ chr(number) + '\x28\x00\x0b' + chr(type)
     if first :
       data += '\x0f\x27'
@@ -89,9 +91,9 @@ def keep_alive_package_builder(number,random,tail,type=1,first=False):
       data += '\x00' * 16
     return data
 
-def packet_CRC(sock):
+def packet_CRC(raw):
     ret = 0
-    for i in re.findall('..', sock):
+    for i in re.findall('..', raw):
         ret ^= struct.unpack('>h', i)[0]
         ret &= 0xFFFF
     ret = ret * 0x2c7
@@ -109,21 +111,21 @@ def keep_alive2():
     packet = ''
     svr = server
     import random
-    ran = random.randint(0,0xFFFF)
-    ran += random.randint(1,10)   
-    packet = keep_alive_package_builder(0,dump(ran),'\x00'*4,1,True)
+    ran = random.randint(0, 0xFFFF)
+    ran += random.randint(1, 10)   
+    packet = keep_alive_package_builder(0,dump(ran),'\x00'*4, 1, True)
     sock.sendto(packet, (svr, 61440))
     data, address = sock.recvfrom(1024)
     
-    ran += random.randint(1,10)   
-    packet = keep_alive_package_builder(1,dump(ran),'\x00'*4,1,False)
+    ran += random.randint(1, 10)   
+    packet = keep_alive_package_builder(1, dump(ran), '\x00'*4, 1, False)
     sock.sendto(packet, (svr, 61440))
     data, address = sock.recvfrom(1024)
     tail = data[16:20]
     
 
-    ran += random.randint(1,10)   
-    packet = keep_alive_package_builder(2,dump(ran),tail,3,False)
+    ran += random.randint(1, 10)   
+    packet = keep_alive_package_builder(2, dump(ran), tail, 3, False)
     sock.sendto(packet, (svr, 61440))
     data, address = sock.recvfrom(1024)
     tail = data[16:20]
@@ -134,7 +136,7 @@ def keep_alive2():
       try:
         time.sleep(5)
         ran += random.randint(1,10)   
-        packet = keep_alive_package_builder(2,dump(ran),tail,1,False)
+        packet = keep_alive_package_builder(2, dump(ran), tail, 1, False)
         #print 'DEBUG: keep_alive2,packet 4\n',packet.encode('hex')
         sock.sendto(packet, (svr, 61440))
         data, address = sock.recvfrom(1024)
@@ -203,7 +205,7 @@ def login(usr, pwd, svr):
     while True:
         try:
             try:
-              salt = challenge(svr,time.time()+random.randint(0xF,0xFF))
+              salt = challenge(svr, time.time()+random.randint(0xF,0xFF))
             except ChallengeException:
               if DEBUG:
                 print 'challenge packet exception'
@@ -230,8 +232,8 @@ def login(usr, pwd, svr):
                 print '[login] last packet server returned:\n' + data.encode('hex')
               time.sleep(1)
               raise LoginException
-              continue;
-            break;
+              continue
+            break
         else:
             if i >= 5 and UNLIMITED_RETRY == False :
               print '[login] packet received error, maybe you are under attacking'
@@ -250,13 +252,14 @@ def info(ip):
     r = c.getresponse()
     if r.status != 200:
         return None
-    sock = r.read()
+    inf = r.read()
     data = dict()
-    data["flux"] = int(sock[sock.index("flow='")+6:sock.index("';fsele=")])
-    data["time"] = int(sock[sock.index("time='")+6:sock.index("';flow")])
+    data["flux"] = int(inf[inf.index("flow='")+6:inf.index("';fsele=")])
+    data["time"] = int(inf[inf.index("time='")+6:inf.index("';flow")])
     return data
-def keep_alive1(salt,tail,pwd,svr):
-    foo = struct.pack('!H',int(time.time())%0xFFFF)
+
+def keep_alive1(salt, tail, pwd, svr):
+    foo = struct.pack('!H', int(time.time())%0xFFFF)
     data = '\xff' + md5sum('\x03\x01'+salt+pwd) + '\x00\x00\x00'
     data += tail
     data += foo + '\x00\x00\x00\x00'
@@ -270,16 +273,21 @@ def keep_alive1(salt,tail,pwd,svr):
         pass
     
 def main():
+    server = "10.0.0.0"
+    username = "test"
+    mac = 0xffffffff 
     print "auth svr:"+server+"\nusername:"+username+"\npassword:"+"********"+"\nmac:"+str(hex(mac))
     print "os:MSDOS 8.0"+"\nhostname: localhost" 
     print "DrCOM Auth Router Ver 1.2"
     print "Version feature:\n[1] Auto Anti droping connection\n[2] Stronger exception handling."
+    """
     while True:
       try:
         package_tail = login(username, password, server)
       except LoginException:
         continue
       keep_alive2()
+    """
 
 if __name__ == "__main__":
     main()
