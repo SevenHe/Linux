@@ -4,6 +4,14 @@ from hashlib import md5
 import sys
 import urllib2
 
+# To-do list:
+#       optimize the code: the structure.
+#       prompt: do not make the passwd literal and let users specify the different args.
+#       translatable;
+#       check: if the port is in use, just change it or make use to specify it manually.
+#configure the encrypted rules when not logging in , in the html file.
+#to close the socket and get the information of the httpconnection.
+
 class ChallengeException (Exception):
   def __init__(self):
     pass
@@ -65,10 +73,10 @@ def dump(n):
          dump_str = '0' + dump_str
     return dump_str.decode('hex')
 
-def ror(md5, pwd):
+def ror(md5, pswd):
     ret = ''
-    for i in range(len(pwd)):
-        x = ord(md5[i]) ^ ord(pwd[i])
+    for i in range(len(pswd)):
+        x = ord(md5[i]) ^ ord(pswd[i])
         ret += chr(((x<<3)&0xFF) + (x>>5))
     return ret
 
@@ -179,25 +187,25 @@ def checksum(sock):
     ret = (1968 * ret) & 0xffffffff
     return struct.pack('<I', ret)
 
-def mkpkt(salt, usr, pwd, mac):
+def mkpkt(salt, usr, pswd, mac):
     data = '\x03\01\x00'+chr(len(usr)+20)
-    data += md5sum('\x03\x01'+salt+pwd)
+    data += md5sum('\x03\x01'+salt+pswd)
     data += usr.ljust(36, '\x00')
     data += '\x00\x00'
     data += dump(int(data[4:10].encode('hex'),16)^mac).rjust(6,'\x00')
-    data += md5sum("\x01" + pwd + salt + '\x00'*4)
+    data += md5sum("\x01" + pswd + salt + '\x00'*4)
     data += '\x01\x31\x8c\x31\x4e' + '\00'*12
     data += md5sum(data + '\x14\x00\x07\x0b')[:8] + '\x01'+'\x00'*4
     data += host_name.ljust(71, '\x00')
     data += '\x01' + host_os.ljust(128, '\x00')
-    data += '\x6d\x00\x00'+chr(len(pwd))
-    data += ror(md5sum('\x03\x01'+salt+pwd), pwd)
+    data += '\x6d\x00\x00'+chr(len(pswd))
+    data += ror(md5sum('\x03\x01'+salt+pswd), pswd)
     data += '\x02\x0c'
     data += checksum(data+'\x01\x26\x07\x11\x00\x00'+dump(mac))
     data += "\x00\x00" + dump(mac)
     return data
 
-def login(usr, pwd, svr):
+def login(usr, pswd, svr):
     import random
     global SALT
  
@@ -211,7 +219,7 @@ def login(usr, pwd, svr):
                 print 'challenge packet exception'
               continue
             SALT = salt
-            packet = mkpkt(salt, usr, pwd, mac)
+            packet = mkpkt(salt, usr, pswd, mac)
             sock.sendto(packet, (svr, 61440))
             data, address = sock.recvfrom(1024)
         except:
@@ -258,9 +266,9 @@ def info(ip):
     data["time"] = int(inf[inf.index("time='")+6:inf.index("';flow")])
     return data
 
-def keep_alive1(salt, tail, pwd, svr):
+def keep_alive1(salt, tail, pswd, svr):
     foo = struct.pack('!H', int(time.time())%0xFFFF)
-    data = '\xff' + md5sum('\x03\x01'+salt+pwd) + '\x00\x00\x00'
+    data = '\xff' + md5sum('\x03\x01'+salt+pswd) + '\x00\x00\x00'
     data += tail
     data += foo + '\x00\x00\x00\x00'
     print '[keep_alive1] keep_alive1,sent'
@@ -278,7 +286,8 @@ def main():
     mac = 0xffffffff 
     print "auth svr:"+server+"\nusername:"+username+"\npassword:"+"********"+"\nmac:"+str(hex(mac))
     print "os:MSDOS 8.0"+"\nhostname: localhost" 
-    print "DrCOM Auth Router Ver 1.2"
+    print "DrCOM Auth Client Ver 0.5"
+    print "Author: sevenhe2015@gmail.com"
     print "Version feature:\n[1] Auto Anti droping connection\n[2] Stronger exception handling."
     """
     while True:
