@@ -28,6 +28,9 @@ filetype plugin indent on    " required
 "colorscheme monokai
 " my style with zsh
 hi Comment ctermfg=0 cterm=bold
+autocmd FileType sh syntax match itptType "^[#][!][/].\+$"
+autocmd FileType sh hi itptType ctermfg=6 cterm=bold,italic
+"hi itptType ctermfg=6 cterm=bold
 set hlsearch
 set tabstop=4
 map <CR> :nohl <CR>
