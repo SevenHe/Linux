@@ -1,3 +1,4 @@
+#!/usr/bin/python
 """
 The core program in the client
 """
@@ -38,6 +39,7 @@ SALT = ''
 
 RUNNER = logging.getLogger('Executor')
 CHECKER = logging.getLogger('Checker')
+DEBUGGER = logging.getLogger('Debugger')
 
 class ChallengeException(Exception):
     """
@@ -64,8 +66,7 @@ class Client:
     def __init__(self):
         self._sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         #self._sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-        self._sock.bind(("0.0.0.0", 61440))
-        
+
         self._sock.settimeout(3)
         self._svr = "10.100.61.3" # "auth.jlu.edu.cn"
         self._svr_port = 61440
@@ -75,6 +76,7 @@ class Client:
         self._client = '/tmp/drcom-daemon.pid'
         self.host_name = "SEVEN"
         self.host_os = "Kubuntu"
+        
 
         self.formatter = logging.Formatter("%(levelname)s - %(name)s: %(message)s")
         self.StreamHandler = logging.StreamHandler()
@@ -359,10 +361,18 @@ class Client:
         # The reason does not close the file is that it will be removed at the end.
         atexit.register(self._delpid)
         pid = str(os.getpid())
-        file(self._client, 'w+').write("%s\n" % pid)
+        with open(self._client, 'w+') as pf:
+            pf.write("%s\n" % pid)
 
     def _run(self):
 # can add some handler or log code into the method or place here.
+        self.StreamHandler.setFormatter(self.formatter)
+        DEBUGGER.addHandler(self.StreamHandler)
+        try:
+            self._sock.bind(("0.0.0.0", 61440))
+        except:
+            DEBUGGER.debug(sys.exc_info())
+            return 3
         while True:
             try:
                 package_tail = self._login()
@@ -392,7 +402,7 @@ class Client:
         self.StreamHandler.setFormatter(self.formatter)
         RUNNER.addHandler(self.StreamHandler)
         try:
-            pf = file(self._client, 'r')
+            pf = open(self._client, 'r')
             pid = int(pf.read().strip())
             pf.close()
         except IOError:
@@ -416,6 +426,7 @@ class Client:
         pass
 
     # Thers is no " con ? .. : .." in python.
+    # The check procedure need to be more accurate.
     def check(self):
         self.StreamHandler.setFormatter(self.formatter)
         CHECKER.addHandler(self.StreamHandler)
@@ -427,12 +438,14 @@ class Client:
         except IOError:
             pid = None
 
-        if pid:
-            CHECKER.warn('You have not started the client.')
+        if not pid:
+            CHECKER.warn('You have not started the client, or maybe you have killed the process but the server would reject your connection after a few minutes.')
             return 12
         else:
+            import subprocess
             CHECKER.info("Daemon pid:", pid)
-            CHECKER.info("Daemon status:", 'Running' if os.kill(pid, 0) else 'Deactived')
+            status = 'Running' if subprocess.call("lsof" + "-i:61440", shell=True) else 'Deactived'
+            CHECKER.info("Daemon status:", status)
             return 11
             
     # write configs to a hidden file for startup with no logging in.
