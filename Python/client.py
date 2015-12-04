@@ -1,22 +1,27 @@
-#!/usr/bin/python
+"""
+The core program in the client
+"""
+
 import socket, struct, time, random
 from hashlib import md5
 import sys, re
-import multiprocessing
+#import multiprocessing
 import urllib2
 import logging     # for real
 
 # for development debug
-import cgitb
+# import cgitb
 import traceback
 
 # To-do list:
-#       optimize the code: the structure.
-#       prompt: do not make the passwd literal and let users specify the different args.
-#       translatable;
-#       check: if the port is in use, just change it or make use to specify it manually; more stronger 
-#              exception handles.
-#       addition: get the time and flow from site; save the information as encrypted
+#   optimize the code: the structure.
+#   prompt: do not make the passwd literal and let users specify the
+#            different args.
+#   translatable;
+#   check: if the port is in use, just change it or make use to specify it
+#           manually; more stronger exception handles.
+#   addition: get the time and flow from site; save the information as encrypted
+#           maybe need to redirect the std descriptors.
 #
 #   final test: the window OS or other platform test;
 #                and the GUI to be added.
@@ -31,20 +36,31 @@ EXCEPTION = False
 DEBUG = True
 SALT = ''
 
-runner = logging.getLogger('Executor')
-checker = logging.getLogger('Checker')
+RUNNER = logging.getLogger('Executor')
+CHECKER = logging.getLogger('Checker')
 
-class ChallengeException (Exception):
-  def __init__(self):
-    pass
+class ChallengeException(Exception):
+    """
+    Send challenge exception.
+    To be filled.
+    """
+    def __init__(self):
+        pass
 
-class LoginException (Exception):
-  def __init__(self):
-    pass
-   
+class LoginException(Exception):
+    """
+    The login exception.
+    Also to be continued.
+    """
+    def __init__(self):
+        pass
+
 import os
 import atexit
 class Client:
+    """
+    DrCOM Client
+    """
     def __init__(self):
         self._sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         #self._sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -55,13 +71,13 @@ class Client:
         self._svr_port = 61440
         self._username = "hech5513"
         self._password = "010178"
-        self._host_name = "SEVEN"
-        self._host_os = "Kubuntu"
         self._mac = 0xC454442B84C5
         self._client = '/tmp/drcom-daemon.pid'
+        self.host_name = "SEVEN"
+        self.host_os = "Kubuntu"
 
         self.formatter = logging.Formatter("%(levelname)s - %(name)s: %(message)s")
-        self.streamHandler = logging.StreamHandler()
+        self.StreamHandler = logging.StreamHandler()
 
     def _challenge(self, ran):
         # a server test after successing in connection.
@@ -74,14 +90,14 @@ class Client:
                 if DEBUG:
                     print '[challenge] timeout, retrying...'
                 continue
-        
+
             if address == (self._svr, self._svr_port):
                 break
             else:
                 continue
         if DEBUG:
             print '[DEBUG] challenge:\n' + data.encode('hex')
-            print 'random seed:', str(ran) 
+            print 'random seed:', str(ran)
         if data[0] != '\x02':
             raise ChallengeException
         print '[challenge] challenge packet sent.'
@@ -107,14 +123,15 @@ class Client:
         pswd = self._password
         ret = [(ord(md5[i]) ^ ord(pswd[i])) for i in range(len(pswd))]
         return ''.join(map(lambda x:chr(((x<<3)&0xFF) + (x>>5)), ret))
-        """
-        # deprecated
-        ret = ''
-        for i in range(len(pswd)):
-            x = ord(md5[i]) ^ ord(pswd[i])
-            ret += chr(((x<<3)&0xFF) + (x>>5))
-        return ret
-        """
+
+    """
+    # Deprecated
+    ret = ''
+    for i in range(len(pswd)):
+        x = ord(md5[i]) ^ ord(pswd[i])
+        ret += chr(((x<<3)&0xFF) + (x>>5))
+    return ret
+    """
             
     # build the packet.
     # just for user send operation.
@@ -177,7 +194,7 @@ class Client:
         self._sock.sendto(packet, (svr, self._svr_port))
         data, address = self._sock.recvfrom(1024)
         tail = data[16:20]
-        print "[keep-alive2] keep-alive2 loop was in daemon."
+        #print "[keep-alive2] keep-alive2 loop was in daemon."
         
         i = 1
         # ~~TO-DO~~ cut the codes.
@@ -209,16 +226,16 @@ class Client:
                     print '[keep_alive] offline.relogin...'
                     break
                 #MODIFIED END
-                """ 
-                if i % 10 == 0:
-                check_online = urllib2.urlopen('http://10.100.61.3')
-                foo = check_online.read()
-                if 'login.jlu.edu.cn' in foo:
-                print '[keep_alive] offline.relogin...'
-                break;
-                """
             except:
                 pass
+    """ 
+    if i % 10 == 0:
+        check_online = urllib2.urlopen('http://10.100.61.3')
+    foo = check_online.read()
+    if 'login.jlu.edu.cn' in foo:
+        print '[keep_alive] offline.relogin...'
+    break;
+    """
         
     
     def _checksum(self, s):
@@ -227,10 +244,10 @@ class Client:
             ret ^= int(i[::-1].encode('hex'), 16)
         ret = (1968 * ret) & 0xffffffff
         return struct.pack('<I', ret)
-        """
-        import binascii
-        binascii.b2a_hex(i[::-1])
-        """
+    """
+    import binascii
+    binascii.b2a_hex(i[::-1])
+    """
 
     # take care of your args!
     def _mkpkt(self, SALT):
@@ -242,8 +259,8 @@ class Client:
         data += self._md5sum("\x01" + self._password + SALT+ '\x00'*4)
         data += '\x01\x31\x8c\x31\x4e' + '\00'*12
         data += self._md5sum(data + '\x14\x00\x07\x0b')[:8] + '\x01'+'\x00'*4
-        data += self._host_name.ljust(71, '\x00')
-        data += '\x01' + self._host_os.ljust(128, '\x00')
+        data += self.host_name.ljust(71, '\x00')
+        data += '\x01' + self.host_os.ljust(128, '\x00')
         data += '\x6d\x00\x00'+chr(len(self._password))
         data += self._ror(self._md5sum('\x03\x01'+SALT+self._password))
         data += '\x02\x0c'
@@ -269,35 +286,35 @@ class Client:
                 self._sock.sendto(packet, (self._svr, self._svr_port))
                 data, address = self._sock.recvfrom(1024)
             except:
-                print "[login] recvfrom timeout,retrying..."
+                print "[LOGIN] recvfrom timeout,retrying..."
                 traceback.print_exc() 
                 continue
-            print '[login] packet sent.'
+            print '[LOGIN] packet sent.'
             if address == (self._svr, self._svr_port):
                 if data[0] == '\x05' and i >= 5 and UNLIMITED_RETRY == False:
-                    print '[login] wrong password, retried ' + str(i) +' times.'
+                    print '[LOGIN] wrong password, retried ' + str(i) +' times.'
                     sys.exit(1)
                 elif data[0] == '\x05' and i < 5:
-                    print "[login] wrong password."
+                    print "[LOGIN] wrong password."
                     i = i + 1
                     time.sleep(i*1.555)
                 elif data[0] != '\x04':
-                    print "[login] server return exception.retry"
+                    print "[LOGIN] server return exception.retry"
                     if DEBUG:
-                        print '[login] last packet server returned:\n' + data.encode('hex')
+                        print '[LOGIN] last packet server returned:\n' + data.encode('hex')
                     time.sleep(1)
                     raise LoginException
                     continue
                 break
             else:
                 if i >= 5 and UNLIMITED_RETRY == False :
-                    print '[login] packet received error, maybe you are under attacking'
+                    print '[LOGIN] packet received error, maybe you are under attacking'
                     sys.exit(1)
                 else:
                     i = i + 1
-                    print '[login] package error, retrying...'
+                    print '[LOGIN] package error, retrying...'
               
-        print '[login] login sent'
+        print '[LOGIN] login sent'
         return data[-22:-6]
 
     # Deprecated
@@ -321,7 +338,7 @@ class Client:
             if pid > 0:
                 return 1 
         except OSError:
-            runner.error('Start the DrCOM daemon client failed.')
+            RUNNER.error('Start the DrCOM daemon client failed.')
             sys.exit(1)
         else:
             # Configure the child processes environment
@@ -334,7 +351,7 @@ class Client:
             if self._client > 0:
                 return 1
         except OSError:
-            runner.error('Start the DrCOM daemon client failed.')
+            RUNNER.error('Start the DrCOM daemon client failed.')
             sys.exit(1)
 
         #There should be some redirections ,likewise some logs.
@@ -372,8 +389,8 @@ class Client:
 
     # The further feature is to use the 'spawnl()' for the Windows OS.
     def start(self):
-        self.streamHandler.setFormatter(self.formatter)
-        runner.addHandler(self.streamHandler)
+        self.StreamHandler.setFormatter(self.formatter)
+        RUNNER.addHandler(self.StreamHandler)
         try:
             pf = file(self._client, 'r')
             pid = int(pf.read().strip())
@@ -381,28 +398,28 @@ class Client:
         except IOError:
             pid = None
         
-        if not pid:
-           runner.warn("Pid file %s already exists, Daemon already running?\nYou may want to use 'check' option." % self._client)
+        if pid:
+           RUNNER.warn("Pid file %s already exists, Daemon already running?\nYou may want to use 'check' option." % self._client)
            return 2
 
         self._daemonize()
         self._run()
 
-        """
-        # Deprecated
-        self._client = multiprocessing.Process(name="DrCOM Client", target=self._keep_alive)
-        self._client.daemon = True
-        self._client.start()
-        """
+    """
+    # Deprecated
+    self._client = multiprocessing.Process(name="DrCOM Client", target=self._keep_alive)
+    self._client.daemon = True
+    self._client.start()
+    """
 
     def stop(self):
         pass
 
     # Thers is no " con ? .. : .." in python.
     def check(self):
-        self.streamHandler.setFormatter(self.formatter)
-        checker.addHandler(self.streamHandler)
-        checker.debug('Check is starting...')
+        self.StreamHandler.setFormatter(self.formatter)
+        CHECKER.addHandler(self.StreamHandler)
+        CHECKER.debug('Check is starting...')
         try:
             pf = file(self._client, 'r')
             pid = int(pf.read().strip)
@@ -411,11 +428,11 @@ class Client:
             pid = None
 
         if pid:
-            checker.warn('You have not started the client.')
+            CHECKER.warn('You have not started the client.')
             return 12
         else:
-            checker.info("Daemon pid:", pid)
-            checker.info("Daemon status:", 'Running' if os.kill(pid, 0) else 'Deactived')
+            CHECKER.info("Daemon pid:", pid)
+            CHECKER.info("Daemon status:", 'Running' if os.kill(pid, 0) else 'Deactived')
             return 11
             
     # write configs to a hidden file for startup with no logging in.
@@ -443,38 +460,37 @@ def main():
 if __name__ == "__main__":
     cgitb.enable(format="text")
     main()
-"""
 
-""" 
-    def stop(self):
+def stop(self):
     # Get the pid from the pidfile
     try:
-    pf = file(self.pidfile,'r')
-    pid = int(pf.read().strip())
-    pf.close()
+        pf = file(self.pidfile,'r')
+        pid = int(pf.read().strip())
+        pf.close()
     except IOError:
-    pid = None
+        pid = None
     
     if not pid:
-    message = "pidfile %s does not exist. Daemon not running?\n"
-    sys.stderr.write(message % self.pidfile)
-    return # not an error in a restart
+        message = "pidfile %s does not exist. Daemon not running?\n"
+        sys.stderr.write(message % self.pidfile)
+        return # not an error in a restart
     
     # Try killing the daemon process       
     try:
-    while 1:
-    os.kill(pid, SIGTERM)
-    time.sleep(0.1)
+        while 1:
+            os.kill(pid, SIGTERM)
+            time.sleep(0.1)
     except OSError, err:
-    err = str(err)
-    if err.find("No such process") > 0:
-    if os.path.exists(self.pidfile):
-    os.remove(self.pidfile)
-    else:
-    print str(err)
-    sys.exit(1)
+        err = str(err)
+        if err.find("No such process") > 0:
+            if os.path.exists(self.pidfile):
+                os.remove(self.pidfile)
+        else:
+            print str(err)
+        sys.exit(1)
     
     def restart(self):
-    self.stop()
-    self.start()
+        self.stop()
+        self.start()
 """
+
