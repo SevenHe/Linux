@@ -10,6 +10,7 @@ call vundle#begin('~/Downloads/vim-plugins')
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Lokaltog/vim-powerline'
+Plugin 'scrooloose/syntastic'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -24,7 +25,15 @@ Plugin 'Lokaltog/vim-powerline'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-"syntax enable
+"syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 "colorscheme monokai
 " my style with zsh
 hi Comment ctermfg=0 cterm=bold

@@ -10,11 +10,14 @@ mac = 0xC454442B84C5
 import urllib2
 import gzip
 import StringIO
+"""
+# This is a way to simulate logging in the site, but it is unuseful for encrypted flow.
 f = urllib2.urlopen("http://" + server)
 auth_handler = urllib2.HTTPBasicAuthHandler()
 auth_handler.add_password(None, uri="http://" + server + ":61440", user=username, passwd=pswd)
 opener = urllib2.build_opener(auth_handler)
 urllib2.install_opener(opener)
+"""
 import sys
 import os
 # os.getcwd()
@@ -22,11 +25,14 @@ type = sys.getfilesystemencoding()
 f = urllib2.urlopen("http://" + server)
 print f.code
 
+"""
+# This is to get the server encrypted rules on the web site.
 with open("/home/seven/Code/Markups/drcom.html", 'w') as html:
     html.write(f.read().decode('gb2312').encode(type))
     f.close()
 with open("/home/seven/Code/Markups/drcom.html", 'r') as html:
     print html.read()
+"""
 
 """
 # This is useful when the html has been gizpped.
