@@ -31,8 +31,8 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 "colorscheme monokai
 " my style with zsh
@@ -40,6 +40,8 @@ hi Comment ctermfg=0 cterm=bold
 autocmd FileType sh syntax match itptType "^[#][!][/].\+$"
 autocmd FileType sh hi itptType ctermfg=6 cterm=bold,italic
 "hi itptType ctermfg=6 cterm=bold
+"YCM
+let g:ycm_autoclose_preview_window_after_completion = 1
 set hlsearch
 set tabstop=4
 map <CR> :nohl <CR>

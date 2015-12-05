@@ -22,7 +22,8 @@ import traceback
 #   check: if the port is in use, just change it or make use to specify it
 #           manually; more stronger exception handles.
 #   addition: get the time and flow from site; save the information as encrypted
-#           maybe need to redirect the std descriptors.
+#           maybe need to redirect the std descriptors
+#   check updates.
 #
 #   final test: the window OS or other platform test;
 #                and the GUI to be added.
@@ -37,6 +38,8 @@ EXCEPTION = False
 DEBUG = True
 SALT = ''
 
+# Specified the place.
+LOGFILE = '/tmp/.dclogs'
 RUNNER = logging.getLogger('Executor')
 CHECKER = logging.getLogger('Checker')
 DEBUGGER = logging.getLogger('Debugger')
@@ -78,8 +81,11 @@ class Client:
         self.host_os = "Kubuntu"
         
 
+        # some log settings.
         self.formatter = logging.Formatter("%(levelname)s - %(name)s: %(message)s")
         self.StreamHandler = logging.StreamHandler()
+        self.StreamHandler.setFormatter(self.formatter)
+        DEBUGGER.addHandler(self.StreamHandler)
 
     def _challenge(self, ran):
         # a server test after successing in connection.
@@ -90,7 +96,7 @@ class Client:
                 data, address = self._sock.recvfrom(1024)
             except:
                 if DEBUG:
-                    print '[challenge] timeout, retrying...'
+                    print '[CHALLENGE] Timeout, retrying...'
                 continue
 
             if address == (self._svr, self._svr_port):
@@ -98,11 +104,11 @@ class Client:
             else:
                 continue
         if DEBUG:
-            print '[DEBUG] challenge:\n' + data.encode('hex')
-            print 'random seed:', str(ran)
+            print '[DEBUG] Challenge:\n' + data.encode('hex')
+            print 'Random seed:', str(ran)
         if data[0] != '\x02':
             raise ChallengeException
-        print '[challenge] challenge packet sent.'
+        print '[CHALLENGE] Challenge packet sent.'
         return data[4:8]
 
     # encrypted flows.
@@ -137,7 +143,7 @@ class Client:
             
     # build the packet.
     # just for user send operation.
-    def _keep_alive_package_builder(self, number, random, tail, type=1, first=False):
+    def _daemon_packet_poster(self, number, random, tail, type=1, first=False):
         data = '\x07'+ chr(number) + '\x28\x00\x0b' + chr(type)
         if first :
             data += '\x0f\x27'
@@ -154,7 +160,9 @@ class Client:
             data += struct.pack("!I",crc) + foo + '\x00' * 8
         else: #packet type = 1
             data += '\x00' * 16
-        return data
+        self._sock.sendto(data, (self._svr, self._svr_port))
+        dgram, address = self._sock.recvfrom(1024)
+        return dgram[16:20]
 
     # two bit represents a hexadecimal digit.
     # This place can be simplified.
@@ -180,22 +188,14 @@ class Client:
         svr = self._svr
         ran = random.randint(1, 0xFFFF + 10)
 # ~~TO-DO~~ compact the duplicate code into a method to get better feeling.
-        packet = self._keep_alive_package_builder(0, self._dump(ran), '\x00'*4, 1, True)
-        self._sock.sendto(packet, (svr, self._svr_port))
-        data, address = self._sock.recvfrom(1024)
+        tail = self._daemon_packet_poster(0, self._dump(ran), '\x00'*4, 1, True)
         
         ran += random.randint(1, 10)   
-        packet = self._keep_alive_package_builder(1, self._dump(ran), '\x00'*4, 1, False)
-        self._sock.sendto(packet, (svr, self._svr_port))
-        data, address = self._sock.recvfrom(1024)
-        tail = data[16:20]
+        tail = self._daemon_packet_poster(1, self._dump(ran), '\x00'*4, 1, False)
         
         
         ran += random.randint(1, 10)   
-        packet = self._keep_alive_package_builder(2, self._dump(ran), tail, 3, False)
-        self._sock.sendto(packet, (svr, self._svr_port))
-        data, address = self._sock.recvfrom(1024)
-        tail = data[16:20]
+        tail = self._daemon_packet_poster(2, self._dump(ran), tail, 3, False)
         #print "[keep-alive2] keep-alive2 loop was in daemon."
         
         i = 1
@@ -204,20 +204,13 @@ class Client:
             try:
                 time.sleep(5)
                 ran += random.randint(1,10)   
-                packet = self._keep_alive_package_builder(2, self._dump(ran), tail, 1, False)
-                #print 'DEBUG: keep_alive2,packet 4\n',packet.encode('hex')
-                self._sock.sendto(packet, (svr, self._svr_port))
-                data, address = self._sock.recvfrom(1024)
-                tail = data[16:20]
+                tail = self._daemon_packet_poster(2, self._dump(ran), tail, 1, False)
                 #print 'DEBUG: keep_alive2,packet 4 return\n',data.encode('hex')
         
                 ran += random.randint(1,10)   
-                packet = self._keep_alive_package_builder(2, self._dump(ran), tail, 3, False)
+                tail = self._daemon_packet_poster(2, self._dump(ran), tail, 3, False)
                 #print 'DEBUG: keep_alive2,packet 5\n',packet.encode('hex')
-                self._sock.sendto(packet, (svr, self._svr_port))
-                data, address = self._sock.recvfrom(1024)
-                tail = data[16:20]
-                #print 'DEBUG: keep_alive2,packet 5 return\n',data.encode('hex')
+
                 i = i+1
                 i = i % (0xFF)
         
@@ -283,7 +276,7 @@ class Client:
                     if DEBUG:
                         print 'challenge packet exception'
                     continue
-                print '[INFO]: make client packets.'
+                print '[INFO]: Make client packets.'
                 packet = self._mkpkt(SALT)
                 self._sock.sendto(packet, (self._svr, self._svr_port))
                 data, address = self._sock.recvfrom(1024)
@@ -291,38 +284,38 @@ class Client:
                 print "[LOGIN] recvfrom timeout,retrying..."
                 traceback.print_exc() 
                 continue
-            print '[LOGIN] packet sent.'
+            print '[LOGIN] Packet sent.'
             if address == (self._svr, self._svr_port):
                 if data[0] == '\x05' and i >= 5 and UNLIMITED_RETRY == False:
-                    print '[LOGIN] wrong password, retried ' + str(i) +' times.'
+                    print '[LOGIN] Wrong password, retried ' + str(i) +' times.'
                     sys.exit(1)
                 elif data[0] == '\x05' and i < 5:
-                    print "[LOGIN] wrong password."
+                    print "[LOGIN] Wrong password."
                     i = i + 1
                     time.sleep(i*1.555)
                 elif data[0] != '\x04':
-                    print "[LOGIN] server return exception.retry"
+                    print "[LOGIN] Server return exception.retry"
                     if DEBUG:
-                        print '[LOGIN] last packet server returned:\n' + data.encode('hex')
+                        print '[LOGIN] Last packet server returned:\n' + data.encode('hex')
                     time.sleep(1)
                     raise LoginException
                     continue
                 break
             else:
                 if i >= 5 and UNLIMITED_RETRY == False :
-                    print '[LOGIN] packet received error, maybe you are under attacking'
+                    print '[LOGIN] Packet received error, maybe you are under attacking'
                     sys.exit(1)
                 else:
                     i = i + 1
-                    print '[LOGIN] package error, retrying...'
+                    print '[LOGIN] Package error, retrying...'
               
-        print '[LOGIN] login sent'
+        print '[LOGIN] Connection has been established, enjoy!!'
         return data[-22:-6]
 
     # Deprecated
     def _keep_alive1(self, tail):
         foo = struct.pack('!H', int(time.time())%0xFFFF)
-        data = '\xff' + self_md5sum('\x03\x01'+SALT+self._password) + '\x00\x00\x00'
+        data = '\xff' + self._md5sum('\x03\x01'+SALT+self._password) + '\x00\x00\x00'
         data += tail
         data += foo + '\x00\x00\x00\x00'
         print '[keep_alive1] keep_alive1,sent'
@@ -338,7 +331,8 @@ class Client:
         try:
             pid = os.fork()
             if pid > 0:
-                return 1 
+                # Exit the first parent process to replace with a child.
+                sys.exit(0)
         except OSError:
             RUNNER.error('Start the DrCOM daemon client failed.')
             sys.exit(1)
@@ -348,10 +342,12 @@ class Client:
             os.setsid()
             os.umask(0)
 
+        # Second process to indicate it is not a leader.
         try:
             pid = os.fork()
-            if self._client > 0:
-                return 1
+            if pid > 0:
+                RUNNER.info('Daemon pid is %d', pid)
+                sys.exit(0)
         except OSError:
             RUNNER.error('Start the DrCOM daemon client failed.')
             sys.exit(1)
@@ -366,8 +362,6 @@ class Client:
 
     def _run(self):
 # can add some handler or log code into the method or place here.
-        self.StreamHandler.setFormatter(self.formatter)
-        DEBUGGER.addHandler(self.StreamHandler)
         try:
             self._sock.bind(("0.0.0.0", 61440))
         except:
@@ -397,10 +391,17 @@ class Client:
         account_data["time"] = int(inf[inf.index("time='")+6:inf.index("';flow")])
         return account_data
 
+    # 3 for debug
+    def put2log(self, msg, level=3):
+        logging.basicConfig(filename=LOGFILE)
+        if level == 3:
+            DEBUGGER.debug(msg)
+
     # The further feature is to use the 'spawnl()' for the Windows OS.
     def start(self):
         self.StreamHandler.setFormatter(self.formatter)
         RUNNER.addHandler(self.StreamHandler)
+        self.print_info()
         try:
             pf = open(self._client, 'r')
             pid = int(pf.read().strip())
@@ -423,7 +424,33 @@ class Client:
     """
 
     def stop(self):
-        pass
+        # Get the pid from the pidfile
+        try:
+            pf = open(self._client,'r')
+            pid = int(pf.read().strip())
+            pf.close()
+        except IOError:
+            pid = None
+
+        # For daemon's not starting, but figure out which is starting or restarting.
+        if not pid:
+            DEBUGGER.warn('Pid file does not exists, is it running?')
+            return 4
+
+        # Try killing the daemon process       
+        import signal
+        try:
+            while 1:
+                os.kill(pid, signal.SIGTERM)
+                time.sleep(1)
+        except OSError, err:
+            err = str(err)
+            if err.find("No such process") > 0:
+                if os.path.exists(self._client):
+                    os.remove(self._client)
+            else:
+                DEBUGGER.error(str(err)) 
+        return 5
 
     # Thers is no " con ? .. : .." in python.
     # The check procedure need to be more accurate.
@@ -443,8 +470,9 @@ class Client:
             return 12
         else:
             import subprocess
+            DEVNULL =  open(os.devnull, 'w')
             CHECKER.info("Daemon pid:", pid)
-            status = 'Running' if subprocess.call("lsof" + "-i:61440", shell=True) else 'Deactived'
+            status = 'Running' if subprocess.call("lsof" + "-i:61440", shell=True, stdout=DEVNULL) else 'Deactived'
             CHECKER.info("Daemon status:", status)
             return 11
             
@@ -454,10 +482,10 @@ class Client:
 
     # print useful information about account and server.
     def print_info(self):
-        print "Connect to the server:", self._svr, "..."
+        print "Version 0.6 - - CREATOR: Seven(sevenhe2015@gmail.com)"
+        print "[START] Connect to the server:", self._svr, "..."
 
 # import select -- asychronized socket.
-# threading.create(client.keep_alive())??
 """
 def main():
     client = Client()
@@ -473,37 +501,5 @@ def main():
 if __name__ == "__main__":
     cgitb.enable(format="text")
     main()
-
-def stop(self):
-    # Get the pid from the pidfile
-    try:
-        pf = file(self.pidfile,'r')
-        pid = int(pf.read().strip())
-        pf.close()
-    except IOError:
-        pid = None
-    
-    if not pid:
-        message = "pidfile %s does not exist. Daemon not running?\n"
-        sys.stderr.write(message % self.pidfile)
-        return # not an error in a restart
-    
-    # Try killing the daemon process       
-    try:
-        while 1:
-            os.kill(pid, SIGTERM)
-            time.sleep(0.1)
-    except OSError, err:
-        err = str(err)
-        if err.find("No such process") > 0:
-            if os.path.exists(self.pidfile):
-                os.remove(self.pidfile)
-        else:
-            print str(err)
-        sys.exit(1)
-    
-    def restart(self):
-        self.stop()
-        self.start()
 """
 

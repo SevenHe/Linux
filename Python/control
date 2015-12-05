@@ -12,17 +12,31 @@ def main():
             print "[Alert] Too many arguments."
         else:
             if argv[1] == "start":
-                cl.start()
-            if argv[1] == "check":
+                status = cl.start()
+            elif argv[1] == "stop":
+                status = cl.stop()
+            elif argv[1] == "check":
                 status = cl.check()
             else:
                 pass
-    except:
-        traceback.print_exc()
-        print "[WARNING] You can report any problem to 'sevenhe2015@gmail.com' or do yourself!!"
+    except SystemExit as e:
+        if e.code == 0:
+            pass
+        else:
+            traceback.print_exc()
+    except Exception:
+        cl.put2log(sys.exc_info())
+        print "[WARNING] Get a problem, you can report it to 'sevenhe2015@gmail.com' or do yourself!!"
     else:
+        # For more fatal problems in future.
         if status == 1:
-            print "[INFO] Connection is successful!"
+            pass 
+        elif status == 4:
+            print "[FINAL] Stop operation failed."
+        elif status == 5:
+            print "[FINAL] Stop operation completed."
+
+    sys.exit(0)
 
 if __name__ == "__main__":
     main()
