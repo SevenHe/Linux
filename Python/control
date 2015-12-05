@@ -9,7 +9,7 @@ def main():
     status = 0
     try:
         if len(argv) > 2:
-            print "[Alert] Too many arguments."
+            print "[MSG] Too many arguments."
         else:
             if argv[1] == "start":
                 status = cl.start()
@@ -25,6 +25,7 @@ def main():
         else:
             traceback.print_exc()
     except Exception:
+        traceback.print_exc()
         cl.put2log(sys.exc_info())
         print "[WARNING] Get a problem, you can report it to 'sevenhe2015@gmail.com' or do yourself!!"
     else:
@@ -32,11 +33,13 @@ def main():
         if status == 1:
             pass 
         elif status == 4:
-            print "[FINAL] Stop operation failed."
+            print "[MSG] Stop operation failed."
         elif status == 5:
-            print "[FINAL] Stop operation completed."
+            print "[MSG] Stop operation completed."
+        elif status == 11:
+            print "[MSG] Check is successful."
 
-    sys.exit(0)
+# Do not sys.exit to prevent a bad feeling which is the terminal broken output.
 
 if __name__ == "__main__":
     main()

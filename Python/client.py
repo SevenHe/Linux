@@ -24,6 +24,7 @@ import traceback
 #   addition: get the time and flow from site; save the information as encrypted
 #           maybe need to redirect the std descriptors
 #   check updates.
+#   there are also some bugs in the log level, it is not resolved for now.
 #
 #   final test: the window OS or other platform test;
 #                and the GUI to be added.
@@ -39,10 +40,16 @@ DEBUG = True
 SALT = ''
 
 # Specified the place.
+# some log settings.
 LOGFILE = '/tmp/.dclogs'
 RUNNER = logging.getLogger('Executor')
-CHECKER = logging.getLogger('Checker')
 DEBUGGER = logging.getLogger('Debugger')
+CHECKER = logging.getLogger('Checker')
+FORMATTER = logging.Formatter("%(levelname)s - %(name)s: %(message)s")
+StreamHandler = logging.StreamHandler()
+StreamHandler.setLevel(logging.NOTSET)
+StreamHandler.setFormatter(FORMATTER)
+DEBUGGER.addHandler(StreamHandler)
 
 class ChallengeException(Exception):
     """
@@ -78,14 +85,7 @@ class Client:
         self._mac = 0xC454442B84C5
         self._client = '/tmp/drcom-daemon.pid'
         self.host_name = "SEVEN"
-        self.host_os = "Kubuntu"
-        
-
-        # some log settings.
-        self.formatter = logging.Formatter("%(levelname)s - %(name)s: %(message)s")
-        self.StreamHandler = logging.StreamHandler()
-        self.StreamHandler.setFormatter(self.formatter)
-        DEBUGGER.addHandler(self.StreamHandler)
+        self.host_os = "Kubuntu"        
 
     def _challenge(self, ran):
         # a server test after successing in connection.
@@ -199,7 +199,6 @@ class Client:
         #print "[keep-alive2] keep-alive2 loop was in daemon."
         
         i = 1
-        # ~~TO-DO~~ cut the codes.
         while True:
             try:
                 time.sleep(5)
@@ -276,7 +275,7 @@ class Client:
                     if DEBUG:
                         print 'challenge packet exception'
                     continue
-                print '[INFO]: Make client packets.'
+                print '[INFO] Make client packets.'
                 packet = self._mkpkt(SALT)
                 self._sock.sendto(packet, (self._svr, self._svr_port))
                 data, address = self._sock.recvfrom(1024)
@@ -346,7 +345,7 @@ class Client:
         try:
             pid = os.fork()
             if pid > 0:
-                RUNNER.info('Daemon pid is %d', pid)
+                RUNNER.info('Parent pid is %d', pid)
                 sys.exit(0)
         except OSError:
             RUNNER.error('Start the DrCOM daemon client failed.')
@@ -393,15 +392,17 @@ class Client:
 
     # 3 for debug
     def put2log(self, msg, level=3):
-        logging.basicConfig(filename=LOGFILE)
+        # A fragmentary config will be dismissed.  
+        # logging.basicConfig(filename=LOGFILE, filemode='a+')
         if level == 3:
             DEBUGGER.debug(msg)
 
     # The further feature is to use the 'spawnl()' for the Windows OS.
     def start(self):
-        self.StreamHandler.setFormatter(self.formatter)
-        RUNNER.addHandler(self.StreamHandler)
-        self.print_info()
+        StreamHandler.setFormatter(FORMATTER)
+        RUNNER.addHandler(StreamHandler)
+        self.print_version_info()
+        print "[START] Connect to the server:", self._svr, "..."
         try:
             pf = open(self._client, 'r')
             pid = int(pf.read().strip())
@@ -412,7 +413,7 @@ class Client:
         if pid:
            RUNNER.warn("Pid file %s already exists, Daemon already running?\nYou may want to use 'check' option." % self._client)
            return 2
-
+        
         self._daemonize()
         self._run()
 
@@ -425,6 +426,7 @@ class Client:
 
     def stop(self):
         # Get the pid from the pidfile
+        print "[MSG] Stop operation starts......"
         try:
             pf = open(self._client,'r')
             pid = int(pf.read().strip())
@@ -454,13 +456,14 @@ class Client:
 
     # Thers is no " con ? .. : .." in python.
     # The check procedure need to be more accurate.
+    # Set level to make it available.
     def check(self):
-        self.StreamHandler.setFormatter(self.formatter)
-        CHECKER.addHandler(self.StreamHandler)
+        CHECKER.setLevel(logging.DEBUG)
+        CHECKER.addHandler(StreamHandler)
         CHECKER.debug('Check is starting...')
         try:
             pf = file(self._client, 'r')
-            pid = int(pf.read().strip)
+            pid = int(pf.read().strip())
             pf.close()
         except IOError:
             pid = None
@@ -471,9 +474,9 @@ class Client:
         else:
             import subprocess
             DEVNULL =  open(os.devnull, 'w')
-            CHECKER.info("Daemon pid:", pid)
-            status = 'Running' if subprocess.call("lsof" + "-i:61440", shell=True, stdout=DEVNULL) else 'Deactived'
-            CHECKER.info("Daemon status:", status)
+            CHECKER.info("Daemon pid: %d" % pid)
+            status = 'Running' if not subprocess.call("lsof " + "-i:61440", shell=True, stdout=DEVNULL) else 'Deactived'
+            CHECKER.info("Daemon status: %s" % status)
             return 11
             
     # write configs to a hidden file for startup with no logging in.
@@ -481,9 +484,9 @@ class Client:
         pass
 
     # print useful information about account and server.
-    def print_info(self):
-        print "Version 0.6 - - CREATOR: Seven(sevenhe2015@gmail.com)"
-        print "[START] Connect to the server:", self._svr, "..."
+    def print_version_info(self):
+        print "JLU DrCOM Client - - Version 0.6 "
+        print "CREATOR - - Seven(sevenhe2015@gmail.com)"
 
 # import select -- asychronized socket.
 """
