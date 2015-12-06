@@ -309,6 +309,8 @@ class Client:
                     print '[LOGIN] Package error, retrying...'
               
         print '[LOGIN] Connection has been established, enjoy!!'
+        # To avoid the broken up outputs.
+        self._daemonize()
         return data[-22:-6]
 
     # Deprecated
@@ -414,7 +416,6 @@ class Client:
            RUNNER.warn("Pid file %s already exists, Daemon already running?\nYou may want to use 'check' option." % self._client)
            return 2
         
-        self._daemonize()
         self._run()
 
     """
