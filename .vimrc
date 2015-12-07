@@ -11,6 +11,7 @@ call vundle#begin('~/Downloads/vim-plugins')
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'scrooloose/syntastic'
+Plugin 'c9s/perlomni.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -42,6 +43,8 @@ autocmd FileType sh hi itptType ctermfg=6 cterm=bold,italic
 "hi itptType ctermfg=6 cterm=bold
 "YCM
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:syntastic_enable_perl_checker = 1
+autocmd FileType php,java,ruby,python,c,perl,html,css,xml,shell,bash,zsh,text,vim let g:EclimCompletionMethod = 'omnifunc'
 set hlsearch
 set tabstop=4
 map <CR> :nohl <CR>

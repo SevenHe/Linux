@@ -4,7 +4,7 @@ The core program in the client
 """
 
 import socket, struct, time, random
-from hashlib import md5
+from hashlib import *
 import sys, re
 #import multiprocessing
 import urllib2
@@ -35,13 +35,13 @@ import traceback
 
 # Features
 UNLIMITED_RETRY = True
-EXCEPTION = False
-DEBUG = True
+DEBUG = False 
 SALT = ''
 
 # Specified the place.
 # some log settings.
 LOGFILE = '/tmp/.dclogs'
+CONFILE = './.client-conf'
 RUNNER = logging.getLogger('Executor')
 DEBUGGER = logging.getLogger('Debugger')
 CHECKER = logging.getLogger('Checker')
@@ -80,12 +80,26 @@ class Client:
         self._sock.settimeout(3)
         self._svr = "10.100.61.3" # "auth.jlu.edu.cn"
         self._svr_port = 61440
-        self._username = "hech5513"
-        self._password = "010178"
-        self._mac = 0xC454442B84C5
+        self._username = ""
+        self._password = ""
+        self._mac = None
         self._client = '/tmp/drcom-daemon.pid'
-        self.host_name = "SEVEN"
-        self.host_os = "Kubuntu"        
+        self.host_name = ""
+        self.host_os = ""
+
+    @property
+    def mac(self):
+        return int(self._mac)
+
+    @mac.setter
+    def mac(self, value):
+        if isinstance(value, int):
+            if value > 0:
+                self._mac = value
+            else:
+                raise ValueError('Mac is invalid, check it on the "ip.jlu.edu.cn".')
+        else:
+            raise TypeError('Mac must be a hexadecimal integer.')
 
     def _challenge(self, ran):
         # a server test after successing in connection.
@@ -217,7 +231,7 @@ class Client:
                 check_online = urllib2.urlopen('http://10.100.61.3')
                 foo = check_online.read()
                 if 'login.jlu.edu.cn' in foo:
-                    print '[keep_alive] offline.relogin...'
+                    print '[LOGIN] Offline.relogin...'
                     break
                 #MODIFIED END
             except:
@@ -249,7 +263,7 @@ class Client:
         data += self._md5sum('\x03\x01'+SALT+self._password)
         data += self._username.ljust(36, '\x00')
         data += '\x00\x00'
-        data += self._dump(int(data[4:10].encode('hex'),16)^self._mac).rjust(6,'\x00')
+        data += self._dump(int(data[4:10].encode('hex'),16)^self.mac).rjust(6,'\x00')
         data += self._md5sum("\x01" + self._password + SALT+ '\x00'*4)
         data += '\x01\x31\x8c\x31\x4e' + '\00'*12
         data += self._md5sum(data + '\x14\x00\x07\x0b')[:8] + '\x01'+'\x00'*4
@@ -258,8 +272,8 @@ class Client:
         data += '\x6d\x00\x00'+chr(len(self._password))
         data += self._ror(self._md5sum('\x03\x01'+SALT+self._password))
         data += '\x02\x0c'
-        data += self._checksum(data+'\x01\x26\x07\x11\x00\x00'+self._dump(self._mac))
-        data += "\x00\x00" + self._dump(self._mac)
+        data += self._checksum(data+'\x01\x26\x07\x11\x00\x00'+self._dump(self.mac))
+        data += "\x00\x00" + self._dump(self.mac)
         return data
 
     # ~~TO-DO~~ optimize the codes.
@@ -289,7 +303,7 @@ class Client:
                     print '[LOGIN] Wrong password, retried ' + str(i) +' times.'
                     sys.exit(1)
                 elif data[0] == '\x05' and i < 5:
-                    print "[LOGIN] Wrong password."
+                    print "[LOGIN] Wrong password.", self._password
                     i = i + 1
                     time.sleep(i*1.555)
                 elif data[0] != '\x04':
@@ -403,8 +417,6 @@ class Client:
     def start(self):
         StreamHandler.setFormatter(FORMATTER)
         RUNNER.addHandler(StreamHandler)
-        self.print_version_info()
-        print "[START] Connect to the server:", self._svr, "..."
         try:
             pf = open(self._client, 'r')
             pid = int(pf.read().strip())
@@ -413,8 +425,12 @@ class Client:
             pid = None
         
         if pid:
-           RUNNER.warn("Pid file %s already exists, Daemon already running?\nYou may want to use 'check' option." % self._client)
-           return 2
+            RUNNER.warn("Pid file %s already exists, Daemon already running?\nYou may want to use 'check' option." % self._client)
+            return 2
+        else:
+            self.print_version_info()
+            self.config()
+            print "[START] Connect to the server:", self._svr, "..."
         
         self._run()
 
@@ -458,10 +474,19 @@ class Client:
     # Thers is no " con ? .. : .." in python.
     # The check procedure need to be more accurate.
     # Set level to make it available.
+    # --TO-DO~~~ to change the config.
     def check(self):
         CHECKER.setLevel(logging.DEBUG)
         CHECKER.addHandler(StreamHandler)
         CHECKER.debug('Check is starting...')
+        CHECKER.debug('Check configuration...')
+        with open(CONFILE, 'rb') as conf:
+            users = conf.read().strip().decode('hex').split(',')
+            if len(users) < 5:
+                CHECKER.debug('The config file is broken, just delete it and recreate it.')
+                return 12
+            else:
+                CHECKER.debug('The config file is ok, next check the process...')
         try:
             pf = file(self._client, 'r')
             pid = int(pf.read().strip())
@@ -482,11 +507,44 @@ class Client:
             
     # write configs to a hidden file for startup with no logging in.
     def config(self):
-        pass
+        if os.path.exists(CONFILE):
+            print "[CONFIG] Load from file..."
+            try:
+                with open(CONFILE, 'rb') as conf:
+                    users = conf.read().strip().decode('hex').split(',')
+                    self._username = users[0]
+                    self._password = users[1]
+                    self.mac = int(users[2])
+                    self.host_os = users[3]
+                    self.host_name = users[4]
+            except:
+                print "[CONFIG] Loading failed, please use 'check' option to determine whether it is ok or not"
+                sys.exit(1)
+            else:
+                print "[CONFIG] Loading is OK."
+        else:
+            import getpass
+            print "[CONFIG] This is your first use, you need to input your information for a connection to the server."
+            try:
+                self._username = raw_input("Your Account:")
+                self._password = getpass.getpass("Your Password[JUST INPUT]:")
+                self.mac= int(raw_input("MAC[JUST LIKE:FFFF...]:"), 16)
+                self.host_os = raw_input("Host OS[WHATEVER YOU LIKE]:")
+                self.host_name = raw_input("Host Name[LIKE ABOVE]:")
+                with open(CONFILE, 'wb+') as conf:
+                    conf.write((self._username + '\x2c' + self._password + '\x2c' + str(self.mac) + '\x2c'
+                            + self.host_os + '\x2c' + self.host_name).encode('hex'))
+            except:
+                traceback.print_exc()
+                print "[CONFIG] Failed" 
+                sys.exit(1)
+            else:
+                print "[CONFIG] Completed, processing..."
+                time.sleep(2)
 
     # print useful information about account and server.
     def print_version_info(self):
-        print "JLU DrCOM Client - - Version 0.6 "
+        print "JLU DrCOM Client - - Version 0.9 "
         print "CREATOR - - Seven(sevenhe2015@gmail.com)"
 
 # import select -- asychronized socket.
