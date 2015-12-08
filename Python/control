@@ -12,9 +12,8 @@ def main():
             print "[MSG] Too many arguments."
         # This can be expanded in the futrue.
         elif len(argv) == 1:
-            status = cl.check() 
-            if status == 11:
-                status = cl.start() 
+            #status = cl.startup() 
+            pass
         else:
             if argv[1] == "start":
                 status = cl.start()

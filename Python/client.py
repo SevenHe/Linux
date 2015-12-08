@@ -376,7 +376,7 @@ class Client:
             pf.write("%s\n" % pid)
 
     def _run(self):
-# can add some handler or log code into the method or place here.
+# can add some handler or log code into this method or place here.
         try:
             self._sock.bind(("0.0.0.0", 61440))
         except:
@@ -504,6 +504,10 @@ class Client:
             status = 'Running' if not subprocess.call("lsof " + "-i:61440", shell=True, stdout=DEVNULL) else 'Deactived'
             CHECKER.info("Daemon status: %s" % status)
             return 11
+
+    # For startu up configuration!
+    def startup():
+        pass
             
     # write configs to a hidden file for startup with no logging in.
     def config(self):
@@ -531,6 +535,8 @@ class Client:
                 self.mac= int(raw_input("MAC[JUST LIKE:FFFF...]:"), 16)
                 self.host_os = raw_input("Host OS[WHATEVER YOU LIKE]:")
                 self.host_name = raw_input("Host Name[LIKE ABOVE]:")
+                global CONFILE
+                CONFILE = os.path.abspath(CONFILE)
                 with open(CONFILE, 'wb+') as conf:
                     conf.write((self._username + '\x2c' + self._password + '\x2c' + str(self.mac) + '\x2c'
                             + self.host_os + '\x2c' + self.host_name).encode('hex'))
