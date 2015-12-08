@@ -480,13 +480,16 @@ class Client:
         CHECKER.addHandler(StreamHandler)
         CHECKER.debug('Check is starting...')
         CHECKER.debug('Check configuration...')
-        with open(CONFILE, 'rb') as conf:
-            users = conf.read().strip().decode('hex').split(',')
-            if len(users) < 5:
-                CHECKER.debug('The config file is broken, just delete it and recreate it.')
-                return 12
-            else:
-                CHECKER.debug('The config file is ok, next check the process...')
+        try:
+            with open(CONFILE, 'rb') as conf:
+                users = conf.read().strip().decode('hex').split(',')
+                if len(users) < 5:
+                    CHECKER.debug('The config file is broken, just delete it and recreate it.')
+                    return 12
+                else:
+                    CHECKER.debug('The config file is ok, next check the process...')
+        except IOError:
+            CHECKER.warn('You may get into the directory where the client file exists.')
         try:
             pf = file(self._client, 'r')
             pid = int(pf.read().strip())
