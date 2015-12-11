@@ -538,7 +538,6 @@ class Client:
                 self.mac= int(raw_input("MAC[JUST LIKE:FFFF...]:"), 16)
                 self.host_os = raw_input("Host OS[WHATEVER YOU LIKE]:")
                 self.host_name = raw_input("Host Name[LIKE ABOVE]:")
-                global CONFILE
                 CONFILE = os.path.abspath(CONFILE)
                 with open(CONFILE, 'wb+') as conf:
                     conf.write((self._username + '\x2c' + self._password + '\x2c' + str(self.mac) + '\x2c'
