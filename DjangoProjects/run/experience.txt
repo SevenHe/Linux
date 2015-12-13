@@ -1,7 +1,7 @@
 the server port must be not in the url, because it's a server port.
 
 
-install the nginx manually.
+install the nginx manually or with tutorial.
 
 
 enter the module directory.
@@ -186,6 +186,47 @@ def load_template_source(template_name, template_dirs=None):
 load_template_source.is_usable = True
 # And the final step is to add it into TEMPLATE_LOADERS!
 
+# for part cache
+>>> cache.set('my_key', 'hello, world!', 30)
+>>> cache.get('my_key')
 
+# equivalent
+@vary_on_cookie
+def my_view(request):
+    # ...
 
+@vary_on_headers('Cookie')
+def my_view(request):
+	    # ...
 
+@cache_control(private=True)(@cache_control(must_revalidate=True, max_age=3600))
+options:
+	public=True
+	
+	private=True
+	
+	no_cache=True
+	
+	no_transform=True
+	
+	must_revalidate=True
+	
+	proxy_revalidate=True
+	
+	max_age=num_seconds
+	
+	s_maxage=num_seconds
+
+django.middleware.http.ConditionalGetMiddleware 为现代浏览器增加了有条件的，基于 ETag 和 Last-Modified 头标的GET响应的相关支持。
+
+django.middleware.gzip.GZipMiddleware 为所有现代浏览器压缩响应内容，以节省带宽和传送时间。
+
+UpdateCacheMiddleware在相应阶段运行。因为中间件是以相反顺序运行的，所有列表顶部的中间件反而last在相应阶段的最后运行。 所有，你需要确保UpdateCacheMiddleware排在任何可能往Vary头部添加信息的中间件之前。 下面的中间件模块就是这样的：
+
+--添加 Cookie 的 SessionMiddleware
+
+--添加 Accept-Encoding 的 GZipMiddleware
+
+--添加Accept-Language的LocaleMiddleware
+
+另一方面，FetchFromCacheMiddleware在请求阶段运行，这时中间件循序执行，所以列表顶端的项目会首先执行。 FetchFromCacheMiddleware也需要在会修改Vary头部的中间件之后运行，所以FetchFromCacheMiddleware必须放在它们后面。
