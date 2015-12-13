@@ -514,6 +514,7 @@ class Client:
             
     # write configs to a hidden file for startup with no logging in.
     def config(self):
+        global CONFILE
         if os.path.exists(CONFILE):
             print "[CONFIG] Load from file..."
             try:
