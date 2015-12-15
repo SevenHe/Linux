@@ -3,6 +3,7 @@
 #include <stdlib.h>
 int main()
 {
+	/* file tests!
 	FILE *f;
 	char msg[] = "456 I am ok 123";
 	// do some initialization to avoid the interference of the pointer.
@@ -24,6 +25,13 @@ int main()
 		}
 		printf("int: %d\n", atoi(rcv));
 		fclose(f);
+	}
+	*/
+	int a=5,b=3,c=0;
+	// a>b get a return value that is 1 for true, 0 for false.(It is always true without zero!)
+	if((a > b) > c)
+	{
+		printf("c=%d\n", c);
 	}
 
 	return 0;
