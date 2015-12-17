@@ -497,16 +497,20 @@ class Client:
         except IOError:
             pid = None
 
-        if not pid:
+        import subprocess
+        DEVNULL =  open(os.devnull, 'w')
+        status = 'Running' if not subprocess.call("lsof " + "-i:61440", shell=True, stdout=DEVNULL) else 'Deactived'
+        if not pid and status == "Deactived":
             CHECKER.warn('You have not started the client, or maybe you have killed the process but the server would reject your connection after a few minutes.')
             return 12
-        else:
-            import subprocess
-            DEVNULL =  open(os.devnull, 'w')
+        elif pid:
             CHECKER.info("Daemon pid: %d" % pid)
-            status = 'Running' if not subprocess.call("lsof " + "-i:61440", shell=True, stdout=DEVNULL) else 'Deactived'
             CHECKER.info("Daemon status: %s" % status)
             return 11
+        else:
+            CHECKER.error('The process is terminated, but the socket is running, this may cause your other devices grab the same account.');
+            if subprocess.call('kill ' + '`lsof ' + '-i:61440 ' + '-t`', shell=True, stdout=DEVNULL):
+                CHECKER.info('Now, you can start once again!(The zombie socket has been killed..)');
 
     # For startu up configuration!
     def startup():
