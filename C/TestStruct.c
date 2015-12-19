@@ -16,6 +16,7 @@ test_t test[10];
 int main()
 {	
 	struct test *tp;
+	printf("struct pointer size:%lu\n", sizeof(tp));
 	int i=0;
 	for(i=0; i<10; i++){
 		test[i].id = i;
