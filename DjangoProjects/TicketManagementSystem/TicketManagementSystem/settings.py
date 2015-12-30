@@ -102,6 +102,9 @@ LANGUAGES = (
 
 TIME_ZONE = 'UTC'
 
+# To use 'django.utils.translation' for I18N, and 
+# You must take tokens to indicate which strings should be translated, and
+# use alias to take into more effects.
 USE_I18N = True
 
 USE_L10N = True
