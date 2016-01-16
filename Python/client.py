@@ -557,7 +557,7 @@ class Client:
 
     # print useful information about account and server.
     def print_version_info(self):
-        print "JLU DrCOM Client - - Version 0.9 "
+        print "JLU DrCOM Client - - Version 0.95 "
         print "CREATOR - - Seven(sevenhe2015@gmail.com)"
 
 # import select -- asychronized socket.
