@@ -53,15 +53,15 @@ plugins=(git)
 
 # User configuration
 
-#  export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-#  export ORACLE_BASE=/home/seven/Downloads/oracle-11g
-#  export ORACLE_HOME=$ORACLE_BASE/product/11.2.0/dbhome_0
-#  export ORACLE_SID=webdb
- # export ORACLE_UNQNAME=orcl
-#  export LD_LIBRARY_PATH=$ORACLE_HOME/lib
-#  export PATH=$ORACLE_HOME/bin:$PATH
-#  alias sqlplus='rlwrap sqlplus'
-# export MANPATH="/usr/local/man:$MANPATH"
+ alias sqlplus='rlwrap sqlplus'
+ export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe
+ export ORACLE_SID=XE
+ export NLS_LANG=`$ORACLE_HOME/bin/nls_lang.sh`
+ export ORACLE_BASE=/u01/app/oracle
+ export LD_LIBRARY_PATH=$ORACLE_HOME/lib:$LD_LIBRARY_PATH
+ export PATH=$ORACLE_HOME/bin:$PATH
+
+ export C_INCLUDE_PATH=/usr/include/gtk-3.0
 
 source $ZSH/oh-my-zsh.sh
 
