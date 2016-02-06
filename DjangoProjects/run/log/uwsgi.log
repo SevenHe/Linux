@@ -3912,3 +3912,15 @@ Sat Feb  6 06:08:48 2016 - spawned uWSGI worker 4 (pid: 3659, cores: 1)
 [pid: 3658|app: 0|req: 1/1] 127.0.0.1 () {42 vars in 663 bytes} [Sat Feb  6 06:09:24 2016] GET / => generated 826 bytes in 390 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
 [pid: 3659|app: 0|req: 1/2] 127.0.0.1 () {44 vars in 718 bytes} [Sat Feb  6 06:12:09 2016] GET / => generated 826 bytes in 44 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
 [pid: 3659|app: 0|req: 2/3] 127.0.0.1 () {44 vars in 718 bytes} [Sat Feb  6 06:13:02 2016] GET / => generated 826 bytes in 12 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
+Sat Feb  6 15:53:33 2016 - ...brutally killing workers...
+Sat Feb  6 15:53:45 2016 - worker 1 buried after 11 seconds
+Sat Feb  6 15:53:45 2016 - worker 2 buried after 11 seconds
+Sat Feb  6 15:53:45 2016 - worker 3 buried after 11 seconds
+Sat Feb  6 15:53:45 2016 - worker 4 buried after 11 seconds
+Sat Feb  6 15:53:45 2016 - binary reloading uWSGI...
+Sat Feb  6 15:53:45 2016 - chdir() to /home/seven/Code/DjangoProjects/TicketManagementSystem
+Sat Feb  6 15:53:45 2016 - closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+Sat Feb  6 15:53:45 2016 - found fd 3 mapped to socket 0 (TicketManagementSystem.sock)
+Sat Feb  6 15:53:45 2016 - found fd 4 mapped to socket 1 (/home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock)
+Sat Feb  6 15:53:45 2016 - running /usr/local/bin/uwsgi
+realpath() of TMS_temp.xml failed: No such file or directory [core/utils.c line 3607]
