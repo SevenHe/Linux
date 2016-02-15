@@ -17,7 +17,7 @@ sub popmany {
 @c = (5, 6, 7, 8);
 $d = \@c;
 $e = [1, 2];							# "[]" is to create a reference, and it is a entirety.
-@f = [6, 7, 8, 9];
+@f = [6, 7, 8, 9];						# "{}" is to create a block.
 $g = @a;
 $h = [ @b ];
 
@@ -44,5 +44,16 @@ for $member (sort { @{$family{$a}} <=> @{$family{$b}} } keys %family) {
 	print "$member : @{$family{$member}} \n";
 }
 
-#use 'func (\[$@%])' to ensure the argument is what you specify, on the contrary, the 'func ([$@%])' is just 
-#providing the program environment.
+# use 'func (\[$@%])' to ensure the argument is what you specify, on the contrary, the 'func ([$@%])' is just 
+# providing the program environment.
+
+# class test!
+# "->new()" is not equivalent to the "->new"!
+use Person;
+$test = Person->new(name => "test2");
+$name = $test->get_name();
+print "'test' name is $name!\n";
+$name = $test->set_name("Lilei");
+if ($name eq $test->get_name()) {
+	print "Now, 'test' name is $name!\n";
+}
