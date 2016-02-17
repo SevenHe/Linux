@@ -57,3 +57,16 @@ $name = $test->set_name("Lilei");
 if ($name eq $test->get_name()) {
 	print "Now, 'test' name is $name!\n";
 }
+
+# IPC !
+sub catch_zap {
+	my $signame = shift;
+	our $shucks++;
+	die "Somebody sent me a SIG$signame!";
+}
+$shucks = 0;
+$SIG{INT} = 'catch_zap';
+$SIG{INT} = \&catch_zap;
+$SIG{QUIT} = \&catch_zap;
+# a easier way : use sigtrap qw(die INT QUIT);use sigtrap qw(die untrapped normal-signals stack-trace any error-signals);
+
