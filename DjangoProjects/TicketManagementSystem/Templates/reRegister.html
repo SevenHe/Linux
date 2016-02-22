@@ -53,6 +53,7 @@ div.tra{position:relative;height:455px;width:325px;float:left;margin-left:7px;ba
 div.base{position:relative;height:76px;margin-top:10px}
 #diag{margin-top: 20px}
 p{white-space: nowrap}
+#reRegister{display: block;}
 
 </style>
 
@@ -102,7 +103,7 @@ function opedisplay()
 <strong><p>注册账户</p></strong>
 </div>
 
-<form action="/account/sign_up/success" method="post">
+<form action="/account/sign_up" method="post">
 <div class="rename">
 <input class="nameout" type="text"  name="username" placeholder=用户名...  onmousemove="this.className='namemove'"  
                        onmouseout="this.className='nameout'"/>
@@ -122,7 +123,7 @@ function opedisplay()
 <div class="code">
 <input class="nameout" type="text"  name="diag_input" placeholder=验证码...  onmousemove="this.className='namemove'"  
                        onmouseout="this.className='nameout'"/>
-<img id="diag" onclick="this.setAttribute('src','/account/diag_code?nocache='+Math.random());" alt="diag_code" src="/account/diag_code?nocache" />
+<img id="diag" onclick="this.setAttribute('src','/account/diag_code?nocache='+Math.random());" alt="diag_code" src="/account/diag_code/" />
 </div>
 </form>	  
 
@@ -175,7 +176,7 @@ function opedisplay()
 </div>
 
 <div class="ton">
-<input type="button" value="登录" class="onon" onmouseover="this.style.cursor='pointer'"
+<input id="reRegister" type="button" value="登录" class="onon" onmouseover="this.style.cursor='pointer'"
        onclick="opedisplay()"  onmousemove="this.className='onou'"  onmouseout="this.className='onon'"/>
 </div>
 

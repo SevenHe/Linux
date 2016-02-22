@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'd#084qvfc)*_w^%#-^g511ry$62gt0shyjlol7r*k2%2wald(2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '49.140.62.120']
 
@@ -111,7 +111,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-SEND_BROKEN_LINK_EMAILS = True
+#SEND_BROKEN_LINK_EMAILS = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
@@ -131,3 +131,12 @@ MANAGERS = (
 
 # memcache 
 CACHE_BACKEND = 'file:///var/tmp/django_cache'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'sevenhe2015@gmail.com'
+EAMIL_HOST_PASSWORD = 'Seven1001'
+EMAIL_SUBJECT_PREFIX = u'[5036 购票中心]'           #为邮件Subject-line前缀,默认是'[django]
+EMAIL_USE_TLS = True                                #与SMTP服务器通信时，是否启动TLS链接(安全链接)。默认是false
+#管理员站点
+#SERVER_EMAIL = 'xinxinyu2011@163.com'              #The email address that error messages come from, such as those sent to ADMINS and MANAGERS.

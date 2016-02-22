@@ -69,6 +69,7 @@ elif [ -f $Mgr ] && [ $# = "1" ]; then
 			;;
 		-s|--stop)
 			print_message stop
+			rm TMS_temp.xml
 			exit $exitCode
 			;;
 		--check)
@@ -91,7 +92,6 @@ elif [ -f $Mgr ] && [ $# = "1" ]; then
 				killall -s 9 uwsgi > /dev/null 2>&1
 			fi
 			uwsgi --master -T --socket $Site.sock --wsgi-file TMS_wsgi.py -x TMS_temp.xml
-			rm TMS_temp.xml
 			;;
 	esac
 else

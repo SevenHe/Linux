@@ -16,7 +16,7 @@ $(document).ready(function(e){
 			fontSize: '0'
 		}, 'slow', callback=function(){
 			$(this).fadeOut(800, callback=function(){
-				window.location.href="http://google.com";
+				window.location.href="/index";
 			})
 		});
 	})

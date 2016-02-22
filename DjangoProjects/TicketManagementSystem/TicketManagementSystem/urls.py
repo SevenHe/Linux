@@ -19,6 +19,9 @@ from TicketManagementSystem.views import *
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-	url(r'^$', index),
-	url(r'^hello/$', hello),
+    url(r'^$', preview),
+    url(r'^index$', index),
+    url(r'^account/sign_up$', sign_up),
+    url(r'^account/diag_code$', diag_code),
+    url(r'^account/sign_up/success$', sign_up_success),
 ]

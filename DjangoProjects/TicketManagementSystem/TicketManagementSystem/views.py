@@ -2,16 +2,62 @@
 """
 must pay attention to the syntax issues.
 """
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.template import RequestContext
 from django.shortcuts import render, render_to_response
 from django.core.context_processors import csrf
+from django.contrib.auth.models import User
+from Utils.views import *
+from TicketManagementSystem.forms import LogInForm
+import cStringIO
 # from TestModule.models import Test
 # from HelloWorld.forms import ContactForm
 # from datetime import *
+# from django.contrib.auth.decorators import login_required!!
+# @login_required(login_url='/accounts/login/')
+# and permission_required, and so on!
+def preview(request):
+    return render_to_response('preview.html')
 
 def index(request):
-	return render_to_response('index.html')
+    diag_code(request)
+    return render_to_response('index.html')
 
+def diag_code(request):
+    img, dc = create_diag_code()
+    request.session['diag_code'] = dc
+    buf = cStringIO.StringIO()
+    img.save(buf, 'gif')
+    return HttpResponse(buf.getvalue(), 'image/gif')
+
+def sign_up(request):
+    if request.method == 'POST':
+        signup_form = forms.LogInForm(request.POST)
+        if signup_form.is_valid():
+            signup_info = signup_form.cleaned_data
+            if request.session['diag_code'] != signup_info['diag_input']:
+                signup_form.captcha_error()
+            else:
+            # 邮箱激活时，用户需要增加一个激活码用来进行判断
+                user = User.objects.create_user(
+                    username = signup_info['username'],
+                    email = signup_info['email'], 
+                    password = signup_info['password'])
+
+                user.is_active = False
+            # 邮箱激活从这里开始！
+            return HttpResponseRedirect('/account/sign_up/success')
+        else:
+            return HttpResponse(u'注册时，发生未知错误，请修改后重试!')
+
+    else:
+        # 这里希望发生错误时，用户所填的内容不会消失，暂时未完成
+        #form = forms.LogInForm()
+        #variables = RequestContext(request, {'form': form})
+        return render_to_response('reRegister.html')
+
+def sign_up_success(request):
+    return render_to_response('sign_up_success.html')
 
 def hello(request):
 	"""
@@ -54,7 +100,7 @@ def testdb_get(request):
 	
 	# 输出所有数据
 	for var in list:
-		response1 += var.name + " "
+		response1 += " " + var.name 
 	response = response1
 	return HttpResponse("<p>" + response + "</p>")
 	
