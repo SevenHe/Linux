@@ -1,0 +1,47 @@
+input.onon{width:50px;height:30px;border:1px solid #990000;background-color:#000000;color:#ffffff;}
+input.onou{width:50px;height:30px;border:1px solid #990000;background-color:#ffffff;color:#ff9933;}
+
+input.fion{width:50px;height:30px;border:1px solid #990000;background-color:#cccccc;color:#000000;}
+input.fiou{width:50px;height:30px;border:1px solid #000000;background-color:#cc0000;color:#ffffff;}
+
+div.top{position:relative;height:45px;}
+div.tit{position:relative;height:40px;width:50px;float:left;margin-left:50px}
+div.slo{position:relative;height:40px;width:300px;float:left;margin-left:10px}
+div.reg{position:relative;height:40px;width:60px;float:right;margin-top:10px}
+div.ton{position:relative;height:40px;width:60px;float:right;margin-top:10px}
+
+
+div#regone{position:absolute;left:420px;top:10px;z-index:3;background:url(/static/images/reg2.jpg);
+background-size:cover;width:412px;height:550px;}
+div.dele{float:right;height:30px;width:30px;margin-top:5px;margin-right:5px;}
+div.remand{float:left;height:40px;margin-top:80px;margin-left:155px;}
+div.rename{float:left;height:40px;margin-top:30px;margin-left:100px;}
+div.phone{float:left;height:40px;margin-top:15px;margin-left:100px;}
+div.repass{float:left;height:40px;margin-top:15px;margin-left:100px;}
+div.passagain{float:left;height:40px;margin-top:15px;margin-left:100px;}
+div.code{float:left;height:40px;margin-top:15px;margin-left:100px;}
+div.rebutton{float:left;height:40px;margin-top:65px;margin-left:100px;}
+
+input.namemove{border:2px solid #cccccc; background-color:#ffffcc; width:200px; height:35px;}
+input.nameout{border:2px solid #cccccc; background-color:#ffffff; width:200px; height:35px;}
+
+
+div#onone{position:absolute;left:440px;top:80px;z-index:2;background:url(/static/images/onone.jpg);
+background-size:cover;width:364px;height:400px;}
+div.onname{float:left;height:40px;margin-top:170px;margin-left:80px;}
+div.onpass{float:left;height:40px;margin-top:15px;margin-left:80px;}
+div.onbutton{float:left;height:40px;margin-top:30px;margin-left:80px;}
+
+div.mid{position:relative;height:455px;width:1000px;margin-top:10px;margin-left:120px;}
+div.bus{position:relative;height:455px;width:325px;float:left;margin-left:7px;background:url(/static/images/bus.jpg)}
+div.fly{position:relative;height:455px;width:325px;float:left;margin-left:7px;background:url(/static/images/fly.jpg)}
+div.tra{position:relative;height:455px;width:325px;float:left;margin-left:7px;background:url(/static/images/train.jpg)}
+
+div.base{position:relative;height:76px;margin-top:10px;}
+
+#diag{margin-top: 20px;}
+p{white-space: nowrap;}
+.errorlist{list-style: none; float: right; margin-top: 5px; padding: 2px; font-size: 12px; color: white; background:-webkit-gradient(linear, 0 0, 0 bottom, from(#ff0000), to(rgba(155, 0, 255, 0.5))); border-radius: 0.2em; display: inline;}
+
+
+

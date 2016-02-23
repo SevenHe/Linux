@@ -52,11 +52,12 @@ if [ -f $Mgr ] && [ $# = "0" ]; then
 
 elif [ -f $Mgr ] && [ $# = "1" ]; then
 	case "$1" in
-		-m)
+		-m|--migrate)
+			python $Mgr makemigrations
 			python $Mgr migrate
 			# Do not change the original file for different sites.
 			;;
-		-u)
+		-ux|--uwsgi-xml)
 			print_message port
 			sed "s#~#$homedir#" < TMS.xml > TMS_temp.xml
 			sed -i "s#%work_and_app%.sock#127.0.0.1:9090#" TMS_temp.xml
@@ -81,7 +82,7 @@ elif [ -f $Mgr ] && [ $# = "1" ]; then
 			cat TMS_temp.xml
 			rm TMS_temp.xml
 			;;
-		--socket)
+		-us|--uwsgi-socket)
 			# Create a socket for use, so that the config file is not always loaded manually.
 			# use a socket, you need to specify the wsgi.py file.
 			print_message socket

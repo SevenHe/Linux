@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+{% block title %}
+Test
+{% endblock %}
+{% block center %}
+<p>
+{{ form.errors }}
+</p>
+<p>
+There is something!!
+{% if not error %}
+验证码错误！
+{% endif %}
+</p>
+{% endblock %}

@@ -7,54 +7,8 @@
 
 <title>{% block title %}5036 购票中心{% endblock %}</title>
 
-<link rel = "Shortcut Icon"  href=/static/images/logo.png>
-
-<style type="text/css">
-
-input.onon{width:50px;height:30px;border:1px solid #990000;background-color:#000000;color:#ffffff;}
-input.onou{width:50px;height:30px;border:1px solid #990000;background-color:#ffffff;color:#ff9933;}
-
-input.fion{width:50px;height:30px;border:1px solid #990000;background-color:#cccccc;color:#000000;}
-input.fiou{width:50px;height:30px;border:1px solid #000000;background-color:#cc0000;color:#ffffff;}
-
-div.top{position:relative;height:45px;}
-div.tit{position:relative;height:40px;width:50px;float:left;margin-left:50px}
-div.slo{position:relative;height:40px;width:300px;float:left;margin-left:10px}
-div.reg{position:relative;height:40px;width:60px;float:right;margin-top:10px}
-div.ton{position:relative;height:40px;width:60px;float:right;margin-top:10px}
-
-
-div#regone{position:absolute;left:420px;top:10px;z-index:3;background:url(/static/images/reg2.jpg);
-          background-size:cover;width:412px;height:550px;}
-div.dele{float:right;height:30px;width:30px;margin-top:5px;margin-right:5px}
-div.remand{float:left;height:40px;margin-top:80px;margin-left:155px}
-div.rename{float:left;height:40px;margin-top:30px;margin-left:100px}
-div.phone{float:left;height:40px;margin-top:15px;margin-left:100px}
-div.repass{float:left;height:40px;margin-top:15px;margin-left:100px}
-div.passagain{float:left;height:40px;margin-top:15px;margin-left:100px}
-div.code{float:left;height:40px;margin-top:15px;margin-left:100px}
-div.rebutton{float:left;height:40px;margin-top:65px;margin-left:100px}
-
-input.namemove{border:2px solid #cccccc; background-color:#ffffcc; width:200px; height:35px;}
-input.nameout{border:2px solid #cccccc; background-color:#ffffff; width:200px; height:35px;}
-
-
-div#onone{position:absolute;left:440px;top:80px;z-index:2;background:url(/static/images/onone.jpg);
-          background-size:cover;width:364px;height:400px;}
-div.onname{float:left;height:40px;margin-top:170px;margin-left:80px}
-div.onpass{float:left;height:40px;margin-top:15px;margin-left:80px}
-div.onbutton{float:left;height:40px;margin-top:30px;margin-left:80px}
-
-div.mid{position:relative;height:455px;width:1000px;margin-top:10px;margin-left:120px}
-div.bus{position:relative;height:455px;width:325px;float:left;margin-left:7px;background:url(/static/images/bus.jpg)}
-div.fly{position:relative;height:455px;width:325px;float:left;margin-left:7px;background:url(/static/images/fly.jpg)}
-div.tra{position:relative;height:455px;width:325px;float:left;margin-left:7px;background:url(/static/images/train.jpg)}
-
-div.base{position:relative;height:76px;margin-top:10px}
-#diag{margin-top: 20px}
-p{white-space: nowrap}
-
-</style>
+<link rel = "Shortcut Icon"  href="/static/images/logo.png" />
+<link rel = "stylesheet" href="/static/css/frame.css" />
 
 <script type="text/javascript">
 function deleteDisplay()
@@ -87,7 +41,7 @@ function opedisplay()
 </head>
 
 
-<body style="background-image:url(back1.jpg);background-repeat:no-repeat">
+<body style="background-image:url(/static/images/back1.jpg);background-repeat:no-repeat">
 
 
 <div id="regone" style="display:none; border:5px solid#ffffff">
@@ -102,40 +56,38 @@ function opedisplay()
 <strong><p>注册账户</p></strong>
 </div>
 
-<form action="/account/sign_up/success" method="post">
+<form action="{% url "sign_up" %}" method="post">
 <div class="rename">
-<input class="nameout" type="text"  name="username" placeholder=用户名...  onmousemove="this.className='namemove'"  
-                       onmouseout="this.className='nameout'"/>
+<input class="nameout" type="text"  name="username" placeholder=用户名...  onmousemove="this.className='namemove'"  onmouseout="this.className='nameout'"/>
 </div>
+
 <div class="phone">
 <input class="nameout" type="text"  name="email" placeholder=邮箱...  onmousemove="this.className='namemove'"  
                        onmouseout="this.className='nameout'"/>
 </div>
+
 <div class="repass">
 <input class="nameout" type="password"  name="password" placeholder=密码...  onmousemove="this.className='namemove'"  
                        onmouseout="this.className='nameout'"/>
 </div>
+
 <div class="passagain">
 <input class="nameout" type="password"  name="repassword" placeholder=确认密码...  onmousemove="this.className='namemove'"  
                        onmouseout="this.className='nameout'"/>
 </div>
+
 <div class="code">
 <input class="nameout" type="text"  name="diag_input" placeholder=验证码...  onmousemove="this.className='namemove'"  
                        onmouseout="this.className='nameout'"/>
 <img id="diag" onclick="this.setAttribute('src','/account/diag_code?nocache='+Math.random());" alt="diag_code" src="/account/diag_code?nocache" />
 </div>
-</form>	  
 
 <div class="rebutton">
-<input type="button" value="注册" class="fion" onmousemove="this.className='fiou'"  
+<input type="submit" value="注册" class="fion" onmousemove="this.className='fiou'"  
                      onmouseout="this.className='fion'"   onmouseover="this.style.cursor='pointer'"/>
+<input type="hidden" name="next" value="{{ next|escape }}" />
 </div>
-
-{% if form.errors %}
-<p style="color: red;">
-	请更改以下问题后重试：{{ form.errors|pluralize }}
-</p>
-{% endif %}
+</form>
 
 </div>
 
@@ -157,7 +109,7 @@ function opedisplay()
 </div>
 
 <div class="onbutton">
-<input type="button" value="登录" class="onon" onmousemove="this.className='onou'"  
+<input type="submit" value="登录" class="onon" onmousemove="this.className='onou'"  
                      onmouseout="this.className='onon'"   onmouseover="this.style.cursor='pointer'"/>
 </div>
 

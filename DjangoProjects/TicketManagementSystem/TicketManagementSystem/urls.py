@@ -16,12 +16,15 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from TicketManagementSystem.views import *
+from Utils.views import *
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', preview),
-    url(r'^index$', index),
-    url(r'^account/sign_up$', sign_up),
+    url(r'^index$', index, name='index'),
+    url(r'^account/sign_up$', sign_up, name='sign_up'),
     url(r'^account/diag_code$', diag_code),
-    url(r'^account/sign_up/success$', sign_up_success),
+    url(r'^account/sign_up/success$', sign_up_success, name='log_success'),
+    url(r'^account/activation$', activate, name='activation'),
+    #url(r'^account/test$', sign_up),
 ]

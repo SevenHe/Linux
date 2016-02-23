@@ -5,11 +5,15 @@ must pay attention to the syntax issues.
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render, render_to_response
-from django.core.context_processors import csrf
 from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
 from Utils.views import *
+from Utils.models import EmailCaptcha
 from TicketManagementSystem.forms import LogInForm
+from hashlib import md5
+from datetime import *
 import cStringIO
+# csrf -- Cross Site Request Forgery, need to use RequestContext to pass parameters.
 # from TestModule.models import Test
 # from HelloWorld.forms import ContactForm
 # from datetime import *
@@ -20,7 +24,6 @@ def preview(request):
     return render_to_response('preview.html')
 
 def index(request):
-    diag_code(request)
     return render_to_response('index.html')
 
 def diag_code(request):
@@ -31,30 +34,53 @@ def diag_code(request):
     return HttpResponse(buf.getvalue(), 'image/gif')
 
 def sign_up(request):
+    show = False
     if request.method == 'POST':
-        signup_form = forms.LogInForm(request.POST)
+        signup_form = LogInForm(request.POST)
         if signup_form.is_valid():
             signup_info = signup_form.cleaned_data
             if request.session['diag_code'] != signup_info['diag_input']:
-                signup_form.captcha_error()
+                error = True
+                return render_to_response('reRegister.html', {'form': signup_form, 'info': signup_info, 'error': error, 'show': show})
             else:
             # 邮箱激活时，用户需要增加一个激活码用来进行判断
                 user = User.objects.create_user(
                     username = signup_info['username'],
-                    email = signup_info['email'], 
+                    email = signup_info['email'],
                     password = signup_info['password'])
 
                 user.is_active = False
-            # 邮箱激活从这里开始！
-            return HttpResponseRedirect('/account/sign_up/success')
+            # 邮箱激活从这里开始！首先加密激活链接,然后组合，发送邮件
+                m = md5()
+                username = signup_info['username']
+                email = signup_info['email']
+                post_date = datetime.now()
+                post_date_string = post_date.ctime()
+                salt = '5036TS'
+                m.update(username + post_date_string + salt)
+                captcha = m.hexdigest()
+                email_captcha = EmailCaptcha(user, captcha, post_date)
+                activation = "127.0.0.1/account/activation" + "?username=" + username + "&captcha=" + captcha
+                html_content = "<p>感谢您对<strong>5036 购票中心</strong>的支持，请点击此链接激活您的账号：<a>%s</a> （10分钟内有效）</p>" % activation
+                msg = EmailMessage('用户激活', html_content, 'sevenhe2015@gmail.com', [email])
+                msg.content_subtype = 'html'
+                msg.send(fail_silently=False)
+                #return HttpResponseRedirect('/account/sign_up/success')
+                error = False
+
+            # next is to save the objects.
+            return render_to_response('reRegister.html', {'form': signup_form, 'info': signup_info, 'error': error, 'show': show})
         else:
-            return HttpResponse(u'注册时，发生未知错误，请修改后重试!')
+            if signup_form.has_error('diag_input') or request.session['diag_code'] != signup_form.cleaned_data['diag_input']:
+                error = True
+            else:
+                error = False
+            return render_to_response('reRegister.html', {'form': signup_form, 'info': request.POST, 'error': error, 'show':show})
 
     else:
-        # 这里希望发生错误时，用户所填的内容不会消失，暂时未完成
-        #form = forms.LogInForm()
-        #variables = RequestContext(request, {'form': form})
-        return render_to_response('reRegister.html')
+        form = LogInForm()
+        error = False
+        return render(request, 'reRegister.html', {'form': form, 'info': request.POST, 'error': error, 'show': show})
 
 def sign_up_success(request):
     return render_to_response('sign_up_success.html')

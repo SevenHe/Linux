@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response 
 # Create your views here.
 import random
 import Image, ImageDraw, ImageFont, ImageFilter
@@ -96,4 +96,5 @@ def create_strs(draw,chars,length,font_type, font_size,width,height,fg_color):
     
     return ''.join(c_chars)
 
-
+def activate(request):
+    return render_to_response('activation.html')
