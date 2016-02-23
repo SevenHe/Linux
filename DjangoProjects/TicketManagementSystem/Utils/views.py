@@ -2,6 +2,9 @@
 from django.shortcuts import render, render_to_response 
 # Create your views here.
 import random
+from smtplib import SMTP_SSL
+from email.mime.text import MIMEText
+from TicketManagementSystem.settings import EMAIL_HOST_PASSWORD
 import Image, ImageDraw, ImageFont, ImageFilter
 
 _letter_cases = "abcdefghjkmnpqrstuvwxy" # 小写字母，去除可能干扰的i，l，o，z
@@ -96,5 +99,20 @@ def create_strs(draw,chars,length,font_type, font_size,width,height,fg_color):
     
     return ''.join(c_chars)
 
+# own async SSL email sender!
+def send_email(rcp, html_content):
+    msg = MIMEText(html_content, 'html', 'utf-8')
+    msg['Subject'] = '用户激活'
+    msg['From'] = '5036 购物中心'
+    conn = SMTP_SSL('smtp.qq.com', port=465)
+    conn.login("961950442@qq.com", EMAIL_HOST_PASSWORD)
+    tolist = [rcp]
+    try:
+        conn.sendmail('961950442@qq.com', tolist, msg.as_string())
+    finally:
+        conn.quit()
+
 def activate(request):
     return render_to_response('activation.html')
+
+

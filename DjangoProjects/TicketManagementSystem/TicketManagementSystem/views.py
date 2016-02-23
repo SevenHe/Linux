@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render, render_to_response
 from django.contrib.auth.models import User
-from django.core.mail import EmailMessage
+from django.core.urlresolvers import reverse
 from Utils.views import *
 from Utils.models import EmailCaptcha
 from TicketManagementSystem.forms import LogInForm
@@ -20,6 +20,9 @@ import cStringIO
 # from django.contrib.auth.decorators import login_required!!
 # @login_required(login_url='/accounts/login/')
 # and permission_required, and so on!
+"""
+The next thing is to validate the user, and make user persistent!
+"""
 def preview(request):
     return render_to_response('preview.html')
 
@@ -62,14 +65,15 @@ def sign_up(request):
                 email_captcha = EmailCaptcha(user, captcha, post_date)
                 activation = "127.0.0.1/account/activation" + "?username=" + username + "&captcha=" + captcha
                 html_content = "<p>感谢您对<strong>5036 购票中心</strong>的支持，请点击此链接激活您的账号：<a>%s</a> （10分钟内有效）</p>" % activation
-                msg = EmailMessage('用户激活', html_content, 'sevenhe2015@gmail.com', [email])
-                msg.content_subtype = 'html'
-                msg.send(fail_silently=False)
+            # async !
+                import threading
+                t = threading.Thread(target=send_email, args=[email, html_content])
+                t.start()
                 #return HttpResponseRedirect('/account/sign_up/success')
                 error = False
 
             # next is to save the objects.
-            return render_to_response('reRegister.html', {'form': signup_form, 'info': signup_info, 'error': error, 'show': show})
+            return HttpResponseRedirect(reverse('log_success'))
         else:
             if signup_form.has_error('diag_input') or request.session['diag_code'] != signup_form.cleaned_data['diag_input']:
                 error = True

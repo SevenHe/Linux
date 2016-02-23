@@ -132,11 +132,14 @@ MANAGERS = (
 # memcache 
 CACHE_BACKEND = 'file:///var/tmp/django_cache'
 
+# This can be improved by SSL, this is so tough, do my send program!
+EMAIL_HOST_PASSWORD = 'Seven1001'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 25
+EMAIL_PORT = 465
 EMAIL_HOST_USER = 'sevenhe2015@gmail.com'
-EAMIL_HOST_PASSWORD = 'Seven1001'
 EMAIL_SUBJECT_PREFIX = u'[5036 购票中心]'           #为邮件Subject-line前缀,默认是'[django]
 EMAIL_USE_TLS = True                                #与SMTP服务器通信时，是否启动TLS链接(安全链接)。默认是false
 #管理员站点
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 #SERVER_EMAIL = 'xinxinyu2011@163.com'              #The email address that error messages come from, such as those sent to ADMINS and MANAGERS.
