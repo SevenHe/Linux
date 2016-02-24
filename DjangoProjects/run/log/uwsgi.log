@@ -1,9 +1,0 @@
-[pid: 5058|app: 0|req: 4/6] 127.0.0.1 () {52 vars in 974 bytes} [Wed Feb 24 10:22:03 2016] POST /account/sign_in/ => generated 3842 bytes in 131 msecs (HTTP/1.1 200) 4 headers in 233 bytes (1 switches on core 0)
-[pid: 5058|app: 0|req: 5/7] 127.0.0.1 () {42 vars in 750 bytes} [Wed Feb 24 10:22:03 2016] GET /account/diag_code?nocache => generated 1598 bytes in 95 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
-  using=using)
-
-[pid: 5056|app: 0|req: 2/8] 127.0.0.1 () {44 vars in 792 bytes} [Wed Feb 24 10:22:05 2016] GET /index => generated 4930 bytes in 35 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 5056|app: 0|req: 3/9] 127.0.0.1 () {44 vars in 805 bytes} [Wed Feb 24 10:22:08 2016] GET /account/sign_out/ => generated 0 bytes in 62 msecs (HTTP/1.1 302) 4 headers in 192 bytes (1 switches on core 0)
-[pid: 5056|app: 0|req: 4/10] 127.0.0.1 () {44 vars in 737 bytes} [Wed Feb 24 10:22:08 2016] GET /index => generated 5253 bytes in 3 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 5058|app: 0|req: 6/11] 127.0.0.1 () {42 vars in 695 bytes} [Wed Feb 24 10:22:08 2016] GET /account/diag_code?nocache => generated 1722 bytes in 66 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)

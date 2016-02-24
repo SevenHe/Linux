@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from django.shortcuts import render, render_to_response 
 from django.contrib.auth.models import User
+from django.template import RequestContext
 # Create your views here.
 import random
 from smtplib import SMTP_SSL
