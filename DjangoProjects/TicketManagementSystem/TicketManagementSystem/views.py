@@ -27,7 +27,7 @@ The next thing is to validate the user, and make user persistent!
 What's more, there are so many validations to be take into the forms!
 """
 def preview(request):
-    return render_to_response('preview.html')
+    return render_to_response('preview.html', context_instance=RequestContext(request))
 
 #render_to_response does not load the request automatically sometimes, unless RequestContext!
 def index(request):
@@ -49,7 +49,7 @@ def sign_up(request):
             signup_info = signup_form.cleaned_data
             if request.session['diag_code'] != signup_info['diag_input']:
                 error = True
-                return render_to_response('reRegister.html', {'form': signup_form, 'info': signup_info, 'error': error, 'show': show, 'using': using})
+                return render_to_response('reRegister.html', {'form': signup_form, 'info': signup_info, 'error': error, 'show': show, 'using': using}, context_instance=RequestContext(request))
             else:
             # 邮箱激活时，用户需要增加一个激活码用来进行判断
                 user = User.objects.create_user(
@@ -86,7 +86,7 @@ def sign_up(request):
                 error = True
             else:
                 error = False
-            return render_to_response('reRegister.html', {'form': signup_form, 'info': request.POST, 'error': error, 'show':show, 'using': using})
+            return render_to_response('reRegister.html', {'form': signup_form, 'info': request.POST, 'error': error, 'show':show, 'using': using}, context_instance=RequestContext(request))
 
     else:
         form = LogInForm()
@@ -94,7 +94,7 @@ def sign_up(request):
         return render(request, 'reRegister.html', {'form': form, 'info': request.POST, 'error': error, 'show': show, 'using': using})
 
 def sign_up_success(request):
-    return render_to_response('sign_up_success.html')
+    return render_to_response('sign_up_success.html', context_instance=RequestContext(request))
 
 # do it just for now, there will be other features in the future!
 # @login_required is on the way!
@@ -106,7 +106,7 @@ def sign_in(request):
     if user is None:
         try:
             if User.objects.get(username=identifier):
-                return render_to_response('sign_in.html', {'account': 3})
+                return render_to_response('sign_in.html', {'account': 3}, context_instance=RequestContext(request))
         except:
             pass
         try:
@@ -117,20 +117,20 @@ def sign_in(request):
                 return render_to_response('sign_in.html', context_instance=RequestContext(request))
             elif user is not None and not user.is_active:
                 # means that user is not active.
-                return render_to_response('sign_in.html', {'account': 2})
+                return render_to_response('sign_in.html', {'account': 2}, context_instance=RequestContext(request))
             else:
                 # means that the password is incorrect. 
-                return render_to_response('sign_in.html', {'account': 3})
+                return render_to_response('sign_in.html', {'account': 3}, context_instance=RequestContext(request))
         except:
             # means that the account is incorrect. 
-            return render_to_response('sign_in.html', {'account': 1})
+            return render_to_response('sign_in.html', {'account': 1}, context_instance=RequestContext(request))
     else:
         if user.is_active:
             auth.login(request, user)
             #return render_to_response('index.html', {'using': True})
             return render_to_response('sign_in.html', context_instance=RequestContext(request))
         else:
-            return render_to_response('sign_in.html', {'account': 2})
+            return render_to_response('sign_in.html', {'account': 2}, context_instance=RequestContext(request))
             
 
 """

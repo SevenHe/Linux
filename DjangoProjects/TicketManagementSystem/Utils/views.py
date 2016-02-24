@@ -156,7 +156,7 @@ def activate(request):
         resutl = '链接不合法!'
         resend = True
                     
-    return render_to_response('activation.html', {'result': result, 'resend': resend})
+    return render_to_response('activation.html', {'result': result, 'resend': resend}, context_instance=RequestContext(request))
 
 # need to do some db queries!
 def resend(request):
