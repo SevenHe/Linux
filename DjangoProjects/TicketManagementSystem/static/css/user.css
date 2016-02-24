@@ -1,0 +1,52 @@
+#person {
+	margin-left: 1000px;
+	display: block;
+	font-weight: bold;
+	font-size: 22px;
+	-webkit-animation: 10s infinite linear animate;
+    animation: 10s infinite linear animate;
+}
+
+/* migrate the animation to the js to enhance/augment compatibility!*/
+#person:before {
+    z-index: -4;
+}
+@keyframes animate {
+    0% {
+        color: #aaa;
+    }
+    50% {
+        color: #03FCF5;
+    }
+	100% {
+		color: #bbb;
+	}
+}
+
+#sign_out {
+	font-size: 20px;
+	border-radius: 10%;
+	background: -moz-linear-gradient(360deg, #ace, #f96);
+  	background: -webkit-gradient(linear,0 50%,100% 50%,from(#ace),to(#f96));
+  	background: -webkit-linear-gradient(360deg, #ace, #f96);
+  	background: -o-linear-gradient(360deg, #ace, #f96);
+	-webkit-animation: 10s infinite linear animate2;
+    animation: 10s infinite linear animate2;
+}
+@keyframes animate {
+    0% {
+        color: #bbb;
+    }
+    50% {
+        color: #03FCF5;
+    }
+	100% {
+		color: #aaa;
+	}
+}
+#sign_out:visited {
+	background: -moz-linear-gradient(360deg, #f96, #ace);
+  	background: -webkit-gradient(linear,0 50%,100% 50%,from(#f96),to(#ace));
+  	background: -webkit-linear-gradient(360deg, #f96, #ace);
+  	background: -o-linear-gradient(360deg, #f96, #ace);
+}

@@ -1,10 +1,12 @@
 # -*- encoding: utf-8 -*-
 from django.shortcuts import render, render_to_response 
+from django.contrib.auth.models import User
 # Create your views here.
 import random
 from smtplib import SMTP_SSL
 from email.mime.text import MIMEText
 from TicketManagementSystem.settings import EMAIL_HOST_PASSWORD
+from Utils.models import EmailCaptcha
 import Image, ImageDraw, ImageFont, ImageFilter
 
 _letter_cases = "abcdefghjkmnpqrstuvwxy" # 小写字母，去除可能干扰的i，l，o，z
@@ -100,6 +102,12 @@ def create_strs(draw,chars,length,font_type, font_size,width,height,fg_color):
     return ''.join(c_chars)
 
 # own async SSL email sender!
+def async_sender(rcp, html_content):
+    import threading
+    t = threading.Thread(target=send_email, args=[rcp, html_content])
+    t.start()
+
+
 def send_email(rcp, html_content):
     msg = MIMEText(html_content, 'html', 'utf-8')
     msg['Subject'] = '用户激活'
@@ -113,6 +121,44 @@ def send_email(rcp, html_content):
         conn.quit()
 
 def activate(request):
-    return render_to_response('activation.html')
+    if ('username'.encode('hex') and 'captcha'.encode('hex')) in request.GET:
+        username = request.GET['username'.encode('hex')].decode('hex')[0:-4]
+        captcha = request.GET['captcha'.encode('hex')]
+        delete = True
+        try: 
+            user = User.objects.get(username=username)
+            ec = EmailCaptcha.objects.get(user_id=user.id)
+        except:
+            delete = False
+        if captcha == ec.captcha:
+            post_date = ec.post_date
+            from datetime import datetime
+            now = datetime.now()
+            if now.year == post_date.year and now.month == post_date.month and now.day == post_date.day:
+                if (now.hour == post_date.hour and now.minute - post_date.minute <= 10) or (now.hour > post_date.hour and now.minute - post_date.minute < 0 and (now.minute - post_date.minute) % 60 <= 10):
+                    user.is_active = True
+                    user.save()
+                    result = '用户激活成功！'
+                    resend = False
+                else:
+                    result = '验证码已失效！'
+                    resend = True
+            else:
+                result = '验证码已不翼而飞...'
+                resend = True
+        else:
+            result = '验证码不匹配，可能是由网络不畅等原因引起！'
+            resend = True
 
+        if delete:
+            ec.delete()
+    else:
+        resutl = '链接不合法!'
+        resend = True
+                    
+    return render_to_response('activation.html', {'result': result, 'resend': resend})
+
+# need to do some db queries!
+def resend(request):
+    pass
 

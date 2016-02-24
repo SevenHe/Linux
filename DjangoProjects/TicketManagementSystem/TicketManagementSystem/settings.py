@@ -142,4 +142,11 @@ EMAIL_USE_TLS = True                                #与SMTP服务器通信时�
 #管理员站点
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
+#APPEND_SLASH = False
 #SERVER_EMAIL = 'xinxinyu2011@163.com'              #The email address that error messages come from, such as those sent to ADMINS and MANAGERS.
+
+# Custom settings
+CUSTOM_SETTINGS = {}
+CUSTOM_SETTINGS['ACTIVATION_URL'] = '127.0.0.1/account/activation'
+CUSTOM_SETTINGS['ACTIVATION_HTML_CONTENT'] = "<p>感谢您对<strong>5036 购票中心</strong>的支持，请点击此链接激活您的账号：<a>%s</a> （10分钟内有效）</p>"
+CUSTOM_SETTINGS['SALT'] = '5036TS'

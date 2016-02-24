@@ -5,11 +5,13 @@ must pay attention to the syntax issues.
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render, render_to_response
+from django.contrib import auth
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from Utils.views import *
 from Utils.models import EmailCaptcha
 from TicketManagementSystem.forms import LogInForm
+from TicketManagementSystem.settings import CUSTOM_SETTINGS
 from hashlib import md5
 from datetime import *
 import cStringIO
@@ -22,12 +24,14 @@ import cStringIO
 # and permission_required, and so on!
 """
 The next thing is to validate the user, and make user persistent!
+What's more, there are so many validations to be take into the forms!
 """
 def preview(request):
     return render_to_response('preview.html')
 
+#render_to_response does not load the request automatically sometimes, unless RequestContext!
 def index(request):
-    return render_to_response('index.html')
+    return render_to_response('index.html', context_instance=RequestContext(request))
 
 def diag_code(request):
     img, dc = create_diag_code()
@@ -38,13 +42,14 @@ def diag_code(request):
 
 def sign_up(request):
     show = False
+    using = False
     if request.method == 'POST':
         signup_form = LogInForm(request.POST)
         if signup_form.is_valid():
             signup_info = signup_form.cleaned_data
             if request.session['diag_code'] != signup_info['diag_input']:
                 error = True
-                return render_to_response('reRegister.html', {'form': signup_form, 'info': signup_info, 'error': error, 'show': show})
+                return render_to_response('reRegister.html', {'form': signup_form, 'info': signup_info, 'error': error, 'show': show, 'using': using})
             else:
             # 邮箱激活时，用户需要增加一个激活码用来进行判断
                 user = User.objects.create_user(
@@ -59,44 +64,113 @@ def sign_up(request):
                 email = signup_info['email']
                 post_date = datetime.now()
                 post_date_string = post_date.ctime()
-                salt = '5036TS'
+                salt = CUSTOM_SETTINGS['SALT']
                 m.update(username + post_date_string + salt)
                 captcha = m.hexdigest()
-                email_captcha = EmailCaptcha(user, captcha, post_date)
-                activation = "127.0.0.1/account/activation" + "?username=" + username + "&captcha=" + captcha
-                html_content = "<p>感谢您对<strong>5036 购票中心</strong>的支持，请点击此链接激活您的账号：<a>%s</a> （10分钟内有效）</p>" % activation
-            # async !
-                import threading
-                t = threading.Thread(target=send_email, args=[email, html_content])
-                t.start()
+                email_captcha = EmailCaptcha(user_id=user.id, captcha=captcha, post_date=post_date)
+                encrypted_username = (username + 'salt').encode('hex')
+                activation = CUSTOM_SETTINGS['ACTIVATION_URL'] + "?" + 'username'.encode('hex') + "=" + encrypted_username + "&" + 'captcha'.encode('hex') + "=" + captcha
+                html_content = CUSTOM_SETTINGS['ACTIVATION_HTML_CONTENT'] % activation
+                # async !
+                async_sender(email, html_content)
                 #return HttpResponseRedirect('/account/sign_up/success')
                 error = False
 
             # next is to save the objects.
+            user.save()
+            # actually, it saves the user id.
+            email_captcha.save()
             return HttpResponseRedirect(reverse('log_success'))
         else:
             if signup_form.has_error('diag_input') or request.session['diag_code'] != signup_form.cleaned_data['diag_input']:
                 error = True
             else:
                 error = False
-            return render_to_response('reRegister.html', {'form': signup_form, 'info': request.POST, 'error': error, 'show':show})
+            return render_to_response('reRegister.html', {'form': signup_form, 'info': request.POST, 'error': error, 'show':show, 'using': using})
 
     else:
         form = LogInForm()
         error = False
-        return render(request, 'reRegister.html', {'form': form, 'info': request.POST, 'error': error, 'show': show})
+        return render(request, 'reRegister.html', {'form': form, 'info': request.POST, 'error': error, 'show': show, 'using': using})
 
 def sign_up_success(request):
     return render_to_response('sign_up_success.html')
 
-def hello(request):
-	"""
-    context = {}
-    context['hello'] = 'Hello World!'
-    return render(request, 'hello.html', context)
-  	"""
-	return HttpResponse("Hello, World!")
-    
+# do it just for now, there will be other features in the future!
+# @login_required is on the way!
+# 登录之后不是渲染， 而是重定向！This is the tradition!
+def sign_in(request):
+    identifier = request.POST.get('usr', '')
+    pswd = request.POST.get('log_pswd', '')
+    user = auth.authenticate(username=identifier, password=pswd)
+    if user is None:
+        try:
+            if User.objects.get(username=identifier):
+                return render_to_response('sign_in.html', {'account': 3})
+        except:
+            pass
+        try:
+            m = User.objects.get(email=identifier)
+            user = auth.authenticate(username=m.username, password=pswd)
+            if user is not None and user.is_active:
+                auth.login(request, user)
+                return render_to_response('sign_in.html', context_instance=RequestContext(request))
+            elif user is not None and not user.is_active:
+                # means that user is not active.
+                return render_to_response('sign_in.html', {'account': 2})
+            else:
+                # means that the password is incorrect. 
+                return render_to_response('sign_in.html', {'account': 3})
+        except:
+            # means that the account is incorrect. 
+            return render_to_response('sign_in.html', {'account': 1})
+    else:
+        if user.is_active:
+            auth.login(request, user)
+            #return render_to_response('index.html', {'using': True})
+            return render_to_response('sign_in.html', context_instance=RequestContext(request))
+        else:
+            return render_to_response('sign_in.html', {'account': 2})
+            
+
+"""
+Custom authentication!
+    if request.method != 'POST':
+        raise Http404('Only POST is allowed!')
+    auth_info = {}
+    identifier = request.POST['usr']
+    pswd = request.POST['log_pswd']
+    try:
+        m = User.objects.get(username=identifier)
+    except:
+        try:
+            m = User.objects.get(email=identifier)
+        except:
+            auth_info['account_error'] = 1          # means: account identifier is incorrect.
+    if m:
+        if m.password == pswd and m.is_active:
+            request.session['id'] = m.id
+            return render_to_response('index.html', {'auth_info': auth_info, 'using'})
+        elif m.password == pswd and not m.is_active:
+            auth_info['account_error'] = 2          # means: account has not been activated!
+            return render_to_response('index.html', {'auth_info': auth_info})
+        else:
+            auth_info['account_error'] = 3          # means: password is incorrect.
+            return render_to_response('index.html', {'auth_info': auth_info})
+    return render_to_response('sign_in.html', {'error': False, 'show': False, 'using': False}) 
+"""
+# TODO--redirect to the user profile automatically!
+def sign_in_success(request):
+    pass
+
+def personalize(request, username):
+    pass
+
+def sign_out(request):
+    auth.logout(request)
+    return HttpResponseRedirect(reverse('index'))
+
+"""
 def testdb_insert(request):
 	test1 = Test(name='w3cschool.cc')
 	test1.save()
@@ -195,7 +269,7 @@ def search(request):
 	else:
 		message = '你提交了空表单'
 	return HttpResponse(message)
-
+"""
 
 """ a better way to search in reality.
 def search(request):

@@ -23,8 +23,12 @@ urlpatterns = [
     url(r'^$', preview),
     url(r'^index$', index, name='index'),
     url(r'^account/sign_up$', sign_up, name='sign_up'),
+    url(r'^account/sign_in/$', sign_in, name='sign_in'),
+    url(r'^account/sign_out/$', sign_out, name='sign_out'),
+    url(r'^account/(?P<username>[0-9a-zA-z]{6, 16})/$', personalize, name='personalize'),
     url(r'^account/diag_code$', diag_code),
     url(r'^account/sign_up/success$', sign_up_success, name='log_success'),
     url(r'^account/activation$', activate, name='activation'),
+    url(r'^account/resend/$', resend, name='resend'),
     #url(r'^account/test$', sign_up),
 ]

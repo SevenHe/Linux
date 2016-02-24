@@ -92,15 +92,15 @@ function opedisplay()
 
 </div>
 
-
-<div id="onone" style="display:none; border:5px solid#ffffff">
+{% if not user.is_authenticated %}
+<div id="onone" style="display:block; border:5px solid#ffffff">
 
 <div class="dele">
 <input type="button"  style="border:0px solid #ffffff; background:url(/static/images/dele.png);background-size:cover;width:30px; 
                              height:30px;"  onclick="delDisplay()"  onmouseover="this.style.cursor='pointer'"/>
 </div>
 
-<form action="{% url "sign_in" %}" method="post">
+<form action="" method="post">
 <div class="onname">
 <input class="nameout" type="text"  name="usr" placeholder=用户名/邮箱...  onmousemove="this.className='namemove'"  
                        onmouseout="this.className='nameout'"/>
@@ -110,6 +110,10 @@ function opedisplay()
                        onmouseout="this.className='nameout'"/>
 </div>
 
+{% ifequal account 1 %}<ul class="errorlist"><li>*用户名或邮箱错误</li></ul>{% endifequal %}
+{% ifequal account 2 %}<ul class="errorlist"><li>*用户未激活</li></ul>{% endifequal %}
+{% ifequal account 3 %}<ul class="errorlist"><li>*密码错误</li></ul>{% endifequal %}
+
 <div class="onbutton">
 <input type="submit" value="登录" class="onon" onmousemove="this.className='onou'"  
                      onmouseout="this.className='onon'"   onmouseover="this.style.cursor='pointer'"/>
@@ -118,7 +122,7 @@ function opedisplay()
 </form>
 
 </div>
-
+{% endif %}
 
 <div class="top" style="background:#FF0">
 

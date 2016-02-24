@@ -9,6 +9,7 @@
 
 <link rel = "Shortcut Icon"  href="/static/images/logo.png" />
 <link rel = "stylesheet" href = "/static/css/frame.css" />
+<link rel = "stylesheet" href="/static/css/user.css" />
 
 <script type="text/javascript">
 function deleteDisplay()
@@ -86,7 +87,7 @@ function opedisplay()
 <img id="diag" onclick="this.setAttribute('src','/account/diag_code?nocache='+Math.random());" alt="diag_code" src="/account/diag_code?nocache" style="float: left; margin-left: 100px;"/>
 
 <div class="rebutton">
-<input type="submit" value="注册" class="fion" onmousemove="this.className='fiou'" onmouseout="this.className='fion'" onmouseover="this.style.cursor='pointer'" style="float: left; margin-left: -200px; />
+<input type="submit" value="注册" class="fion" onmousemove="this.className='fiou'" onmouseout="this.className='fion'" onmouseover="this.style.cursor='pointer'" style="float: left; margin-left: -200px; "/>
 <input type="hidden" name="next" value="{{ next|escape }}" />
 </div>
 </form>
@@ -121,13 +122,14 @@ function opedisplay()
 <div class="top" style="background:#FF0">
 
 <div class="tit">
-<a  class="title"  href=""><img src="/static/images/logo.png" width="50" height="40" /></a>
+<a  class="title"  href="{% url "index" %}"><img src="/static/images/logo.png" width="50" height="40" /></a>
 </div>
 
 <div class="slo" style="FONT-SIZE: 15pt;  COLOR: #000000; FONT-FAMILY: 华文楷体">
 <strong><p>5036 购票中心，您出行的最佳助手</p></strong>
 </div>
 
+{% if not user.is_authenticated %}
 <div class="ton">
 <input type="button" value="登录" class="onon" onmouseover="this.style.cursor='pointer'"
        onclick="opedisplay()"  onmousemove="this.className='onou'"  onmouseout="this.className='onon'"/>
@@ -137,6 +139,11 @@ function opedisplay()
 <input type="button" value="注册" class="fion" onmouseover="this.style.cursor='pointer'"
        onclick="opendisplay()"  onmousemove="this.className='fiou'"  onmouseout="this.className='fion'"/>
 </div>
+{% else %}
+<div id="person">
+<a>{{ user.username }}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a id="sign_out" href="{% url "sign_out" %}">注销</a>
+</div>
+{% endif %}
 
 </div>
 
