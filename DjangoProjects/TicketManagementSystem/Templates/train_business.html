@@ -1,0 +1,97 @@
+{% extends "index.html" %}
+{% block title %}
+火车票查询
+{% endblock %}
+{% block center %}
+<link rel="stylesheet" href="/static/css/train.css" />
+<style>
+::-webkit-datetime-edit-fields-wrapper { background-color: #eee; }
+::-webkit-datetime-edit-text {padding: 0 .3em; }
+::-webkit-inner-spin-button {visibility: hidden; }
+::-webkit-calendar-picker-indicator{width:10px;height:10px;border: 1px solid #ccc;border-radius: 2px;
+    box-shadow: inset 0 1px #fff, 0 1px #eee;background-color: #eee;color: #666;}
+</style>
+<div class="mid">
+
+<div class="cplace">
+
+<div class="check">
+
+<div class="chetop">
+<div class="topword" style="FONT-SIZE: 15pt;  COLOR: #202020; FONT-FAMILY: 黑体">
+<strong><p>车票查询</p></strong>
+</div>
+</div>
+           
+<div class="start">
+
+<div class="startword" style="FONT-SIZE: 11pt;  COLOR: #000000; FONT-FAMILY: 宋体">
+<strong><p>出发地</p></strong>
+</div>
+
+<div class="startinput">
+<input class="mouseout" type="text"  placeholder=始发站...  onmousemove="this.className='mousemove'"  
+                       onmouseout="this.className='mouseout'"/>
+</div>
+
+</div>
+
+<div class="arrive">
+
+<div class="startword" style="FONT-SIZE: 11pt;  COLOR: #000000; FONT-FAMILY: 宋体">
+<strong><p>目的地</p></strong>
+</div>
+
+<div class="startinput">
+<input class="mouseout" type="text"  placeholder=终点站...  onmousemove="this.className='mousemove'"  
+                       onmouseout="this.className='mouseout'"/>
+</div>
+
+</div>
+
+<div class="date">
+
+<div class="startword" style="FONT-SIZE: 11pt;  COLOR: #000000; FONT-FAMILY: 宋体">
+<strong><p>出发日</p></strong>
+</div>
+
+<div class="startinput">
+<input class="mouseout" type="date"onmousemove="this.className='mousemove'"   onmouseout="this.className='mouseout'"/>
+</div>
+
+</div>
+
+<div class="button">
+<input type="button" value="查询" class="checkon" onmouseover="this.style.cursor='pointer'"
+       onmousemove="this.className='checkou'"  onmouseout="this.className='checkon'"/>       
+</div>
+
+</div>
+
+<div class="icon">
+</div>
+
+</div>
+
+<div class="list">
+
+<div class="listtop">
+<div class="before">
+<input type="button" value="前一日" class="beforeon" onmouseover="this.style.cursor='pointer'"
+       onmousemove="this.className='beforeou'"  onmouseout="this.className='beforeon'"/>  
+</div>
+<div class="after">
+<input type="button" value="后一日" class="beforeon" onmouseover="this.style.cursor='pointer'"
+       onmousemove="this.className='beforeou'"  onmouseout="this.className='beforeon'"/>  
+</div>
+</div>
+
+<div class="truelist">
+<div class="truetop">
+</div>
+</div>
+
+</div>
+
+</div>
+{% endblock %}

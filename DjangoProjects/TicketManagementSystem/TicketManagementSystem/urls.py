@@ -17,6 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from TicketManagementSystem.views import *
 from Utils.views import *
+from Tickets.views import *
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -30,5 +31,6 @@ urlpatterns = [
     url(r'^account/sign_up/success$', sign_up_success, name='log_success'),
     url(r'^account/activation$', activate, name='activation'),
     url(r'^account/resend/$', resend, name='resend'),
+    url(r'^ticket/train/query/$', train_business, name='train_business')
     #url(r'^account/test$', sign_up),
 ]

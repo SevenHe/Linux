@@ -1,0 +1,42 @@
+hr.style-four {height: 12px;border: 0;box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);}
+
+input.checkon{width:250px;height:30px;background-color:#C80000; color:#336666;
+              border-radius: 5px;border: 1px solid #0000ff;	line-height: 30px;
+              FONT-SIZE: 20pt;  COLOR: #ffff99; FONT-FAMILY: 华文行楷}
+input.checkou{width:250px;height:30px;background-color:#ff0000; color:#FF0000;
+              border-radius: 5px;border: 1px solid #0000ff; line-height: 30px;
+              FONT-SIZE: 20pt;  COLOR: #FFFF00; FONT-FAMILY: 华文行楷}
+			  
+input.beforeon{width:80px;height:30px;background: radial-gradient(circle, #FFF, #06C); color:#336666;
+               border-radius: 5px;border: 1px solid #cccccc;
+               FONT-SIZE: 13pt;  COLOR: #480000; FONT-FAMILY: 华文行楷}
+input.beforeou{width:80px;height:30px;background: radial-gradient(circle, #FF9, #C80000); color:#336666;
+               border-radius: 5px;border: 1px solid #cccccc;
+               FONT-SIZE: 13pt;  COLOR: #202020; FONT-FAMILY: 华文行楷}
+
+div.cplace{position:relative;height:455px;width:370px;float:left;margin-left:10px}
+div.check{position:relative;height:315px;width:370px;float:top;
+          border-radius: 5px;border: 1px solid #3366ff;}
+div.chetop{position:relative;height:40px;float:top;background: linear-gradient(#3366ff, #FFFFFF);}
+div.topword{position:relative;height:30px;float:left;float:top;margin-top:-10px;margin-left:20px;}
+
+div.start{position:relative;height:50px;float:top;margin-top:20px;}
+div.startword{position:relative;height:20px;width:50px;float:left;float:top;margin-top:5px;margin-left:40px;}
+div.startinput{position:relative;height:30px;width:190px;float:left;float:top;margin-top:15px;margin-left:20px;}
+div.arrive{position:relative;height:50px;float:top;}
+div.date{position:relative;height:50px;float:top;}
+
+input.mousemove{border:1px solid #cccccc; background-color:#f0f0ff; width:190px; height:25px;}
+input.mouseout{border:1px solid #cccccc; background-color:#fffffcc; width:190px; height:25px;}
+
+div.button{position:relative;height:40px;width:250px;float:left;float:top;margin-top:40px;margin-left:55px;}
+
+div.icon{position:relative;height:125px;width:370px;float:top;margin-top:11px;background:url(/static/images/train1.jpg);
+         border-radius: 5px;border: 1px solid #3366ff;}
+
+div.list{position:relative;height:453px;width:600px;float:left;margin-left:15px;
+         border-radius: 5px;border: 1px solid #3366ff;}
+div.listtop{position:relative;height:40px;float:top;background: linear-gradient(#3366ff, #FFFFFF);}
+div.before{position:relative;height:34px;width:80px;float:top;float:left;margin-top:3px;margin-left:3px;}
+div.after{position:relative;height:34px;width:80px;float:top;float:right;margin-top:3px;margin-right:3px;}
+div.truelist{position:relative;height:410px;float:top;margin-top:3px;border: 1px solid #f0f0ff;}
