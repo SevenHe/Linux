@@ -56,3 +56,7 @@ Fri Feb 26 09:38:33 2016 - spawned uWSGI worker 4 (pid: 5264, cores: 1)
 [pid: 5264|app: 0|req: 8/14] 127.0.0.1 () {42 vars in 750 bytes} [Fri Feb 26 09:45:40 2016] GET /account/diag_code?nocache => generated 1432 bytes in 106 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
 [pid: 5264|app: 0|req: 9/15] 127.0.0.1 () {52 vars in 974 bytes} [Fri Feb 26 09:52:04 2016] POST /account/sign_in/ => generated 5185 bytes in 146 msecs (HTTP/1.1 200) 4 headers in 233 bytes (1 switches on core 0)
 [pid: 5262|app: 0|req: 7/16] 127.0.0.1 () {52 vars in 974 bytes} [Fri Feb 26 09:52:37 2016] POST /account/sign_in/ => generated 5185 bytes in 120 msecs (HTTP/1.1 200) 4 headers in 233 bytes (1 switches on core 0)
+Fri Feb 26 09:55:44 2016 - uWSGI worker 2 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Fri Feb 26 09:55:44 2016 - uWSGI worker 3 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Fri Feb 26 09:55:44 2016 - uWSGI worker 1 screams: UAAAAAAH my master disconnected: i will kill myself !!!
+Fri Feb 26 09:55:44 2016 - uWSGI worker 4 screams: UAAAAAAH my master disconnected: i will kill myself !!!
