@@ -70,3 +70,7 @@ $SIG{INT} = \&catch_zap;
 $SIG{QUIT} = \&catch_zap;
 # a easier way : use sigtrap qw(die INT QUIT);use sigtrap qw(die untrapped normal-signals stack-trace any error-signals);
 
+#no strict 'refs';
+$name = "variable";
+$$name = 7;
+print $name, $variable

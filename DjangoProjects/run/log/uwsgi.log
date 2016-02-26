@@ -1,345 +1,58 @@
-Thu Feb 25 13:10:19 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Thu Feb 25 13:10:19 2016] ***
-Thu Feb 25 13:10:19 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
-Thu Feb 25 13:10:19 2016 - os: Linux-4.2.0-30-generic #35-Ubuntu SMP Fri Feb 19 13:52:26 UTC 2016
-Thu Feb 25 13:10:19 2016 - nodename: Kubuntu
-Thu Feb 25 13:10:19 2016 - machine: x86_64
-Thu Feb 25 13:10:19 2016 - clock source: unix
-Thu Feb 25 13:10:19 2016 - detected number of CPU cores: 4
-Thu Feb 25 13:10:19 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
-Thu Feb 25 13:10:19 2016 - detected binary path: /usr/local/bin/uwsgi
-Thu Feb 25 13:10:19 2016 - !!! no internal routing support, rebuild with pcre support !!!
-Thu Feb 25 13:10:19 2016 - your processes number limit is 15201
-Thu Feb 25 13:10:19 2016 - your memory page size is 4096 bytes
-Thu Feb 25 13:10:19 2016 - detected max file descriptor number: 1024
-Thu Feb 25 13:10:19 2016 - lock engine: pthread robust mutexes
-Thu Feb 25 13:10:19 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
-Thu Feb 25 13:10:19 2016 - uwsgi socket 0 bound to UNIX address TicketManagementSystem.sock fd 3
-Thu Feb 25 13:10:19 2016 - uwsgi socket 1 bound to UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
-Thu Feb 25 13:10:19 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
-Thu Feb 25 13:10:19 2016 - Python main interpreter initialized at 0x136c100
-Thu Feb 25 13:10:19 2016 - python threads support enabled
-Thu Feb 25 13:10:19 2016 - your server socket listen backlog is limited to 100 connections
-Thu Feb 25 13:10:19 2016 - your mercy for graceful operations on workers is 60 seconds
-Thu Feb 25 13:10:19 2016 - mapped 363800 bytes (355 KB) for 4 cores
-Thu Feb 25 13:10:19 2016 - *** Operational MODE: preforking ***
-Thu Feb 25 05:10:22 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
-Thu Feb 25 05:10:22 2016 - WSGI app 0 (mountpoint='') ready in 3 seconds on interpreter 0x136c100 pid: 2872 (default app)
-Thu Feb 25 05:10:22 2016 - mountpoint  already configured. skip.
-Thu Feb 25 05:10:22 2016 - *** uWSGI is running in multiple interpreter mode ***
-Thu Feb 25 05:10:22 2016 - spawned uWSGI master process (pid: 2872)
-Thu Feb 25 05:10:22 2016 - spawned uWSGI worker 1 (pid: 2894, cores: 1)
-Thu Feb 25 05:10:22 2016 - spawned uWSGI worker 2 (pid: 2895, cores: 1)
-Thu Feb 25 05:10:22 2016 - spawned uWSGI worker 3 (pid: 2896, cores: 1)
-Thu Feb 25 05:10:22 2016 - spawned uWSGI worker 4 (pid: 2897, cores: 1)
+Fri Feb 26 17:38:28 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Fri Feb 26 17:38:28 2016] ***
+Fri Feb 26 17:38:28 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Fri Feb 26 17:38:28 2016 - os: Linux-4.2.0-30-generic #35-Ubuntu SMP Fri Feb 19 13:52:26 UTC 2016
+Fri Feb 26 17:38:28 2016 - nodename: Kubuntu
+Fri Feb 26 17:38:28 2016 - machine: x86_64
+Fri Feb 26 17:38:28 2016 - clock source: unix
+Fri Feb 26 17:38:28 2016 - detected number of CPU cores: 4
+Fri Feb 26 17:38:28 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Fri Feb 26 17:38:28 2016 - detected binary path: /usr/local/bin/uwsgi
+Fri Feb 26 17:38:28 2016 - !!! no internal routing support, rebuild with pcre support !!!
+Fri Feb 26 17:38:28 2016 - your processes number limit is 15201
+Fri Feb 26 17:38:28 2016 - your memory page size is 4096 bytes
+Fri Feb 26 17:38:28 2016 - detected max file descriptor number: 1024
+Fri Feb 26 17:38:28 2016 - lock engine: pthread robust mutexes
+Fri Feb 26 17:38:28 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
+Fri Feb 26 17:38:28 2016 - uwsgi socket 0 bound to UNIX address TicketManagementSystem.sock fd 3
+Fri Feb 26 17:38:28 2016 - uwsgi socket 1 bound to UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
+Fri Feb 26 17:38:28 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Fri Feb 26 17:38:29 2016 - Python main interpreter initialized at 0x252e100
+Fri Feb 26 17:38:29 2016 - python threads support enabled
+Fri Feb 26 17:38:29 2016 - your server socket listen backlog is limited to 100 connections
+Fri Feb 26 17:38:29 2016 - your mercy for graceful operations on workers is 60 seconds
+Fri Feb 26 17:38:29 2016 - mapped 363800 bytes (355 KB) for 4 cores
+Fri Feb 26 17:38:29 2016 - *** Operational MODE: preforking ***
+Fri Feb 26 09:38:33 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
+Fri Feb 26 09:38:33 2016 - WSGI app 0 (mountpoint='') ready in 4 seconds on interpreter 0x252e100 pid: 5241 (default app)
+Fri Feb 26 09:38:33 2016 - mountpoint  already configured. skip.
+Fri Feb 26 09:38:33 2016 - *** uWSGI is running in multiple interpreter mode ***
+Fri Feb 26 09:38:33 2016 - spawned uWSGI master process (pid: 5241)
+Fri Feb 26 09:38:33 2016 - spawned uWSGI worker 1 (pid: 5261, cores: 1)
+Fri Feb 26 09:38:33 2016 - spawned uWSGI worker 2 (pid: 5262, cores: 1)
+Fri Feb 26 09:38:33 2016 - spawned uWSGI worker 3 (pid: 5263, cores: 1)
+Fri Feb 26 09:38:33 2016 - spawned uWSGI worker 4 (pid: 5264, cores: 1)
 /usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
   using=using)
 
+[pid: 5264|app: 0|req: 1/1] 127.0.0.1 () {44 vars in 788 bytes} [Fri Feb 26 09:41:42 2016] GET / => generated 823 bytes in 935 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
+[pid: 5264|app: 0|req: 2/2] 127.0.0.1 () {46 vars in 831 bytes} [Fri Feb 26 09:41:46 2016] GET /index => generated 6597 bytes in 730 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 5264|app: 0|req: 3/3] 127.0.0.1 () {44 vars in 794 bytes} [Fri Feb 26 09:41:47 2016] GET /account/diag_code?nocache => generated 1636 bytes in 588 msecs (HTTP/1.1 200) 7 headers in 332 bytes (2 switches on core 0)
+/usr/local/lib/python2.7/dist-packages/django/db/models/fields/__init__.py:1453: RuntimeWarning: DateTimeField EmailCaptcha.post_date received a naive datetime (2016-02-26 09:42:15.105191) while time zone support is active.
+  RuntimeWarning)
+
+[pid: 5262|app: 0|req: 1/4] 127.0.0.1 () {52 vars in 974 bytes} [Fri Feb 26 09:42:13 2016] POST /account/sign_up => generated 0 bytes in 2051 msecs (HTTP/1.1 302) 4 headers in 141 bytes (1 switches on core 0)
 /usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
   using=using)
 
-Thu Feb 25 05:10:25 2016 - SIGPIPE: writing to a closed pipe/socket/fd (probably the client disconnected) on request / (ip 127.0.0.1) !!!
-Thu Feb 25 05:10:25 2016 - uwsgi_response_writev_headers_and_body_do(): Broken pipe [core/writer.c line 296] during GET / (127.0.0.1)
-[pid: 2896|app: 0|req: 1/1] 127.0.0.1 () {42 vars in 733 bytes} [Thu Feb 25 05:10:24 2016] GET / => generated 823 bytes in 705 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
-IOError: write error
-[pid: 2895|app: 0|req: 1/2] 127.0.0.1 () {44 vars in 788 bytes} [Thu Feb 25 05:10:24 2016] GET / => generated 0 bytes in 1204 msecs (HTTP/1.1 200) 5 headers in 0 bytes (0 switches on core 0)
-[pid: 2896|app: 0|req: 2/3] 127.0.0.1 () {44 vars in 776 bytes} [Thu Feb 25 05:10:31 2016] GET /index => generated 6347 bytes in 698 msecs (HTTP/1.1 200) 6 headers in 285 bytes (1 switches on core 0)
-[pid: 2897|app: 0|req: 1/4] 127.0.0.1 () {44 vars in 750 bytes} [Thu Feb 25 05:10:32 2016] GET /account/diag_code?nocache => generated 1673 bytes in 2383 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 2896|app: 0|req: 3/5] 127.0.0.1 () {48 vars in 862 bytes} [Thu Feb 25 05:13:55 2016] GET /index => generated 6347 bytes in 1 msecs (HTTP/1.1 200) 6 headers in 285 bytes (1 switches on core 0)
-[pid: 2896|app: 0|req: 4/6] 127.0.0.1 () {46 vars in 781 bytes} [Thu Feb 25 05:13:55 2016] GET /account/diag_code?nocache => generated 1526 bytes in 135 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
-  using=using)
-
-[pid: 2897|app: 0|req: 2/7] 127.0.0.1 () {48 vars in 862 bytes} [Thu Feb 25 05:13:56 2016] GET /index => generated 6640 bytes in 126 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 2897|app: 0|req: 3/8] 127.0.0.1 () {44 vars in 770 bytes} [Thu Feb 25 05:13:56 2016] GET /account/diag_code?nocache => generated 1797 bytes in 104 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 2896|app: 0|req: 5/9] 127.0.0.1 () {52 vars in 972 bytes} [Thu Feb 25 05:14:07 2016] POST /account/sign_up => generated 5430 bytes in 302 msecs (HTTP/1.1 200) 3 headers in 102 bytes (1 switches on core 0)
-[pid: 2897|app: 0|req: 4/10] 127.0.0.1 () {48 vars in 867 bytes} [Thu Feb 25 05:19:45 2016] GET /index => generated 6640 bytes in 1 msecs (HTTP/1.1 200) 6 headers in 216 bytes (2 switches on core 0)
-[pid: 2897|app: 0|req: 5/11] 127.0.0.1 () {46 vars in 825 bytes} [Thu Feb 25 05:19:45 2016] GET /account/diag_code?nocache => generated 1797 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (2 switches on core 0)
-[pid: 2896|app: 0|req: 6/12] 127.0.0.1 () {48 vars in 862 bytes} [Thu Feb 25 05:21:04 2016] GET /index => generated 6685 bytes in 29 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 2897|app: 0|req: 6/13] 127.0.0.1 () {46 vars in 825 bytes} [Thu Feb 25 05:21:04 2016] GET /account/diag_code?nocache => generated 1797 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 2896|app: 0|req: 7/14] 127.0.0.1 () {48 vars in 862 bytes} [Thu Feb 25 05:21:39 2016] GET /index => generated 6685 bytes in 2 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 2897|app: 0|req: 7/15] 127.0.0.1 () {46 vars in 825 bytes} [Thu Feb 25 05:21:39 2016] GET /account/diag_code?nocache => generated 1797 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 2895|app: 0|req: 2/16] 127.0.0.1 () {48 vars in 862 bytes} [Thu Feb 25 05:21:53 2016] GET /index => generated 6638 bytes in 52 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 2896|app: 0|req: 8/17] 127.0.0.1 () {46 vars in 825 bytes} [Thu Feb 25 05:21:54 2016] GET /account/diag_code?nocache => generated 1415 bytes in 74 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
-  using=using)
-
-[pid: 2894|app: 0|req: 1/18] 127.0.0.1 () {48 vars in 862 bytes} [Thu Feb 25 05:22:05 2016] GET /index => generated 6638 bytes in 412 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 2896|app: 0|req: 9/19] 127.0.0.1 () {46 vars in 825 bytes} [Thu Feb 25 05:22:06 2016] GET /account/diag_code?nocache => generated 1415 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 2896|app: 0|req: 10/20] 127.0.0.1 () {48 vars in 862 bytes} [Thu Feb 25 05:22:34 2016] GET /index => generated 6685 bytes in 3 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 2895|app: 0|req: 3/21] 127.0.0.1 () {46 vars in 825 bytes} [Thu Feb 25 05:22:34 2016] GET /account/diag_code?nocache => generated 1712 bytes in 139 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 2897|app: 0|req: 8/22] 127.0.0.1 () {44 vars in 788 bytes} [Thu Feb 25 05:22:41 2016] GET / => generated 823 bytes in 38 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
-[pid: 2897|app: 0|req: 9/23] 127.0.0.1 () {48 vars in 862 bytes} [Thu Feb 25 05:23:07 2016] GET /index => generated 6640 bytes in 2 msecs (HTTP/1.1 200) 6 headers in 216 bytes (2 switches on core 0)
-[pid: 2897|app: 0|req: 10/24] 127.0.0.1 () {46 vars in 825 bytes} [Thu Feb 25 05:23:07 2016] GET /account/diag_code?nocache => generated 1797 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (2 switches on core 0)
-[pid: 2895|app: 0|req: 4/25] 127.0.0.1 () {48 vars in 862 bytes} [Thu Feb 25 05:23:20 2016] GET /index => generated 6638 bytes in 1 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 2897|app: 0|req: 11/26] 127.0.0.1 () {46 vars in 825 bytes} [Thu Feb 25 05:23:20 2016] GET /account/diag_code?nocache => generated 1797 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 2897|app: 0|req: 12/27] 127.0.0.1 () {48 vars in 862 bytes} [Thu Feb 25 05:23:34 2016] GET /index => generated 6640 bytes in 2 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 2897|app: 0|req: 13/28] 127.0.0.1 () {46 vars in 825 bytes} [Thu Feb 25 05:23:34 2016] GET /account/diag_code?nocache => generated 1797 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-Thu Feb 25 05:40:52 2016 - ...gracefully killing workers...
-Thu Feb 25 05:40:52 2016 - Gracefully killing worker 3 (pid: 2896)...
-Thu Feb 25 05:40:52 2016 - Gracefully killing worker 1 (pid: 2894)...
-Thu Feb 25 05:40:52 2016 - Gracefully killing worker 2 (pid: 2895)...
-Thu Feb 25 05:40:52 2016 - Gracefully killing worker 4 (pid: 2897)...
-Thu Feb 25 05:40:53 2016 - worker 1 buried after 1 seconds
-Thu Feb 25 05:40:53 2016 - worker 2 buried after 1 seconds
-Thu Feb 25 05:40:53 2016 - worker 3 buried after 1 seconds
-Thu Feb 25 05:40:53 2016 - worker 4 buried after 1 seconds
-Thu Feb 25 05:40:53 2016 - binary reloading uWSGI...
-Thu Feb 25 05:40:53 2016 - chdir() to /home/seven/Code/DjangoProjects/TicketManagementSystem
-Thu Feb 25 05:40:53 2016 - closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
-Thu Feb 25 05:40:53 2016 - found fd 3 mapped to socket 0 (TicketManagementSystem.sock)
-Thu Feb 25 05:40:53 2016 - found fd 4 mapped to socket 1 (/home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock)
-Thu Feb 25 05:40:53 2016 - running /usr/local/bin/uwsgi
-[uWSGI] parsing config file TMS_temp.xml
-Thu Feb 25 05:40:53 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Thu Feb 25 05:40:53 2016] ***
-Thu Feb 25 05:40:53 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
-Thu Feb 25 05:40:53 2016 - os: Linux-4.2.0-30-generic #35-Ubuntu SMP Fri Feb 19 13:52:26 UTC 2016
-Thu Feb 25 05:40:53 2016 - nodename: Kubuntu
-Thu Feb 25 05:40:53 2016 - machine: x86_64
-Thu Feb 25 05:40:53 2016 - clock source: unix
-Thu Feb 25 05:40:53 2016 - detected number of CPU cores: 4
-Thu Feb 25 05:40:53 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
-Thu Feb 25 05:40:53 2016 - detected binary path: /usr/local/bin/uwsgi
-Thu Feb 25 05:40:53 2016 - !!! no internal routing support, rebuild with pcre support !!!
-Thu Feb 25 05:40:53 2016 - your processes number limit is 15201
-Thu Feb 25 05:40:53 2016 - your memory page size is 4096 bytes
-Thu Feb 25 05:40:53 2016 - detected max file descriptor number: 1024
-Thu Feb 25 05:40:53 2016 - lock engine: pthread robust mutexes
-Thu Feb 25 05:40:53 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
-Thu Feb 25 05:40:53 2016 - uwsgi socket 0 inherited UNIX address TicketManagementSystem.sock fd 3
-Thu Feb 25 05:40:53 2016 - uwsgi socket 1 inherited UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
-Thu Feb 25 05:40:53 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
-Thu Feb 25 05:40:53 2016 - Python main interpreter initialized at 0x1c08de0
-Thu Feb 25 05:40:53 2016 - python threads support enabled
-Thu Feb 25 05:40:53 2016 - your server socket listen backlog is limited to 100 connections
-Thu Feb 25 05:40:53 2016 - your mercy for graceful operations on workers is 60 seconds
-Thu Feb 25 05:40:53 2016 - mapped 363800 bytes (355 KB) for 4 cores
-Thu Feb 25 05:40:53 2016 - *** Operational MODE: preforking ***
-Thu Feb 25 05:40:55 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
-Thu Feb 25 05:40:55 2016 - WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x1c08de0 pid: 2872 (default app)
-Thu Feb 25 05:40:55 2016 - mountpoint  already configured. skip.
-Thu Feb 25 05:40:55 2016 - *** uWSGI is running in multiple interpreter mode ***
-Thu Feb 25 05:40:55 2016 - gracefully (RE)spawned uWSGI master process (pid: 2872)
-Thu Feb 25 05:40:55 2016 - spawned uWSGI worker 1 (pid: 3695, cores: 1)
-Thu Feb 25 05:40:55 2016 - spawned uWSGI worker 2 (pid: 3696, cores: 1)
-Thu Feb 25 05:40:55 2016 - spawned uWSGI worker 3 (pid: 3697, cores: 1)
-Thu Feb 25 05:40:55 2016 - spawned uWSGI worker 4 (pid: 3698, cores: 1)
-Thu Feb 25 05:43:07 2016 - ...gracefully killing workers...
-Thu Feb 25 05:43:07 2016 - Gracefully killing worker 1 (pid: 3695)...
-Thu Feb 25 05:43:07 2016 - Gracefully killing worker 4 (pid: 3698)...
-Thu Feb 25 05:43:07 2016 - Gracefully killing worker 2 (pid: 3696)...
-Thu Feb 25 05:43:07 2016 - Gracefully killing worker 3 (pid: 3697)...
-Thu Feb 25 05:43:08 2016 - worker 1 buried after 1 seconds
-Thu Feb 25 05:43:08 2016 - worker 2 buried after 1 seconds
-Thu Feb 25 05:43:08 2016 - worker 3 buried after 1 seconds
-Thu Feb 25 05:43:08 2016 - worker 4 buried after 1 seconds
-Thu Feb 25 05:43:08 2016 - binary reloading uWSGI...
-Thu Feb 25 05:43:08 2016 - chdir() to /home/seven/Code/DjangoProjects/TicketManagementSystem
-Thu Feb 25 05:43:08 2016 - closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
-Thu Feb 25 05:43:08 2016 - found fd 3 mapped to socket 0 (TicketManagementSystem.sock)
-Thu Feb 25 05:43:08 2016 - found fd 4 mapped to socket 1 (/home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock)
-Thu Feb 25 05:43:08 2016 - running /usr/local/bin/uwsgi
-[uWSGI] parsing config file TMS_temp.xml
-Thu Feb 25 05:43:08 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Thu Feb 25 05:43:08 2016] ***
-Thu Feb 25 05:43:08 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
-Thu Feb 25 05:43:08 2016 - os: Linux-4.2.0-30-generic #35-Ubuntu SMP Fri Feb 19 13:52:26 UTC 2016
-Thu Feb 25 05:43:08 2016 - nodename: Kubuntu
-Thu Feb 25 05:43:08 2016 - machine: x86_64
-Thu Feb 25 05:43:08 2016 - clock source: unix
-Thu Feb 25 05:43:08 2016 - detected number of CPU cores: 4
-Thu Feb 25 05:43:08 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
-Thu Feb 25 05:43:08 2016 - detected binary path: /usr/local/bin/uwsgi
-Thu Feb 25 05:43:08 2016 - !!! no internal routing support, rebuild with pcre support !!!
-Thu Feb 25 05:43:08 2016 - your processes number limit is 15201
-Thu Feb 25 05:43:08 2016 - your memory page size is 4096 bytes
-Thu Feb 25 05:43:08 2016 - detected max file descriptor number: 1024
-Thu Feb 25 05:43:08 2016 - lock engine: pthread robust mutexes
-Thu Feb 25 05:43:08 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
-Thu Feb 25 05:43:08 2016 - uwsgi socket 0 inherited UNIX address TicketManagementSystem.sock fd 3
-Thu Feb 25 05:43:08 2016 - uwsgi socket 1 inherited UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
-Thu Feb 25 05:43:08 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
-Thu Feb 25 05:43:08 2016 - Python main interpreter initialized at 0x18dcde0
-Thu Feb 25 05:43:08 2016 - python threads support enabled
-Thu Feb 25 05:43:08 2016 - your server socket listen backlog is limited to 100 connections
-Thu Feb 25 05:43:08 2016 - your mercy for graceful operations on workers is 60 seconds
-Thu Feb 25 05:43:08 2016 - mapped 363800 bytes (355 KB) for 4 cores
-Thu Feb 25 05:43:08 2016 - *** Operational MODE: preforking ***
-Thu Feb 25 05:43:08 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
-Thu Feb 25 05:43:08 2016 - WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x18dcde0 pid: 2872 (default app)
-Thu Feb 25 05:43:08 2016 - mountpoint  already configured. skip.
-Thu Feb 25 05:43:08 2016 - *** uWSGI is running in multiple interpreter mode ***
-Thu Feb 25 05:43:08 2016 - gracefully (RE)spawned uWSGI master process (pid: 2872)
-Thu Feb 25 05:43:08 2016 - spawned uWSGI worker 1 (pid: 4082, cores: 1)
-Thu Feb 25 05:43:08 2016 - spawned uWSGI worker 2 (pid: 4083, cores: 1)
-Thu Feb 25 05:43:08 2016 - spawned uWSGI worker 3 (pid: 4084, cores: 1)
-Thu Feb 25 05:43:08 2016 - spawned uWSGI worker 4 (pid: 4085, cores: 1)
-/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
-  using=using)
-
-[pid: 4084|app: 0|req: 1/1] 127.0.0.1 () {48 vars in 862 bytes} [Thu Feb 25 05:54:05 2016] GET /index => generated 6614 bytes in 282 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 1/2] 127.0.0.1 () {46 vars in 825 bytes} [Thu Feb 25 05:54:05 2016] GET /account/diag_code?nocache => generated 1686 bytes in 147 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-Internal Server Error: /ticket/train/query/
-Traceback (most recent call last):
-  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
-    response = self.process_exception_by_middleware(e, request)
-  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "./Tickets/views.py", line 7, in train_business
-    return render_to_response('train_business.html', context_instance=RequestContext(request))
-  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts.py", line 45, in render_to_response
-    using=using)
-  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 137, in render_to_string
-    raise TemplateDoesNotExist(template_name, chain=chain)
-TemplateDoesNotExist: train_business.html
-[pid: 4084|app: 0|req: 2/3] 127.0.0.1 () {44 vars in 809 bytes} [Thu Feb 25 05:54:11 2016] GET /ticket/train/query/ => generated 65515 bytes in 143 msecs (HTTP/1.1 500) 2 headers in 92 bytes (1 switches on core 0)
-Not Found: /favicon.ico
-[pid: 4084|app: 0|req: 3/4] 127.0.0.1 () {42 vars in 701 bytes} [Thu Feb 25 05:54:11 2016] GET /favicon.ico => generated 3421 bytes in 4 msecs (HTTP/1.1 404) 2 headers in 80 bytes (1 switches on core 0)
-/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
-  using=using)
-
-Internal Server Error: /ticket/train/query/
-Traceback (most recent call last):
-  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
-    response = self.process_exception_by_middleware(e, request)
-  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
-    response = wrapped_callback(request, *callback_args, **callback_kwargs)
-  File "./Tickets/views.py", line 7, in train_business
-    return render_to_response('train_business.html', context_instance=RequestContext(request))
-  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts.py", line 45, in render_to_response
-    using=using)
-  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 137, in render_to_string
-    raise TemplateDoesNotExist(template_name, chain=chain)
-TemplateDoesNotExist: train_business.html
-[pid: 4085|app: 0|req: 2/5] 127.0.0.1 () {44 vars in 809 bytes} [Thu Feb 25 05:54:19 2016] GET /ticket/train/query/ => generated 65515 bytes in 72 msecs (HTTP/1.1 500) 2 headers in 92 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 3/6] 127.0.0.1 () {46 vars in 840 bytes} [Thu Feb 25 05:56:11 2016] GET /ticket/train/query/ => generated 7598 bytes in 33 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 4/7] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 05:56:11 2016] GET /account/diag_code?nocache => generated 1686 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4084|app: 0|req: 4/8] 127.0.0.1 () {48 vars in 895 bytes} [Thu Feb 25 05:56:35 2016] GET /ticket/train/query/ => generated 8339 bytes in 35 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 5/9] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 05:56:35 2016] GET /account/diag_code?nocache => generated 1686 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4084|app: 0|req: 5/10] 127.0.0.1 () {48 vars in 895 bytes} [Thu Feb 25 05:58:15 2016] GET /ticket/train/query/ => generated 8339 bytes in 2 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4083|app: 0|req: 1/11] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 05:58:15 2016] GET /account/diag_code?nocache => generated 1606 bytes in 147 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
-  using=using)
-
-[pid: 4082|app: 0|req: 1/12] 127.0.0.1 () {48 vars in 895 bytes} [Thu Feb 25 05:58:16 2016] GET /ticket/train/query/ => generated 8339 bytes in 75 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4083|app: 0|req: 2/13] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 05:58:16 2016] GET /account/diag_code?nocache => generated 1606 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4084|app: 0|req: 6/14] 127.0.0.1 () {48 vars in 895 bytes} [Thu Feb 25 05:58:17 2016] GET /ticket/train/query/ => generated 8339 bytes in 3 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4083|app: 0|req: 3/15] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 05:58:17 2016] GET /account/diag_code?nocache => generated 1606 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4084|app: 0|req: 7/16] 127.0.0.1 () {48 vars in 895 bytes} [Thu Feb 25 06:00:03 2016] GET /ticket/train/query/ => generated 8339 bytes in 3 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 6/17] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 06:00:03 2016] GET /account/diag_code?nocache => generated 1686 bytes in 2 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 7/18] 127.0.0.1 () {48 vars in 895 bytes} [Thu Feb 25 06:00:04 2016] GET /ticket/train/query/ => generated 7598 bytes in 2 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 8/19] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 06:00:04 2016] GET /account/diag_code?nocache => generated 1686 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4084|app: 0|req: 8/20] 127.0.0.1 () {44 vars in 788 bytes} [Thu Feb 25 06:01:28 2016] GET / => generated 823 bytes in 11 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 9/21] 127.0.0.1 () {48 vars in 862 bytes} [Thu Feb 25 06:02:11 2016] GET /index => generated 6611 bytes in 32 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4083|app: 0|req: 4/22] 127.0.0.1 () {46 vars in 825 bytes} [Thu Feb 25 06:02:11 2016] GET /account/diag_code?nocache => generated 1606 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 10/23] 127.0.0.1 () {48 vars in 895 bytes} [Thu Feb 25 06:10:38 2016] GET /ticket/train/query/ => generated 8337 bytes in 47 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 11/24] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 06:10:38 2016] GET /account/diag_code?nocache => generated 1495 bytes in 82 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4084|app: 0|req: 9/25] 127.0.0.1 () {48 vars in 862 bytes} [Thu Feb 25 06:13:29 2016] GET /index => generated 6585 bytes in 32 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 12/26] 127.0.0.1 () {46 vars in 825 bytes} [Thu Feb 25 06:13:29 2016] GET /account/diag_code?nocache => generated 1495 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 13/27] 127.0.0.1 () {44 vars in 788 bytes} [Thu Feb 25 06:16:00 2016] GET / => generated 823 bytes in 1 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 14/28] 127.0.0.1 () {48 vars in 895 bytes} [Thu Feb 25 06:17:03 2016] GET /ticket/train/query/ => generated 8337 bytes in 1 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 15/29] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 06:17:03 2016] GET /account/diag_code?nocache => generated 1495 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4084|app: 0|req: 10/30] 127.0.0.1 () {48 vars in 895 bytes} [Thu Feb 25 06:17:28 2016] GET /ticket/train/query/ => generated 8313 bytes in 27 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 16/31] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 06:17:29 2016] GET /account/diag_code?nocache => generated 1495 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4084|app: 0|req: 11/32] 127.0.0.1 () {48 vars in 895 bytes} [Thu Feb 25 06:17:37 2016] GET /ticket/train/query/ => generated 8313 bytes in 2 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4084|app: 0|req: 12/33] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 06:17:38 2016] GET /account/diag_code?nocache => generated 1616 bytes in 72 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 17/34] 127.0.0.1 () {48 vars in 895 bytes} [Thu Feb 25 06:17:49 2016] GET /ticket/train/query/ => generated 8337 bytes in 1 msecs (HTTP/1.1 200) 6 headers in 216 bytes (2 switches on core 0)
-[pid: 4085|app: 0|req: 18/35] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 06:17:49 2016] GET /account/diag_code?nocache => generated 1495 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 19/36] 127.0.0.1 () {48 vars in 895 bytes} [Thu Feb 25 06:19:45 2016] GET /ticket/train/query/ => generated 8337 bytes in 1 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 20/37] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 06:19:45 2016] GET /account/diag_code?nocache => generated 1495 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 21/38] 127.0.0.1 () {48 vars in 895 bytes} [Thu Feb 25 06:19:46 2016] GET /ticket/train/query/ => generated 8337 bytes in 3 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 22/39] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 06:19:46 2016] GET /account/diag_code?nocache => generated 1495 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 23/40] 127.0.0.1 () {48 vars in 895 bytes} [Thu Feb 25 06:19:47 2016] GET /ticket/train/query/ => generated 8337 bytes in 3 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 24/41] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 06:19:47 2016] GET /account/diag_code?nocache => generated 1495 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 25/42] 127.0.0.1 () {48 vars in 895 bytes} [Thu Feb 25 06:19:47 2016] GET /ticket/train/query/ => generated 8337 bytes in 3 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 26/43] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 06:19:48 2016] GET /account/diag_code?nocache => generated 1495 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4084|app: 0|req: 13/44] 127.0.0.1 () {48 vars in 895 bytes} [Thu Feb 25 06:19:48 2016] GET /ticket/train/query/ => generated 8313 bytes in 2 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 27/45] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 06:19:48 2016] GET /account/diag_code?nocache => generated 1495 bytes in 2 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 28/46] 127.0.0.1 () {52 vars in 988 bytes} [Thu Feb 25 06:21:42 2016] POST /account/sign_up => generated 5400 bytes in 24 msecs (HTTP/1.1 200) 3 headers in 102 bytes (2 switches on core 0)
-[pid: 4084|app: 0|req: 14/47] 127.0.0.1 () {52 vars in 988 bytes} [Thu Feb 25 06:27:50 2016] POST /account/sign_up => generated 6769 bytes in 39 msecs (HTTP/1.1 200) 3 headers in 102 bytes (1 switches on core 0)
-[pid: 4084|app: 0|req: 15/48] 127.0.0.1 () {52 vars in 988 bytes} [Thu Feb 25 06:29:40 2016] POST /account/sign_up => generated 6769 bytes in 34 msecs (HTTP/1.1 200) 3 headers in 102 bytes (1 switches on core 0)
-[pid: 4082|app: 0|req: 2/49] 127.0.0.1 () {44 vars in 788 bytes} [Thu Feb 25 06:29:45 2016] GET / => generated 823 bytes in 1 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
-[pid: 4084|app: 0|req: 16/50] 127.0.0.1 () {46 vars in 831 bytes} [Thu Feb 25 06:29:50 2016] GET /index => generated 6597 bytes in 27 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 29/51] 127.0.0.1 () {44 vars in 794 bytes} [Thu Feb 25 06:29:50 2016] GET /account/diag_code?nocache => generated 1489 bytes in 78 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
-  using=using)
-
-[pid: 4083|app: 0|req: 5/52] 127.0.0.1 () {52 vars in 972 bytes} [Thu Feb 25 06:31:00 2016] POST /account/sign_up => generated 6752 bytes in 96 msecs (HTTP/1.1 200) 3 headers in 102 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 30/53] 127.0.0.1 () {46 vars in 874 bytes} [Thu Feb 25 06:31:09 2016] GET /ticket/train/query/ => generated 8325 bytes in 38 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 31/54] 127.0.0.1 () {48 vars in 905 bytes} [Thu Feb 25 06:33:57 2016] GET /ticket/train/query/ => generated 8325 bytes in 1 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4082|app: 0|req: 3/55] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 06:33:57 2016] GET /account/diag_code?nocache => generated 1687 bytes in 101 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 32/56] 127.0.0.1 () {48 vars in 905 bytes} [Thu Feb 25 06:35:22 2016] GET /ticket/train/query/ => generated 8325 bytes in 1 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4083|app: 0|req: 6/57] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 06:35:22 2016] GET /account/diag_code?nocache => generated 1548 bytes in 79 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 33/58] 127.0.0.1 () {48 vars in 905 bytes} [Thu Feb 25 06:36:02 2016] GET /ticket/train/query/ => generated 8325 bytes in 2 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 34/59] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 06:36:02 2016] GET /account/diag_code?nocache => generated 1489 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4083|app: 0|req: 7/60] 127.0.0.1 () {48 vars in 905 bytes} [Thu Feb 25 06:38:26 2016] GET /ticket/train/query/ => generated 8325 bytes in 49 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 35/61] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 06:38:26 2016] GET /account/diag_code?nocache => generated 1489 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 36/62] 127.0.0.1 () {48 vars in 905 bytes} [Thu Feb 25 06:38:39 2016] GET /ticket/train/query/ => generated 8325 bytes in 1 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
-[pid: 4085|app: 0|req: 37/63] 127.0.0.1 () {46 vars in 839 bytes} [Thu Feb 25 06:38:39 2016] GET /account/diag_code?nocache => generated 1489 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
-Thu Feb 25 06:40:44 2016 - ...gracefully killing workers...
-Thu Feb 25 06:40:44 2016 - Gracefully killing worker 1 (pid: 4082)...
-Thu Feb 25 06:40:44 2016 - Gracefully killing worker 2 (pid: 4083)...
-Thu Feb 25 06:40:44 2016 - Gracefully killing worker 4 (pid: 4085)...
-Thu Feb 25 06:40:44 2016 - Gracefully killing worker 3 (pid: 4084)...
-Thu Feb 25 06:40:45 2016 - worker 1 buried after 1 seconds
-Thu Feb 25 06:40:45 2016 - worker 2 buried after 1 seconds
-Thu Feb 25 06:40:45 2016 - worker 3 buried after 1 seconds
-Thu Feb 25 06:40:45 2016 - worker 4 buried after 1 seconds
-Thu Feb 25 06:40:45 2016 - binary reloading uWSGI...
-Thu Feb 25 06:40:45 2016 - chdir() to /home/seven/Code/DjangoProjects/TicketManagementSystem
-Thu Feb 25 06:40:45 2016 - closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
-Thu Feb 25 06:40:45 2016 - found fd 3 mapped to socket 0 (TicketManagementSystem.sock)
-Thu Feb 25 06:40:45 2016 - found fd 4 mapped to socket 1 (/home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock)
-Thu Feb 25 06:40:45 2016 - running /usr/local/bin/uwsgi
-[uWSGI] parsing config file TMS_temp.xml
-Thu Feb 25 06:40:45 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Thu Feb 25 06:40:45 2016] ***
-Thu Feb 25 06:40:45 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
-Thu Feb 25 06:40:45 2016 - os: Linux-4.2.0-30-generic #35-Ubuntu SMP Fri Feb 19 13:52:26 UTC 2016
-Thu Feb 25 06:40:45 2016 - nodename: Kubuntu
-Thu Feb 25 06:40:45 2016 - machine: x86_64
-Thu Feb 25 06:40:45 2016 - clock source: unix
-Thu Feb 25 06:40:45 2016 - detected number of CPU cores: 4
-Thu Feb 25 06:40:45 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
-Thu Feb 25 06:40:45 2016 - detected binary path: /usr/local/bin/uwsgi
-Thu Feb 25 06:40:45 2016 - !!! no internal routing support, rebuild with pcre support !!!
-Thu Feb 25 06:40:45 2016 - your processes number limit is 15201
-Thu Feb 25 06:40:45 2016 - your memory page size is 4096 bytes
-Thu Feb 25 06:40:45 2016 - detected max file descriptor number: 1024
-Thu Feb 25 06:40:45 2016 - lock engine: pthread robust mutexes
-Thu Feb 25 06:40:45 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
-Thu Feb 25 06:40:45 2016 - uwsgi socket 0 inherited UNIX address TicketManagementSystem.sock fd 3
-Thu Feb 25 06:40:45 2016 - uwsgi socket 1 inherited UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
-Thu Feb 25 06:40:45 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
-Thu Feb 25 06:40:45 2016 - Python main interpreter initialized at 0xe06de0
-Thu Feb 25 06:40:45 2016 - python threads support enabled
-Thu Feb 25 06:40:45 2016 - your server socket listen backlog is limited to 100 connections
-Thu Feb 25 06:40:45 2016 - your mercy for graceful operations on workers is 60 seconds
-Thu Feb 25 06:40:45 2016 - mapped 363800 bytes (355 KB) for 4 cores
-Thu Feb 25 06:40:45 2016 - *** Operational MODE: preforking ***
-Thu Feb 25 06:40:45 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
-Thu Feb 25 06:40:45 2016 - WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0xe06de0 pid: 2872 (default app)
-Thu Feb 25 06:40:45 2016 - mountpoint  already configured. skip.
-Thu Feb 25 06:40:45 2016 - *** uWSGI is running in multiple interpreter mode ***
-Thu Feb 25 06:40:45 2016 - gracefully (RE)spawned uWSGI master process (pid: 2872)
-Thu Feb 25 06:40:45 2016 - spawned uWSGI worker 1 (pid: 6141, cores: 1)
-Thu Feb 25 06:40:45 2016 - spawned uWSGI worker 2 (pid: 6142, cores: 1)
-Thu Feb 25 06:40:45 2016 - spawned uWSGI worker 3 (pid: 6143, cores: 1)
-Thu Feb 25 06:40:45 2016 - spawned uWSGI worker 4 (pid: 6144, cores: 1)
-/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
-  using=using)
-
-[pid: 6144|app: 0|req: 1/1] 127.0.0.1 () {52 vars in 986 bytes} [Thu Feb 25 06:41:06 2016] POST /account/sign_up => generated 6717 bytes in 477 msecs (HTTP/1.1 200) 3 headers in 102 bytes (1 switches on core 0)
-Not Found: /track/default.aspx
-[pid: 6144|app: 0|req: 2/2] 127.0.0.1 () {42 vars in 804 bytes} [Thu Feb 25 07:04:48 2016] GET /track/default.aspx?p=0&id=0&v=5&s=0&c=0&cc=CA&t=1&r=1&o=&a=&rnd=2171 => generated 3538 bytes in 5 msecs (HTTP/1.1 404) 2 headers in 80 bytes (1 switches on core 0)
-Not Found: /track/default.aspx
-[pid: 6143|app: 0|req: 1/3] 127.0.0.1 () {42 vars in 810 bytes} [Thu Feb 25 07:04:51 2016] GET /track/default.aspx?p=0&id=0&v=5&s=0&c=0&cc=CA&t=2&r=0&o=2&a=3&rnd=13896 => generated 3541 bytes in 167 msecs (HTTP/1.1 404) 2 headers in 80 bytes (1 switches on core 0)
-Not Found: /track/default.aspx
-[pid: 6144|app: 0|req: 3/4] 127.0.0.1 () {40 vars in 807 bytes} [Thu Feb 25 07:05:40 2016] GET /track/default.aspx?p=0&id=0&v=5&s=0&c=0&cc=CA&t=1&r=1&o=&a=&rnd=6936 => generated 3538 bytes in 12 msecs (HTTP/1.1 404) 2 headers in 80 bytes (1 switches on core 0)
-Not Found: /track/default.aspx
-[pid: 6143|app: 0|req: 2/5] 127.0.0.1 () {40 vars in 813 bytes} [Thu Feb 25 07:05:41 2016] GET /track/default.aspx?p=0&id=0&v=5&s=0&c=0&cc=CA&t=2&r=0&o=2&a=3&rnd=11698 => generated 3541 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (1 switches on core 0)
-Not Found: /track/default.aspx
-[pid: 6142|app: 0|req: 1/6] 127.0.0.1 () {40 vars in 807 bytes} [Thu Feb 25 07:06:05 2016] GET /track/default.aspx?p=0&id=0&v=5&s=0&c=0&cc=CA&t=1&r=1&o=&a=&rnd=2966 => generated 3538 bytes in 53 msecs (HTTP/1.1 404) 2 headers in 80 bytes (1 switches on core 0)
-Not Found: /track/default.aspx
-[pid: 6144|app: 0|req: 4/7] 127.0.0.1 () {40 vars in 813 bytes} [Thu Feb 25 07:06:06 2016] GET /track/default.aspx?p=0&id=0&v=5&s=0&c=0&cc=CA&t=2&r=0&o=2&a=3&rnd=11355 => generated 3541 bytes in 8 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
-Not Found: /track/default.aspx
-[pid: 6142|app: 0|req: 2/8] 127.0.0.1 () {40 vars in 809 bytes} [Thu Feb 25 07:07:09 2016] GET /track/default.aspx?p=0&id=0&v=5&s=0&c=0&cc=CA&t=1&r=1&o=&a=&rnd=12591 => generated 3539 bytes in 6 msecs (HTTP/1.1 404) 2 headers in 80 bytes (1 switches on core 0)
-Not Found: /track/default.aspx
-[pid: 6144|app: 0|req: 5/9] 127.0.0.1 () {40 vars in 811 bytes} [Thu Feb 25 07:07:11 2016] GET /track/default.aspx?p=0&id=0&v=5&s=0&c=0&cc=CA&t=2&r=0&o=2&a=3&rnd=1429 => generated 3540 bytes in 5 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+[pid: 5262|app: 0|req: 2/5] 127.0.0.1 () {46 vars in 848 bytes} [Fri Feb 26 09:42:15 2016] GET /account/sign_up/success => generated 5942 bytes in 45 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 5262|app: 0|req: 3/6] 127.0.0.1 () {42 vars in 952 bytes} [Fri Feb 26 09:43:23 2016] GET /account/activation?757365726e616d65=536576656e526f617273616c74&63617074636861=070c2f67c870bdfbebbf63391ffb5a7a => generated 5935 bytes in 293 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 5262|app: 0|req: 4/7] 127.0.0.1 () {52 vars in 974 bytes} [Fri Feb 26 09:45:16 2016] POST /account/sign_in/ => generated 5185 bytes in 476 msecs (HTTP/1.1 200) 4 headers in 233 bytes (1 switches on core 0)
+[pid: 5264|app: 0|req: 4/8] 127.0.0.1 () {42 vars in 750 bytes} [Fri Feb 26 09:45:17 2016] GET /account/diag_code?nocache => generated 1497 bytes in 88 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
+[pid: 5264|app: 0|req: 5/9] 127.0.0.1 () {44 vars in 820 bytes} [Fri Feb 26 09:45:26 2016] GET /ticket/train/query/ => generated 8000 bytes in 69 msecs (HTTP/1.1 200) 6 headers in 216 bytes (2 switches on core 0)
+[pid: 5264|app: 0|req: 6/10] 127.0.0.1 () {44 vars in 819 bytes} [Fri Feb 26 09:45:30 2016] GET /account/sign_out/ => generated 0 bytes in 43 msecs (HTTP/1.1 302) 4 headers in 192 bytes (2 switches on core 0)
+[pid: 5262|app: 0|req: 5/11] 127.0.0.1 () {44 vars in 751 bytes} [Fri Feb 26 09:45:30 2016] GET /index => generated 6597 bytes in 3 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 5262|app: 0|req: 6/12] 127.0.0.1 () {42 vars in 695 bytes} [Fri Feb 26 09:45:30 2016] GET /account/diag_code?nocache => generated 1651 bytes in 111 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
+[pid: 5264|app: 0|req: 7/13] 127.0.0.1 () {52 vars in 974 bytes} [Fri Feb 26 09:45:40 2016] POST /account/sign_in/ => generated 5185 bytes in 175 msecs (HTTP/1.1 200) 4 headers in 233 bytes (1 switches on core 0)
+[pid: 5264|app: 0|req: 8/14] 127.0.0.1 () {42 vars in 750 bytes} [Fri Feb 26 09:45:40 2016] GET /account/diag_code?nocache => generated 1432 bytes in 106 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
+[pid: 5264|app: 0|req: 9/15] 127.0.0.1 () {52 vars in 974 bytes} [Fri Feb 26 09:52:04 2016] POST /account/sign_in/ => generated 5185 bytes in 146 msecs (HTTP/1.1 200) 4 headers in 233 bytes (1 switches on core 0)
+[pid: 5262|app: 0|req: 7/16] 127.0.0.1 () {52 vars in 974 bytes} [Fri Feb 26 09:52:37 2016] POST /account/sign_in/ => generated 5185 bytes in 120 msecs (HTTP/1.1 200) 4 headers in 233 bytes (1 switches on core 0)

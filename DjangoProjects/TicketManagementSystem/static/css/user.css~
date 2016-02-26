@@ -47,7 +47,7 @@
 	}
 }
 #sign_out:visited {
-	color: blueviolet;
+	color: blue;
 	text-decoration: none;
 	background: -moz-linear-gradient(360deg, #f96, #ace);
   	background: -webkit-gradient(linear,0 50%,100% 50%,from(#f96),to(#ace));

@@ -57,7 +57,7 @@ function opedisplay()
 <strong><p>注册账户</p></strong>
 </div>
 
-<form action="{% url "sign_up" %}"method="post">
+<form action="" method="post">
 <div class="rename">
 <input class="nameout" type="text"  name="username" value="{{ info.username }}"  placeholder=用户名...  onmousemove="this.className='namemove'"  onmouseout="this.className='nameout'"/>
 {{ form.username.errors }}
@@ -102,6 +102,7 @@ function opedisplay()
                              height:30px;"  onclick="delDisplay()"  onmouseover="this.style.cursor='pointer'"/>
 </div>
 
+<form action="{% url "sign_in" %}" method="post">
 <div class="onname">
 <input class="nameout" type="text"  placeholder=用户名/邮箱...  onmousemove="this.className='namemove'"  
                        onmouseout="this.className='nameout'"/>
@@ -115,6 +116,7 @@ function opedisplay()
 <input type="submit" value="登录" class="onon" onmousemove="this.className='onou'"  
                      onmouseout="this.className='onon'"   onmouseover="this.style.cursor='pointer'"/>
 </div>
+</form>
 
 </div>
 
