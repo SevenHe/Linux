@@ -40,3 +40,65 @@ div.listtop{position:relative;height:40px;float:top;background: linear-gradient(
 div.before{position:relative;height:34px;width:80px;float:top;float:left;margin-top:3px;margin-left:3px;}
 div.after{position:relative;height:34px;width:80px;float:top;float:right;margin-top:3px;margin-right:3px;}
 div.truelist{position:relative;height:410px;float:top;margin-top:3px;border: 1px solid #f0f0ff;}
+
+table.zebra {
+    border-collapse: collapse;
+    border-spacing: 0;
+	width:100%;
+	-webkit-box-shadow:  0px 2px 1px 5px rgba(242, 242, 242, 0.1);
+    box-shadow:  0px 2px 1px 5px rgba(242, 242, 242, 0.1);
+}
+
+.zebra {
+    border: 1px solid #555;
+}
+
+.zebra td {
+    border-left: 1px solid #b8d8ff;
+    border-top: 1px solid #88d8ff;
+    padding: 8px;
+    text-align: center;
+	FONT-SIZE: 10pt;
+	FONT-FAMILY: 黑体;    
+}
+
+.zebra th{
+    border-left: 1px solid #555;
+	border-bottom: 1px solid #88d8ff;
+    padding: 10px;  
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#0068ff), to(#a0d8ff));
+    background-image: -webkit-linear-gradient(top, #0068ff, #a0d8ff) ;
+    background-image:    -moz-linear-gradient(top, #0068ff, #a0d8ff) ;
+    background-image:     -ms-linear-gradient(top, #0068ff, #a0d8ff) ;
+    background-image:      -o-linear-gradient(top, #0068ff, #a0d8ff) ;
+    background-image:         linear-gradient(top, #0068ff, #a0d8ff) ;
+	color:#ffffff ;
+	FONT-SIZE: 15pt;
+	FONT-FAMILY: 隶书;
+	font-weight:normal;
+}
+
+.zebra tbody tr:nth-child(even) {
+    background: #ffffff ;
+	color:#000000;
+}
+
+.zebra tbody tr:nth-child(odd) {
+	background: #f0f0f0 ;
+	color:#806828;
+}
+
+.zebra tbody tr:hover *{
+    background: #ffffb0;
+	color:#000;
+}
+
+.zebra input:hover {
+	width:45px;height:20px;background-color:#ff0000; color:#FF0000;
+                border-radius: 5px;border: 1px solid #0000ff;
+                FONT-SIZE: 10pt;  COLOR: #FFFF00; FONT-FAMILY: 楷体}
+.zebra input{
+	width:45px;height:20px;background-color:#C80000; color:#336666;
+                border-radius: 5px;border: 1px solid #cccccc;
+			    FONT-SIZE: 10pt;  COLOR: #ffff99;FONT-FAMILY: 楷体}
+	
