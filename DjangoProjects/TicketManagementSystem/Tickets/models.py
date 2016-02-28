@@ -6,10 +6,12 @@ from django.contrib.auth.models import User
 # Create your models here.
 class TrainTicket(models.Model):
     serial = models.CharField(max_length=4)
+    start = models.CharField(max_length=10)
+    terminus = models.CharField(max_length=10)
     departure = models.DateTimeField()
     last = models.IntegerField()
-    tp = models.CharField(max_length=1)
-    price = models.Model(max_digits=5, decimal_places=1)
+    genre = models.CharField(max_length=1)
+    price = models.DecimalField(max_digits=5, decimal_places=1)
     quantity = models.IntegerField()
 
 
