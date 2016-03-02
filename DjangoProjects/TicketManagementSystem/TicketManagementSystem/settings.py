@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Utils',
-    'Tickets',
+    'tickets',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -101,7 +101,7 @@ LANGUAGES = (
     ('zh-cn', u"简体中文"),
     )
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'             # not for USA!
 
 # To use 'django.utils.translation' for I18N, and 
 # You must take tokens to indicate which strings should be translated, and
@@ -148,6 +148,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Custom settings
 CUSTOM_SETTINGS = {}
-CUSTOM_SETTINGS['ACTIVATION_URL'] = '127.0.0.1/account/activation'
+CUSTOM_SETTINGS['ACTIVATION_URL'] = '49.140.62.120/account/activation'
 CUSTOM_SETTINGS['ACTIVATION_HTML_CONTENT'] = "<p>感谢您对<strong>5036 购票中心</strong>的支持，请点击此链接激活您的账号：<a>%s</a> （10分钟内有效）</p>"
 CUSTOM_SETTINGS['SALT'] = '5036TS'

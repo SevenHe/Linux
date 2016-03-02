@@ -22,7 +22,62 @@
 <strong><p>车票查询</p></strong>
 </div>
 </div>
-           
+   
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#search").click(function() {
+	   var start = $("#start").val();
+	   var terminus = $("#terminus").val();
+	   var date = $("#time").val();
+	   $.ajax({
+	   		url: "{% url 'ajax_get_train' %}", 
+	   		dataType: "json",
+	   		Type: "GET",
+	   		timeout: 2000,
+	   		data:{
+	   			'start': start, 
+	   			'terminus': terminus, 
+	   			'date': date
+	   			}, 
+	   		success: function(result) {
+	   			$("#items").empty();
+				$("#init").hide();			
+				try{
+				$.each(result, function(key, value) {
+					if(key == "searching" && value == "true") {
+						$("#empty").show();
+						return;
+					}
+					if(key == "error"  value == "true") {
+						$("#error").show();
+						return;
+					}
+					$("#empty").hide();
+					$("#error").hide();
+					$("#items").append("<tr>"+"<td>"+value.fields.serial+"</td>"+
+										"<td>"+value.fields.departure.substr(11,5)+"</td>"+
+										"<td>"+value.fields.last+":00"+"</td>"+
+										"<td>"+value.fields.price+"</td>"+
+										"<td>"+value.fields.quantity+"</td>"+
+										"<td><input type='button' value='预定' onmouseover='this.style.cursor='pointer''/></td>"+
+									"</tr>");
+				});
+				} catch(err) {
+					return;
+				}
+			},
+			error: function(result)
+			{
+				$("#error").empty();
+				$("#error").text("发生未知错误，请刷新重试！！！")
+				$("#error").show();
+			}
+	   });
+	   return false; // no refresh!
+	});
+});
+</script>    
+<form action="" method="get">    
 <div class="start">
 
 <div class="startword" style="FONT-SIZE: 11pt;  COLOR: #000000; FONT-FAMILY: 宋体">
@@ -30,7 +85,7 @@
 </div>
 
 <div class="startinput">
-<input class="mouseout" type="text"  placeholder=始发站...  onmousemove="this.className='mousemove'"  
+<input class="mouseout" id="start" type="text"  placeholder=始发站...  onmousemove="this.className='mousemove'"  
                        onmouseout="this.className='mouseout'"/>
 </div>
 
@@ -43,7 +98,7 @@
 </div>
 
 <div class="startinput">
-<input class="mouseout" type="text"  placeholder=终点站...  onmousemove="this.className='mousemove'"  
+<input class="mouseout" id="terminus" type="text"  placeholder=终点站...  onmousemove="this.className='mousemove'"  
                        onmouseout="this.className='mouseout'"/>
 </div>
 
@@ -56,15 +111,16 @@
 </div>
 
 <div class="startinput">
-<input class="mouseout" type="date"onmousemove="this.className='mousemove'"   onmouseout="this.className='mouseout'"/>
+<input class="mouseout" id="time" type="date" onmousemove="this.className='mousemove'"   onmouseout="this.className='mouseout'"/>
 </div>
 
 </div>
 
 <div class="button">
-<input type="button" value="查询" class="checkon" onmouseover="this.style.cursor='pointer'"
+<input type="button" value="查询" id="search" class="checkon" onmouseover="this.style.cursor='pointer'"
        onmousemove="this.className='checkou'"  onmouseout="this.className='checkon'"/>       
 </div>
+</form>
 
 </div>
 
@@ -87,55 +143,30 @@
 </div>
 
 <div class="truelist">
-
 <table class="zebra">
 		<thead>
         	<tr>
 				<th>车次</th>
 				<th>出发时间</th>
-				<th>到达时间</th>
 				<th>历时</th>
-                <th>卧铺</th>
-                <th>硬座</th>
+                <th>票价</th>
+                <th>数量</th>
                 <th>操作</th>
             </tr>
 		</thead>
-        <tbody>
-        	<tr>
-            	<td>K126</td>
-                <td>10:00</td>
-                <td>20:00</td>
-                <td>30:00（次日）</td>
-                <td>有</td>
-                <td>有</td>
-                <td>
-                <input type="button" value="预定" onmouseover="this.style.cursor='pointer'"/>
-                </td>
-            </tr>
-            <tr>
-            	<td>K126</td>
-                <td>10:00</td>
-                <td>20:00</td>
-                <td>30:00（次日）</td>
-                <td>有</td>
-                <td>有</td>
-                <td>
-                <input type="button" value="预定" onmouseover="this.style.cursor='pointer'"/>
-                </td>
-            </tr>
-            <tr>
-            	<td>K126</td>
-                <td>10:00</td>
-                <td>20:00</td>
-                <td>30:00（次日）</td>
-                <td>有</td>
-                <td>有</td>
-                <td>
-                <input type="button" value="预定" onmouseover="this.style.cursor='pointer'"/>
-                </td>
-            </tr>
+		<tbody id="items">
         </tbody>
 </table>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#empty").hide();
+	$("#init").show();
+	$("#error").hide();
+});
+</script>
+<strong id="empty" style="margin-left:40px;">暂无指定参数的车次，请试试其他！</strong>
+<strong id="init" style="margin-left:40px;">请在左边输入您的出发地，目的地，及出发日期！</strong>
+<strong id="error">输入格式不正确！！</strong>
 </div>
 
 </div>
