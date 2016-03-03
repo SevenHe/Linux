@@ -1,7 +1,0 @@
-<uwsgi>
-	<socket>/home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock</socket>
-	<module>TMS_wsgi</module>
-	<processes>4</processes>
-	<logdate>true</logdate>
-	<daemonize>/home/seven/Code/DjangoProjects/run/log/uwsgi.log</daemonize>
-</uwsgi>

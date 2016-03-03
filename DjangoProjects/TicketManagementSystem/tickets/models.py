@@ -39,15 +39,18 @@ class TrainTrade(models.Model):
             (3, 'DISABLED'),
             ) 
     GENRE_CHOICES = (
-            ('a', '成人票'),
-            ('c', '儿童票'),
             ('h', '硬座'),
             ('s', '卧铺'),
+            )
+    TYPE_CHOICES = (
+            ('a', '成人票'),
+            ('c', '儿童票'),
             )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     serial = models.ForeignKey(TrainTicket)
     book_date = models.DateTimeField()
-    genre = models.CharField(default='a', max_length=1, choices=GENRE_CHOICES)      # for adult, child, hard seat, sleeper
+    genre = models.CharField(default='h', max_length=1, choices=GENRE_CHOICES)      # for adult, child, hard seat, sleeper
+    t_type = models.CharField(default='a', max_length=1, choices=TYPE_CHOICES) 
     number = models.IntegerField(default=1)
     status = models.IntegerField(default=1, choices=STATUS_CHOICES)
 
@@ -59,12 +62,17 @@ class BusTrade(models.Model):
             ) 
     GENRE_CHOICES = (
             ('h', '硬座'),
-            ('s', '软座'),
+            ('u', '软座'),
+            )
+    TYPE_CHOICES = (
+            ('a', '成人票'),
+            ('s', '特殊票'),
             )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     serial = models.ForeignKey(BusTicket)
     book_date = models.DateTimeField()
     genre = models.CharField(default='h', max_length=1, choices=GENRE_CHOICES)
+    t_type = models.CharField(default='a', max_length=1, choices=TYPE_CHOICES)
     number = models.IntegerField(default=1)
     status = models.IntegerField(default=1, choices=STATUS_CHOICES)
 
@@ -75,13 +83,18 @@ class FlyTrade(models.Model):
             (3, 'DISABLED'),
             ) 
     GENRE_CHOICES = (
-            ('h', '头等舱'),
-            ('c', '经济舱'),
+            ('f', '头等舱'),
+            ('e', '经济舱'),
+            )
+    TYPE_CHOICES = (
+            ('w', '全价票'),
+            ('p', '特价票'),
             )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     serial = models.ForeignKey(FlyTicket)
     book_date = models.DateTimeField()
-    genre = models.CharField(default='c', max_length=1, choices=GENRE_CHOICES)
+    genre = models.CharField(default='e', max_length=1, choices=GENRE_CHOICES)
+    t_type = models.CharField(default='w', max_length=1, choices=TYPE_CHOICES)
     number = models.IntegerField(default=1)
     status = models.IntegerField(default=1, choices=STATUS_CHOICES)
 

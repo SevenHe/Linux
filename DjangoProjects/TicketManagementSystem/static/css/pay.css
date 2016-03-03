@@ -1,3 +1,19 @@
+hr.line-one{border: 0;border-bottom: 1px dashed #FF0;background:#0F0;}
+hr.line-two{border: 0;height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));}
+
+p.big{FONT-SIZE: 20pt;float:top;margin-top:5px;}
+p.small{FONT-SIZE: 15pt;float:top;margin-top:10px;}
+
+
+input.checkon{width:130px;height:30px;background-color:#C80000; color:#336666;
+              border-radius: 5px;border: 1px solid #0000ff;
+			  box-shadow:0px 2px 15px 5px #cccccc;
+              FONT-SIZE: 15pt;  COLOR: #ffff99; FONT-FAMILY: 华文行楷}
+input.checkou{width:130px;height:30px;background-color:#ff0000; color:#FF0000;
+              border-radius: 5px;border: 1px solid #0000ff;
+			  box-shadow:0px 2px 15px 5px #cccccc;
+              FONT-SIZE: 15pt;  COLOR: #FFFF00; FONT-FAMILY: 华文行楷}
 div.mid{position:relative;height:455px;width:1000px;margin-top:10px;margin-left:130px}
 div.information{position:relative;height:450px;width:660px;float:left;border-radius: 5px;border: 1px solid #3366ff;}
 div.infotop{position:relative;height:40px;float:top;background: linear-gradient(#3366ff, #FFFFFF);}

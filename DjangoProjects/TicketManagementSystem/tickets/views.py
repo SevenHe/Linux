@@ -120,21 +120,21 @@ def payment(request):
             except:
                 return HttpResponse("发生未知错误！！！")
             else:
-                return render_to_response('payment.html', {'ticket': ticket}, context_instance=RequestContext(request))
+                return render_to_response('payment.html', {'ticket': ticket, 't_type': 'train'}, context_instance=RequestContext(request))
         elif m.group(4) == "bus":
             try:
                 ticket = BusTicket.objects.get(serial=serial)
             except:
                 return HttpResponse("发生未知错误！！！")
             else:
-                return render_to_response('payment.html', {'ticket': ticket}, context_instance=RequestContext(request))
+                return render_to_response('payment.html', {'ticket': ticket, 't_type': 'bus'}, context_instance=RequestContext(request))
         elif m.group(4) == "fly":
             try:
                 ticket = FlyTicket.objects.get(serial=serial)
             except:
                 return HttpResponse("发生未知错误！！！")
             else:
-                return render_to_response('payment.html', {'ticket': ticket}, context_instance=RequestContext(request))
+                return render_to_response('payment.html', {'ticket': ticket, 't_type': 'fly'}, context_instance=RequestContext(request))
  
     else:
         return HttpResponse("非法访问！！！")

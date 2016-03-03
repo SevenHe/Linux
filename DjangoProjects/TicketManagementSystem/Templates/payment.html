@@ -74,41 +74,70 @@
         <th>再次确认</th>
     </tr>
     </thead>
+{% if ticket %}
+<script src="/static/js/jquery.min.js"></script>
     <tbody>
     <tr>
         <td>1</td>        
         <td>
+        {% ifequal t_type 'train' %} 
+        <script type="text/javascript">
+        $(document).ready(function() {
+        	var quantity = {{ ticket.quantity }}
+        	$(".seat").append("<option value='"+"硬座"+"'>"+"硬座(" + quantity*0.7 + "张)</option>");
+        	$(".seat").append("<option value='"+"卧铺"+"'>"+"卧铺(" + quantity*0.3 + "张)</option>");
+        });
+        </script>
         <select class="seat">
-           <option value="volvo">卧铺（35张）</option>
-           <option value="saab">硬座（123张）</option>
         </select>
+        {% endifequal %}
+        {% ifequal t_type 'bus' %} 
+        <script type="text/javascript">
+        $(document).ready(function() {
+        	var quantity = {{ ticket.quantity }}
+        	$(".seat").append("<option value='"+"硬座"+"'>"+"硬座(" + quantity*0.5 + "张)</option>");
+        	$(".seat").append("<option value='"+"软座"+"'>"+"软座(" + quantity*0.5 + "张)</option>");
+		});        
+        </script>
+        <select class="seat">
+        </select>
+        {% endifequal %}
+        {% ifequal t_type 'fly' %}
+        <script type="text/javascript">
+        $(document).ready(function() {
+        	var quantity = {{ ticket.quantity }}
+        	$(".seat").append("<option value='"+"头等舱"+"'>"+"头等舱(" + quantity*0.8 + "张)</option>");
+        	$(".seat").append("<option value='"+"经济舱"+"'>"+"经济舱(" + quantity*0.2 + "张)</option>");
+		});        
+        </script>
+        <select class="seat">
+        </select>
+        {% endifequal %}
         </td>
         <td>
-        <select class="seat">
-           <option value="volvo">成人（240元）</option>
-           <option value="saab">学生（120元）</option>
+        {% ifequal t_type 'train' %} 
+        <select class="type">
+        <option>成人票</option>
+        <option>儿童票</option>
         </select>
+        {% endifequal %}
+        {% ifequal t_type 'bus' %} 
+        <select class="type">
+        <option>成人票</option>
+        <option>特殊票</option>
+        </select>
+        {% endifequal %}
+        {% ifequal t_type 'fly' %} 
+        <select class="type">
+        <option>全价票</option>
+        <option>特价票</option>
+        </select>
+        {% endifequal %}
         </td>
         <td><input type="checkbox"></td>
     </tr>        
-    <tr>
-        <td>2</td>        
-        <td>
-        <select class="seat">
-           <option value="volvo">卧铺（35张）</option>
-           <option value="saab">硬座（123张）</option>
-        </select>
-        </td>
-        <td>
-        <select class="seat">
-           <option value="volvo">成人（240元）</option>
-           <option value="saab">学生（120元）</option>
-        </select>
-        </td>
-        <td><input type="checkbox"></td>
-    </tr>
     </tbody>
-
+{% endif %}
 </table>
 
 </div>
