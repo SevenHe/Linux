@@ -1,6 +1,6 @@
 {% extends "index.html" %}
 {% block title %}
-火车票查询
+客车票查询
 {% endblock %}
 {% block center %}
 <link rel="stylesheet" href="/static/css/train.css" />
@@ -19,13 +19,12 @@
 
 <div class="chetop">
 <div class="topword" style="FONT-SIZE: 15pt;  COLOR: #202020; FONT-FAMILY: 黑体">
-<strong><p>火车查询</p></strong>
+<strong><p>客车查询</p></strong>
 </div>
 </div>
    
 <script type="text/javascript">
 $(document).ready(function() {
-	var serial = ""
 	$("#empty").hide();
 	$("#init").show();
 	$("#error").hide();
@@ -34,7 +33,7 @@ $(document).ready(function() {
 	   var terminus = $("#terminus").val();
 	   var date = $("#time").val();
 	   $.ajax({
-	   		url: "{% url 'ajax_get_train' %}", 
+	   		url: "{% url 'ajax_get_bus' %}", 
 	   		dataType: "json",
 	   		Type: "GET",
 	   		timeout: 2000,
@@ -154,7 +153,7 @@ $(document).ready(function() {
 <table class="zebra">
 		<thead>
         	<tr>
-				<th>车次</th>
+				<th>班次</th>
 				<th>出发时间</th>
 				<th>历时</th>
                 <th>票价</th>
@@ -165,7 +164,7 @@ $(document).ready(function() {
 		<tbody id="items">
         </tbody>
 </table>
-<strong id="empty" style="margin-left:40px;">暂无指定参数的车次，请试试其他！</strong>
+<strong id="empty" style="margin-left:40px;">暂无指定参数的班次，请试试其他！</strong>
 <strong id="init" style="margin-left:40px;">请在左边输入您的出发地，目的地，及出发日期！</strong>
 <strong id="error" style="margin-left:40px;">输入格式不正确！！</strong>
 </div>

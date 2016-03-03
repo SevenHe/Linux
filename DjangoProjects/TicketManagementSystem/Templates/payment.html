@@ -1,0 +1,153 @@
+{% extends "index.html" %}
+{% block title %}
+支付页面
+{% endblock %}
+{% block center %}
+<link rel="stylesheet" href="/static/css/pay.css" />
+
+<div class="mid">
+
+<div class="information">
+
+<div class="infotop">
+<div class="topword" style="FONT-SIZE: 15pt;  COLOR: #202020; FONT-FAMILY: 黑体">
+<strong><p>列车信息</p></strong>
+</div>
+</div>
+
+<hr class="line-two">
+
+<div class="infonum">
+
+<div class="tranum" style="COLOR: #000000; FONT-FAMILY: 黑体">
+<p class="big">{{ ticket.serial }}</p>
+</div>
+<div class="tratime" style="COLOR: #000000; FONT-FAMILY: 华文楷体">
+<p class="small">{{ ticket.departure|date:"Y-m-d H:i" }}</p>
+</div>
+<div class="traplace" style="COLOR: #000000; FONT-FAMILY: 华文楷体">
+<p class="small">{{ ticket.start }}->{{ ticket.terminus }}</p>
+</div>
+
+<div class="sel_wrap" id="sel_wrap">
+	<span>点击选择待购票数</span>
+	<select class="select" name="" id="c_select">
+		<option value="0">1</option>
+		<option value="1">2</option>
+		<option value="2">3</option>
+	</select>
+</div>
+<script >
+	function $(x){
+		return document.getElementById(x);
+	}
+	var sel=$("c_select");
+	var wrap=$("sel_wrap");
+	var result=wrap.getElementsByTagName("span");
+	wrap.onmouseover=function(){
+		this.style.backgroundColor="#FFFFBD";
+	}
+	wrap.onmouseout=function(){
+		this.style.backgroundColor="#FFFFFF";
+	}
+	sel.onchange=function(){
+		var opt=this.getElementsByTagName("option");
+		var len=opt.length;
+		for(i=0;i<len;i++){
+			if(opt[i].selected==true){
+				x=opt[i].innerHTML;
+			}
+		}
+		result[0].innerHTML=x;
+	}
+</script>
+
+</div>
+
+<div class="infolist">
+<table class="bordered">
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>席别</th>          
+        <th>票种</th>
+        <th>再次确认</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1</td>        
+        <td>
+        <select class="seat">
+           <option value="volvo">卧铺（35张）</option>
+           <option value="saab">硬座（123张）</option>
+        </select>
+        </td>
+        <td>
+        <select class="seat">
+           <option value="volvo">成人（240元）</option>
+           <option value="saab">学生（120元）</option>
+        </select>
+        </td>
+        <td><input type="checkbox"></td>
+    </tr>        
+    <tr>
+        <td>2</td>        
+        <td>
+        <select class="seat">
+           <option value="volvo">卧铺（35张）</option>
+           <option value="saab">硬座（123张）</option>
+        </select>
+        </td>
+        <td>
+        <select class="seat">
+           <option value="volvo">成人（240元）</option>
+           <option value="saab">学生（120元）</option>
+        </select>
+        </td>
+        <td><input type="checkbox"></td>
+    </tr>
+    </tbody>
+
+</table>
+
+</div>
+
+<div class="infobutton">
+<div class="lastbutton">
+<input type="button" value="上一步" class="checkon" onmouseover="this.style.cursor='pointer'"
+       onmousemove="this.className='checkou'"  onmouseout="this.className='checkon'"/> 
+</div>
+<div class="submitbutton">
+<input type="button" value="提交订单" class="checkon" onmouseover="this.style.cursor='pointer'"
+       onmousemove="this.className='checkou'"  onmouseout="this.className='checkon'"/>       
+</div>
+</div>
+</div>
+
+<div class="remind">
+
+<div class="remtop">
+<div class="topword" style="FONT-SIZE: 15pt;  COLOR: #202020; FONT-FAMILY: 黑体">
+<strong><p>温馨提示</p></strong>
+</div>
+</div>
+
+<hr class="line-two">
+
+<div class="remword" style="FONT-SIZE: 12pt;  COLOR:#6C6C6C; FONT-FAMILY: 华文楷体">
+<style type="text/css">
+p.prompt {
+	white-space: normal;
+	word-wrap:break-all;
+}	
+</style>
+<p class="prompt">1.一个注册号同一乘车日期同一车次最多可购买三张车票；</p>
+<p class="prompt">2.一次购买多张车票时请确定好您要选择的席别、票种；</p>
+<p class="prompt">3.学生票乘车时间限为每年的暑假6月1日至9月30日、寒假12月1日至3月31日。购票后、开车前，须办理换票手续方可进站乘车。</p>
+</div>
+
+</div>
+
+</div>
+{% endblock %}

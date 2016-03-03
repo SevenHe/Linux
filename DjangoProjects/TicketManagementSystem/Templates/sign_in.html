@@ -175,6 +175,7 @@ function busdisplay(bustop)
 <div class="bus">
 
 <input type="button"  style="border:5px ridge#3333cc"  class="busback" onmouseover="this.style.cursor='pointer'"
+onclick="window.location.href='{% url "bus_business" %}'"      
        onmousemove="this.className='bustop'"  onmouseout="this.className='busback'"/>
 
 </div>
@@ -182,6 +183,7 @@ function busdisplay(bustop)
 <div class="fly">
 
 <input type="button"  style="border:5px ridge#3333cc"  class="flyback" onmouseover="this.style.cursor='pointer'"
+onclick="window.location.href='{% url "fly_business" %}'"       
        onmousemove="this.className='flytop'"  onmouseout="this.className='flyback'"/>
 
 </div>
