@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+{% block title %}
+跳转
+{% endblock %}
+{% block center %}
+<script type="text/javascript">
+function delayer(){
+ window.location = "{% url 'sign_in' %}";
+}
+$(document).ready(function(){
+ setTimeout('delayer()', 4000);
+});
+</script>
+<h1>您访问的页面需要登录，将在4s内跳转....</h1>
+<br>
+<p>手动跳转，请点击<a href="{% url 'sign_in' %}">此处</a></p>
+{% endblock %}

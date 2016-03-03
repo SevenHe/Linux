@@ -66,6 +66,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.core.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -149,5 +150,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # Custom settings
 CUSTOM_SETTINGS = {}
 CUSTOM_SETTINGS['ACTIVATION_URL'] = '49.140.62.120/account/activation'
-CUSTOM_SETTINGS['ACTIVATION_HTML_CONTENT'] = "<p>感谢您对<strong>5036 购票中心</strong>的支持，请点击此链接激活您的账号：<a>%s</a> （10分钟内有效）</p>"
+CUSTOM_SETTINGS['ACTIVATION_HTML_CONTENT'] = "<p>感谢您对<strong>5036 购票中心</strong>的支持，请点击此链接激活您的账号：<a href='%s'>%s</a> （10分钟内有效）</p>"
 CUSTOM_SETTINGS['SALT'] = '5036TS'

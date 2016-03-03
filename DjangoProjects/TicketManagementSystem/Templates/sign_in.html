@@ -100,7 +100,7 @@ function busdisplay(bustop)
 <div class="rebutton">
 <input type="submit" value="注册" class="fion" onmousemove="this.className='fiou'"  
                      onmouseout="this.className='fion'"   onmouseover="this.style.cursor='pointer'"/>
-<input type="hidden" name="next" value="{{ next|escape }}" />
+<input type="hidden" name="next" value="{{ next_sign_up|escape }}" />
 </div>
 </form>
 
@@ -123,7 +123,7 @@ function busdisplay(bustop)
 <input class="nameout" type="password"  name="log_pswd" placeholder=密码...  onmousemove="this.className='namemove'"  
                        onmouseout="this.className='nameout'"/>
 </div>
-
+<ul class="errorlist"><li>{{ information }}</li></ul>
 {% ifequal account 1 %}<ul class="errorlist"><li>*用户名或邮箱错误</li></ul>{% endifequal %}
 {% ifequal account 2 %}<ul class="errorlist"><li>*用户未激活</li></ul>{% endifequal %}
 {% ifequal account 3 %}<ul class="errorlist"><li>*密码错误</li></ul>{% endifequal %}
@@ -131,7 +131,7 @@ function busdisplay(bustop)
 <div class="onbutton">
 <input type="submit" value="登录" class="onon" onmousemove="this.className='onou'"  
                      onmouseout="this.className='onon'"   onmouseover="this.style.cursor='pointer'"/>
-<input type="hidden" name="next" value="{{ next|escape }}" />
+<input type="hidden" name="next" value="{{ next_sign_in|escape }}" />
 </div>
 </form>
 

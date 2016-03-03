@@ -70,7 +70,7 @@ def sign_up(request):
                 email_captcha = EmailCaptcha(user_id=user.id, captcha=captcha, post_date=post_date)
                 encrypted_username = (username + 'salt').encode('hex')
                 activation = CUSTOM_SETTINGS['ACTIVATION_URL'] + "?" + 'username'.encode('hex') + "=" + encrypted_username + "&" + 'captcha'.encode('hex') + "=" + captcha
-                html_content = CUSTOM_SETTINGS['ACTIVATION_HTML_CONTENT'] % activation
+                html_content = CUSTOM_SETTINGS['ACTIVATION_HTML_CONTENT'] % (activation, activation)
                 # async !
                 async_sender(email, html_content)
                 #return HttpResponseRedirect('/account/sign_up/success')
@@ -96,13 +96,25 @@ def sign_up(request):
 def sign_up_success(request):
     return render_to_response('sign_up_success.html', context_instance=RequestContext(request))
 
+def turn_to_sign_in(request):
+    return render_to_response('turn_to_sign_in.html', {'account': 0}, context_instance=RequestContext(request))
+
 # do it just for now, there will be other features in the future!
 # @login_required is on the way!
 # 登录之后不是渲染， 而是重定向！This is the tradition!
+import re
 def sign_in(request):
     identifier = request.POST.get('usr', '')
     pswd = request.POST.get('log_pswd', '')
     user = auth.authenticate(username=identifier, password=pswd)
+    # do not know why request.path == ""!
+    # and now, i know i need to add 'django.core.context_processers.request', it do this for me!
+    if re.findall('train', request.META['HTTP_REFERER'].encode('ascii')):
+        m = re.match(r'(.+)(49\.140\.62\.120)(.*)([?]next[=])(.*)', request.META['HTTP_REFERER'].encode('ascii'))
+        if m.group(3) == reverse('turn_to_sign_in').encode('ascii'):
+            next_sign_in = m.group(5)
+            request.session['next'] = next_sign_in
+            return render_to_response('sign_in.html', {'next_sign_in': next_sign_in}, context_instance=RequestContext(request))
     if user is None:
         try:
             if User.objects.get(username=identifier):
@@ -123,7 +135,7 @@ def sign_in(request):
                 return render_to_response('sign_in.html', {'account': 3}, context_instance=RequestContext(request))
         except:
             # means that the account is incorrect. 
-            return render_to_response('sign_in.html', {'account': 1}, context_instance=RequestContext(request))
+            return render_to_response('sign_in.html', {'account': 1} , context_instance=RequestContext(request))
     else:
         if user.is_active:
             auth.login(request, user)

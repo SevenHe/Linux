@@ -101,7 +101,7 @@ function busdisplay(bustop)
 <div class="rebutton">
 <input type="submit" value="注册" class="fion" onmousemove="this.className='fiou'"
                      onmouseout="this.className='fion'"   onmouseover="this.style.cursor='pointer'"/>
-<input type="hidden" name="next" value="{{ next|escape }}" />
+<input type="hidden" name="next" value="{{ next_sign_up|escape }}" />
 </div>
 </form>
 
@@ -128,7 +128,7 @@ function busdisplay(bustop)
 <div class="onbutton">
 <input type="submit" value="登录" class="onon" onmousemove="this.className='onou'"  
                      onmouseout="this.className='onon'"   onmouseover="this.style.cursor='pointer'"/>
-<input type="hidden" name="next" value="{{ next|escape }}" />
+<input type="hidden" name="next" value="{{ next_sign_in|escape }}" />
 </div>
 </form>
 

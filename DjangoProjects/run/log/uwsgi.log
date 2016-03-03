@@ -586,3 +586,931 @@ Wed Mar  2 11:26:51 2016 - spawned uWSGI worker 1 (pid: 6015, cores: 1)
 Wed Mar  2 11:26:51 2016 - spawned uWSGI worker 2 (pid: 6016, cores: 1)
 Wed Mar  2 11:26:51 2016 - spawned uWSGI worker 3 (pid: 6017, cores: 1)
 Wed Mar  2 11:26:51 2016 - spawned uWSGI worker 4 (pid: 6018, cores: 1)
+Thu Mar  3 07:46:52 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Thu Mar  3 07:46:52 2016] ***
+Thu Mar  3 07:46:52 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Thu Mar  3 07:46:52 2016 - os: Linux-4.2.0-30-generic #36-Ubuntu SMP Fri Feb 26 00:58:07 UTC 2016
+Thu Mar  3 07:46:52 2016 - nodename: Kubuntu
+Thu Mar  3 07:46:52 2016 - machine: x86_64
+Thu Mar  3 07:46:52 2016 - clock source: unix
+Thu Mar  3 07:46:52 2016 - detected number of CPU cores: 4
+Thu Mar  3 07:46:52 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Thu Mar  3 07:46:52 2016 - detected binary path: /usr/local/bin/uwsgi
+Thu Mar  3 07:46:52 2016 - !!! no internal routing support, rebuild with pcre support !!!
+Thu Mar  3 07:46:52 2016 - your processes number limit is 15201
+Thu Mar  3 07:46:52 2016 - your memory page size is 4096 bytes
+Thu Mar  3 07:46:52 2016 - detected max file descriptor number: 1024
+Thu Mar  3 07:46:52 2016 - lock engine: pthread robust mutexes
+Thu Mar  3 07:46:52 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
+Thu Mar  3 07:46:52 2016 - uwsgi socket 0 bound to UNIX address TicketManagementSystem.sock fd 3
+Thu Mar  3 07:46:52 2016 - uwsgi socket 1 bound to UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
+Thu Mar  3 07:46:52 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Thu Mar  3 07:46:52 2016 - Python main interpreter initialized at 0x17ba100
+Thu Mar  3 07:46:52 2016 - python threads support enabled
+Thu Mar  3 07:46:52 2016 - your server socket listen backlog is limited to 100 connections
+Thu Mar  3 07:46:52 2016 - your mercy for graceful operations on workers is 60 seconds
+Thu Mar  3 07:46:52 2016 - mapped 363800 bytes (355 KB) for 4 cores
+Thu Mar  3 07:46:52 2016 - *** Operational MODE: preforking ***
+Wed Mar  2 17:46:54 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
+Wed Mar  2 17:46:54 2016 - WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x17ba100 pid: 2443 (default app)
+Wed Mar  2 17:46:54 2016 - mountpoint  already configured. skip.
+Wed Mar  2 17:46:54 2016 - *** uWSGI is running in multiple interpreter mode ***
+Wed Mar  2 17:46:54 2016 - spawned uWSGI master process (pid: 2443)
+Wed Mar  2 17:46:54 2016 - spawned uWSGI worker 1 (pid: 2460, cores: 1)
+Wed Mar  2 17:46:54 2016 - spawned uWSGI worker 2 (pid: 2461, cores: 1)
+Wed Mar  2 17:46:54 2016 - spawned uWSGI worker 3 (pid: 2462, cores: 1)
+Wed Mar  2 17:46:54 2016 - spawned uWSGI worker 4 (pid: 2463, cores: 1)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+[pid: 2462|app: 0|req: 1/1] 127.0.0.1 () {46 vars in 864 bytes} [Wed Mar  2 17:47:13 2016] GET /ticket/train/query/ => generated 10522 bytes in 3805 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 2462|app: 0|req: 2/2] 127.0.0.1 () {44 vars in 808 bytes} [Wed Mar  2 17:47:17 2016] GET /account/diag_code?nocache => generated 1541 bytes in 1301 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
+[pid: 2462|app: 0|req: 3/3] 49.140.62.120 () {42 vars in 697 bytes} [Wed Mar  2 17:53:29 2016] GET / => generated 823 bytes in 48 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
+[pid: 2462|app: 0|req: 4/4] 49.140.62.120 () {44 vars in 744 bytes} [Wed Mar  2 17:53:32 2016] GET /index => generated 6905 bytes in 67 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 2462|app: 0|req: 5/5] 49.140.62.120 () {42 vars in 707 bytes} [Wed Mar  2 17:53:32 2016] GET /account/diag_code?nocache => generated 1571 bytes in 254 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
+[pid: 2463|app: 0|req: 1/6] 49.140.62.120 () {44 vars in 777 bytes} [Wed Mar  2 17:53:34 2016] GET /ticket/train/query/ => generated 0 bytes in 710 msecs (HTTP/1.1 302) 4 headers in 160 bytes (1 switches on core 0)
+[pid: 2462|app: 0|req: 6/7] 49.140.62.120 () {44 vars in 822 bytes} [Wed Mar  2 17:53:35 2016] GET /account/sign_in/?next=/ticket/train/query/ => generated 6930 bytes in 136 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+Wed Mar  2 18:06:07 2016 - ...gracefully killing workers...
+Wed Mar  2 18:06:07 2016 - Gracefully killing worker 3 (pid: 2462)...
+Wed Mar  2 18:06:07 2016 - Gracefully killing worker 4 (pid: 2463)...
+Wed Mar  2 18:06:07 2016 - Gracefully killing worker 1 (pid: 2460)...
+Wed Mar  2 18:06:07 2016 - Gracefully killing worker 2 (pid: 2461)...
+Wed Mar  2 18:06:08 2016 - worker 1 buried after 1 seconds
+Wed Mar  2 18:06:08 2016 - worker 2 buried after 1 seconds
+Wed Mar  2 18:06:08 2016 - worker 3 buried after 1 seconds
+Wed Mar  2 18:06:08 2016 - worker 4 buried after 1 seconds
+Wed Mar  2 18:06:08 2016 - binary reloading uWSGI...
+Wed Mar  2 18:06:08 2016 - chdir() to /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:06:08 2016 - closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+Wed Mar  2 18:06:08 2016 - found fd 3 mapped to socket 0 (TicketManagementSystem.sock)
+Wed Mar  2 18:06:08 2016 - found fd 4 mapped to socket 1 (/home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock)
+Wed Mar  2 18:06:08 2016 - running /usr/local/bin/uwsgi
+[uWSGI] parsing config file TMS_temp.xml
+Wed Mar  2 18:06:08 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Mar  2 18:06:08 2016] ***
+Wed Mar  2 18:06:08 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Mar  2 18:06:08 2016 - os: Linux-4.2.0-30-generic #36-Ubuntu SMP Fri Feb 26 00:58:07 UTC 2016
+Wed Mar  2 18:06:08 2016 - nodename: Kubuntu
+Wed Mar  2 18:06:08 2016 - machine: x86_64
+Wed Mar  2 18:06:08 2016 - clock source: unix
+Wed Mar  2 18:06:08 2016 - detected number of CPU cores: 4
+Wed Mar  2 18:06:08 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:06:08 2016 - detected binary path: /usr/local/bin/uwsgi
+Wed Mar  2 18:06:08 2016 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Mar  2 18:06:08 2016 - your processes number limit is 15201
+Wed Mar  2 18:06:08 2016 - your memory page size is 4096 bytes
+Wed Mar  2 18:06:08 2016 - detected max file descriptor number: 1024
+Wed Mar  2 18:06:08 2016 - lock engine: pthread robust mutexes
+Wed Mar  2 18:06:08 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Mar  2 18:06:08 2016 - uwsgi socket 0 inherited UNIX address TicketManagementSystem.sock fd 3
+Wed Mar  2 18:06:08 2016 - uwsgi socket 1 inherited UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
+Wed Mar  2 18:06:08 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Mar  2 18:06:08 2016 - Python main interpreter initialized at 0x20d7e80
+Wed Mar  2 18:06:08 2016 - python threads support enabled
+Wed Mar  2 18:06:08 2016 - your server socket listen backlog is limited to 100 connections
+Wed Mar  2 18:06:08 2016 - your mercy for graceful operations on workers is 60 seconds
+Wed Mar  2 18:06:08 2016 - mapped 363800 bytes (355 KB) for 4 cores
+Wed Mar  2 18:06:08 2016 - *** Operational MODE: preforking ***
+Wed Mar  2 18:06:10 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
+Wed Mar  2 18:06:10 2016 - WSGI app 0 (mountpoint='') ready in 2 seconds on interpreter 0x20d7e80 pid: 2443 (default app)
+Wed Mar  2 18:06:10 2016 - mountpoint  already configured. skip.
+Wed Mar  2 18:06:10 2016 - *** uWSGI is running in multiple interpreter mode ***
+Wed Mar  2 18:06:10 2016 - gracefully (RE)spawned uWSGI master process (pid: 2443)
+Wed Mar  2 18:06:10 2016 - spawned uWSGI worker 1 (pid: 3478, cores: 1)
+Wed Mar  2 18:06:10 2016 - spawned uWSGI worker 2 (pid: 3479, cores: 1)
+Wed Mar  2 18:06:10 2016 - spawned uWSGI worker 3 (pid: 3480, cores: 1)
+Wed Mar  2 18:06:10 2016 - spawned uWSGI worker 4 (pid: 3481, cores: 1)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+[pid: 3478|app: 0|req: 1/1] 49.140.62.120 () {44 vars in 752 bytes} [Wed Mar  2 18:11:03 2016] GET / => generated 823 bytes in 854 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+[pid: 3481|app: 0|req: 1/2] 49.140.62.120 () {46 vars in 799 bytes} [Wed Mar  2 18:11:08 2016] GET /index => generated 6905 bytes in 1465 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 3481|app: 0|req: 2/3] 49.140.62.120 () {44 vars in 762 bytes} [Wed Mar  2 18:11:10 2016] GET /account/diag_code?nocache => generated 1540 bytes in 335 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
+[pid: 3480|app: 0|req: 1/4] 49.140.62.120 () {44 vars in 777 bytes} [Wed Mar  2 18:11:11 2016] GET /ticket/train/query/ => generated 0 bytes in 79 msecs (HTTP/1.1 302) 4 headers in 160 bytes (1 switches on core 0)
+[pid: 3481|app: 0|req: 3/5] 49.140.62.120 () {46 vars in 877 bytes} [Wed Mar  2 18:11:11 2016] GET /account/sign_in/?next=/ticket/train/query/ => generated 6930 bytes in 67 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+Not Found: /account/turn_in_to_sign/
+[pid: 3481|app: 0|req: 4/6] 49.140.62.120 () {42 vars in 745 bytes} [Wed Mar  2 18:11:52 2016] GET /account/turn_in_to_sign/ => generated 3761 bytes in 9 msecs (HTTP/1.1 404) 2 headers in 80 bytes (2 switches on core 0)
+Not Found: /favicon.ico
+[pid: 3481|app: 0|req: 5/7] 49.140.62.120 () {42 vars in 674 bytes} [Wed Mar  2 18:11:52 2016] GET /favicon.ico => generated 3722 bytes in 9 msecs (HTTP/1.1 404) 2 headers in 80 bytes (1 switches on core 0)
+[pid: 3481|app: 0|req: 6/8] 49.140.62.120 () {44 vars in 777 bytes} [Wed Mar  2 18:12:15 2016] GET /ticket/train/query/ => generated 0 bytes in 85 msecs (HTTP/1.1 302) 4 headers in 160 bytes (1 switches on core 0)
+Wed Mar  2 18:12:55 2016 - ...gracefully killing workers...
+Wed Mar  2 18:12:55 2016 - Gracefully killing worker 3 (pid: 3480)...
+Wed Mar  2 18:12:55 2016 - Gracefully killing worker 1 (pid: 3478)...
+Wed Mar  2 18:12:55 2016 - Gracefully killing worker 4 (pid: 3481)...
+Wed Mar  2 18:12:55 2016 - Gracefully killing worker 2 (pid: 3479)...
+Wed Mar  2 18:12:56 2016 - worker 1 buried after 1 seconds
+Wed Mar  2 18:12:56 2016 - worker 2 buried after 1 seconds
+Wed Mar  2 18:12:56 2016 - worker 3 buried after 1 seconds
+Wed Mar  2 18:12:56 2016 - worker 4 buried after 1 seconds
+Wed Mar  2 18:12:56 2016 - binary reloading uWSGI...
+Wed Mar  2 18:12:56 2016 - chdir() to /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:12:56 2016 - closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+Wed Mar  2 18:12:56 2016 - found fd 3 mapped to socket 0 (TicketManagementSystem.sock)
+Wed Mar  2 18:12:56 2016 - found fd 4 mapped to socket 1 (/home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock)
+Wed Mar  2 18:12:56 2016 - running /usr/local/bin/uwsgi
+[uWSGI] parsing config file TMS_temp.xml
+Wed Mar  2 18:12:57 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Mar  2 18:12:56 2016] ***
+Wed Mar  2 18:12:57 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Mar  2 18:12:57 2016 - os: Linux-4.2.0-30-generic #36-Ubuntu SMP Fri Feb 26 00:58:07 UTC 2016
+Wed Mar  2 18:12:57 2016 - nodename: Kubuntu
+Wed Mar  2 18:12:57 2016 - machine: x86_64
+Wed Mar  2 18:12:57 2016 - clock source: unix
+Wed Mar  2 18:12:57 2016 - detected number of CPU cores: 4
+Wed Mar  2 18:12:57 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:12:57 2016 - detected binary path: /usr/local/bin/uwsgi
+Wed Mar  2 18:12:57 2016 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Mar  2 18:12:57 2016 - your processes number limit is 15201
+Wed Mar  2 18:12:57 2016 - your memory page size is 4096 bytes
+Wed Mar  2 18:12:57 2016 - detected max file descriptor number: 1024
+Wed Mar  2 18:12:57 2016 - lock engine: pthread robust mutexes
+Wed Mar  2 18:12:57 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Mar  2 18:12:57 2016 - uwsgi socket 0 inherited UNIX address TicketManagementSystem.sock fd 3
+Wed Mar  2 18:12:57 2016 - uwsgi socket 1 inherited UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
+Wed Mar  2 18:12:57 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Mar  2 18:12:57 2016 - Python main interpreter initialized at 0x14c5e80
+Wed Mar  2 18:12:57 2016 - python threads support enabled
+Wed Mar  2 18:12:57 2016 - your server socket listen backlog is limited to 100 connections
+Wed Mar  2 18:12:57 2016 - your mercy for graceful operations on workers is 60 seconds
+Wed Mar  2 18:12:57 2016 - mapped 363800 bytes (355 KB) for 4 cores
+Wed Mar  2 18:12:57 2016 - *** Operational MODE: preforking ***
+Wed Mar  2 18:12:58 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
+Wed Mar  2 18:12:58 2016 - WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x14c5e80 pid: 2443 (default app)
+Wed Mar  2 18:12:58 2016 - mountpoint  already configured. skip.
+Wed Mar  2 18:12:58 2016 - *** uWSGI is running in multiple interpreter mode ***
+Wed Mar  2 18:12:58 2016 - gracefully (RE)spawned uWSGI master process (pid: 2443)
+Wed Mar  2 18:12:58 2016 - spawned uWSGI worker 1 (pid: 10342, cores: 1)
+Wed Mar  2 18:12:58 2016 - spawned uWSGI worker 2 (pid: 10343, cores: 1)
+Wed Mar  2 18:12:58 2016 - spawned uWSGI worker 3 (pid: 10344, cores: 1)
+Wed Mar  2 18:12:58 2016 - spawned uWSGI worker 4 (pid: 10345, cores: 1)
+[pid: 10345|app: 0|req: 1/1] 49.140.62.120 () {44 vars in 777 bytes} [Wed Mar  2 18:13:15 2016] GET /ticket/train/query/ => generated 0 bytes in 75 msecs (HTTP/1.1 302) 4 headers in 168 bytes (1 switches on core 0)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+Internal Server Error: /account/turn_to_sign_in/
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 149, in get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 147, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "./TicketManagementSystem/views.py", line 100, in turn_to_sign_in
+    return render_to_response('turn_to_sign_in.html', {'account': 0}, context_instance=RequestContext(request))
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts.py", line 45, in render_to_response
+    using=using)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 137, in render_to_string
+    raise TemplateDoesNotExist(template_name, chain=chain)
+TemplateDoesNotExist: turn_to_sign_in.html
+[pid: 10345|app: 0|req: 2/2] 49.140.62.120 () {44 vars in 838 bytes} [Wed Mar  2 18:13:15 2016] GET /account/turn_to_sign_in/?next=/ticket/train/query/ => generated 67457 bytes in 149 msecs (HTTP/1.1 500) 2 headers in 92 bytes (2 switches on core 0)
+[pid: 10345|app: 0|req: 3/3] 49.140.62.120 () {44 vars in 777 bytes} [Wed Mar  2 18:15:55 2016] GET /ticket/train/query/ => generated 0 bytes in 28 msecs (HTTP/1.1 302) 4 headers in 168 bytes (1 switches on core 0)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+[pid: 10344|app: 0|req: 1/4] 49.140.62.120 () {44 vars in 838 bytes} [Wed Mar  2 18:15:55 2016] GET /account/turn_to_sign_in/?next=/ticket/train/query/ => generated 6432 bytes in 89 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 10345|app: 0|req: 4/5] 49.140.62.120 () {44 vars in 816 bytes} [Wed Mar  2 18:16:00 2016] GET /account/sign_in/ => generated 6930 bytes in 53 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+Wed Mar  2 18:24:40 2016 - ...gracefully killing workers...
+Wed Mar  2 18:24:40 2016 - Gracefully killing worker 3 (pid: 10344)...
+Wed Mar  2 18:24:40 2016 - Gracefully killing worker 2 (pid: 10343)...
+Wed Mar  2 18:24:40 2016 - Gracefully killing worker 4 (pid: 10345)...
+Wed Mar  2 18:24:40 2016 - Gracefully killing worker 1 (pid: 10342)...
+Wed Mar  2 18:24:41 2016 - worker 1 buried after 1 seconds
+Wed Mar  2 18:24:41 2016 - worker 2 buried after 1 seconds
+Wed Mar  2 18:24:41 2016 - worker 3 buried after 1 seconds
+Wed Mar  2 18:24:41 2016 - worker 4 buried after 1 seconds
+Wed Mar  2 18:24:41 2016 - binary reloading uWSGI...
+Wed Mar  2 18:24:41 2016 - chdir() to /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:24:41 2016 - closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+Wed Mar  2 18:24:41 2016 - found fd 3 mapped to socket 0 (TicketManagementSystem.sock)
+Wed Mar  2 18:24:41 2016 - found fd 4 mapped to socket 1 (/home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock)
+Wed Mar  2 18:24:41 2016 - running /usr/local/bin/uwsgi
+[uWSGI] parsing config file TMS_temp.xml
+Wed Mar  2 18:24:41 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Mar  2 18:24:41 2016] ***
+Wed Mar  2 18:24:41 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Mar  2 18:24:41 2016 - os: Linux-4.2.0-30-generic #36-Ubuntu SMP Fri Feb 26 00:58:07 UTC 2016
+Wed Mar  2 18:24:41 2016 - nodename: Kubuntu
+Wed Mar  2 18:24:41 2016 - machine: x86_64
+Wed Mar  2 18:24:41 2016 - clock source: unix
+Wed Mar  2 18:24:41 2016 - detected number of CPU cores: 4
+Wed Mar  2 18:24:41 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:24:41 2016 - detected binary path: /usr/local/bin/uwsgi
+Wed Mar  2 18:24:41 2016 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Mar  2 18:24:41 2016 - your processes number limit is 15201
+Wed Mar  2 18:24:41 2016 - your memory page size is 4096 bytes
+Wed Mar  2 18:24:41 2016 - detected max file descriptor number: 1024
+Wed Mar  2 18:24:41 2016 - lock engine: pthread robust mutexes
+Wed Mar  2 18:24:41 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Mar  2 18:24:41 2016 - uwsgi socket 0 inherited UNIX address TicketManagementSystem.sock fd 3
+Wed Mar  2 18:24:41 2016 - uwsgi socket 1 inherited UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
+Wed Mar  2 18:24:41 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Mar  2 18:24:41 2016 - Python main interpreter initialized at 0x106ee80
+Wed Mar  2 18:24:41 2016 - python threads support enabled
+Wed Mar  2 18:24:41 2016 - your server socket listen backlog is limited to 100 connections
+Wed Mar  2 18:24:41 2016 - your mercy for graceful operations on workers is 60 seconds
+Wed Mar  2 18:24:41 2016 - mapped 363800 bytes (355 KB) for 4 cores
+Wed Mar  2 18:24:41 2016 - *** Operational MODE: preforking ***
+Wed Mar  2 18:24:42 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
+Wed Mar  2 18:24:42 2016 - WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x106ee80 pid: 2443 (default app)
+Wed Mar  2 18:24:42 2016 - mountpoint  already configured. skip.
+Wed Mar  2 18:24:42 2016 - *** uWSGI is running in multiple interpreter mode ***
+Wed Mar  2 18:24:42 2016 - gracefully (RE)spawned uWSGI master process (pid: 2443)
+Wed Mar  2 18:24:42 2016 - spawned uWSGI worker 1 (pid: 10933, cores: 1)
+Wed Mar  2 18:24:42 2016 - spawned uWSGI worker 2 (pid: 10934, cores: 1)
+Wed Mar  2 18:24:42 2016 - spawned uWSGI worker 3 (pid: 10935, cores: 1)
+Wed Mar  2 18:24:42 2016 - spawned uWSGI worker 4 (pid: 10936, cores: 1)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+[pid: 10936|app: 0|req: 1/1] 49.140.62.120 () {44 vars in 752 bytes} [Wed Mar  2 18:24:57 2016] GET / => generated 823 bytes in 120 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
+[pid: 10936|app: 0|req: 2/2] 49.140.62.120 () {46 vars in 799 bytes} [Wed Mar  2 18:25:00 2016] GET /index => generated 6905 bytes in 58 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 10936|app: 0|req: 3/3] 49.140.62.120 () {44 vars in 762 bytes} [Wed Mar  2 18:25:01 2016] GET /account/diag_code?nocache => generated 1677 bytes in 125 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
+[pid: 10935|app: 0|req: 1/4] 49.140.62.120 () {44 vars in 777 bytes} [Wed Mar  2 18:25:02 2016] GET /ticket/train/query/ => generated 0 bytes in 73 msecs (HTTP/1.1 302) 4 headers in 168 bytes (1 switches on core 0)
+Wed Mar  2 18:27:06 2016 - ...gracefully killing workers...
+Wed Mar  2 18:27:06 2016 - Gracefully killing worker 3 (pid: 10935)...
+Wed Mar  2 18:27:06 2016 - Gracefully killing worker 1 (pid: 10933)...
+Wed Mar  2 18:27:06 2016 - Gracefully killing worker 4 (pid: 10936)...
+Wed Mar  2 18:27:06 2016 - Gracefully killing worker 2 (pid: 10934)...
+Wed Mar  2 18:27:07 2016 - worker 1 buried after 1 seconds
+Wed Mar  2 18:27:07 2016 - worker 2 buried after 1 seconds
+Wed Mar  2 18:27:07 2016 - worker 3 buried after 1 seconds
+Wed Mar  2 18:27:07 2016 - worker 4 buried after 1 seconds
+Wed Mar  2 18:27:07 2016 - binary reloading uWSGI...
+Wed Mar  2 18:27:07 2016 - chdir() to /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:27:07 2016 - closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+Wed Mar  2 18:27:07 2016 - found fd 3 mapped to socket 0 (TicketManagementSystem.sock)
+Wed Mar  2 18:27:07 2016 - found fd 4 mapped to socket 1 (/home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock)
+Wed Mar  2 18:27:07 2016 - running /usr/local/bin/uwsgi
+[uWSGI] parsing config file TMS_temp.xml
+Wed Mar  2 18:27:07 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Mar  2 18:27:07 2016] ***
+Wed Mar  2 18:27:07 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Mar  2 18:27:07 2016 - os: Linux-4.2.0-30-generic #36-Ubuntu SMP Fri Feb 26 00:58:07 UTC 2016
+Wed Mar  2 18:27:07 2016 - nodename: Kubuntu
+Wed Mar  2 18:27:07 2016 - machine: x86_64
+Wed Mar  2 18:27:07 2016 - clock source: unix
+Wed Mar  2 18:27:07 2016 - detected number of CPU cores: 4
+Wed Mar  2 18:27:07 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:27:07 2016 - detected binary path: /usr/local/bin/uwsgi
+Wed Mar  2 18:27:07 2016 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Mar  2 18:27:07 2016 - your processes number limit is 15201
+Wed Mar  2 18:27:07 2016 - your memory page size is 4096 bytes
+Wed Mar  2 18:27:07 2016 - detected max file descriptor number: 1024
+Wed Mar  2 18:27:07 2016 - lock engine: pthread robust mutexes
+Wed Mar  2 18:27:07 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Mar  2 18:27:07 2016 - uwsgi socket 0 inherited UNIX address TicketManagementSystem.sock fd 3
+Wed Mar  2 18:27:07 2016 - uwsgi socket 1 inherited UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
+Wed Mar  2 18:27:07 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Mar  2 18:27:07 2016 - Python main interpreter initialized at 0xd39e80
+Wed Mar  2 18:27:07 2016 - python threads support enabled
+Wed Mar  2 18:27:07 2016 - your server socket listen backlog is limited to 100 connections
+Wed Mar  2 18:27:07 2016 - your mercy for graceful operations on workers is 60 seconds
+Wed Mar  2 18:27:07 2016 - mapped 363800 bytes (355 KB) for 4 cores
+Wed Mar  2 18:27:07 2016 - *** Operational MODE: preforking ***
+Wed Mar  2 18:27:07 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
+Wed Mar  2 18:27:07 2016 - WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0xd39e80 pid: 2443 (default app)
+Wed Mar  2 18:27:07 2016 - mountpoint  already configured. skip.
+Wed Mar  2 18:27:07 2016 - *** uWSGI is running in multiple interpreter mode ***
+Wed Mar  2 18:27:07 2016 - gracefully (RE)spawned uWSGI master process (pid: 2443)
+Wed Mar  2 18:27:07 2016 - spawned uWSGI worker 1 (pid: 11024, cores: 1)
+Wed Mar  2 18:27:07 2016 - spawned uWSGI worker 2 (pid: 11025, cores: 1)
+Wed Mar  2 18:27:07 2016 - spawned uWSGI worker 3 (pid: 11026, cores: 1)
+Wed Mar  2 18:27:07 2016 - spawned uWSGI worker 4 (pid: 11027, cores: 1)
+[pid: 11024|app: 0|req: 1/1] 49.140.62.120 () {44 vars in 777 bytes} [Wed Mar  2 18:27:09 2016] GET /ticket/train/query/ => generated 0 bytes in 69 msecs (HTTP/1.1 302) 4 headers in 168 bytes (1 switches on core 0)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+[pid: 11024|app: 0|req: 2/2] 49.140.62.120 () {46 vars in 893 bytes} [Wed Mar  2 18:27:09 2016] GET /account/turn_to_sign_in/?next=/ticket/train/query/ => generated 6433 bytes in 27 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 11024|app: 0|req: 3/3] 49.140.62.120 () {46 vars in 871 bytes} [Wed Mar  2 18:27:14 2016] GET /account/sign_in/ => generated 6930 bytes in 64 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+Wed Mar  2 18:29:28 2016 - ...gracefully killing workers...
+Wed Mar  2 18:29:28 2016 - Gracefully killing worker 1 (pid: 11024)...
+Wed Mar  2 18:29:28 2016 - Gracefully killing worker 4 (pid: 11027)...
+Wed Mar  2 18:29:28 2016 - Gracefully killing worker 2 (pid: 11025)...
+Wed Mar  2 18:29:28 2016 - Gracefully killing worker 3 (pid: 11026)...
+Wed Mar  2 18:29:29 2016 - worker 1 buried after 1 seconds
+Wed Mar  2 18:29:29 2016 - worker 2 buried after 1 seconds
+Wed Mar  2 18:29:29 2016 - worker 3 buried after 1 seconds
+Wed Mar  2 18:29:29 2016 - worker 4 buried after 1 seconds
+Wed Mar  2 18:29:29 2016 - binary reloading uWSGI...
+Wed Mar  2 18:29:29 2016 - chdir() to /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:29:29 2016 - closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+Wed Mar  2 18:29:29 2016 - found fd 3 mapped to socket 0 (TicketManagementSystem.sock)
+Wed Mar  2 18:29:29 2016 - found fd 4 mapped to socket 1 (/home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock)
+Wed Mar  2 18:29:29 2016 - running /usr/local/bin/uwsgi
+[uWSGI] parsing config file TMS_temp.xml
+Wed Mar  2 18:29:29 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Mar  2 18:29:29 2016] ***
+Wed Mar  2 18:29:29 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Mar  2 18:29:29 2016 - os: Linux-4.2.0-30-generic #36-Ubuntu SMP Fri Feb 26 00:58:07 UTC 2016
+Wed Mar  2 18:29:29 2016 - nodename: Kubuntu
+Wed Mar  2 18:29:29 2016 - machine: x86_64
+Wed Mar  2 18:29:29 2016 - clock source: unix
+Wed Mar  2 18:29:29 2016 - detected number of CPU cores: 4
+Wed Mar  2 18:29:29 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:29:29 2016 - detected binary path: /usr/local/bin/uwsgi
+Wed Mar  2 18:29:29 2016 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Mar  2 18:29:29 2016 - your processes number limit is 15201
+Wed Mar  2 18:29:29 2016 - your memory page size is 4096 bytes
+Wed Mar  2 18:29:29 2016 - detected max file descriptor number: 1024
+Wed Mar  2 18:29:29 2016 - lock engine: pthread robust mutexes
+Wed Mar  2 18:29:29 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Mar  2 18:29:29 2016 - uwsgi socket 0 inherited UNIX address TicketManagementSystem.sock fd 3
+Wed Mar  2 18:29:29 2016 - uwsgi socket 1 inherited UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
+Wed Mar  2 18:29:29 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Mar  2 18:29:29 2016 - Python main interpreter initialized at 0x15e3e80
+Wed Mar  2 18:29:29 2016 - python threads support enabled
+Wed Mar  2 18:29:29 2016 - your server socket listen backlog is limited to 100 connections
+Wed Mar  2 18:29:29 2016 - your mercy for graceful operations on workers is 60 seconds
+Wed Mar  2 18:29:29 2016 - mapped 363800 bytes (355 KB) for 4 cores
+Wed Mar  2 18:29:29 2016 - *** Operational MODE: preforking ***
+Wed Mar  2 18:29:29 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
+Wed Mar  2 18:29:29 2016 - WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x15e3e80 pid: 2443 (default app)
+Wed Mar  2 18:29:29 2016 - mountpoint  already configured. skip.
+Wed Mar  2 18:29:29 2016 - *** uWSGI is running in multiple interpreter mode ***
+Wed Mar  2 18:29:29 2016 - gracefully (RE)spawned uWSGI master process (pid: 2443)
+Wed Mar  2 18:29:29 2016 - spawned uWSGI worker 1 (pid: 11121, cores: 1)
+Wed Mar  2 18:29:29 2016 - spawned uWSGI worker 2 (pid: 11122, cores: 1)
+Wed Mar  2 18:29:29 2016 - spawned uWSGI worker 3 (pid: 11123, cores: 1)
+Wed Mar  2 18:29:29 2016 - spawned uWSGI worker 4 (pid: 11124, cores: 1)
+[pid: 11124|app: 0|req: 1/1] 49.140.62.120 () {44 vars in 777 bytes} [Wed Mar  2 18:29:45 2016] GET /ticket/train/query/ => generated 0 bytes in 98 msecs (HTTP/1.1 302) 4 headers in 168 bytes (1 switches on core 0)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+[pid: 11124|app: 0|req: 2/2] 49.140.62.120 () {48 vars in 902 bytes} [Wed Mar  2 18:30:39 2016] GET /account/sign_in/ => generated 6966 bytes in 61 msecs (HTTP/1.1 200) 6 headers in 216 bytes (2 switches on core 0)
+[pid: 11124|app: 0|req: 3/3] 49.140.62.120 () {46 vars in 804 bytes} [Wed Mar  2 18:30:39 2016] GET /account/diag_code?nocache => generated 1750 bytes in 141 msecs (HTTP/1.1 200) 7 headers in 332 bytes (2 switches on core 0)
+[pid: 11124|app: 0|req: 4/4] 49.140.62.120 () {48 vars in 902 bytes} [Wed Mar  2 18:30:41 2016] GET /account/sign_in/ => generated 6966 bytes in 42 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 11124|app: 0|req: 5/5] 49.140.62.120 () {46 vars in 804 bytes} [Wed Mar  2 18:30:41 2016] GET /account/diag_code?nocache => generated 1750 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
+Wed Mar  2 18:30:41 2016 - ...gracefully killing workers...
+Wed Mar  2 18:30:41 2016 - Gracefully killing worker 4 (pid: 11124)...
+Wed Mar  2 18:30:41 2016 - Gracefully killing worker 1 (pid: 11121)...
+Wed Mar  2 18:30:41 2016 - Gracefully killing worker 2 (pid: 11122)...
+Wed Mar  2 18:30:41 2016 - Gracefully killing worker 3 (pid: 11123)...
+Wed Mar  2 18:30:42 2016 - worker 1 buried after 1 seconds
+Wed Mar  2 18:30:42 2016 - worker 2 buried after 1 seconds
+Wed Mar  2 18:30:42 2016 - worker 3 buried after 1 seconds
+Wed Mar  2 18:30:42 2016 - worker 4 buried after 1 seconds
+Wed Mar  2 18:30:42 2016 - binary reloading uWSGI...
+Wed Mar  2 18:30:42 2016 - chdir() to /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:30:42 2016 - closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+Wed Mar  2 18:30:42 2016 - found fd 3 mapped to socket 0 (TicketManagementSystem.sock)
+Wed Mar  2 18:30:42 2016 - found fd 4 mapped to socket 1 (/home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock)
+Wed Mar  2 18:30:42 2016 - running /usr/local/bin/uwsgi
+[uWSGI] parsing config file TMS_temp.xml
+Wed Mar  2 18:30:42 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Mar  2 18:30:42 2016] ***
+Wed Mar  2 18:30:42 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Mar  2 18:30:42 2016 - os: Linux-4.2.0-30-generic #36-Ubuntu SMP Fri Feb 26 00:58:07 UTC 2016
+Wed Mar  2 18:30:42 2016 - nodename: Kubuntu
+Wed Mar  2 18:30:42 2016 - machine: x86_64
+Wed Mar  2 18:30:42 2016 - clock source: unix
+Wed Mar  2 18:30:42 2016 - detected number of CPU cores: 4
+Wed Mar  2 18:30:42 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:30:42 2016 - detected binary path: /usr/local/bin/uwsgi
+Wed Mar  2 18:30:42 2016 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Mar  2 18:30:42 2016 - your processes number limit is 15201
+Wed Mar  2 18:30:42 2016 - your memory page size is 4096 bytes
+Wed Mar  2 18:30:42 2016 - detected max file descriptor number: 1024
+Wed Mar  2 18:30:42 2016 - lock engine: pthread robust mutexes
+Wed Mar  2 18:30:42 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Mar  2 18:30:42 2016 - uwsgi socket 0 inherited UNIX address TicketManagementSystem.sock fd 3
+Wed Mar  2 18:30:42 2016 - uwsgi socket 1 inherited UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
+Wed Mar  2 18:30:42 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Mar  2 18:30:42 2016 - Python main interpreter initialized at 0x12aae80
+Wed Mar  2 18:30:42 2016 - python threads support enabled
+Wed Mar  2 18:30:42 2016 - your server socket listen backlog is limited to 100 connections
+Wed Mar  2 18:30:42 2016 - your mercy for graceful operations on workers is 60 seconds
+Wed Mar  2 18:30:42 2016 - mapped 363800 bytes (355 KB) for 4 cores
+Wed Mar  2 18:30:42 2016 - *** Operational MODE: preforking ***
+Wed Mar  2 18:30:43 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
+Wed Mar  2 18:30:43 2016 - WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x12aae80 pid: 2443 (default app)
+Wed Mar  2 18:30:43 2016 - mountpoint  already configured. skip.
+Wed Mar  2 18:30:43 2016 - *** uWSGI is running in multiple interpreter mode ***
+Wed Mar  2 18:30:43 2016 - gracefully (RE)spawned uWSGI master process (pid: 2443)
+Wed Mar  2 18:30:43 2016 - spawned uWSGI worker 1 (pid: 11180, cores: 1)
+Wed Mar  2 18:30:43 2016 - spawned uWSGI worker 2 (pid: 11181, cores: 1)
+Wed Mar  2 18:30:43 2016 - spawned uWSGI worker 3 (pid: 11182, cores: 1)
+Wed Mar  2 18:30:43 2016 - spawned uWSGI worker 4 (pid: 11183, cores: 1)
+[pid: 11183|app: 0|req: 1/1] 49.140.62.120 () {44 vars in 777 bytes} [Wed Mar  2 18:30:56 2016] GET /ticket/train/query/ => generated 0 bytes in 114 msecs (HTTP/1.1 302) 4 headers in 168 bytes (1 switches on core 0)
+Wed Mar  2 18:41:16 2016 - ...gracefully killing workers...
+Wed Mar  2 18:41:16 2016 - Gracefully killing worker 3 (pid: 11182)...
+Wed Mar  2 18:41:16 2016 - Gracefully killing worker 1 (pid: 11180)...
+Wed Mar  2 18:41:16 2016 - Gracefully killing worker 2 (pid: 11181)...
+Wed Mar  2 18:41:16 2016 - Gracefully killing worker 4 (pid: 11183)...
+Wed Mar  2 18:41:17 2016 - worker 1 buried after 1 seconds
+Wed Mar  2 18:41:17 2016 - worker 2 buried after 1 seconds
+Wed Mar  2 18:41:17 2016 - worker 3 buried after 1 seconds
+Wed Mar  2 18:41:17 2016 - worker 4 buried after 1 seconds
+Wed Mar  2 18:41:17 2016 - binary reloading uWSGI...
+Wed Mar  2 18:41:17 2016 - chdir() to /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:41:17 2016 - closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+Wed Mar  2 18:41:17 2016 - found fd 3 mapped to socket 0 (TicketManagementSystem.sock)
+Wed Mar  2 18:41:17 2016 - found fd 4 mapped to socket 1 (/home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock)
+Wed Mar  2 18:41:17 2016 - running /usr/local/bin/uwsgi
+[uWSGI] parsing config file TMS_temp.xml
+Wed Mar  2 18:41:17 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Mar  2 18:41:17 2016] ***
+Wed Mar  2 18:41:17 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Mar  2 18:41:17 2016 - os: Linux-4.2.0-30-generic #36-Ubuntu SMP Fri Feb 26 00:58:07 UTC 2016
+Wed Mar  2 18:41:17 2016 - nodename: Kubuntu
+Wed Mar  2 18:41:17 2016 - machine: x86_64
+Wed Mar  2 18:41:17 2016 - clock source: unix
+Wed Mar  2 18:41:17 2016 - detected number of CPU cores: 4
+Wed Mar  2 18:41:17 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:41:17 2016 - detected binary path: /usr/local/bin/uwsgi
+Wed Mar  2 18:41:17 2016 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Mar  2 18:41:17 2016 - your processes number limit is 15201
+Wed Mar  2 18:41:17 2016 - your memory page size is 4096 bytes
+Wed Mar  2 18:41:17 2016 - detected max file descriptor number: 1024
+Wed Mar  2 18:41:17 2016 - lock engine: pthread robust mutexes
+Wed Mar  2 18:41:17 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Mar  2 18:41:17 2016 - uwsgi socket 0 inherited UNIX address TicketManagementSystem.sock fd 3
+Wed Mar  2 18:41:17 2016 - uwsgi socket 1 inherited UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
+Wed Mar  2 18:41:17 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Mar  2 18:41:17 2016 - Python main interpreter initialized at 0xb31e80
+Wed Mar  2 18:41:17 2016 - python threads support enabled
+Wed Mar  2 18:41:17 2016 - your server socket listen backlog is limited to 100 connections
+Wed Mar  2 18:41:17 2016 - your mercy for graceful operations on workers is 60 seconds
+Wed Mar  2 18:41:17 2016 - mapped 363800 bytes (355 KB) for 4 cores
+Wed Mar  2 18:41:17 2016 - *** Operational MODE: preforking ***
+Wed Mar  2 18:41:17 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
+Wed Mar  2 18:41:17 2016 - WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0xb31e80 pid: 2443 (default app)
+Wed Mar  2 18:41:17 2016 - mountpoint  already configured. skip.
+Wed Mar  2 18:41:17 2016 - *** uWSGI is running in multiple interpreter mode ***
+Wed Mar  2 18:41:17 2016 - gracefully (RE)spawned uWSGI master process (pid: 2443)
+Wed Mar  2 18:41:17 2016 - spawned uWSGI worker 1 (pid: 12542, cores: 1)
+Wed Mar  2 18:41:17 2016 - spawned uWSGI worker 2 (pid: 12543, cores: 1)
+Wed Mar  2 18:41:17 2016 - spawned uWSGI worker 3 (pid: 12544, cores: 1)
+Wed Mar  2 18:41:17 2016 - spawned uWSGI worker 4 (pid: 12545, cores: 1)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+/usr/lib/python2.7/importlib/__init__.py:37: RemovedInDjango110Warning: django.core.context_processors is deprecated in favor of django.template.context_processors.
+  __import__(name)
+
+[pid: 12545|app: 0|req: 1/1] 49.140.62.120 () {44 vars in 752 bytes} [Wed Mar  2 18:41:44 2016] GET / => generated 823 bytes in 30 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
+[pid: 12545|app: 0|req: 2/2] 49.140.62.120 () {46 vars in 799 bytes} [Wed Mar  2 18:41:47 2016] GET /index => generated 6905 bytes in 47 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 12545|app: 0|req: 3/3] 49.140.62.120 () {44 vars in 762 bytes} [Wed Mar  2 18:41:47 2016] GET /account/diag_code?nocache => generated 1482 bytes in 86 msecs (HTTP/1.1 200) 7 headers in 332 bytes (2 switches on core 0)
+[pid: 12545|app: 0|req: 4/4] 49.140.62.120 () {44 vars in 777 bytes} [Wed Mar  2 18:41:48 2016] GET /ticket/train/query/ => generated 0 bytes in 21 msecs (HTTP/1.1 302) 4 headers in 168 bytes (1 switches on core 0)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+/usr/lib/python2.7/importlib/__init__.py:37: RemovedInDjango110Warning: django.core.context_processors is deprecated in favor of django.template.context_processors.
+  __import__(name)
+
+[pid: 12543|app: 0|req: 1/5] 49.140.62.120 () {46 vars in 893 bytes} [Wed Mar  2 18:41:48 2016] GET /account/turn_to_sign_in/?next=/ticket/train/query/ => generated 6433 bytes in 61 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 12545|app: 0|req: 5/6] 49.140.62.120 () {46 vars in 871 bytes} [Wed Mar  2 18:41:53 2016] GET /account/sign_in/ => generated 6983 bytes in 62 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+Wed Mar  2 18:42:17 2016 - ...gracefully killing workers...
+Wed Mar  2 18:42:17 2016 - Gracefully killing worker 2 (pid: 12543)...
+Wed Mar  2 18:42:17 2016 - Gracefully killing worker 1 (pid: 12542)...
+Wed Mar  2 18:42:17 2016 - Gracefully killing worker 3 (pid: 12544)...
+Wed Mar  2 18:42:17 2016 - Gracefully killing worker 4 (pid: 12545)...
+Wed Mar  2 18:42:18 2016 - worker 1 buried after 1 seconds
+Wed Mar  2 18:42:18 2016 - worker 2 buried after 1 seconds
+Wed Mar  2 18:42:18 2016 - worker 3 buried after 1 seconds
+Wed Mar  2 18:42:18 2016 - worker 4 buried after 1 seconds
+Wed Mar  2 18:42:18 2016 - binary reloading uWSGI...
+Wed Mar  2 18:42:18 2016 - chdir() to /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:42:18 2016 - closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+Wed Mar  2 18:42:18 2016 - found fd 3 mapped to socket 0 (TicketManagementSystem.sock)
+Wed Mar  2 18:42:18 2016 - found fd 4 mapped to socket 1 (/home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock)
+Wed Mar  2 18:42:18 2016 - running /usr/local/bin/uwsgi
+[uWSGI] parsing config file TMS_temp.xml
+Wed Mar  2 18:42:18 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Mar  2 18:42:18 2016] ***
+Wed Mar  2 18:42:18 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Mar  2 18:42:18 2016 - os: Linux-4.2.0-30-generic #36-Ubuntu SMP Fri Feb 26 00:58:07 UTC 2016
+Wed Mar  2 18:42:18 2016 - nodename: Kubuntu
+Wed Mar  2 18:42:18 2016 - machine: x86_64
+Wed Mar  2 18:42:18 2016 - clock source: unix
+Wed Mar  2 18:42:18 2016 - detected number of CPU cores: 4
+Wed Mar  2 18:42:18 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:42:18 2016 - detected binary path: /usr/local/bin/uwsgi
+Wed Mar  2 18:42:18 2016 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Mar  2 18:42:18 2016 - your processes number limit is 15201
+Wed Mar  2 18:42:18 2016 - your memory page size is 4096 bytes
+Wed Mar  2 18:42:18 2016 - detected max file descriptor number: 1024
+Wed Mar  2 18:42:18 2016 - lock engine: pthread robust mutexes
+Wed Mar  2 18:42:18 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Mar  2 18:42:18 2016 - uwsgi socket 0 inherited UNIX address TicketManagementSystem.sock fd 3
+Wed Mar  2 18:42:18 2016 - uwsgi socket 1 inherited UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
+Wed Mar  2 18:42:18 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Mar  2 18:42:18 2016 - Python main interpreter initialized at 0x1cf0e80
+Wed Mar  2 18:42:18 2016 - python threads support enabled
+Wed Mar  2 18:42:18 2016 - your server socket listen backlog is limited to 100 connections
+Wed Mar  2 18:42:18 2016 - your mercy for graceful operations on workers is 60 seconds
+Wed Mar  2 18:42:18 2016 - mapped 363800 bytes (355 KB) for 4 cores
+Wed Mar  2 18:42:18 2016 - *** Operational MODE: preforking ***
+Wed Mar  2 18:42:18 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
+Wed Mar  2 18:42:18 2016 - WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x1cf0e80 pid: 2443 (default app)
+Wed Mar  2 18:42:18 2016 - mountpoint  already configured. skip.
+Wed Mar  2 18:42:18 2016 - *** uWSGI is running in multiple interpreter mode ***
+Wed Mar  2 18:42:18 2016 - gracefully (RE)spawned uWSGI master process (pid: 2443)
+Wed Mar  2 18:42:18 2016 - spawned uWSGI worker 1 (pid: 12707, cores: 1)
+Wed Mar  2 18:42:18 2016 - spawned uWSGI worker 2 (pid: 12708, cores: 1)
+Wed Mar  2 18:42:18 2016 - spawned uWSGI worker 3 (pid: 12709, cores: 1)
+Wed Mar  2 18:42:18 2016 - spawned uWSGI worker 4 (pid: 12710, cores: 1)
+[pid: 12709|app: 0|req: 1/1] 49.140.62.120 () {44 vars in 777 bytes} [Wed Mar  2 18:44:20 2016] GET /ticket/train/query/ => generated 0 bytes in 66 msecs (HTTP/1.1 302) 4 headers in 168 bytes (1 switches on core 0)
+Wed Mar  2 18:48:45 2016 - ...gracefully killing workers...
+Wed Mar  2 18:48:45 2016 - Gracefully killing worker 1 (pid: 12707)...
+Wed Mar  2 18:48:45 2016 - Gracefully killing worker 2 (pid: 12708)...
+Wed Mar  2 18:48:45 2016 - Gracefully killing worker 4 (pid: 12710)...
+Wed Mar  2 18:48:45 2016 - Gracefully killing worker 3 (pid: 12709)...
+Wed Mar  2 18:48:46 2016 - worker 1 buried after 1 seconds
+Wed Mar  2 18:48:46 2016 - worker 2 buried after 1 seconds
+Wed Mar  2 18:48:46 2016 - worker 3 buried after 1 seconds
+Wed Mar  2 18:48:46 2016 - worker 4 buried after 1 seconds
+Wed Mar  2 18:48:46 2016 - binary reloading uWSGI...
+Wed Mar  2 18:48:46 2016 - chdir() to /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:48:46 2016 - closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+Wed Mar  2 18:48:46 2016 - found fd 3 mapped to socket 0 (TicketManagementSystem.sock)
+Wed Mar  2 18:48:46 2016 - found fd 4 mapped to socket 1 (/home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock)
+Wed Mar  2 18:48:46 2016 - running /usr/local/bin/uwsgi
+[uWSGI] parsing config file TMS_temp.xml
+Wed Mar  2 18:48:46 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Mar  2 18:48:46 2016] ***
+Wed Mar  2 18:48:46 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Mar  2 18:48:46 2016 - os: Linux-4.2.0-30-generic #36-Ubuntu SMP Fri Feb 26 00:58:07 UTC 2016
+Wed Mar  2 18:48:46 2016 - nodename: Kubuntu
+Wed Mar  2 18:48:46 2016 - machine: x86_64
+Wed Mar  2 18:48:46 2016 - clock source: unix
+Wed Mar  2 18:48:46 2016 - detected number of CPU cores: 4
+Wed Mar  2 18:48:46 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:48:46 2016 - detected binary path: /usr/local/bin/uwsgi
+Wed Mar  2 18:48:46 2016 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Mar  2 18:48:46 2016 - your processes number limit is 15201
+Wed Mar  2 18:48:46 2016 - your memory page size is 4096 bytes
+Wed Mar  2 18:48:46 2016 - detected max file descriptor number: 1024
+Wed Mar  2 18:48:46 2016 - lock engine: pthread robust mutexes
+Wed Mar  2 18:48:46 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Mar  2 18:48:46 2016 - uwsgi socket 0 inherited UNIX address TicketManagementSystem.sock fd 3
+Wed Mar  2 18:48:46 2016 - uwsgi socket 1 inherited UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
+Wed Mar  2 18:48:46 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Mar  2 18:48:46 2016 - Python main interpreter initialized at 0x1bd7e80
+Wed Mar  2 18:48:46 2016 - python threads support enabled
+Wed Mar  2 18:48:46 2016 - your server socket listen backlog is limited to 100 connections
+Wed Mar  2 18:48:46 2016 - your mercy for graceful operations on workers is 60 seconds
+Wed Mar  2 18:48:46 2016 - mapped 363800 bytes (355 KB) for 4 cores
+Wed Mar  2 18:48:46 2016 - *** Operational MODE: preforking ***
+Wed Mar  2 18:48:46 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
+Wed Mar  2 18:48:46 2016 - WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x1bd7e80 pid: 2443 (default app)
+Wed Mar  2 18:48:46 2016 - mountpoint  already configured. skip.
+Wed Mar  2 18:48:46 2016 - *** uWSGI is running in multiple interpreter mode ***
+Wed Mar  2 18:48:46 2016 - gracefully (RE)spawned uWSGI master process (pid: 2443)
+Wed Mar  2 18:48:46 2016 - spawned uWSGI worker 1 (pid: 13637, cores: 1)
+Wed Mar  2 18:48:46 2016 - spawned uWSGI worker 2 (pid: 13638, cores: 1)
+Wed Mar  2 18:48:46 2016 - spawned uWSGI worker 3 (pid: 13639, cores: 1)
+Wed Mar  2 18:48:46 2016 - spawned uWSGI worker 4 (pid: 13640, cores: 1)
+[pid: 13640|app: 0|req: 1/1] 49.140.62.120 () {44 vars in 777 bytes} [Wed Mar  2 18:48:56 2016] GET /ticket/train/query/ => generated 0 bytes in 67 msecs (HTTP/1.1 302) 4 headers in 168 bytes (1 switches on core 0)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+/usr/lib/python2.7/importlib/__init__.py:37: RemovedInDjango110Warning: django.core.context_processors is deprecated in favor of django.template.context_processors.
+  __import__(name)
+
+[pid: 13639|app: 0|req: 1/2] 49.140.62.120 () {48 vars in 869 bytes} [Wed Mar  2 18:49:53 2016] GET /account/sign_in/ => generated 6930 bytes in 93 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 13640|app: 0|req: 2/3] 49.140.62.120 () {46 vars in 771 bytes} [Wed Mar  2 18:49:53 2016] GET /account/diag_code?nocache => generated 1682 bytes in 152 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+/usr/lib/python2.7/importlib/__init__.py:37: RemovedInDjango110Warning: django.core.context_processors is deprecated in favor of django.template.context_processors.
+  __import__(name)
+
+[pid: 13640|app: 0|req: 3/4] 49.140.62.120 () {42 vars in 697 bytes} [Wed Mar  2 18:50:02 2016] GET / => generated 823 bytes in 2 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
+[pid: 13639|app: 0|req: 2/5] 49.140.62.120 () {44 vars in 744 bytes} [Wed Mar  2 18:50:06 2016] GET /index => generated 6905 bytes in 29 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 13640|app: 0|req: 4/6] 49.140.62.120 () {44 vars in 777 bytes} [Wed Mar  2 18:50:07 2016] GET /ticket/train/query/ => generated 0 bytes in 21 msecs (HTTP/1.1 302) 4 headers in 168 bytes (1 switches on core 0)
+[pid: 13640|app: 0|req: 5/7] 49.140.62.120 () {44 vars in 838 bytes} [Wed Mar  2 18:50:07 2016] GET /account/turn_to_sign_in/?next=/ticket/train/query/ => generated 6433 bytes in 24 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+Wed Mar  2 18:51:22 2016 - ...gracefully killing workers...
+Wed Mar  2 18:51:22 2016 - Gracefully killing worker 3 (pid: 13639)...
+Wed Mar  2 18:51:22 2016 - Gracefully killing worker 1 (pid: 13637)...
+Wed Mar  2 18:51:22 2016 - Gracefully killing worker 2 (pid: 13638)...
+Wed Mar  2 18:51:22 2016 - Gracefully killing worker 4 (pid: 13640)...
+Wed Mar  2 18:51:23 2016 - worker 1 buried after 1 seconds
+Wed Mar  2 18:51:23 2016 - worker 2 buried after 1 seconds
+Wed Mar  2 18:51:23 2016 - worker 3 buried after 1 seconds
+Wed Mar  2 18:51:23 2016 - worker 4 buried after 1 seconds
+Wed Mar  2 18:51:23 2016 - binary reloading uWSGI...
+Wed Mar  2 18:51:23 2016 - chdir() to /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:51:23 2016 - closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+Wed Mar  2 18:51:23 2016 - found fd 3 mapped to socket 0 (TicketManagementSystem.sock)
+Wed Mar  2 18:51:23 2016 - found fd 4 mapped to socket 1 (/home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock)
+Wed Mar  2 18:51:23 2016 - running /usr/local/bin/uwsgi
+[uWSGI] parsing config file TMS_temp.xml
+Wed Mar  2 18:51:23 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Mar  2 18:51:23 2016] ***
+Wed Mar  2 18:51:23 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Mar  2 18:51:23 2016 - os: Linux-4.2.0-30-generic #36-Ubuntu SMP Fri Feb 26 00:58:07 UTC 2016
+Wed Mar  2 18:51:23 2016 - nodename: Kubuntu
+Wed Mar  2 18:51:23 2016 - machine: x86_64
+Wed Mar  2 18:51:23 2016 - clock source: unix
+Wed Mar  2 18:51:23 2016 - detected number of CPU cores: 4
+Wed Mar  2 18:51:23 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 18:51:23 2016 - detected binary path: /usr/local/bin/uwsgi
+Wed Mar  2 18:51:23 2016 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Mar  2 18:51:23 2016 - your processes number limit is 15201
+Wed Mar  2 18:51:23 2016 - your memory page size is 4096 bytes
+Wed Mar  2 18:51:23 2016 - detected max file descriptor number: 1024
+Wed Mar  2 18:51:23 2016 - lock engine: pthread robust mutexes
+Wed Mar  2 18:51:23 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Mar  2 18:51:23 2016 - uwsgi socket 0 inherited UNIX address TicketManagementSystem.sock fd 3
+Wed Mar  2 18:51:23 2016 - uwsgi socket 1 inherited UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
+Wed Mar  2 18:51:23 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Mar  2 18:51:23 2016 - Python main interpreter initialized at 0x9bce80
+Wed Mar  2 18:51:23 2016 - python threads support enabled
+Wed Mar  2 18:51:23 2016 - your server socket listen backlog is limited to 100 connections
+Wed Mar  2 18:51:23 2016 - your mercy for graceful operations on workers is 60 seconds
+Wed Mar  2 18:51:23 2016 - mapped 363800 bytes (355 KB) for 4 cores
+Wed Mar  2 18:51:23 2016 - *** Operational MODE: preforking ***
+Wed Mar  2 18:51:24 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
+Wed Mar  2 18:51:24 2016 - WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x9bce80 pid: 2443 (default app)
+Wed Mar  2 18:51:24 2016 - mountpoint  already configured. skip.
+Wed Mar  2 18:51:24 2016 - *** uWSGI is running in multiple interpreter mode ***
+Wed Mar  2 18:51:24 2016 - gracefully (RE)spawned uWSGI master process (pid: 2443)
+Wed Mar  2 18:51:24 2016 - spawned uWSGI worker 1 (pid: 14050, cores: 1)
+Wed Mar  2 18:51:24 2016 - spawned uWSGI worker 2 (pid: 14051, cores: 1)
+Wed Mar  2 18:51:24 2016 - spawned uWSGI worker 3 (pid: 14052, cores: 1)
+Wed Mar  2 18:51:24 2016 - spawned uWSGI worker 4 (pid: 14053, cores: 1)
+[pid: 14052|app: 0|req: 1/1] 49.140.62.120 () {44 vars in 777 bytes} [Wed Mar  2 18:51:28 2016] GET /ticket/train/query/ => generated 0 bytes in 69 msecs (HTTP/1.1 302) 4 headers in 168 bytes (1 switches on core 0)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+/usr/lib/python2.7/importlib/__init__.py:37: RemovedInDjango110Warning: django.core.context_processors is deprecated in favor of django.template.context_processors.
+  __import__(name)
+
+[pid: 14050|app: 0|req: 1/2] 49.140.62.120 () {48 vars in 902 bytes} [Wed Mar  2 18:51:41 2016] GET /account/sign_in/ => generated 6976 bytes in 94 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 14050|app: 0|req: 2/3] 49.140.62.120 () {46 vars in 804 bytes} [Wed Mar  2 18:51:42 2016] GET /account/diag_code?nocache => generated 1693 bytes in 122 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
+Wed Mar  2 19:11:36 2016 - ...gracefully killing workers...
+Wed Mar  2 19:11:36 2016 - Gracefully killing worker 3 (pid: 14052)...
+Wed Mar  2 19:11:36 2016 - Gracefully killing worker 2 (pid: 14051)...
+Wed Mar  2 19:11:36 2016 - Gracefully killing worker 1 (pid: 14050)...
+Wed Mar  2 19:11:36 2016 - Gracefully killing worker 4 (pid: 14053)...
+Wed Mar  2 19:11:37 2016 - worker 1 buried after 1 seconds
+Wed Mar  2 19:11:37 2016 - worker 2 buried after 1 seconds
+Wed Mar  2 19:11:37 2016 - worker 3 buried after 1 seconds
+Wed Mar  2 19:11:37 2016 - worker 4 buried after 1 seconds
+Wed Mar  2 19:11:37 2016 - binary reloading uWSGI...
+Wed Mar  2 19:11:37 2016 - chdir() to /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 19:11:37 2016 - closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+Wed Mar  2 19:11:37 2016 - found fd 3 mapped to socket 0 (TicketManagementSystem.sock)
+Wed Mar  2 19:11:37 2016 - found fd 4 mapped to socket 1 (/home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock)
+Wed Mar  2 19:11:37 2016 - running /usr/local/bin/uwsgi
+[uWSGI] parsing config file TMS_temp.xml
+Wed Mar  2 19:11:37 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Mar  2 19:11:37 2016] ***
+Wed Mar  2 19:11:37 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Mar  2 19:11:37 2016 - os: Linux-4.2.0-30-generic #36-Ubuntu SMP Fri Feb 26 00:58:07 UTC 2016
+Wed Mar  2 19:11:37 2016 - nodename: Kubuntu
+Wed Mar  2 19:11:37 2016 - machine: x86_64
+Wed Mar  2 19:11:37 2016 - clock source: unix
+Wed Mar  2 19:11:37 2016 - detected number of CPU cores: 4
+Wed Mar  2 19:11:37 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 19:11:37 2016 - detected binary path: /usr/local/bin/uwsgi
+Wed Mar  2 19:11:37 2016 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Mar  2 19:11:37 2016 - your processes number limit is 15201
+Wed Mar  2 19:11:37 2016 - your memory page size is 4096 bytes
+Wed Mar  2 19:11:37 2016 - detected max file descriptor number: 1024
+Wed Mar  2 19:11:37 2016 - lock engine: pthread robust mutexes
+Wed Mar  2 19:11:37 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Mar  2 19:11:37 2016 - uwsgi socket 0 inherited UNIX address TicketManagementSystem.sock fd 3
+Wed Mar  2 19:11:37 2016 - uwsgi socket 1 inherited UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
+Wed Mar  2 19:11:37 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Mar  2 19:11:37 2016 - Python main interpreter initialized at 0x22a3e80
+Wed Mar  2 19:11:37 2016 - python threads support enabled
+Wed Mar  2 19:11:37 2016 - your server socket listen backlog is limited to 100 connections
+Wed Mar  2 19:11:37 2016 - your mercy for graceful operations on workers is 60 seconds
+Wed Mar  2 19:11:37 2016 - mapped 363800 bytes (355 KB) for 4 cores
+Wed Mar  2 19:11:37 2016 - *** Operational MODE: preforking ***
+Wed Mar  2 19:11:37 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
+Wed Mar  2 19:11:37 2016 - WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x22a3e80 pid: 2443 (default app)
+Wed Mar  2 19:11:37 2016 - mountpoint  already configured. skip.
+Wed Mar  2 19:11:37 2016 - *** uWSGI is running in multiple interpreter mode ***
+Wed Mar  2 19:11:37 2016 - gracefully (RE)spawned uWSGI master process (pid: 2443)
+Wed Mar  2 19:11:37 2016 - spawned uWSGI worker 1 (pid: 15986, cores: 1)
+Wed Mar  2 19:11:37 2016 - spawned uWSGI worker 2 (pid: 15987, cores: 1)
+Wed Mar  2 19:11:37 2016 - spawned uWSGI worker 3 (pid: 15988, cores: 1)
+Wed Mar  2 19:11:37 2016 - spawned uWSGI worker 4 (pid: 15989, cores: 1)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+/usr/lib/python2.7/importlib/__init__.py:37: RemovedInDjango110Warning: django.core.context_processors is deprecated in favor of django.template.context_processors.
+  __import__(name)
+
+[pid: 15989|app: 0|req: 1/1] 49.140.62.120 () {44 vars in 752 bytes} [Wed Mar  2 19:12:00 2016] GET / => generated 823 bytes in 30 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+/usr/lib/python2.7/importlib/__init__.py:37: RemovedInDjango110Warning: django.core.context_processors is deprecated in favor of django.template.context_processors.
+  __import__(name)
+
+[pid: 15986|app: 0|req: 1/2] 49.140.62.120 () {46 vars in 799 bytes} [Wed Mar  2 19:12:05 2016] GET /index => generated 6905 bytes in 88 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 15989|app: 0|req: 2/3] 49.140.62.120 () {44 vars in 762 bytes} [Wed Mar  2 19:12:05 2016] GET /account/diag_code?nocache => generated 1511 bytes in 113 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
+[pid: 15989|app: 0|req: 3/4] 49.140.62.120 () {44 vars in 777 bytes} [Wed Mar  2 19:12:06 2016] GET /ticket/train/query/ => generated 0 bytes in 23 msecs (HTTP/1.1 302) 4 headers in 168 bytes (1 switches on core 0)
+[pid: 15986|app: 0|req: 2/5] 49.140.62.120 () {46 vars in 893 bytes} [Wed Mar  2 19:12:06 2016] GET /account/turn_to_sign_in/?next=/ticket/train/query/ => generated 6433 bytes in 22 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 15989|app: 0|req: 4/6] 49.140.62.120 () {46 vars in 871 bytes} [Wed Mar  2 19:12:10 2016] GET /account/sign_in/ => generated 6925 bytes in 48 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 15989|app: 0|req: 5/7] 49.140.62.120 () {52 vars in 957 bytes} [Wed Mar  2 19:12:21 2016] POST /account/sign_in/ => generated 5468 bytes in 478 msecs (HTTP/1.1 200) 4 headers in 233 bytes (1 switches on core 0)
+[pid: 15989|app: 0|req: 6/8] 49.140.62.120 () {42 vars in 718 bytes} [Wed Mar  2 19:12:22 2016] GET /account/diag_code?nocache => generated 1534 bytes in 58 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
+[pid: 15986|app: 0|req: 3/9] 49.140.62.120 () {44 vars in 788 bytes} [Wed Mar  2 19:12:27 2016] GET /ticket/train/query/ => generated 10532 bytes in 39 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 15986|app: 0|req: 4/10] 49.140.62.120 () {44 vars in 910 bytes} [Wed Mar  2 19:12:35 2016] GET /ticket/train/ajax_get/?start=%E9%95%BF%E6%98%A5&terminus=%E5%8C%97%E4%BA%AC&date=2016-04-01 => generated 414 bytes in 390 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
+[pid: 15986|app: 0|req: 5/11] 49.140.62.120 () {44 vars in 910 bytes} [Wed Mar  2 19:12:39 2016] GET /ticket/train/ajax_get/?start=%E9%95%BF%E6%98%A5&terminus=%E5%8C%97%E4%BA%AC&date=2016-04-02 => generated 39 bytes in 23 msecs (HTTP/1.1 200) 5 headers in 194 bytes (1 switches on core 0)
+[pid: 15988|app: 0|req: 1/12] 49.140.62.120 () {44 vars in 892 bytes} [Wed Mar  2 19:12:48 2016] GET /ticket/train/ajax_get/?start=%E9%95%BF%E6%98%A5&terminus=%E5%8C%97&date=2016-04-02 => generated 39 bytes in 68 msecs (HTTP/1.1 200) 5 headers in 194 bytes (1 switches on core 0)
+Wed Mar  2 19:16:01 2016 - ...gracefully killing workers...
+Wed Mar  2 19:16:01 2016 - Gracefully killing worker 1 (pid: 15986)...
+Wed Mar  2 19:16:01 2016 - Gracefully killing worker 2 (pid: 15987)...
+Wed Mar  2 19:16:01 2016 - Gracefully killing worker 3 (pid: 15988)...
+Wed Mar  2 19:16:01 2016 - Gracefully killing worker 4 (pid: 15989)...
+Wed Mar  2 19:16:02 2016 - worker 1 buried after 1 seconds
+Wed Mar  2 19:16:02 2016 - worker 2 buried after 1 seconds
+Wed Mar  2 19:16:02 2016 - worker 3 buried after 1 seconds
+Wed Mar  2 19:16:02 2016 - worker 4 buried after 1 seconds
+Wed Mar  2 19:16:02 2016 - binary reloading uWSGI...
+Wed Mar  2 19:16:02 2016 - chdir() to /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 19:16:02 2016 - closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+Wed Mar  2 19:16:02 2016 - found fd 3 mapped to socket 0 (TicketManagementSystem.sock)
+Wed Mar  2 19:16:02 2016 - found fd 4 mapped to socket 1 (/home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock)
+Wed Mar  2 19:16:02 2016 - running /usr/local/bin/uwsgi
+[uWSGI] parsing config file TMS_temp.xml
+Wed Mar  2 19:16:02 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Mar  2 19:16:02 2016] ***
+Wed Mar  2 19:16:02 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Mar  2 19:16:02 2016 - os: Linux-4.2.0-30-generic #36-Ubuntu SMP Fri Feb 26 00:58:07 UTC 2016
+Wed Mar  2 19:16:02 2016 - nodename: Kubuntu
+Wed Mar  2 19:16:02 2016 - machine: x86_64
+Wed Mar  2 19:16:02 2016 - clock source: unix
+Wed Mar  2 19:16:02 2016 - detected number of CPU cores: 4
+Wed Mar  2 19:16:02 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 19:16:02 2016 - detected binary path: /usr/local/bin/uwsgi
+Wed Mar  2 19:16:02 2016 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Mar  2 19:16:02 2016 - your processes number limit is 15201
+Wed Mar  2 19:16:02 2016 - your memory page size is 4096 bytes
+Wed Mar  2 19:16:02 2016 - detected max file descriptor number: 1024
+Wed Mar  2 19:16:02 2016 - lock engine: pthread robust mutexes
+Wed Mar  2 19:16:02 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Mar  2 19:16:02 2016 - uwsgi socket 0 inherited UNIX address TicketManagementSystem.sock fd 3
+Wed Mar  2 19:16:02 2016 - uwsgi socket 1 inherited UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
+Wed Mar  2 19:16:02 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Mar  2 19:16:02 2016 - Python main interpreter initialized at 0x147ae80
+Wed Mar  2 19:16:02 2016 - python threads support enabled
+Wed Mar  2 19:16:02 2016 - your server socket listen backlog is limited to 100 connections
+Wed Mar  2 19:16:02 2016 - your mercy for graceful operations on workers is 60 seconds
+Wed Mar  2 19:16:02 2016 - mapped 363800 bytes (355 KB) for 4 cores
+Wed Mar  2 19:16:02 2016 - *** Operational MODE: preforking ***
+Wed Mar  2 19:16:02 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
+Wed Mar  2 19:16:02 2016 - WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0x147ae80 pid: 2443 (default app)
+Wed Mar  2 19:16:02 2016 - mountpoint  already configured. skip.
+Wed Mar  2 19:16:02 2016 - *** uWSGI is running in multiple interpreter mode ***
+Wed Mar  2 19:16:02 2016 - gracefully (RE)spawned uWSGI master process (pid: 2443)
+Wed Mar  2 19:16:02 2016 - spawned uWSGI worker 1 (pid: 16620, cores: 1)
+Wed Mar  2 19:16:02 2016 - spawned uWSGI worker 2 (pid: 16621, cores: 1)
+Wed Mar  2 19:16:02 2016 - spawned uWSGI worker 3 (pid: 16622, cores: 1)
+Wed Mar  2 19:16:02 2016 - spawned uWSGI worker 4 (pid: 16623, cores: 1)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+/usr/lib/python2.7/importlib/__init__.py:37: RemovedInDjango110Warning: django.core.context_processors is deprecated in favor of django.template.context_processors.
+  __import__(name)
+
+[pid: 16622|app: 0|req: 1/1] 49.140.62.120 () {48 vars in 874 bytes} [Wed Mar  2 19:17:07 2016] GET /ticket/train/query/ => generated 10574 bytes in 90 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 16622|app: 0|req: 2/2] 49.140.62.120 () {46 vars in 807 bytes} [Wed Mar  2 19:17:08 2016] GET /account/diag_code?nocache => generated 1582 bytes in 91 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
+[pid: 16623|app: 0|req: 1/3] 49.140.62.120 () {44 vars in 892 bytes} [Wed Mar  2 19:17:35 2016] GET /ticket/train/ajax_get/?start=%E9%95%BF%E6%98%A5&terminus=%E5%8C%97&date=2016-03-04 => generated 39 bytes in 61 msecs (HTTP/1.1 200) 5 headers in 194 bytes (1 switches on core 0)
+Wed Mar  2 19:24:02 2016 - ...gracefully killing workers...
+Wed Mar  2 19:24:02 2016 - Gracefully killing worker 4 (pid: 16623)...
+Wed Mar  2 19:24:02 2016 - Gracefully killing worker 1 (pid: 16620)...
+Wed Mar  2 19:24:02 2016 - Gracefully killing worker 3 (pid: 16622)...
+Wed Mar  2 19:24:02 2016 - Gracefully killing worker 2 (pid: 16621)...
+Wed Mar  2 19:24:03 2016 - worker 1 buried after 1 seconds
+Wed Mar  2 19:24:03 2016 - worker 2 buried after 1 seconds
+Wed Mar  2 19:24:03 2016 - worker 3 buried after 1 seconds
+Wed Mar  2 19:24:03 2016 - worker 4 buried after 1 seconds
+Wed Mar  2 19:24:03 2016 - binary reloading uWSGI...
+Wed Mar  2 19:24:03 2016 - chdir() to /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 19:24:03 2016 - closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+Wed Mar  2 19:24:03 2016 - found fd 3 mapped to socket 0 (TicketManagementSystem.sock)
+Wed Mar  2 19:24:03 2016 - found fd 4 mapped to socket 1 (/home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock)
+Wed Mar  2 19:24:03 2016 - running /usr/local/bin/uwsgi
+[uWSGI] parsing config file TMS_temp.xml
+Wed Mar  2 19:24:03 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Mar  2 19:24:03 2016] ***
+Wed Mar  2 19:24:03 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Mar  2 19:24:03 2016 - os: Linux-4.2.0-30-generic #36-Ubuntu SMP Fri Feb 26 00:58:07 UTC 2016
+Wed Mar  2 19:24:03 2016 - nodename: Kubuntu
+Wed Mar  2 19:24:03 2016 - machine: x86_64
+Wed Mar  2 19:24:03 2016 - clock source: unix
+Wed Mar  2 19:24:03 2016 - detected number of CPU cores: 4
+Wed Mar  2 19:24:03 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 19:24:03 2016 - detected binary path: /usr/local/bin/uwsgi
+Wed Mar  2 19:24:03 2016 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Mar  2 19:24:03 2016 - your processes number limit is 15201
+Wed Mar  2 19:24:03 2016 - your memory page size is 4096 bytes
+Wed Mar  2 19:24:03 2016 - detected max file descriptor number: 1024
+Wed Mar  2 19:24:03 2016 - lock engine: pthread robust mutexes
+Wed Mar  2 19:24:03 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Mar  2 19:24:03 2016 - uwsgi socket 0 inherited UNIX address TicketManagementSystem.sock fd 3
+Wed Mar  2 19:24:03 2016 - uwsgi socket 1 inherited UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
+Wed Mar  2 19:24:03 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Mar  2 19:24:03 2016 - Python main interpreter initialized at 0x1894e80
+Wed Mar  2 19:24:03 2016 - python threads support enabled
+Wed Mar  2 19:24:03 2016 - your server socket listen backlog is limited to 100 connections
+Wed Mar  2 19:24:03 2016 - your mercy for graceful operations on workers is 60 seconds
+Wed Mar  2 19:24:03 2016 - mapped 363800 bytes (355 KB) for 4 cores
+Wed Mar  2 19:24:03 2016 - *** Operational MODE: preforking ***
+Wed Mar  2 19:24:04 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
+Wed Mar  2 19:24:04 2016 - WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x1894e80 pid: 2443 (default app)
+Wed Mar  2 19:24:04 2016 - mountpoint  already configured. skip.
+Wed Mar  2 19:24:04 2016 - *** uWSGI is running in multiple interpreter mode ***
+Wed Mar  2 19:24:04 2016 - gracefully (RE)spawned uWSGI master process (pid: 2443)
+Wed Mar  2 19:24:04 2016 - spawned uWSGI worker 1 (pid: 17553, cores: 1)
+Wed Mar  2 19:24:04 2016 - spawned uWSGI worker 2 (pid: 17554, cores: 1)
+Wed Mar  2 19:24:04 2016 - spawned uWSGI worker 3 (pid: 17555, cores: 1)
+Wed Mar  2 19:24:04 2016 - spawned uWSGI worker 4 (pid: 17556, cores: 1)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+/usr/lib/python2.7/importlib/__init__.py:37: RemovedInDjango110Warning: django.core.context_processors is deprecated in favor of django.template.context_processors.
+  __import__(name)
+
+[pid: 17556|app: 0|req: 1/1] 49.140.62.120 () {44 vars in 752 bytes} [Wed Mar  2 19:24:13 2016] GET / => generated 823 bytes in 34 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
+[pid: 17556|app: 0|req: 2/2] 49.140.62.120 () {44 vars in 744 bytes} [Wed Mar  2 19:24:16 2016] GET /index => generated 6580 bytes in 79 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 17556|app: 0|req: 3/3] 49.140.62.120 () {44 vars in 818 bytes} [Wed Mar  2 19:24:20 2016] GET /ticket/train/ajax_get/?start=&terminus=&date= => generated 39 bytes in 2 msecs (HTTP/1.1 200) 5 headers in 194 bytes (1 switches on core 0)
+[pid: 17556|app: 0|req: 4/4] 49.140.62.120 () {48 vars in 863 bytes} [Wed Mar  2 19:24:42 2016] GET /ticket/train/query/ => generated 10508 bytes in 27 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 17556|app: 0|req: 5/5] 49.140.62.120 () {46 vars in 807 bytes} [Wed Mar  2 19:24:42 2016] GET /account/diag_code?nocache => generated 1510 bytes in 61 msecs (HTTP/1.1 200) 7 headers in 332 bytes (2 switches on core 0)
+[pid: 17556|app: 0|req: 6/6] 49.140.62.120 () {44 vars in 910 bytes} [Wed Mar  2 19:25:06 2016] GET /ticket/train/ajax_get/?start=%E9%95%BF%E6%98%A5&terminus=%E5%8C%97%E4%BA%AC&date=2016-03-05 => generated 39 bytes in 35 msecs (HTTP/1.1 200) 5 headers in 194 bytes (1 switches on core 0)
+[pid: 17554|app: 0|req: 1/7] 49.140.62.120 () {46 vars in 965 bytes} [Wed Mar  2 19:25:26 2016] GET /ticket/train/ajax_get/?start=%E9%95%BF%E6%98%A5&terminus=%E5%8C%97%E4%BA%AC&date=2016-04-01 => generated 414 bytes in 157 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
+[pid: 17556|app: 0|req: 7/8] 49.140.98.139 () {38 vars in 628 bytes} [Wed Mar  2 19:26:59 2016] GET / => generated 823 bytes in 1 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
+[pid: 17556|app: 0|req: 8/9] 49.140.98.139 () {40 vars in 675 bytes} [Wed Mar  2 19:27:04 2016] GET /index => generated 6905 bytes in 3 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 17556|app: 0|req: 9/10] 49.140.98.139 () {40 vars in 665 bytes} [Wed Mar  2 19:27:04 2016] GET /account/diag_code?nocache => generated 1508 bytes in 31 msecs (HTTP/1.1 200) 4 headers in 218 bytes (1 switches on core 0)
+[pid: 17555|app: 0|req: 1/11] 49.140.98.139 () {42 vars in 765 bytes} [Wed Mar  2 19:27:05 2016] GET /ticket/train/query/ => generated 0 bytes in 62 msecs (HTTP/1.1 302) 4 headers in 168 bytes (1 switches on core 0)
+[pid: 17556|app: 0|req: 10/12] 49.140.98.139 () {42 vars in 826 bytes} [Wed Mar  2 19:27:05 2016] GET /account/turn_to_sign_in/?next=/ticket/train/query/ => generated 6433 bytes in 24 msecs (HTTP/1.1 200) 6 headers in 216 bytes (2 switches on core 0)
+[pid: 17556|app: 0|req: 11/13] 49.140.98.139 () {42 vars in 767 bytes} [Wed Mar  2 19:27:05 2016] GET /account/diag_code?nocache => generated 1631 bytes in 60 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+/usr/lib/python2.7/importlib/__init__.py:37: RemovedInDjango110Warning: django.core.context_processors is deprecated in favor of django.template.context_processors.
+  __import__(name)
+
+[pid: 17555|app: 0|req: 2/14] 49.140.98.139 () {42 vars in 804 bytes} [Wed Mar  2 19:27:09 2016] GET /account/sign_in/ => generated 6925 bytes in 107 msecs (HTTP/1.1 200) 7 headers in 347 bytes (1 switches on core 0)
+[pid: 17555|app: 0|req: 3/15] 49.140.98.139 () {50 vars in 951 bytes} [Wed Mar  2 19:27:32 2016] POST /account/sign_in/ => generated 5468 bytes in 114 msecs (HTTP/1.1 200) 4 headers in 233 bytes (1 switches on core 0)
+[pid: 17555|app: 0|req: 4/16] 49.140.98.139 () {42 vars in 776 bytes} [Wed Mar  2 19:27:37 2016] GET /ticket/train/query/ => generated 10490 bytes in 23 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 17555|app: 0|req: 5/17] 49.140.98.139 () {44 vars in 841 bytes} [Wed Mar  2 19:27:39 2016] GET /ticket/train/ajax_get/?start=&terminus=&date= => generated 39 bytes in 7 msecs (HTTP/1.1 200) 5 headers in 194 bytes (1 switches on core 0)
+[pid: 17556|app: 0|req: 12/18] 49.140.98.139 () {44 vars in 935 bytes} [Wed Mar  2 19:28:04 2016] GET /ticket/train/ajax_get/?start=%E9%95%BF%E6%98%A5&terminus=+%E5%8C%97%E4%BA%AC&date=2016-03-04 => generated 39 bytes in 33 msecs (HTTP/1.1 200) 5 headers in 194 bytes (1 switches on core 0)
+[pid: 17556|app: 0|req: 13/19] 49.140.98.139 () {44 vars in 935 bytes} [Wed Mar  2 19:28:09 2016] GET /ticket/train/ajax_get/?start=%E9%95%BF%E6%98%A5&terminus=+%E5%8C%97%E4%BA%AC&date=2016-04-01 => generated 39 bytes in 19 msecs (HTTP/1.1 200) 5 headers in 194 bytes (1 switches on core 0)
+[pid: 17556|app: 0|req: 14/20] 49.140.98.139 () {42 vars in 775 bytes} [Wed Mar  2 19:28:38 2016] GET /account/sign_out/ => generated 0 bytes in 74 msecs (HTTP/1.1 302) 4 headers in 192 bytes (1 switches on core 0)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+/usr/lib/python2.7/importlib/__init__.py:37: RemovedInDjango110Warning: django.core.context_processors is deprecated in favor of django.template.context_processors.
+  __import__(name)
+
+[pid: 17553|app: 0|req: 1/21] 49.140.62.120 () {48 vars in 863 bytes} [Wed Mar  2 19:28:39 2016] GET /ticket/train/query/ => generated 10490 bytes in 92 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 17556|app: 0|req: 15/22] 49.140.62.120 () {46 vars in 807 bytes} [Wed Mar  2 19:28:39 2016] GET /account/diag_code?nocache => generated 1510 bytes in 1 msecs (HTTP/1.1 200) 7 headers in 332 bytes (1 switches on core 0)
+[pid: 17554|app: 0|req: 2/23] 49.140.98.139 () {40 vars in 719 bytes} [Wed Mar  2 19:28:44 2016] GET /ticket/train/query/ => generated 0 bytes in 4 msecs (HTTP/1.1 302) 4 headers in 168 bytes (1 switches on core 0)
+/usr/local/lib/python2.7/dist-packages/django/shortcuts.py:45: RemovedInDjango110Warning: The context_instance argument of render_to_string is deprecated.
+  using=using)
+
+/usr/lib/python2.7/importlib/__init__.py:37: RemovedInDjango110Warning: django.core.context_processors is deprecated in favor of django.template.context_processors.
+  __import__(name)
+
+[pid: 17554|app: 0|req: 3/24] 49.140.98.139 () {40 vars in 780 bytes} [Wed Mar  2 19:28:44 2016] GET /account/turn_to_sign_in/?next=/ticket/train/query/ => generated 6433 bytes in 7 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 17556|app: 0|req: 16/25] 49.140.62.120 () {44 vars in 910 bytes} [Wed Mar  2 19:28:47 2016] GET /ticket/train/ajax_get/?start=%E9%95%BF%E6%98%A5&terminus=%E5%8C%97%E4%BA%AC&date=2016-03-04 => generated 39 bytes in 20 msecs (HTTP/1.1 200) 5 headers in 194 bytes (1 switches on core 0)
+[pid: 17555|app: 0|req: 6/26] 49.140.98.139 () {40 vars in 747 bytes} [Wed Mar  2 19:28:48 2016] GET /account/sign_in/ => generated 6925 bytes in 76 msecs (HTTP/1.1 200) 4 headers in 233 bytes (1 switches on core 0)
+[pid: 17555|app: 0|req: 7/27] 49.140.62.120 () {44 vars in 910 bytes} [Wed Mar  2 19:29:03 2016] GET /ticket/train/ajax_get/?start=%E9%95%BF%E6%98%A5&terminus=%E5%8C%97%E4%BA%AC&date=2016-04-13 => generated 39 bytes in 20 msecs (HTTP/1.1 200) 5 headers in 194 bytes (1 switches on core 0)
+[pid: 17555|app: 0|req: 8/28] 49.140.98.139 () {50 vars in 951 bytes} [Wed Mar  2 19:29:37 2016] POST /account/sign_in/ => generated 5468 bytes in 103 msecs (HTTP/1.1 200) 4 headers in 233 bytes (1 switches on core 0)
+[pid: 17555|app: 0|req: 9/29] 49.140.98.139 () {42 vars in 776 bytes} [Wed Mar  2 19:29:38 2016] GET /ticket/train/query/ => generated 10490 bytes in 30 msecs (HTTP/1.1 200) 6 headers in 216 bytes (1 switches on core 0)
+[pid: 17556|app: 0|req: 17/30] 49.140.98.139 () {44 vars in 861 bytes} [Wed Mar  2 19:29:52 2016] GET /ticket/train/ajax_get/?start=&terminus=&date=2016-04-01 => generated 39 bytes in 3 msecs (HTTP/1.1 200) 5 headers in 194 bytes (1 switches on core 0)
+[pid: 17555|app: 0|req: 10/31] 49.140.98.139 () {44 vars in 933 bytes} [Wed Mar  2 19:30:10 2016] GET /ticket/train/ajax_get/?start=%E9%95%BF%E6%98%A5&terminus=%E5%8C%97%E4%BA%AC&date=2016-04-01 => generated 414 bytes in 36 msecs (HTTP/1.1 200) 5 headers in 202 bytes (1 switches on core 0)
+Not Found: /favicon.ico
+[pid: 17556|app: 0|req: 18/32] 49.140.98.139 () {40 vars in 636 bytes} [Wed Mar  2 19:30:28 2016] GET /favicon.ico => generated 3722 bytes in 13 msecs (HTTP/1.1 404) 2 headers in 80 bytes (1 switches on core 0)
+Wed Mar  2 20:29:01 2016 - ...gracefully killing workers...
+Wed Mar  2 20:29:01 2016 - Gracefully killing worker 1 (pid: 17553)...
+Wed Mar  2 20:29:01 2016 - Gracefully killing worker 3 (pid: 17555)...
+Wed Mar  2 20:29:01 2016 - Gracefully killing worker 2 (pid: 17554)...
+Wed Mar  2 20:29:01 2016 - Gracefully killing worker 4 (pid: 17556)...
+Wed Mar  2 20:29:02 2016 - worker 1 buried after 1 seconds
+Wed Mar  2 20:29:02 2016 - worker 2 buried after 1 seconds
+Wed Mar  2 20:29:02 2016 - worker 3 buried after 1 seconds
+Wed Mar  2 20:29:02 2016 - worker 4 buried after 1 seconds
+Wed Mar  2 20:29:02 2016 - binary reloading uWSGI...
+Wed Mar  2 20:29:02 2016 - chdir() to /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 20:29:02 2016 - closing all non-uwsgi socket fds > 2 (max_fd = 1024)...
+Wed Mar  2 20:29:02 2016 - found fd 3 mapped to socket 0 (TicketManagementSystem.sock)
+Wed Mar  2 20:29:02 2016 - found fd 4 mapped to socket 1 (/home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock)
+Wed Mar  2 20:29:02 2016 - running /usr/local/bin/uwsgi
+[uWSGI] parsing config file TMS_temp.xml
+Wed Mar  2 20:29:02 2016 - *** Starting uWSGI 2.0.11.2 (64bit) on [Wed Mar  2 20:29:02 2016] ***
+Wed Mar  2 20:29:02 2016 - compiled with version: 5.2.1 20151010 on 02 December 2015 17:57:31
+Wed Mar  2 20:29:02 2016 - os: Linux-4.2.0-30-generic #36-Ubuntu SMP Fri Feb 26 00:58:07 UTC 2016
+Wed Mar  2 20:29:02 2016 - nodename: Kubuntu
+Wed Mar  2 20:29:02 2016 - machine: x86_64
+Wed Mar  2 20:29:02 2016 - clock source: unix
+Wed Mar  2 20:29:02 2016 - detected number of CPU cores: 4
+Wed Mar  2 20:29:02 2016 - current working directory: /home/seven/Code/DjangoProjects/TicketManagementSystem
+Wed Mar  2 20:29:02 2016 - detected binary path: /usr/local/bin/uwsgi
+Wed Mar  2 20:29:02 2016 - !!! no internal routing support, rebuild with pcre support !!!
+Wed Mar  2 20:29:02 2016 - your processes number limit is 15201
+Wed Mar  2 20:29:02 2016 - your memory page size is 4096 bytes
+Wed Mar  2 20:29:02 2016 - detected max file descriptor number: 1024
+Wed Mar  2 20:29:02 2016 - lock engine: pthread robust mutexes
+Wed Mar  2 20:29:02 2016 - thunder lock: disabled (you can enable it with --thunder-lock)
+Wed Mar  2 20:29:02 2016 - uwsgi socket 0 inherited UNIX address TicketManagementSystem.sock fd 3
+Wed Mar  2 20:29:02 2016 - uwsgi socket 1 inherited UNIX address /home/seven/Code/DjangoProjects/TicketManagementSystem/TicketManagementSystem.sock fd 4
+Wed Mar  2 20:29:02 2016 - Python version: 2.7.10 (default, Oct 14 2015, 16:09:02)  [GCC 5.2.1 20151010]
+Wed Mar  2 20:29:02 2016 - Python main interpreter initialized at 0xa33e80
+Wed Mar  2 20:29:02 2016 - python threads support enabled
+Wed Mar  2 20:29:02 2016 - your server socket listen backlog is limited to 100 connections
+Wed Mar  2 20:29:02 2016 - your mercy for graceful operations on workers is 60 seconds
+Wed Mar  2 20:29:02 2016 - mapped 363800 bytes (355 KB) for 4 cores
+Wed Mar  2 20:29:02 2016 - *** Operational MODE: preforking ***
+Wed Mar  2 20:29:02 2016 - [uwsgi-signal] signum 0 registered (wid: 0 modifier1: 0 target: default, any worker)
+Wed Mar  2 20:29:02 2016 - WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0xa33e80 pid: 2443 (default app)
+Wed Mar  2 20:29:02 2016 - mountpoint  already configured. skip.
+Wed Mar  2 20:29:02 2016 - *** uWSGI is running in multiple interpreter mode ***
+Wed Mar  2 20:29:02 2016 - gracefully (RE)spawned uWSGI master process (pid: 2443)
+Wed Mar  2 20:29:02 2016 - spawned uWSGI worker 1 (pid: 24557, cores: 1)
+Wed Mar  2 20:29:02 2016 - spawned uWSGI worker 2 (pid: 24558, cores: 1)
+Wed Mar  2 20:29:02 2016 - spawned uWSGI worker 3 (pid: 24559, cores: 1)
+Wed Mar  2 20:29:02 2016 - spawned uWSGI worker 4 (pid: 24560, cores: 1)

@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^account/sign_up$', sign_up, name='sign_up'),
     url(r'^account/sign_in/$', sign_in, name='sign_in'),
     url(r'^account/sign_out/$', sign_out, name='sign_out'),
+    url(r'^account/turn_to_sign_in/$', turn_to_sign_in, name='turn_to_sign_in'),
     url(r'^account/(?P<username>[0-9a-zA-z]{6, 16})/$', personalize, name='personalize'),
     url(r'^account/diag_code$', diag_code),
     url(r'^account/sign_up/success$', sign_up_success, name='log_success'),

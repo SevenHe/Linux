@@ -25,6 +25,9 @@
    
 <script type="text/javascript">
 $(document).ready(function() {
+	$("#empty").hide();
+	$("#init").show();
+	$("#error").hide();
 	$("#search").click(function() {
 	   var start = $("#start").val();
 	   var terminus = $("#terminus").val();
@@ -41,19 +44,20 @@ $(document).ready(function() {
 	   			}, 
 	   		success: function(result) {
 	   			$("#items").empty();
-				$("#init").hide();			
-				try{
-				$.each(result, function(key, value) {
-					if(key == "searching" && value == "true") {
+				$("#init").hide();
+				$("#empty").hide();
+				$("#error").hide();
+				if(typeof(result.searching) != "undefined" && typeof(result.error) != "undefined") {
+					if(result.searching == "true") {
 						$("#empty").show();
-						return;
 					}
-					if(key == "error"  value == "true") {
+					if(result.error == "true") {
 						$("#error").show();
-						return;
 					}
-					$("#empty").hide();
-					$("#error").hide();
+					return;
+				}
+				else{
+				$.each(result, function(key, value) {
 					$("#items").append("<tr>"+"<td>"+value.fields.serial+"</td>"+
 										"<td>"+value.fields.departure.substr(11,5)+"</td>"+
 										"<td>"+value.fields.last+":00"+"</td>"+
@@ -61,10 +65,7 @@ $(document).ready(function() {
 										"<td>"+value.fields.quantity+"</td>"+
 										"<td><input type='button' value='预定' onmouseover='this.style.cursor='pointer''/></td>"+
 									"</tr>");
-				});
-				} catch(err) {
-					return;
-				}
+				});}
 			},
 			error: function(result)
 			{
@@ -157,16 +158,9 @@ $(document).ready(function() {
 		<tbody id="items">
         </tbody>
 </table>
-<script type="text/javascript">
-$(document).ready(function() {
-	$("#empty").hide();
-	$("#init").show();
-	$("#error").hide();
-});
-</script>
 <strong id="empty" style="margin-left:40px;">暂无指定参数的车次，请试试其他！</strong>
 <strong id="init" style="margin-left:40px;">请在左边输入您的出发地，目的地，及出发日期！</strong>
-<strong id="error">输入格式不正确！！</strong>
+<strong id="error" style="margin-left:40px;">输入格式不正确！！</strong>
 </div>
 
 </div>

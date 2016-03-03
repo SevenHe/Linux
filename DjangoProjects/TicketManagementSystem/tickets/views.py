@@ -9,7 +9,7 @@ from datetime import datetime
 
 # sometimes, JsonResponse is not so useful!It does more thing than HttpResponse for you!!!
 # Create your views here.
-@login_required(login_url='/account/sign_in/')
+@login_required(login_url='/account/turn_to_sign_in/')
 def train_business(request):
     return render_to_response('train_business.html', context_instance=RequestContext(request))
 
