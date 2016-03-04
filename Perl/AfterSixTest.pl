@@ -21,6 +21,12 @@ $e = [1, 2];							# "[]" is to create a reference, and it is a entirety.
 $g = @a;
 $h = [ @b ];
 
+splice @a, @a, 0, 5, 7;
+for($i=0; $i<5; $i+=1) {
+	push @a, shift @a;
+	print "In the loop:@a\n";
+}
+
 @tailings = popmany(\@a, \@b, \@c);		# equivalent to "\(@a, @b, @c)"!
 
 for $i (0..$#a) {
@@ -70,7 +76,7 @@ $SIG{INT} = \&catch_zap;
 $SIG{QUIT} = \&catch_zap;
 # a easier way : use sigtrap qw(die INT QUIT);use sigtrap qw(die untrapped normal-signals stack-trace any error-signals);
 
-#no strict 'refs';
+no strict 'refs';
 $name = "variable";
 $$name = 7;
 print $name, $variable
