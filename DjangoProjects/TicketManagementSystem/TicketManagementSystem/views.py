@@ -7,9 +7,11 @@ from django.template import RequestContext
 from django.shortcuts import render, render_to_response
 from django.contrib import auth
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required  
 from django.core.urlresolvers import reverse
 from Utils.views import *
 from Utils.models import EmailCaptcha
+from Profile.models import UserProfile
 from TicketManagementSystem.forms import LogInForm
 from TicketManagementSystem.settings import CUSTOM_SETTINGS
 from hashlib import md5
@@ -40,6 +42,36 @@ def diag_code(request):
     img.save(buf, 'gif')
     return HttpResponse(buf.getvalue(), 'image/gif')
 
+@login_required(login_url='/account/turn_to_sign_in/')
+def user_avatar(request):
+    # for security, get the path, and return a img!
+    user_id = request.user.id;
+    try:
+        user_profile = UserProfile.objects.get(user_id=user_id)
+    except:
+        return HttpResponse('Unknown error!')
+    else:
+        img = Image.open(user_profile.avatar)
+        buf = cStringIO.StringIO()
+        img.save(buf, 'png')
+        return HttpResponse(buf.getvalue(), 'image/png')
+
+@login_required(login_url='/account/turn_to_sign_in/')
+def require_avatar(request):
+    if request.GET['rsui']:
+        user_id = request.GET['rsui'][2:-2]
+    else:
+        return HttpResponse("Illegal access!")
+    try:
+        user_profile = UserProfile.objects.get(user_id=user_id)
+    except:
+        return HttpResponse('Unknown error!')
+    else:
+        img = Image.open(user_profile.avatar)
+        buf = cStringIO.StringIO()
+        img.save(buf, 'png')
+        return HttpResponse(buf.getvalue(), 'image/png')
+
 def sign_up(request):
     show = False
     using = False
@@ -67,6 +99,7 @@ def sign_up(request):
                 salt = CUSTOM_SETTINGS['SALT']
                 m.update(username + post_date_string + salt)
                 captcha = m.hexdigest()
+            # take the captcha into database!
                 email_captcha = EmailCaptcha(user_id=user.id, captcha=captcha, post_date=post_date)
                 encrypted_username = (username + 'salt').encode('hex')
                 activation = CUSTOM_SETTINGS['ACTIVATION_URL'] + "?" + 'username'.encode('hex') + "=" + encrypted_username + "&" + 'captcha'.encode('hex') + "=" + captcha
@@ -75,11 +108,14 @@ def sign_up(request):
                 async_sender(email, html_content)
                 #return HttpResponseRedirect('/account/sign_up/success')
                 error = False
+            # take a default user profile into database!
+                profile = UserProfile(user_id=user.id)
 
             # next is to save the objects.
             user.save()
             # actually, it saves the user id.
             email_captcha.save()
+            profile.save()
             return HttpResponseRedirect(reverse('log_success'))
         else:
             if signup_form.has_error('diag_input') or request.session['diag_code'] != signup_form.cleaned_data['diag_input']:
@@ -109,7 +145,7 @@ def sign_in(request):
     user = auth.authenticate(username=identifier, password=pswd)
     # do not know why request.path == ""!
     # and now, i know i need to add 'django.core.context_processers.request', it do this for me!
-    if re.findall('train', request.META['HTTP_REFERER'].encode('ascii')):
+    if re.findall('train|fly|bus', request.META['HTTP_REFERER'].encode('ascii')):
         m = re.match(r'(.+)(49\.140\.62\.120)(.*)([?]next[=])(.*)', request.META['HTTP_REFERER'].encode('ascii'))
         if m.group(3) == reverse('turn_to_sign_in').encode('ascii'):
             next_sign_in = m.group(5)

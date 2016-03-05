@@ -15,8 +15,8 @@ def train_business(request):
 
 def ajax_get_train(request):
     # sometimes, it did wrong work!
-    #if not request.is_ajax():
-    #    raise Http404
+    if not request.is_ajax():
+        raise Http404
     get_start = request.GET['start']
     get_terminus = request.GET['terminus']
     get_date = request.GET['date']
@@ -48,8 +48,8 @@ def fly_business(request):
 
 def ajax_get_fly(request):
     # sometimes, it did wrong work!
-    #if not request.is_ajax():
-    #    raise Http404
+    if not request.is_ajax():
+        raise Http404
     get_start = request.GET['start']
     get_terminus = request.GET['terminus']
     get_date = request.GET['date']
@@ -81,8 +81,8 @@ def bus_business(request):
 
 def ajax_get_bus(request):
     # sometimes, it did wrong work!
-    #if not request.is_ajax():
-    #    raise Http404
+    if not request.is_ajax():
+        raise Http404
     get_start = request.GET['start']
     get_terminus = request.GET['terminus']
     get_date = request.GET['date']

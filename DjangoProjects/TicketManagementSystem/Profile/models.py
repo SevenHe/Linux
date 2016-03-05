@@ -14,7 +14,7 @@ class UserProfile(models.Model):
     # Now, for the test site, i use this and i don't know if it would cause security issues!
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to=user_avatar_path, 
-                            default='/home/seven/Code/DjangoProjects/TicketManagementSystem/static/images/1.jpg',
+                            default='/home/seven/Code/DjangoProjects/TicketManagementSystem/media/mascot.png',
                             height_field='avatar_height',
                             width_field='avatar_width')
     avatar_height = models.PositiveIntegerField(blank=True, default=0)

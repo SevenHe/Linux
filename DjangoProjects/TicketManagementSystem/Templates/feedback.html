@@ -1,0 +1,76 @@
+{% extends "index.html" %}
+{% block title %}
+问题反馈
+{% endblock %}
+{% block center %}
+<link rel="stylesheet" href="/static/css/feedback.css"/>
+<div class="mid">
+
+<div class="mid-left">
+<div class="lefticon">
+</div>
+<div class="leftlogal1" style="FONT-SIZE: 12pt;  COLOR: #000000; FONT-FAMILY: 楷体">
+<strong><p>您的支持与建议</p></strong>
+</div>
+<div class="leftlogal2" style="FONT-SIZE: 12pt;  COLOR: #000000; FONT-FAMILY: 楷体">
+<strong><p>是我们不竭的前进动力</p></strong>
+</div>
+</div>
+
+<div class="mid-right">
+
+<div class="right-input">
+<div class="input-text">
+<textarea id="back" class="inp-text" placeholder="反馈信息...">
+</textarea>
+</div>
+<div class="input-button">
+<input type="button" value="留言" id="feed" class="comon" onmouseover="this.style.cursor='pointer'"
+       onmousemove="this.className='comou'"  onmouseout="this.className='comon'"/>
+</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function () {
+	// if requiring security, put the string to the server back end as a return !
+	// and now there is no limit!
+	$("#submit_error").hide();
+	$("#feed").click(function () {
+		var comment = $("#back").val();
+		var user = {{ user.id }};
+		$.post("{% url 'submit_comment' %}", {comment: comment, user: user}, function (result) {
+			if (result == "ok") {	
+				$(".tabl").append("<tr><th colspan='2'><hr class='line-two'></th></tr>" +
+							"<tr><th rowspan='2'><img src={% url 'user_avatar' %} class='image'/>" + 
+							"</th><td><div class='number'><p>{{ user.username }} :&nbsp;</p></div></td></tr>" +
+							"<tr><td><div class='text'><p style='margin-left: 30px;'>" + comment + "</p></div></td></tr>");
+			}
+			else {
+				$("#submit_error").show();
+			}
+		});
+		return false;
+	});
+});
+</script>
+<div class="right-show">
+<p id="submit_error">提交出错，请休息片刻后，重新尝试！</p>
+<table class="tabl">
+{% if comments %}
+{% for comment in comments %}
+<tr><th colspan='2'><hr class='line-two'></th></tr>
+<tr><th rowspan='2'><img src="{% url 'require_avatar' %}?rsui={{ comment.submit_date|date:'H' }}{{ comment.user.id }}{{ comment.submit_date|date:'i' }}" class='image'/></th>
+<td><div class='number'><p>{{ comment.user.username }}({{ comment.submit_date|date:'Y-m-d f' }}) :&nbsp;</p></div></td></tr>
+<tr><td><div class='text'><p style='margin-left: 30px;'>{{ comment.comment }}</p></div></td></tr>
+{% endfor %}
+{% endif %}
+</table>
+
+<hr class="line-one">
+
+</div>
+
+</div>
+
+</div>
+{% endblock %}
+

@@ -27,6 +27,8 @@ for($i=0; $i<5; $i+=1) {
 	print "In the loop:@a\n";
 }
 
+print "$#a, @a, $a[5]\n";
+
 @tailings = popmany(\@a, \@b, \@c);		# equivalent to "\(@a, @b, @c)"!
 
 for $i (0..$#a) {

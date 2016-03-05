@@ -488,3 +488,402 @@ while (($pos = rindex $string, $lookfor, $pos) >= 0) {
 
 # rmdir ..., File::Path!!
 
+# scalar, to make it compulsively in a scalar environment!
+
+# seek FILEHANDLE, OFFSET, WHENCE, whence:0，文件 开头；1 文件的当前位置；2，文件结尾
+# refer to IO::Seekable
+for (;;) {
+	for ($curpos = tell FILE;   ;   $curpos = tell FILE) {
+		grok($_);         # 处理当前行
+	}
+	sleep $for_a_while;
+	seek FILE, $curpos, 0;      # 重置 end-of-file 错误。
+}
+
+# seekdir DIRHANDLE, POS
+
+# select FILEHANDLE
+# select, $|: means autoflush if not 0!
+my $oldfh = select STDER; $| = 1; select $oldfh;
+
+# select RBITS, WBITS, EBITS, TIMEOUT
+($nfound, $timeleft) = 
+	select($rout=$rin, $wout=$win, $eout=$ein, $timeout);
+select undef, undef, undef, 4.75;
+
+# semctl ID, SEMNUM, CMD, ARG; semget KEY, NSEMS, SIZE, FLAGS; semop KEY, OPSTRING
+# IPC::SysV, IPC:Semaphore
+$semop = pack "s*", $semnum, -1, 0;
+semop $semid, $semop or die "Semaphore trouble: $!\n";
+
+# send SOCKET, MSG, FLAGS, TO
+# send SOCKET, MSG, FLAGS
+
+# setpgrp PID, PGRP
+# setpriority WHICH, WHO, PRIORITY
+
+# setsockopt SOCKET, LEVEL, OPTNAME, OPTVAL
+use Socket;
+socket(SOCK, ...) or die "Can't make socket: $!\n";
+setsocket(SOCK, SOL_SOCKET, SO_REUSEADDR, 1)
+	or warn "Can't do setdosockotp: $!\n";
+
+# shift
+while (defined($_ = shift)) {
+	/^[^-]/     && do { unshift @ARGV, $_; last };
+	/^-w/       && do { $WARN = 1;         next };
+	/^-r/       && do { $RECURSE = 1;      next };
+	die "Unknown argument $_\n";
+}
+
+# shmctl ID, CMD, ARG
+# shmget KEY, SIZE, FLAGS
+# shmread ID, VAR, POS, SIZE
+# shmwrite ID, STRING, POS, SIZE
+
+# shutdown SOCKET, HOW
+shutdown(SOCK, 0);   # 不许再读
+shutdown(SOCK, 1);   # 不许再写
+shutdown(SOCK, 2);   # 不许再 I/O
+
+print SERVER "my request\n";   # 发送一些数据
+shutdown(SERVER, 1);         # 发送完毕，没有更多要发的东西了
+$answer = < SERVER >;         # 但你还可以读
+
+# sin, sleep
+
+# socket SOCKET, DOMAIN, TYPE, PROTOCOL; use Socket!
+
+# socketpair SOCKET1, SOCKET2, DOMAIN, TYPE, PROTOCOL
+use Socket;
+socketpair(Rdr, Wtr, AF_UNIX, SOCK_STREAM, PF_UNSPEC);
+shutdown(Rdr, 1);      # 不允许读者写
+shutdown(Wtr, 0);      # 不允许写者读 
+
+# sort USERSUB LIST
+# sort BLOCK LIST
+# sort LIST
+sub numerically { $a <=> $b }
+@sortedbynumber = sort numerically 53,29,11,32,7;
+@descending = reverse sort numerically 53,29,11,32,7;
+
+sub reverse_numerically { $b <=> $a }
+@descending = sort reverse_numerically 53,29,11,32,7;
+
+@unsorted = qw/sparrow Ostrich LARK catbird blueJAY/;
+@sorted = sort { lc($a) cmp lc($b) } @unsorted;
+
+sub bysales { $sales_amount{$b} <=> $sales_amount{$a} }
+
+for $dept (sort bysales keys %sale_amount) {
+	print "$dept => $sales_amount{$dept}\n";
+}
+
+sub by_sales_then_dept {
+	$sales_amount{$b} <=> $sales_amount{$a}
+	||
+	$a cmp $b
+}
+# map-sort-map
+for $dept (sort by_sales_then_dept keys %sale_amount) {
+	print "$dept => $sales_smount{$dept}\n";
+}
+
+@sorted_lines = map { $_->[0] }
+	sort {
+		@a_fields = @$a[1..$#$a];
+		@b_fields = @$b[1..$#$b];
+
+		$a_fields[3] <=> $b_fields[3]
+			||
+		$a_fields[0] <=> $b_fields[0]
+			||
+		$b_fields[2] <=> $b_fields[2]
+		}
+	map { [$_, split /:/]} @lines;
+
+# splice ARRAY, OFFSET, LENGTH, LIST
+# splice ARRAY, OFFSET, LENGTH
+# splice ARRAY, OFFSET
+# splice ARRAY
+# 	直接方法					splice 等效
+# push(@a, $x, $y)			splice(@a, @a, 0, $x, $y)
+# pop(@a)					splice(@a, -1)
+# shift(@a)					splice(@a, 0, 1)
+# unshift(@a, $x, $y)		splice(@a, 0, 0, $x, $y)
+# $a[$x] = $y				splice(@a, $x, 1, $y)
+# (@a, @a = ())				splice(@a)
+
+# split /PATTERN/, EXPR, LIMIT
+# split /PATTERN/, EXPR
+# split /PATTERN/
+# split
+($login, $passwd, $remainder) = split /:/, $_, 3;
+
+# sprintf FORMAT, LIST
+# %%	一个百分号
+# %c	一个带有给定数字的字符
+# %s	一个字串
+# %d	一个有符号整数，十进制
+# %u	一个无符号整数，十进制
+# %o	一个无符号整数，八进制
+# %x	一个无符号整数，十六进制
+# %e	一个浮点数，科学记数法表示
+# %f	一个浮点数，用固定的小数点表示
+# %g	一个浮点数，以 %e 或 %f 表示
+# %X	类似 %x，但使用大写字符
+# %E	类似 %e，但使用大写的“E”
+# %G	类似 %g，但是带一个大写的“E”（如果正确的话）
+# %b	一个无符号整数，二进制
+# %p	一个指针（输出十六进制的 Perl 值的地址）
+# %n	特殊：把到目前为止输出的字符数放到参数列表中的下一个变量里
+# %与转换字符之间：
+# space		用空格前缀正数
+# +			用加号前缀正数
+# -			在域内左对齐
+# -			用零而不是空格进行右对齐
+# #			给非零八进制前缀“0”，给非零十六进制前缀“0x”
+# number	最小域宽度
+# .number	“精度”：浮点数的小数点后面的位数字串最大长度。整数最小长度
+# l 		把整数解释成 C 类型的 long 或者 unsigned long
+# h			把整数解释成 C 类型的 short 或者 unsigned short（如果没有提供标志，那么把整数解释成 C 类型 int 或者 unsigned）
+
+# sqrt EXPR
+# sqrt
+
+# stat FILEHANDLE
+# stat EXPR
+# stat
+($dev, $ino, $mode, $nlink, $uid, $gid, $rdev, $size,
+	      $atime, $mtime, $ctime, $blksize, $blocks)
+	           = stat $filename;
+# 索引	域		含义
+# 0		$dev	文件系统的设备号
+# 1		$ino	i 节点号码
+# 2		$mode	文件模式（类型和权限）
+# 3		$nlink	指向该文件的（硬）链接数量
+# 4		$uid	文件所有者的数字用户 ID
+# 5		$gid	文件所属组的数字组 ID
+# 6		$rdev	设备标识符（只用于特殊文件）
+# 7		$size	文件的总尺寸，以字节计
+# 8		$atime	自纪元以来以秒计的上一次访问时间
+# 9		$mtime	自纪元以来以秒计的上一次修改时间
+# 10	$ctime	自纪元以来以秒计的上一次i节点改变的时间（不是创建时间！）
+# 11	$blksize	选定的用于文件系统 I/O 的块尺寸
+# 12	$blocks		实际分配的块数量
+
+# study SCALAR
+# study
+@pats = ();
+foreach $word (@words) {
+	push @pats, qr/\b${word}\b/i;
+}
+@ARGV = @files;
+undef $/;      # 吃进每个完整的文件
+while (<>) {
+	for $pat (@pats) {
+		$seen{$ARGV}++ if /$pat/;
+	}
+}
+$/ = "\n";      # 恢复正常的输入终止符
+foreach $file (sort keys(%seen)) {
+	print "$file\n";
+}
+
+# sub NAME PROTO ATTRS BLOCK
+sub numstrcmp ($$) : locked {
+	my ($a, %b) = @_;
+	return $a <=> $b || $a cmp %b;
+}
+
+# substr EXPR, OFFSET, LENGTH, REPLACEMENT
+# substr EXPR, OFFSET, LENGTH
+# substr EXPR, OFFSET
+# $var is the string to be changed!
+substr($var, 0, 0) = "Larry";
+substr($var, 0, 1) = "Moe";
+substr($var, -1) = "Curly";
+$oldstr = substr($var, -1, 1, "Curly");
+substr($var, -10) =~ s/ /./g;
+
+# symlink OLDNAME, NEWNAME
+# syscall LIST, refer to POSIX::
+
+# sysopen FILEHANDLE, FILENAME, MODE, MASK
+# sysopen FILEHANDLE, FILENAME, MODE 
+# 标志	    		含义
+# O_RDONLY		只读
+# O_WRONLY		只写
+# O_RDWR		读和写
+# O_CREAT		如果文件不存在则创建之
+# O_EXCL		如果文件已经存在则失败
+# O_APPEND		附加到文件上
+# O_TRUNC		截断该文件
+# O_NONBLOCK	非阻塞访问
+# refer to IO::File or IO::Handle
+
+# sysseek FILEHANDLE, POSITION, WHENCE
+# system PATHNAME LIST
+# system LIST
+@args = ("command", "arg1", "arg2");
+system(@args) == 0
+	or die "system @args failed: $?"
+
+# syswrite FILEHANDLE, SCALAR, LENGTH, OFFSET
+# syswrite FILEHANDLE, SCALAR, LENGTH
+# syswrite FILEHANDLE, SCALAR
+# do not mingle them(read or write or others except sysread)!
+use Errno qw/EINTR/;
+$blksize = (stat FROM)[11] || 16384;      # 选定的块大小？
+while ($len = sysread FROM, $buf, $blksize) {
+	if (!defined $len) {
+		next if $! == EINTR;
+		die "System read error: $!\n"
+	}
+	$offset = 0;
+	while ($len) {            # 处理部分写问题
+		$written = syswrite TO, $buf, $len, $offset;
+		die "System write error: $!\n" unless defined $written;
+		$offset   += $written;
+		$len   -= $written;
+	}
+}
+
+# tell FILEHANDLE
+# tell, 返回文件句柄当前的pos
+
+# tie VARIABLE, CLASSNAME, LIST
+# 此函数把一个变量和一个类绑定在一起，而该类提供了该变量的实现。VARIABLE 是要绑定的变量 （标量，数组，或者散列）或者类型团（代表一个文件句柄）。CLASSNAME 是实现一个正确类型的 类名字。
+# 一个实现散列的类应该提供下列方法：
+# TIEHASH CLASS, LIST
+# FETCH SELF, KEY
+# STORE SELF, KEY, VALUE
+# DELETE SELF, KEY
+# CLEAR SELF
+# EXISTS SELF, KEY
+# FIRSTKEY SELF
+# NEXTKEY SELF, LASTKEY
+# DESTROY SELF
+# 一个实现普通数组的类应该提供下列方法：
+# TIEARRAY CLASS, LIST
+# FETCH SELF, SUBSCRIPT
+# STORE SELF, SUBSCRIPT, VALUE
+# FETCHSIZE SELF
+# STORESIZE SELF, COUNT
+# CLEAR SELF
+# PUSH SELF, LIST
+# POP SELF
+# SHIFT SELF
+# UNSHIFT SELF, LIST
+# SPLICE SELF, OFFSET, LENGTH, LIST
+# EXTEND SELF, COUNT
+# DESTROY SELF
+# 一个实现标量的类应该提供下列方法：
+# TIESCALAR CLASS, LIST
+# FETCH SELF,
+# STORE SELF, VALUE
+# DESTROY SELF
+# 一个实现文件句柄的类应该提供下列方法：
+# TIEHANDLE CLASS, LIST
+# READ SELF, SCALAR, LENGTH, OFFSET
+# READLINE SELF
+# GETC SELF
+# WRITE SELF, SCALAR, LENGTH, OFFSET
+# PRINT SELF, LIST
+# PRINTF SELF, FORMAT, LIST
+# CLOSE SELF
+# DESTROY SELF
+# refer to Tie::Hash/Array/Scalar/Handle!
+
+# tied VARIABLE
+ref tied %hash;
+# 找出你的散列与哪个包捆绑。(假设你忘记了。)
+
+# time
+$start = time();
+system("some slow command");
+$end = time();
+if ($end - $start > 1) {
+	print "Program started: ", scalar localtime($start), "\n";
+	print "Program ended:  ", scalar localtime($end), "\n";
+}  
+
+# times
+($user, $system, $cuser, $csystem) = times();
+printf "This pid and its kids have consumed %.3f seconds\n",
+	$user + $system + $cuser + $csystem;
+# return user's consumable time in the scalar enviroment!
+$stat = times();
+...
+$end = times();
+printf "that took %.2f CPU seconds of user time\n",
+	$end - $start;
+
+# truncate FILEHANDLE, LENGTH
+# truncate EXPR, LENGTH
+# just for file!
+# uc EXPR
+# uc
+# ucfirst EXPR
+# ucfirst
+# umask EXPR
+# umask
+# undef EXPR
+# undef
+# unlink LIST
+# unlink
+
+# unpack TEMPLATE, EXPR
+$_ = <> until ($mode, $file) = /^begin\s*(\d*)\s*(\S*)/;
+open(OUT, "> $file") if $file ne "";
+while (<>) {
+	last if /^end/;
+	next if /[a-z]/;
+	next unless int((((ord() - 32) & 077) + 2) / 3) == int (length() / 4);
+	print OUT unpack "u", $_;
+}
+chmod oct($mode), $file;
+
+# unshift ARRAY, LIST
+# untie VARIABLE
+# use MODULE VERSION LIST
+# use MODULE VERSION ()
+# use MODULE VERSION
+# use MODULE LIST
+# use MODULE ()
+# use MODULE
+# use VERSION
+
+# utime LIST
+$day = 24 * 60 * 60;         # 24 小时的秒数
+$later = time() + 30 * $day;   # 30 天接近一个月
+utime $later, $later, @ARGV;	# just like 'touch'
+
+# values HASH
+# vec EXPR, OFFSET, BITS
+# vec 函数制造一个存储紧凑的无符号整数的列表。
+$bitstring = "";
+$offset = 0;
+
+foreach $num (0, 5, 5, 6, 2, 7, 12, 6) {
+	vec($bitstring, $offset++, 4) = $num;
+}
+
+# wait
+# waitpid PID, FLAGS
+# harvest zombie processes!
+use POSIX ":sys_wait_h";
+do {
+	$kid = waitpid(-1, &WNOHANG);
+} until $kid == -1;
+
+# wantarray
+return unless defined wantarray;      # 不需要干什么事情
+my @a = complex_calculation();
+return wantaray ? @a : \@a;
+
+# warn LIST
+# warn
+# write FILEHANDLE
+# write
+

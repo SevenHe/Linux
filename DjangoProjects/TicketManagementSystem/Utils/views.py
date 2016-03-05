@@ -1,13 +1,15 @@
 # -*- encoding: utf-8 -*-
 from django.shortcuts import render, render_to_response 
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required  
 from django.template import RequestContext
+from django.http import HttpResponse, Http404
 # Create your views here.
 import random
 from smtplib import SMTP_SSL
 from email.mime.text import MIMEText
 from TicketManagementSystem.settings import EMAIL_HOST_PASSWORD
-from Utils.models import EmailCaptcha
+from Utils.models import EmailCaptcha, UserComment
 import Image, ImageDraw, ImageFont, ImageFilter
 
 _letter_cases = "abcdefghjkmnpqrstuvwxy" # 小写字母，去除可能干扰的i，l，o，z
@@ -162,4 +164,26 @@ def activate(request):
 # need to do some db queries!
 def resend(request):
     pass
+
+@login_required(login_url='/account/turn_to_sign_in/')
+def feedback(request):
+    try:
+        comments = UserComment.objects.all()
+    except:
+        return HttpResponse(status=500)
+    else:
+        return render_to_response('feedback.html', {'comments': comments}, context_instance=RequestContext(request))
+
+def submit_comment(request):
+    if not request.is_ajax():
+        raise Http404
+    comment = request.POST['comment']
+    user_id = request.POST['user']
+    try:
+        user_comment = UserComment(user_id=user_id, comment=comment)
+        user_comment.save()
+    except:
+        return HttpResponse("error")
+    else:
+        return HttpResponse("ok")
 

@@ -2,7 +2,7 @@
 	margin-left: 1000px;
 	display: block;
 	font-weight: bold;
-	font-size: 22px;
+	font-size: 20px;
 	-webkit-animation: 10s infinite linear animate;
     animation: 10s infinite linear animate;
 }
@@ -25,7 +25,7 @@
 
 #sign_out {
 	color: blue;
-	font-size: 18px;
+	font-size: 14px;
 	border-radius: 10%;
 	text-decoration: none;
 	background: -moz-linear-gradient(360deg, #ace, #f96);

@@ -11,4 +11,7 @@ class EmailCaptcha(models.Model):
     captcha = models.CharField(max_length=32)
     post_date = models.DateTimeField()
 
-
+class UserComment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=140)
+    submit_date = models.DateTimeField(auto_now=True)
