@@ -4,7 +4,7 @@ from django.template import RequestContext
 from django.core import serializers
 from django.shortcuts import render, render_to_response
 from django.contrib.auth.decorators import login_required  
-from tickets.models import TrainTicket
+from tickets.models import TrainTicket, FlyTicket, BusTicket
 from datetime import datetime
 
 # sometimes, JsonResponse is not so useful!It does more thing than HttpResponse for you!!!
@@ -89,7 +89,7 @@ def ajax_get_bus(request):
     try:
         get_date_object = datetime.strptime(get_date, '%Y-%m-%d')
     except:
-        return JsonResponse({'error': 'true', 'searching': 'false'})
+        return JsonResponse({'error': 'false', 'searching': 'false'})
     if get_start and get_terminus and get_date:
         try:
             tickets = BusTicket.objects.filter(start=get_start, terminus=get_terminus,

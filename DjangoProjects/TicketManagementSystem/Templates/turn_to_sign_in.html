@@ -3,15 +3,58 @@
 跳转
 {% endblock %}
 {% block center %}
+<style>
+
+p.remword{FONT-SIZE: 20pt;COLOR:#000000;FONT-FAMILY: 华文新魏;}
+
+div.mid{position:relative;height:455px;width:760px;margin-top:10px;margin-left:245px;}
+
+div.rotate{position:relative;height:200px;width:200px;float:left;margin-left:280px;margin-top:70px;}
+div.remand{position:relative;height:50px;width:500px;float:top;margin-left:90px;margin-top:50px;}
+div.apostrophe{position:relative;height:50px;width:100px;float:left;margin-top:50px;}
+
+</style>
+<link rel="stylesheet" href="/static/css/turn_to.css" />
 <script type="text/javascript">
 function delayer(){
  window.location = "{% url 'sign_in' %}";
 }
 $(document).ready(function(){
- setTimeout('delayer()', 4000);
+ setTimeout('delayer()', 3000);
 });
 </script>
-<h1>您访问的页面需要登录，将在4s内跳转....</h1>
-<br>
-<p>手动跳转，请点击<a href="{% url 'sign_in' %}">此处</a></p>
+<div class="mid">
+
+<div class="rotate">
+<div id="floatingCirclesG">
+	<div class="f_circleG" id="frotateG_01"></div>
+	<div class="f_circleG" id="frotateG_02"></div>
+	<div class="f_circleG" id="frotateG_03"></div>
+	<div class="f_circleG" id="frotateG_04"></div>
+	<div class="f_circleG" id="frotateG_05"></div>
+	<div class="f_circleG" id="frotateG_06"></div>
+	<div class="f_circleG" id="frotateG_07"></div>
+	<div class="f_circleG" id="frotateG_08"></div>
+</div>
+</div>
+
+<div class="remand">
+<p class="remword">您访问的页面需要登录，将在3s内跳转</p>
+<p class="remword">手动跳转，请点击<a href="{% url 'sign_in' %}">此处</a></p>
+</div>
+
+<div class="apostrophe"</div>
+<div id="spinningSquaresG">
+	<div id="spinningSquaresG_1" class="spinningSquaresG"></div>
+	<div id="spinningSquaresG_2" class="spinningSquaresG"></div>
+	<div id="spinningSquaresG_3" class="spinningSquaresG"></div>
+	<div id="spinningSquaresG_4" class="spinningSquaresG"></div>
+	<div id="spinningSquaresG_5" class="spinningSquaresG"></div>
+	<div id="spinningSquaresG_6" class="spinningSquaresG"></div>
+	<div id="spinningSquaresG_7" class="spinningSquaresG"></div>
+	<div id="spinningSquaresG_8" class="spinningSquaresG"></div>
+</div>
+</div>
+
+</div>
 {% endblock %}

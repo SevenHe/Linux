@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'd#084qvfc)*_w^%#-^g511ry$62gt0shyjlol7r*k2%2wald(2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True 
 
 ALLOWED_HOSTS = ['127.0.0.1', '49.140.62.120']
 
@@ -44,15 +44,15 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'django.middleware.security.SecurityMiddleware',
     'django.middleware.cache.UpdateCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware', For futural security!
+    #'django.middleware.csrf.CsrfViewMiddleware', #For futural security!need to be everywhere!
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
     'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
@@ -151,5 +151,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # Custom settings
 CUSTOM_SETTINGS = {}
 CUSTOM_SETTINGS['ACTIVATION_URL'] = '49.140.62.120/account/activation'
-CUSTOM_SETTINGS['ACTIVATION_HTML_CONTENT'] = "<p>感谢您对<strong>5036 购票中心</strong>的支持，请点击此链接激活您的账号：<a href='%s'>%s</a> （10分钟内有效）</p>"
+CUSTOM_SETTINGS['ACTIVATION_HTML_CONTENT'] = "<p>感谢您对<strong>5036 购票中心</strong>的支持，请点击此链接激活您的账号：<a href='%s'>%s</a> （10分钟内有效）</p><br/><p>（若链接无法点击，请完整复制到浏览器中进行激活）</p>"
 CUSTOM_SETTINGS['SALT'] = '5036TS'

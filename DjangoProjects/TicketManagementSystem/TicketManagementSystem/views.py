@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from Utils.views import *
 from Utils.models import EmailCaptcha
+from tickets.models import *
 from Profile.models import UserProfile
 from TicketManagementSystem.forms import LogInForm
 from TicketManagementSystem.settings import CUSTOM_SETTINGS
@@ -41,36 +42,6 @@ def diag_code(request):
     buf = cStringIO.StringIO()
     img.save(buf, 'gif')
     return HttpResponse(buf.getvalue(), 'image/gif')
-
-@login_required(login_url='/account/turn_to_sign_in/')
-def user_avatar(request):
-    # for security, get the path, and return a img!
-    user_id = request.user.id;
-    try:
-        user_profile = UserProfile.objects.get(user_id=user_id)
-    except:
-        return HttpResponse('Unknown error!')
-    else:
-        img = Image.open(user_profile.avatar)
-        buf = cStringIO.StringIO()
-        img.save(buf, 'png')
-        return HttpResponse(buf.getvalue(), 'image/png')
-
-@login_required(login_url='/account/turn_to_sign_in/')
-def require_avatar(request):
-    if request.GET['rsui']:
-        user_id = request.GET['rsui'][2:-2]
-    else:
-        return HttpResponse("Illegal access!")
-    try:
-        user_profile = UserProfile.objects.get(user_id=user_id)
-    except:
-        return HttpResponse('Unknown error!')
-    else:
-        img = Image.open(user_profile.avatar)
-        buf = cStringIO.StringIO()
-        img.save(buf, 'png')
-        return HttpResponse(buf.getvalue(), 'image/png')
 
 def sign_up(request):
     show = False
@@ -208,11 +179,17 @@ Custom authentication!
     return render_to_response('sign_in.html', {'error': False, 'show': False, 'using': False}) 
 """
 # TODO--redirect to the user profile automatically!
-def sign_in_success(request):
-    pass
+@login_required(login_url='/account/turn_to_sign_in/')
+def personalize(request):
+    if request.user:
+        try:
+            flys = FlyTrade.objects.filter(user_id=request.user.id)
+            buses = BusTrade.objects.filter(user_id=request.user.id)
+            trains = TrainTrade.objects.filter(user_id=request.user.id)
+        except:
+            return HttpResponse("PERSONAL UNKNOWN ERROR!!")
 
-def personalize(request, username):
-    pass
+    return render_to_response('personal.html', context_instance=RequestContext(request))
 
 def sign_out(request):
     auth.logout(request)

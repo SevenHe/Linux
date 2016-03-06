@@ -187,3 +187,9 @@ def submit_comment(request):
     else:
         return HttpResponse("ok")
 
+def aboutus(request):
+    return render_to_response('aboutus.html', context_instance=RequestContext(request))
+
+def contact(request):
+    return render_to_response('connection.html', context_instance=RequestContext(request))
+

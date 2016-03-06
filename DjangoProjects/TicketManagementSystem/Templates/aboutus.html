@@ -1,0 +1,76 @@
+{% extends "index.html" %}
+{% block title %}
+关于我们
+{% endblock %}
+{% block center %}
+<style>
+hr.cutline-top{border: 0;border-bottom: 1px dashed #7B7B7B;background: #FDFDFD;width:100%;}
+hr.cutline-mid{border: 0;border-bottom: 1px dashed #7B7B7B;background: #FDFDFD;width:90%;}
+
+p.membername{float:right;FONT-SIZE: 15pt;FONT-FAMILY: 楷体;color:#272727;}
+p.membercontent{float:left;FONT-SIZE: 11pt;FONT-FAMILY: 新宋体;color:#272727;margin-top:23px;
+				white-space: normal;word-wrap: break-all;}
+
+img.imgmember{height:150px;width:150px;border: 1px solid #F3F3F3;}
+
+div.mid{position:relative;height:415px;width:760px;margin-top:10px;margin-left:220px;
+        border-radius: 2px;border: 20px solid #F3F3F3;overflow:auto;
+	    box-shadow:0px 2px 15px 5px #cccccc;}
+div.member{position:relative;float:top;height:200px;width:670px;margin-left:37px;}
+div.photoone{position:relative;float:left;height:150px;width:150px;margin-left:20px;margin-top:20px;
+             border-radius: 2px;border: 5px solid #E9E9E9;
+	         box-shadow:-1px -1px 10px 2px #6D6D6D;}
+div.phototwo{position:relative;float:left;height:150px;width:150px;margin-left:20px;margin-top:20px;
+             border-radius: 2px;border: 5px solid #E9E9E9;
+	         box-shadow:1px 1px 10px 2px #6D6D6D;}
+			 
+div.introname{position:relative;float:left;height:100px;width:100px;margin-left:20px;margin-top:30px;}
+div.introcontent{position:relative;float:left;height:100px;width:360px;margin-top:30px;}
+
+</style>
+<div class="mid">
+
+<hr class="cutline-top">
+
+<div class="member">
+<div class="photoone"><img src="/static/images/hch.png" class="imgmember"></div>
+<div class="introname"><p class="membername">贺长鸿：</p></div>
+<div class="introcontent">
+<p class="membercontent">组长，负责后台服务器的搭建，服务器与数据库以及服务器与前端的链接；</p>
+</div>
+</div>
+
+<hr class="cutline-mid">
+
+<div class="member">
+<div class="introname"><p class="membername">南萌：</p></div>
+<div class="introcontent">
+<p class="membercontent">组员，负责前端的设计与开发，对页面进行CSS的渲染；</p>
+</div>
+<div class="phototwo"><img src="/static/images/zn.png" class="imgmember"></div>
+</div>
+
+<hr class="cutline-mid">
+
+<div class="member">
+<div class="photoone"><img src="/static/images/wm.png" class="imgmember"></div>
+<div class="introname"><p class="membername">武铭：</p></div>
+<div class="introcontent">
+<p class="membercontent">组员，负责部分数据库的搭建与维护；</p>
+</div>
+</div>
+
+<hr class="cutline-mid">
+
+<div class="member">
+<div class="introname"><p class="membername">孟祥志：</p></div>
+<div class="introcontent">
+<p class="membercontent">组员，负责前端的美化与调试工作；</p>
+</div>
+<div class="phototwo"><img src="/static/images/mxz.png" class="imgmember"></div>
+</div>
+
+<hr class="cutline-top">
+
+</div>
+{% endblock %}

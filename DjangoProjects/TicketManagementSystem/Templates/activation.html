@@ -5,6 +5,7 @@
 {% block center %}
 <h1>{{ result }}</h1><br/>
 {% if resend %}
+<!--have not completed!-->
 <p class="activation">单击<a href="{% url "resend" %}">此处</a>, 重新发送激活邮件</p>
 {% else %}
 <p class="activation">单击<a href="{% url "index" %}">此处</a>，返回登陆</p>

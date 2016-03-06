@@ -31,10 +31,10 @@
 
 <div class="sel_wrap" id="sel_wrap">
 	<span>点击选择待购票数</span>
-	<select class="select" name="" id="c_select">
-		<option value="0">1</option>
-		<option value="1">2</option>
-		<option value="2">3</option>
+	<select class="select" id="c_select">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
 	</select>
 </div>
 <script >
@@ -63,7 +63,7 @@
 </script>
 
 </div>
-
+<script src="/static/js/jquery.min.js"></script>
 <div class="infolist">
 <table class="bordered">
     <thead>
@@ -75,9 +75,26 @@
     </tr>
     </thead>
 {% if ticket %}
-<script src="/static/js/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$("#c_select").change(function() {
+		var selected = Number($(this).children('option:selected').val());
+		var current = Number($("tr.model:last-child>td:first-child").text());
+		if (selected > current) {
+			$(".model:first-child").clone(true).appendTo(".bordered");
+			$("tr.model:last-child>td:first-child").text(""+selected);	
+		}
+		else if (selected < current) {
+			$("tr.model:last").remove();
+		}
+		else {
+			return;
+		}
+	});
+});
+</script>
     <tbody>
-    <tr>
+    <tr class="model">
         <td>1</td>        
         <td>
         {% ifequal t_type 'train' %} 

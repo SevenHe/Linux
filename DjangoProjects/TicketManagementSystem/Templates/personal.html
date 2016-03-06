@@ -1,0 +1,345 @@
+{% extends "index.html" %}
+{% block title %}
+个人主页
+{% endblock %}
+{% block center %}
+<link rel="stylesheet" href="/static/css/personal.css" />
+<script src="/static/js/personal.js"></script>
+<script src="/static/js/jquery.form.js"></script>
+<script type="text/javascript">
+//for future security!
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+</script>
+<div class="mid">
+
+<div class="list">
+
+<div class="list-top">
+<div class="topword" style="FONT-SIZE: 15pt;  COLOR: #202020; FONT-FAMILY: 黑体">
+<strong><p>个人中心</p></strong>
+</div>
+</div>
+
+<div class="order">
+<div class="order-name">
+<p class="name">我的订单</p>
+</div>
+<div class="belong-ou" onmousemove="this.className='belong-on'"  onmouseout="this.className='belong-ou'">
+<a class="option" href="javascript:void(0)" onclick="openunfinished()">未完成订单</a>
+</div>
+<div class="belong-ou" onmousemove="this.className='belong-on'"  onmouseout="this.className='belong-ou'">
+<a class="option" href="javascript:void(0)" onclick="openfinished()">已完成订单</a>
+</div>
+</div>
+
+<div class="person">
+<div class="person-name">
+<p class="name">个人信息</p>
+</div>
+<div class="belong-ou" onmousemove="this.className='belong-on'"  onmouseout="this.className='belong-ou'">
+<a class="option" href="javascript:void(0)" onclick="openinformation()">查看个人信息</a>
+</div>
+</div>
+
+</div>
+
+<div class="information">
+
+<div class="unfinish" id="unfinish">
+
+<div class="un-top">
+<div class="topword" style="FONT-SIZE: 15pt;  COLOR: #202020; FONT-FAMILY: 黑体">
+<strong><p>未完成订单</p></strong>
+</div>
+</div>
+
+<div class="untablelist">
+<table class="bordered">
+<tr>
+  <th>序号</th>
+  <th>车次</th>
+  <th>出发时间</th>
+  <th>座位信息</th>
+  <th>金额</th>
+  <th>操作</th>
+</tr>
+<tr>
+  <td rowspan="2">1</td>
+  <td>K126</td>
+  <td>2016--3--5</td>
+  <td>15车厢</td>
+  <td rowspan="2">350元</td>
+  <td>
+  <input class="payon" type="button" value="取消订单" onmouseover="this.style.cursor='pointer'"
+         onmousemove="this.className='payou'"  onmouseout="this.className='payon'"/>
+  </td>
+</tr>
+<tr>
+  <td style="border-top:0px;">西安->长春</td>
+  <td style="border-top:0px;">22.30(PM)</td>
+  <td style="border-top:0px;">23号</td>
+  <td style="border-top:0px;">
+  <input class="payon" type="button" value="立即支付" onmouseover="this.style.cursor='pointer'"
+         onmousemove="this.className='payou'"  onmouseout="this.className='payon'"/>
+  </td>
+</tr>
+
+</table>
+</div>
+
+</div>
+
+<div class="finished" id="finish" style="display:none;">
+
+<div class="un-top">
+<div class="topword" style="FONT-SIZE: 15pt;  COLOR: #202020; FONT-FAMILY: 黑体">
+<strong><p>已完成订单</p></strong>
+</div>
+</div>
+
+<div class="hatablelist">
+<table class="bordered">
+<tr>
+  <th>序号</th>
+  <th>车次</th>
+  <th>出发时间</th>
+  <th>座位信息</th>
+  <th>金额</th>
+  <th>状态</th>
+</tr>
+<tr>
+  <td rowspan="2">1</td>
+  <td>K126</td>
+  <td>2016--3--5</td>
+  <td>15车厢</td>
+  <td rowspan="2">350元</td>
+  <td rowspan="2">已支付</td>
+</tr>
+<tr>
+  <td style="border-top:0px;">西安->长春</td>
+  <td style="border-top:0px;">22.30(PM)</td>
+  <td style="border-top:0px;">23号</td>
+</tr>
+
+</table>
+</div>
+
+</div>
+
+<div class="infoshow" id="information" style="display:none;">
+
+<div class="un-top">
+<div class="topword" style="FONT-SIZE: 15pt;  COLOR: #202020; FONT-FAMILY: 黑体">
+<strong><p>个人信息</p></strong>
+</div>
+</div>
+
+<hr class="line">
+
+<div class="infobody">
+
+<div class="example">
+
+<hr class="cut-one">
+
+<div class="menuholder">
+<div class="shadow">
+<div class="shtitle">
+<p class="shtitle-w">用户名：</p>
+</div>
+<div class="shcontent">
+<p class="shcontent-w">{{ user.username }}</p>
+</div>
+<a class="click" id="buttonone" href="javascript:void(0)" onclick="clickback('one')">编辑</a>
+</div>
+<div class="back" id="backdivone">
+<hr class="cut-back" />
+<div class="backinput" id="backinputoneone">
+<div class="bain-left"><p class="current">当前用户名：</p></div>
+<div class="bain-right"><p class="newdata">{{ user.username }}</p></div>
+</div>
+<div class="backinput" id="backinputonetwo">
+<div class="bain-left"><p class="current">新用户名：</p></div>
+<div class="bain-right"><input type="text" class="backintext"></div>
+</div>
+<div class="backbutton" id="backbuttonone">
+<input class="backinbuon" type="button" value="保存" onmouseover="this.style.cursor='pointer'"
+       onmousemove="this.className='backinbuou'"  onmouseout="this.className='backinbuon'"/>
+</div>
+</div>
+</div>
+
+<hr class="cut-two">
+
+<div class="menuholder">
+<div class="shadow">
+<div class="shtitle">
+<p class="shtitle-w">手机号：</p>
+</div>
+<div class="shcontent">
+<p class="shcontent-w">123456789</p>
+</div>
+<a class="click" id="buttontwo" href="javascript:void(0)" onclick="clickback('two')">编辑</a>
+</div>
+<div class="back" id="backdivtwo">
+<hr class="cut-back" />
+<div class="backinput" id="backinputtwoone">
+<div class="bain-left"><p class="current">当前手机号：</p></div>
+<div class="bain-right"><p class="newdata">123456789</p></div>
+</div>
+<div class="backinput" id="backinputtwotwo">
+<div class="bain-left"><p class="current">新手机号：</p></div>
+<div class="bain-right"><input type="text" class="backintext"></div>
+</div>
+<div class="backbutton" id="backbuttontwo">
+<input class="backinbuon" type="button" value="保存" onmouseover="this.style.cursor='pointer'"
+       onmousemove="this.className='backinbuou'"  onmouseout="this.className='backinbuon'"/>
+</div>
+</div>
+</div>
+
+<hr class="cut-two">
+
+<div class="menuholder">
+<div class="shadow">
+<div class="shtitle">
+<p class="shtitle-w">邮箱：</p>
+</div>
+<div class="shcontent">
+<p class="shcontent-w">{{ user.email }}</p>
+</div>
+<a class="click" id="buttonthree" href="javascript:void(0)" onclick="clickback('three')">编辑</a>
+</div>
+<div class="back" id="backdivthree">
+<hr class="cut-back" />
+<div class="backinput" id="backinputthreeone">
+<div class="bain-left"><p class="current">当前邮箱：</p></div>
+<div class="bain-right"><p class="newdata">{{ user.email }}</p></div>
+</div>
+<div class="backinput" id="backinputthreetwo">
+<div class="bain-left"><p class="current">新邮箱：</p></div>
+<div class="bain-right"><input type="text" class="backintext"></div>
+</div>
+<div class="backbutton" id="backbuttonthree">
+<input class="backinbuon" type="button" value="保存" onmouseover="this.style.cursor='pointer'"
+       onmousemove="this.className='backinbuou'"  onmouseout="this.className='backinbuon'"/>
+</div>
+</div>
+</div>
+
+<hr class="cut-two">
+
+<div class="menuholder">
+<div class="shadow">
+<div class="shtitle">
+<p class="shtitle-w">密码：</p>
+</div>
+<div class="shcontent">
+<p class="shcontent-w">******</p>
+</div>
+<a class="click" id="buttonfour" href="javascript:void(0)" onclick="clickback('four')">编辑</a>
+</div>
+<div class="back" id="backdivfour">
+<hr class="cut-back" />
+<div class="backinput" id="backinputfourone">
+<div class="bain-left"><p class="current">新密码：</p></div>
+<div class="bain-right"><input type="text" class="backintext"></div>
+</div>
+<div class="backinput" id="backinputfourtwo">
+<div class="bain-left"><p class="current">再次确认：</p></div>
+<div class="bain-right"><input type="text" class="backintext"></div>
+</div>
+<div class="backbutton" id="backbuttonfour">
+<input class="backinbuon" type="button" value="保存" onmouseover="this.style.cursor='pointer'"
+       onmousemove="this.className='backinbuou'"  onmouseout="this.className='backinbuon'"/>
+</div>
+</div>
+</div>
+
+<hr class="cut-one">
+
+</div>
+<script type="text/javascript">
+$(document).ready(function () {
+	$("input[name='avatar']").hide();
+	$("#submit_avatar").click(function() {
+		$("input[name='avatar']").click();
+	});
+	$("input[name='avatar']").change(function() {
+		if ($("input[name='avatar']").val() != "") {
+			$("input[name='real_submit']").click();
+		}
+	});
+	// there is a problem, that if i should set the top user avatar as nocache or reload!
+	$("#upload_avatar").submit(function() {
+		$(this).ajaxSubmit({
+			target: "#user_avatar",	
+			type: "POST",
+			url: "{% url 'upload_avatar' %}",
+			timeout: 3000,
+			success: function(result) {
+				if (result == "success") {
+					$("#user_avatar").attr("src", "{% url 'user_avatar' %}?nocache="+Math.random());
+					$("#person>a>img").attr("src", "{% url 'user_avatar' %}?nocache");
+					alert("图片上传成功！");
+				}
+				else if (result == "1M") {
+					alert("图片大小不能超过1M!");
+				}
+				else if (result == "invalid") {
+					alert("图片格式不正确!");					
+				}	
+			}
+		});	
+		return false;
+	});
+}); 
+</script>
+<div class="inphoto">
+<div class="photocontent">
+<img id="user_avatar" width="130" height="130" src="{% url 'user_avatar' %}" />
+</div>
+<div class="photobutton">
+<form id="upload_avatar" method="POST" enctype="multipart/form-data">
+<input type="button" id="submit_avatar" value="更换头像" class="uploadon" onmouseover="this.style.cursor='pointer'"
+       onmousemove="this.className='uploadou'"  onmouseout="this.className='uploadon'"/>
+<input type="file" name="avatar"/>
+<input type="submit" name="real_submit" style="display:none;"/>
+</form>
+</div>
+</div>
+
+</div><!-- infobody -->
+
+</div><!-- infoshow -->
+
+</div><!-- information -->
+
+</div><!-- mid -->
+{% endblock %}

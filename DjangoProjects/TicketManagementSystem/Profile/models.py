@@ -3,10 +3,12 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+import random
 # Create your models here.
 
 def user_avatar_path(instance, filename):
     # image will be save at MEDIA_ROOT/user_id/filename
+    filename = "%x%s" % (random.randint(0, 1000), instance.user.username)
     return 'user_{0}/{1}'.format(instance.user.id, filename)
 
 class UserProfile(models.Model):

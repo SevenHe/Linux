@@ -160,7 +160,9 @@ function busdisplay(bustop)
 </div>
 {% else %}
 <div id="person">
-<a>{{ user.username }}</a>&nbsp;&nbsp;&nbsp;&nbsp;<a id="sign_out" href="{% url "sign_out" %}">注销</a>
+<a style="text-decoration: none;" href="{% url 'personalize' %}"><img style="margin-right: 3px; vertical-align: middle;" src="{% url 'user_avatar' %}" width="30" height="30"/>
+</a><label>{{ user.username }}</label>
+&nbsp;&nbsp;&nbsp;&nbsp;<a id="sign_out" href="{% url "sign_out" %}">注销</a>
 </div>
 {% endif %}
 
@@ -203,11 +205,11 @@ onclick="window.location.href='{% url "fly_business" %}'"
            width="100%" color=#ff0000 SIZE=3>
 
 
-<div class="base" style="background:#333">
+<div class="base">
 <div class="about">
 
 <div style="FONT-SIZE:12pt; FONT-FAMILY:华文楷体">
-<a class="word"  href="">关于我们</a>
+<a class="word"  style="color: #cccccc;" href="{% url 'aboutus' %}">关于我们</a>
 </div>
 </div>
 
@@ -220,7 +222,7 @@ onclick="window.location.href='{% url "fly_business" %}'"
 
 <div class="connect">
 <div style="FONT-SIZE:12pt; FONT-FAMILY:华文楷体">
-<a class="word"  href="">联系我们</a>
+<a class="word"  style="color: #cccccc;" href="{% url 'contact' %}">联系我们</a>
 </div>
 </div>
 
@@ -233,7 +235,7 @@ onclick="window.location.href='{% url "fly_business" %}'"
 
 <div class="question">
 <div style="FONT-SIZE:12pt; FONT-FAMILY:华文楷体">
-<a class="word"  href="">问题反馈</a>
+<a class="word"  style="color: #cccccc;" href="{% url 'feedback' %}" onclick="this.setAttribute('href','{% url 'feedback' %}'+'?nocache='+Math.random());">问题反馈</a>
 </div>
 </div>
 </div>

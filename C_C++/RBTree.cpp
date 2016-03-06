@@ -21,6 +21,7 @@ class RBTree {
 		void left_rotate(RBNode*);
 		void right_rotate(RBNode*);
 		void rb_insert(RBNode*);
+		void rb_left_insert_fixup(RBNode*);
 		void rb_insert_fixup(RBNode*);
 	protected:
 		RBNode* root;
@@ -105,4 +106,66 @@ void RBTree::rb_insert(RBNode* z)
 
 void RBTree::rb_insert_fixup(RBNode* z)
 {
+	while(z->parent->color == RED)
+	{
+		RBNode* y = NULL;
+		int direction = -1;		// 0 for y right, 1 for y left!
+		if(z->parent ==  z->parent->parent->left)
+		{
+			y = z->parent->parent->right;
+			direction = 0;
+		}
+		else if(z->parent == z->parent->parent->right)
+		{
+			y = z->parent->parent->left;
+			direction = 1;
+		}
+		// right!
+		if(direction == 0)
+		{
+			if(y->color == RED)
+			{
+				y->parent->color = RED;
+				y->color = BLACK;
+				z->parent->color = BLACK;
+				// for recursion, do the whole tree!
+				z = z->parent->parent;
+			}
+			else if(y->color == BLACK && z == z->parent->right)
+			{
+				z = z->parent;
+				// recursion
+				left_rotate(z);
+			}
+			else if(y->color == BLACK && z == z->parent->left)
+			{
+				z->parent->color = BLACK;
+				z->parent->parent->color = RED;
+				// recursion
+				right_rotate(z->parent->parent);
+			}
+		}
+		// left
+		else if(direction == 1)
+		{
+			if(y->color == RED)
+			{
+				y->parent->color = RED;
+				y->color = BLACK;
+				z->parent->color = BLACK;
+				z = z->parent->parent;
+			}
+			else if(y->color == BLACK && z == z->parent->right)
+			{
+				z->parent->color = BLACK;
+				z->parent->parent->color = RED;
+				left_rotate(z->parent->parent);
+			}
+			else if(y->color == BLACK && z == z->parent->left)
+			{
+				z = z->parent;
+				right_rotate(z);
+			}
+		}
+	}
 }
