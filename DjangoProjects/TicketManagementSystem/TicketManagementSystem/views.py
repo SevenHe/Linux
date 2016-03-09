@@ -5,6 +5,7 @@ must pay attention to the syntax issues.
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render, render_to_response
+from django.views.decorators.cache import cache_page
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required  
@@ -111,6 +112,8 @@ def turn_to_sign_in(request):
 # 登录之后不是渲染， 而是重定向！This is the tradition!
 import re
 def sign_in(request):
+    if request.method != "POST" and not re.findall('turn_to_sign_in', request.META['HTTP_REFERER'].encode('ascii')):
+        return HttpResponse("Illegal Access in signing in the site")
     identifier = request.POST.get('usr', '')
     pswd = request.POST.get('log_pswd', '')
     user = auth.authenticate(username=identifier, password=pswd)
@@ -179,6 +182,7 @@ Custom authentication!
     return render_to_response('sign_in.html', {'error': False, 'show': False, 'using': False}) 
 """
 # TODO--redirect to the user profile automatically!
+@cache_page(0)
 @login_required(login_url='/account/turn_to_sign_in/')
 def personalize(request):
     if request.user:
@@ -188,8 +192,8 @@ def personalize(request):
             trains = TrainTrade.objects.filter(user_id=request.user.id)
         except:
             return HttpResponse("PERSONAL UNKNOWN ERROR!!")
-
-    return render_to_response('personal.html', context_instance=RequestContext(request))
+        else:
+            return render_to_response('personal.html', {'flys': flys, 'buses': buses, 'trains': trains}, context_instance=RequestContext(request))
 
 def sign_out(request):
     auth.logout(request)

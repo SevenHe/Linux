@@ -1,0 +1,229 @@
+{% extends "index.html" %}
+{% block title %}
+支付页面
+{% endblock %}
+{% block center %}
+<link rel="stylesheet" href="/static/css/pay.css" />
+
+<div class="mid">
+
+<div class="information">
+
+<div class="infotop">
+<div class="topword" style="FONT-SIZE: 15pt;  COLOR: #202020; FONT-FAMILY: 黑体">
+<strong><p>列车信息</p></strong>
+</div>
+</div>
+
+<hr class="line-two">
+
+<div class="infonum">
+
+<div class="tranum" style="COLOR: #000000; FONT-FAMILY: 黑体">
+<p id="serial" class="big">{{ ticket.serial }}</p>
+</div>
+<div class="tratime" style="COLOR: #000000; FONT-FAMILY: 华文楷体">
+<p class="small">{{ ticket.departure|date:"Y-m-d H:i" }}</p>
+</div>
+<div class="traplace" style="COLOR: #000000; FONT-FAMILY: 华文楷体">
+<p class="small">{{ ticket.start }}->{{ ticket.terminus }}</p>
+</div>
+
+<div class="sel_wrap" id="sel_wrap">
+	<span>点击选择待购票数</span>
+	<select class="select" id="c_select">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+	</select>
+</div>
+<script >
+	function $(x){
+		return document.getElementById(x);
+	}
+	var sel=$("c_select");
+	var wrap=$("sel_wrap");
+	var result=wrap.getElementsByTagName("span");
+	wrap.onmouseover=function(){
+		this.style.backgroundColor="#FFFFBD";
+	}
+	wrap.onmouseout=function(){
+		this.style.backgroundColor="#FFFFFF";
+	}
+	sel.onchange=function(){
+		var opt=this.getElementsByTagName("option");
+		var len=opt.length;
+		for(i=0;i<len;i++){
+			if(opt[i].selected==true){
+				x=opt[i].innerHTML;
+			}
+		}
+		result[0].innerHTML=x;
+	}
+</script>
+
+</div>
+<script src="/static/js/jquery.min.js"></script>
+<div class="infolist">
+<table class="bordered">
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>席别</th>          
+        <th>票种</th>
+        <th>再次确认</th>
+    </tr>
+    </thead>
+{% if ticket %}
+<script type="text/javascript">
+$(document).ready(function () {
+	$("#c_select").change(function() {
+		var selected = Number($(this).children('option:selected').val());
+		var current = Number($("tr.model:last-child>td:first-child").text());
+		if (selected > current) {
+			$(".model:first-child").clone(true).appendTo(".bordered");
+			$("tr.model:last-child>td:first-child").text(""+selected);	
+		}
+		else if (selected < current) {
+			$("tr.model:last").remove();
+		}
+		else {
+			return;
+		}
+	});
+});
+</script>
+    <tbody id="user_selected">
+    <tr class="model">
+        <td>1</td>        
+        <td>
+        {% ifequal t_type 'train' %} 
+        <script type="text/javascript">
+        $(document).ready(function() {
+        	var quantity = {{ ticket.quantity }}
+        	$(".seat").append("<option value='"+"h"+"'>"+"硬座(" + quantity*0.7 + "张)</option>");
+        	$(".seat").append("<option value='"+"s"+"'>"+"卧铺(" + quantity*0.3 + "张)</option>");
+        });
+        </script>
+        <select class="seat">
+        </select>
+        {% endifequal %}
+        {% ifequal t_type 'bus' %} 
+        <script type="text/javascript">
+        $(document).ready(function() {
+        	var quantity = {{ ticket.quantity }}
+        	$(".seat").append("<option value='"+"h"+"'>"+"硬座(" + quantity*0.5 + "张)</option>");
+        	$(".seat").append("<option value='"+"u"+"'>"+"软座(" + quantity*0.5 + "张)</option>");
+		});        
+        </script>
+        <select class="seat">
+        </select>
+        {% endifequal %}
+        {% ifequal t_type 'fly' %}
+        <script type="text/javascript">
+        $(document).ready(function() {
+        	var quantity = {{ ticket.quantity }}
+        	$(".seat").append("<option value='"+"f"+"'>"+"头等舱(" + quantity*0.8 + "张)</option>");
+        	$(".seat").append("<option value='"+"e"+"'>"+"经济舱(" + quantity*0.2 + "张)</option>");
+		});        
+        </script>
+        <select class="seat">
+        </select>
+        {% endifequal %}
+        </td>
+        <td>
+        {% ifequal t_type 'train' %} 
+        <select class="type">
+        <option value="a">成人票</option>
+        <option value="c">儿童票</option>
+        </select>
+        {% endifequal %}
+        {% ifequal t_type 'bus' %} 
+        <select class="type">
+        <option value="a">成人票</option>
+        <option value="s">特殊票</option>
+        </select>
+        {% endifequal %}
+        {% ifequal t_type 'fly' %} 
+        <select class="type">
+        <option value="w">全价票</option>
+        <option value="p">特价票</option>
+        </select>
+        {% endifequal %}
+        </td>
+        <td><input type="checkbox"></td>
+    </tr>        
+    </tbody>
+{% endif %}
+</table>
+
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#submit_but").bind('click', function() {
+		var t_type = "{{ t_type }}";
+		var content = "";
+		var checked = 0;
+		content = content + $("#serial").text();
+		content = content + " " + $(".model:last-child>td:first-child").text() + ",";
+		$("#user_selected").children(".model").each(function(i, n) {
+			if ($(n).children("td").last().children('input').is(":checked")==true) {
+				content = content + $(n).children("td").first().text();
+				content = content + " " + $(n).children("td").children(".seat").val();
+				content = content + " " + $(n).children("td").children(".type").val() + ",";
+				checked = checked + 1;
+			}
+		});
+		if(checked == 0) {
+			alert("错误：没有再次确认所选票种，请至少确认一张后再提交！");
+			return false;		
+		}
+		$("input[name='content']").val(content);
+		$("#trade_form").attr("action", "{% url 'trade' t_type %}");
+		
+		$("#trade_form").submit();
+	});
+});
+</script>
+<div class="infobutton">
+<div class="lastbutton">
+<input type="button" value="上一步" class="checkon" onmouseover="this.style.cursor='pointer'"
+       onmousemove="this.className='checkou'"  onmouseout="this.className='checkon'" 
+       onclick="javascript:history.go(-1);" /> 
+</div>
+<div class="submitbutton">
+<form id="trade_form" method="post">
+<input type="submit" value="提交订单" id="submit_but" class="checkon" onmouseover="this.style.cursor='pointer'"
+       onmousemove="this.className='checkou'"  onmouseout="this.className='checkon'"/>   
+<input type="hidden" name="content"/>    
+</form>
+</div>
+</div>
+</div>
+
+<div class="remind">
+
+<div class="remtop">
+<div class="topword" style="FONT-SIZE: 15pt;  COLOR: #202020; FONT-FAMILY: 黑体">
+<strong><p>温馨提示</p></strong>
+</div>
+</div>
+
+<hr class="line-two">
+
+<div class="remword" style="FONT-SIZE: 12pt;  COLOR:#6C6C6C; FONT-FAMILY: 华文楷体">
+<style type="text/css">
+p.prompt {
+	white-space: normal;
+	word-wrap:break-all;
+}	
+</style>
+<p class="prompt">1.一个注册号同一乘车日期同一车次最多可购买三张车票；</p>
+<p class="prompt">2.一次购买多张车票时请确定好您要选择的席别、票种；</p>
+<p class="prompt">3.学生票乘车时间限为每年的暑假6月1日至9月30日、寒假12月1日至3月31日。购票后、开车前，须办理换票手续方可进站乘车。</p>
+</div>
+
+</div>
+
+</div>
+{% endblock %}

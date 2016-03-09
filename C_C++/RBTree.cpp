@@ -15,19 +15,24 @@ struct RBNode {
 
 // The most difficult in RBTree is that every node has three Node* 
 // so that every change needs to influence them!
+// and the node itself is invariable!
 class RBTree {
 
 	public:
+		RBTree();
 		void left_rotate(RBNode*);
 		void right_rotate(RBNode*);
 		void rb_insert(RBNode*);
 		void rb_left_insert_fixup(RBNode*);
 		void rb_insert_fixup(RBNode*);
+		void rb_delete(RBNode*);
+		void display();
 	protected:
 		RBNode* root;
 		RBNode* nil;
 };
 
+// x is the parent of y!
 void RBTree::left_rotate(RBNode* x)
 {
 	RBNode* y = x->right;
@@ -54,7 +59,7 @@ void RBTree::left_rotate(RBNode* x)
 		x->right->parent = x;
 }
 
-// just like the left_rotate
+// just like the left_rotate, but y is the parent of x, from the same level!
 void RBTree::right_rotate(RBNode* y)
 {
 	RBNode* x = y->left;
@@ -104,6 +109,9 @@ void RBTree::rb_insert(RBNode* z)
 	rb_insert_fixup(z);
 }
 
+// rotate is not a recursion operation!
+// z->parent just have two directions, left and right, so just two situations!
+// pay attention to understanding!
 void RBTree::rb_insert_fixup(RBNode* z)
 {
 	while(z->parent->color == RED)
@@ -134,14 +142,19 @@ void RBTree::rb_insert_fixup(RBNode* z)
 			else if(y->color == BLACK && z == z->parent->right)
 			{
 				z = z->parent;
-				// recursion
+				// iteration 
 				left_rotate(z);
+				// get into next situation!
+				z->parent->color = BLACK;
+				z->parent->parent->color = RED;
+				// iteration
+				right_rotate(z->parent->parent);
 			}
 			else if(y->color == BLACK && z == z->parent->left)
 			{
 				z->parent->color = BLACK;
 				z->parent->parent->color = RED;
-				// recursion
+				// iteration
 				right_rotate(z->parent->parent);
 			}
 		}
@@ -155,17 +168,24 @@ void RBTree::rb_insert_fixup(RBNode* z)
 				z->parent->color = BLACK;
 				z = z->parent->parent;
 			}
+			// simple situation!
 			else if(y->color == BLACK && z == z->parent->right)
 			{
 				z->parent->color = BLACK;
 				z->parent->parent->color = RED;
 				left_rotate(z->parent->parent);
 			}
+			// take into previous situation!
 			else if(y->color == BLACK && z == z->parent->left)
 			{
 				z = z->parent;
 				right_rotate(z);
+				z->parent->color = BLACK;
+				z->parent->parent->color = RED;
+				left_rotate(z->parent->parent);
 			}
 		}
 	}
+	// fix the seconde property, that is the root color is always BLACK!
+	this->root->color = BLACK;
 }

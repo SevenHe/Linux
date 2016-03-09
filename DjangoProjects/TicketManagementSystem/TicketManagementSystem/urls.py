@@ -20,6 +20,7 @@ from Utils.views import *
 from tickets.views import *
 from Profile.views import *
 
+# this can be divided into different apps' urls.py, but i just use this to see clearly!
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', preview),
@@ -46,6 +47,9 @@ urlpatterns = [
     url(r'^ticket/bus/ajax_get/$', ajax_get_bus, name='ajax_get_bus'),
     url(r'^ticket/fly/query/$', fly_business, name='fly_business'),
     url(r'^ticket/fly/ajax_get/$', ajax_get_fly, name='ajax_get_fly'),
-    url(r'^ticket/pay/$', payment, name='payment'),
+    url(r'^ticket/reserve/$', reservation, name='reservation'),
+    url(r'ticket/trade/(?P<t_type>[a-zA-Z]{0,6})/$', trade, name='trade'),
+    url(r'ticket/pay/$', payment, name='payment'),
+    url(r'ticket/cancel/$', cancel, name='cancel'),
     #url(r'^account/test$', sign_up),
 ]

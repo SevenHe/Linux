@@ -20,7 +20,7 @@
 <div class="infonum">
 
 <div class="tranum" style="COLOR: #000000; FONT-FAMILY: 黑体">
-<p class="big">{{ ticket.serial }}</p>
+<p id="serial" class="big">{{ ticket.serial }}</p>
 </div>
 <div class="tratime" style="COLOR: #000000; FONT-FAMILY: 华文楷体">
 <p class="small">{{ ticket.departure|date:"Y-m-d H:i" }}</p>
@@ -81,11 +81,17 @@ $(document).ready(function () {
 		var selected = Number($(this).children('option:selected').val());
 		var current = Number($("tr.model:last-child>td:first-child").text());
 		if (selected > current) {
-			$(".model:first-child").clone(true).appendTo(".bordered");
-			$("tr.model:last-child>td:first-child").text(""+selected);	
+			while (selected > current) {
+				current = current + 1;
+				$(".model:first-child").clone(true).appendTo(".bordered");
+				$("tr.model:last-child>td:first-child").text(current);
+			}
 		}
 		else if (selected < current) {
-			$("tr.model:last").remove();
+			while (selected < current) {
+				current = current - 1;
+				$("tr.model:last").remove();
+			}
 		}
 		else {
 			return;
@@ -93,7 +99,8 @@ $(document).ready(function () {
 	});
 });
 </script>
-    <tbody>
+<!--this place can be optimized, add a field number will save a lot of logical coding!-->
+    <tbody id="user_selected">
     <tr class="model">
         <td>1</td>        
         <td>
@@ -101,8 +108,8 @@ $(document).ready(function () {
         <script type="text/javascript">
         $(document).ready(function() {
         	var quantity = {{ ticket.quantity }}
-        	$(".seat").append("<option value='"+"硬座"+"'>"+"硬座(" + quantity*0.7 + "张)</option>");
-        	$(".seat").append("<option value='"+"卧铺"+"'>"+"卧铺(" + quantity*0.3 + "张)</option>");
+        	$(".seat").append("<option value='"+"h"+"'>"+"硬座(" + quantity*0.7 + "张)</option>");
+        	$(".seat").append("<option value='"+"s"+"'>"+"卧铺(" + quantity*0.3 + "张)</option>");
         });
         </script>
         <select class="seat">
@@ -112,8 +119,8 @@ $(document).ready(function () {
         <script type="text/javascript">
         $(document).ready(function() {
         	var quantity = {{ ticket.quantity }}
-        	$(".seat").append("<option value='"+"硬座"+"'>"+"硬座(" + quantity*0.5 + "张)</option>");
-        	$(".seat").append("<option value='"+"软座"+"'>"+"软座(" + quantity*0.5 + "张)</option>");
+        	$(".seat").append("<option value='"+"h"+"'>"+"硬座(" + quantity*0.5 + "张)</option>");
+        	$(".seat").append("<option value='"+"u"+"'>"+"软座(" + quantity*0.5 + "张)</option>");
 		});        
         </script>
         <select class="seat">
@@ -123,8 +130,8 @@ $(document).ready(function () {
         <script type="text/javascript">
         $(document).ready(function() {
         	var quantity = {{ ticket.quantity }}
-        	$(".seat").append("<option value='"+"头等舱"+"'>"+"头等舱(" + quantity*0.8 + "张)</option>");
-        	$(".seat").append("<option value='"+"经济舱"+"'>"+"经济舱(" + quantity*0.2 + "张)</option>");
+        	$(".seat").append("<option value='"+"f"+"'>"+"头等舱(" + quantity*0.8 + "张)</option>");
+        	$(".seat").append("<option value='"+"e"+"'>"+"经济舱(" + quantity*0.2 + "张)</option>");
 		});        
         </script>
         <select class="seat">
@@ -134,20 +141,20 @@ $(document).ready(function () {
         <td>
         {% ifequal t_type 'train' %} 
         <select class="type">
-        <option>成人票</option>
-        <option>儿童票</option>
+        <option value="a">成人票</option>
+        <option value="c">儿童票</option>
         </select>
         {% endifequal %}
         {% ifequal t_type 'bus' %} 
         <select class="type">
-        <option>成人票</option>
-        <option>特殊票</option>
+        <option value="a">成人票</option>
+        <option value="s">特殊票</option>
         </select>
         {% endifequal %}
         {% ifequal t_type 'fly' %} 
         <select class="type">
-        <option>全价票</option>
-        <option>特价票</option>
+        <option value="w">全价票</option>
+        <option value="p">特价票</option>
         </select>
         {% endifequal %}
         </td>
@@ -158,15 +165,45 @@ $(document).ready(function () {
 </table>
 
 </div>
-
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#submit_but").bind('click', function() {
+		var t_type = "{{ t_type }}";
+		var content = "";
+		var checked = 0;
+		content = content + $("#serial").text();
+		content = content + " " + $(".model:last-child>td:first-child").text() + ",";
+		$("#user_selected").children(".model").each(function(i, n) {
+			if ($(n).children("td").last().children('input').is(":checked")==true) {
+				content = content + $(n).children("td").first().text();
+				content = content + " " + $(n).children("td").children(".seat").val();
+				content = content + " " + $(n).children("td").children(".type").val() + ",";
+				checked = checked + 1;
+			}
+		});
+		if(checked == 0) {
+			alert("错误：没有再次确认所选票种，请至少确认一张后再提交！");
+			return false;		
+		}
+		$("input[name='content']").val(content);
+		$("#trade_form").attr("action", "{% url 'trade' t_type %}");
+		
+		$("#trade_form").submit();
+	});
+});
+</script>
 <div class="infobutton">
 <div class="lastbutton">
 <input type="button" value="上一步" class="checkon" onmouseover="this.style.cursor='pointer'"
-       onmousemove="this.className='checkou'"  onmouseout="this.className='checkon'"/> 
+       onmousemove="this.className='checkou'"  onmouseout="this.className='checkon'" 
+       onclick="javascript:history.go(-1);" /> 
 </div>
 <div class="submitbutton">
-<input type="button" value="提交订单" class="checkon" onmouseover="this.style.cursor='pointer'"
-       onmousemove="this.className='checkou'"  onmouseout="this.className='checkon'"/>       
+<form id="trade_form" method="post">
+<input type="submit" value="提交订单" id="submit_but" class="checkon" onmouseover="this.style.cursor='pointer'"
+       onmousemove="this.className='checkou'"  onmouseout="this.className='checkon'"/>   
+<input type="hidden" name="content"/>    
+</form>
 </div>
 </div>
 </div>

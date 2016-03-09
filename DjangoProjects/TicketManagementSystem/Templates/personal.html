@@ -7,8 +7,8 @@
 <script src="/static/js/personal.js"></script>
 <script src="/static/js/jquery.form.js"></script>
 <script type="text/javascript">
-//for future security!
-function getCookie(name) {
+//for future security!post only!
+/*function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie != '') {
         var cookies = document.cookie.split(';');
@@ -29,12 +29,15 @@ function csrfSafeMethod(method) {
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
 $.ajaxSetup({
+	cache:false,
     beforeSend: function(xhr, settings) {
         if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
             xhr.setRequestHeader("X-CSRFToken", csrftoken);
         }
     }
 });
+*/
+$.ajaxSetup({cache:false});
 </script>
 <div class="mid">
 
@@ -79,38 +82,181 @@ $.ajaxSetup({
 </div>
 </div>
 
+<script type="text/javascript">
+$(document).ready(function () {
+	$(".hatablelist .bordered").children().children(".ticket").each(function(i, n) {
+		$(n).children().first().text(i+1);
+	});
+	$(".untablelist .bordered").children().children(".ticket").each(function(i, n) {
+		$(n).children().first().text(i+1);
+	});
+	$("input[name='train_pay']").bind('click', function() {
+	// for future security! $("#unform").submit(function(event) {
+		//event.preventDefault();
+		var t_type = "train";
+		var serial = $(this).parent().parent().prev().children().first().next().text();
+		var genre_type = $(this).parent().parent().prev().children().first().next().next().next().text();
+		$.get("{% url 'payment' %}", {t_type: t_type, serial: serial, genre_type: genre_type}, function(result) {
+			if(result == "payed") {
+				window.location.reload(true);
+			}
+			else {
+				alert("支付出错，请稍后再试!");
+			}		
+		});
+	});
+	$("input[name='fly_pay']").click(function() {
+		var t_type = "fly";
+		var serial = $(this).parent().parent().prev().children().first().next().text();
+		var genre_type = $(this).parent().parent().prev().children().first().next().next().next().text();
+		$.get("{% url 'payment' %}", {t_type: t_type, serial: serial, genre_type: genre_type}, function(result) {
+			if(result == "payed") {
+				window.location.reload(true);
+			}
+			else {
+				alert("支付出错，请稍后再试!");
+			}		
+		});
+	});
+	$("input[name='bus_pay']").click(function() {
+		var t_type = "bus";
+		var serial = $(this).parent().parent().prev().children().first().next().text();
+		var genre_type = $(this).parent().parent().prev().children().first().next().next().next().text();
+		$.get("{% url 'payment' %}", {t_type: t_type, serial: serial, genre_type: genre_type}, function(result) {
+			if(result == "payed") {
+				window.location.reload(true);
+			}
+			else {
+				alert("支付出错，请稍后再试!");
+			}		
+		});
+	});
+	$("input[name='train_cancel']").click(function() {
+		var t_type = "train";
+		var serial = $(this).parent().parent().children().first().next().text();
+		var genre_type = $(this).parent().parent().children().first().next().next().next().text();
+		$.get("{% url 'cancel' %}", {t_type: t_type, serial: serial, genre_type: genre_type}, function(result) {
+			if(result == "canceled") {
+				window.location.reload(true);
+			}
+			else {
+				alert("取消订单出错，请稍后再试!");
+			}		
+		});
+	});
+	$("input[name='fly_cancel']").click(function() {
+		var t_type = "fly";
+		var serial = $(this).parent().parent().children().first().next().text();
+		var genre_type = $(this).parent().parent().children().first().next().next().next().text();
+		$.get("{% url 'cancel' %}", {t_type: t_type, serial: serial, genre_type: genre_type}, function(result) {
+			if(result == "canceled") {
+				window.location.reload(true);
+			}
+			else {
+				alert("取消订单出错，请稍后再试!");
+			}		
+		});
+	});
+	$("input[name='bus_cancel']").click(function() {
+		var t_type = "bus";
+		var serial = $(this).parent().parent().children().first().next().text();
+		var genre_type = $(this).parent().parent().children().first().next().next().next().text();
+		$.get("{% url 'cancel' %}", {t_type: t_type, serial: serial, genre_type: genre_type}, function(result) {
+			if(result == "canceled") {
+				window.location.reload(true);
+			}
+			else {
+				alert("取消订单出错，请稍后再试!");
+			}		
+		});
+	});
+});
+</script>
 <div class="untablelist">
 <table class="bordered">
 <tr>
   <th>序号</th>
-  <th>车次</th>
+  <th>车次/航班/班次</th>
   <th>出发时间</th>
-  <th>座位信息</th>
+  <th>票/座位信息</th>
   <th>金额</th>
   <th>操作</th>
 </tr>
-<tr>
+{% for train in trains %}
+{% ifequal train.status 1 %}
+<tr class="ticket">
   <td rowspan="2">1</td>
-  <td>K126</td>
-  <td>2016--3--5</td>
-  <td>15车厢</td>
-  <td rowspan="2">350元</td>
+  <td>{{ train.serial.serial }}</td>
+  <td>{{ train.serial.departure|date:"Y-m-d" }}</td>
+  <td>{{ train.get_genre_display }} {{ train.get_t_type_display }}</td>
+  <td rowspan="2">{{ train.number }} × {{ train.serial.price }}元</td>
   <td>
-  <input class="payon" type="button" value="取消订单" onmouseover="this.style.cursor='pointer'"
+  <input class="payon" type="button" name="train_cancel" value="取消订单" onmouseover="this.style.cursor='pointer'"
          onmousemove="this.className='payou'"  onmouseout="this.className='payon'"/>
   </td>
 </tr>
 <tr>
-  <td style="border-top:0px;">西安->长春</td>
-  <td style="border-top:0px;">22.30(PM)</td>
-  <td style="border-top:0px;">23号</td>
+  <td style="border-top:0px;">{{ train.serial.start }}->{{ train.serial.terminus }}</td>
+  <td style="border-top:0px;">{{ train.serial.departure|date:"H:i" }}</td>
+  <td style="border-top:0px;">15车厢 23号</td>
   <td style="border-top:0px;">
-  <input class="payon" type="button" value="立即支付" onmouseover="this.style.cursor='pointer'"
+  <input class="payon" type="button" name="train_pay" value="立即支付" onmouseover="this.style.cursor='pointer'"
          onmousemove="this.className='payou'"  onmouseout="this.className='payon'"/>
   </td>
 </tr>
+{% endifequal %}
+{% endfor %}
+{% for fly in flys %}
+{% ifequal fly.status 1 %}
+<tr class="ticket">
+  <td rowspan="2">1</td>
+  <td>{{ fly.serial.serial }}</td>
+  <td>{{ fly.serial.departure|date:"Y-m-d" }}</td>
+  <td>{{ fly.get_genre_display }} {{ fly.get_t_type_display }}</td>
+  <td rowspan="2">{{ fly.number }} × {{ fly.serial.price }}元</td>
+  <td>
+  <input class="payon" type="button" name="fly_cancel" value="取消订单" onmouseover="this.style.cursor='pointer'"
+         onmousemove="this.className='payou'"  onmouseout="this.className='payon'"/>
+  </td>
+</tr>
+<tr>
+  <td style="border-top:0px;">{{ fly.serial.start }}->{{ fly.serial.terminus }}</td>
+  <td style="border-top:0px;">{{ fly.serial.departure|date:"H:i" }}</td>
+  <td style="border-top:0px;">E排 15号</td>
+  <td style="border-top:0px;">
+  <input class="payon" type="button" name="fly_pay" value="立即支付" onmouseover="this.style.cursor='pointer'"
+         onmousemove="this.className='payou'"  onmouseout="this.className='payon'"/>
+  </td>
+</tr>
+{% endifequal %}
+{% endfor %}
+{% for bus in buses %}
+{% ifequal bus.status 1 %}
+<tr class="ticket">
+  <td rowspan="2">1</td>
+  <td>{{ bus.serial.serial }}</td>
+  <td>{{ bus.serial.departure|date:"Y-m-d" }}</td>
+  <td>{{ bus.get_genre_display }} {{ bus.get_t_type_display }}</td>
+  <td rowspan="2">{{ bus.number }} × {{ bus.serial.price }}元</td>
+  <td>
+  <input class="payon" type="button" name="bus_cancel" value="取消订单" onmouseover="this.style.cursor='pointer'"
+         onmousemove="this.className='payou'"  onmouseout="this.className='payon'"/>
+  </td>
+</tr>
+<tr>
+  <td style="border-top:0px;">{{ bus.serial.start }}->{{ bus.serial.terminus }}</td>
+  <td style="border-top:0px;">{{ bus.serial.departure|date:"H:i" }}</td>
+  <td style="border-top:0px;">3排 4列</td>
+  <td style="border-top:0px;">
+  <input class="payon" type="button" name="bus_pay" value="立即支付" onmouseover="this.style.cursor='pointer'"
+         onmousemove="this.className='payou'"  onmouseout="this.className='payon'"/>
+  </td>
+</tr>
+{% endifequal %}
+{% endfor %}
 
 </table>
+<strong id="nothing1" style='margin-left: 30px;display: none;'>暂无信息！！</strong>
 </div>
 
 </div>
@@ -122,32 +268,123 @@ $.ajaxSetup({
 <strong><p>已完成订单</p></strong>
 </div>
 </div>
-
+<script type="text/javascript">
+if ($(".hatablelist .bordered tr").length == 1) {
+	$("#nothing2").show();
+}
+if ($(".untablelist .bordered tr").length == 1) {
+	$("#nothing1").show();
+}
+</script>
 <div class="hatablelist">
 <table class="bordered">
 <tr>
   <th>序号</th>
-  <th>车次</th>
+  <th>车次/航班/班次</th>
   <th>出发时间</th>
-  <th>座位信息</th>
+  <th>票/座位信息</th>
   <th>金额</th>
   <th>状态</th>
 </tr>
-<tr>
+{% for train in trains %}
+{% ifequal train.status 2 %}
+<tr class="ticket">
   <td rowspan="2">1</td>
-  <td>K126</td>
-  <td>2016--3--5</td>
-  <td>15车厢</td>
-  <td rowspan="2">350元</td>
+  <td>{{ train.serial.serial }}</td>
+  <td>{{ train.serial.departure|date:"Y-m-d" }}</td>
+  <td>{{ train.get_genre_display }} {{ train.get_t_type_display }}</td>
+  <td rowspan="2">{{ train.number }} × {{ train.serial.price }}元</td>
   <td rowspan="2">已支付</td>
 </tr>
 <tr>
-  <td style="border-top:0px;">西安->长春</td>
-  <td style="border-top:0px;">22.30(PM)</td>
-  <td style="border-top:0px;">23号</td>
+  <td style="border-top:0px;">{{ train.serial.start }}->{{ train.serial.terminus }}</td>
+  <td style="border-top:0px;">{{ train.serial.departure|date:"H:i" }}</td>
+  <td style="border-top:0px;">15号车厢 23号</td>
 </tr>
+{% endifequal %}
+{% ifequal train.status 3 %}
+<tr class="ticket">
+  <td rowspan="2">1</td>
+  <td>{{ train.serial.serial }}</td>
+  <td>{{ train.serial.departure|date:"Y-m-d" }}</td>
+  <td>{{ train.get_genre_display }} {{ train.get_t_type_display }}</td>
+  <td rowspan="2">{{ train.number }} × {{ train.serial.price }}元</td>
+  <td rowspan="2">已过期</td>
+</tr>
+<tr>
+  <td style="border-top:0px;">{{ train.serial.start }}->{{ train.serial.terminus }}</td>
+  <td style="border-top:0px;">{{ train.serial.departure|date:"H:i" }}</td>
+  <td style="border-top:0px;">>15号车厢 23号</td>
+</tr>
+{% endifequal %}
+{% endfor %}
+{% for fly in flys %}
+{% ifequal fly.status 2 %}
+<tr class="ticket">
+  <td rowspan="2">1</td>
+  <td>{{ fly.serial.serial }}</td>
+  <td>{{ fly.serial.departure|date:"Y-m-d" }}</td>
+  <td>{{ fly.get_genre_display }} {{ fly.get_t_type_display }}</td>
+  <td rowspan="2">{{ fly.number }} × {{ fly.serial.price }}元</td>
+  <td rowspan="2">已支付</td>
+</tr>
+<tr>
+  <td style="border-top:0px;">{{ fly.serial.start }}->{{ fly.serial.terminus }}</td>
+  <td style="border-top:0px;">{{ fly.serial.departure|date:"H:i" }}</td>
+  <td style="border-top:0px;">E排 15号</td>
+</tr>
+{% endifequal %}
+{% ifequal fly.status 3 %}
+<tr class="ticket">
+  <td rowspan="2">1</td>
+  <td>{{ fly.serial.serial }}</td>
+  <td>{{ fly.serial.departure|date:"Y-m-d" }}</td>
+  <td>{{ fly.get_genre_display }} {{ fly.get_t_type_display }}</td>
+  <td rowspan="2">{{ fly.number }} × {{ fly.serial.price }}元</td>
+  <td rowspan="2">已过期</td>
+</tr>
+<tr>
+  <td style="border-top:0px;">{{ fly.serial.start }}->{{ fly.serial.terminus }}</td>
+  <td style="border-top:0px;">{{ fly.serial.departure|date:"H:i" }}</td>
+  <td style="border-top:0px;">E排 15号</td>
+</tr>
+{% endifequal %}
+{% endfor %}
+{% for bus in buses %}
+{% ifequal bus.status 2 %}
+<tr class="ticket">
+  <td rowspan="2">1</td>
+  <td>{{ bus.serial.serial }}</td>
+  <td>{{ bus.serial.departure|date:"Y-m-d" }}</td>
+  <td>{{ bus.get_genre_display }} {{ bus.get_t_type_display }}</td>
+  <td rowspan="2">{{ bus.number }} × {{ bus.serial.price }}元</td>
+  <td rowspan="2">已支付</td>
+</tr>
+<tr>
+  <td style="border-top:0px;">{{ bus.serial.start }}->{{ bus.serial.terminus }}</td>
+  <td style="border-top:0px;">{{ bus.serial.departure|date:"H:i" }}</td>
+  <td style="border-top:0px;">3排 4列</td>
+</tr>
+{% endifequal %}
+{% ifequal bus.status 3 %}
+<tr class="ticket">
+  <td rowspan="2">1</td>
+  <td>{{ bus.serial.serial }}</td>
+  <td>{{ bus.serial.departure|date:"Y-m-d" }}</td>
+  <td>{{ bus.get_genre_display }} {{ bus.get_t_type_display }}</td>
+  <td rowspan="2">{{ bus.number }} × {{ bus.serial.price }}元</td>
+  <td rowspan="2">已过期</td>
+</tr>
+<tr>
+  <td style="border-top:0px;">{{ bus.serial.start }}->{{ bus.serial.terminus }}</td>
+  <td style="border-top:0px;">{{ bus.serial.departure|date:"H:i" }}</td>
+  <td style="border-top:0px;">3排 4列</td>
+</tr>
+{% endifequal %}
+{% endfor %}
 
 </table>
+<strong id="nothing2" style='margin-left: 30px;display:none;'>暂无信息！！</strong>
 </div>
 
 </div>
@@ -167,7 +404,7 @@ $.ajaxSetup({
 <div class="example">
 
 <hr class="cut-one">
-
+<!--these forms need to be coded in!-->
 <div class="menuholder">
 <div class="shadow">
 <div class="shtitle">
@@ -180,18 +417,20 @@ $.ajaxSetup({
 </div>
 <div class="back" id="backdivone">
 <hr class="cut-back" />
+<form id="username_form" method="post">
 <div class="backinput" id="backinputoneone">
 <div class="bain-left"><p class="current">当前用户名：</p></div>
 <div class="bain-right"><p class="newdata">{{ user.username }}</p></div>
 </div>
 <div class="backinput" id="backinputonetwo">
 <div class="bain-left"><p class="current">新用户名：</p></div>
-<div class="bain-right"><input type="text" class="backintext"></div>
+<div class="bain-right"><input name="new_username" type="text" class="backintext"></div>
 </div>
 <div class="backbutton" id="backbuttonone">
-<input class="backinbuon" type="button" value="保存" onmouseover="this.style.cursor='pointer'"
+<input class="backinbuon" type="submit" value="保存" onmouseover="this.style.cursor='pointer'"
        onmousemove="this.className='backinbuou'"  onmouseout="this.className='backinbuon'"/>
 </div>
+</form>
 </div>
 </div>
 
@@ -203,24 +442,26 @@ $.ajaxSetup({
 <p class="shtitle-w">手机号：</p>
 </div>
 <div class="shcontent">
-<p class="shcontent-w">123456789</p>
+<p class="shcontent-w">{{ user.userprofile.phone_number }}</p>
 </div>
 <a class="click" id="buttontwo" href="javascript:void(0)" onclick="clickback('two')">编辑</a>
 </div>
 <div class="back" id="backdivtwo">
 <hr class="cut-back" />
+<form id="phoneform" method="post">
 <div class="backinput" id="backinputtwoone">
 <div class="bain-left"><p class="current">当前手机号：</p></div>
-<div class="bain-right"><p class="newdata">123456789</p></div>
+<div class="bain-right"><p class="newdata">{{ user.userprofile.phone_number }}</p></div>
 </div>
 <div class="backinput" id="backinputtwotwo">
 <div class="bain-left"><p class="current">新手机号：</p></div>
 <div class="bain-right"><input type="text" class="backintext"></div>
 </div>
 <div class="backbutton" id="backbuttontwo">
-<input class="backinbuon" type="button" value="保存" onmouseover="this.style.cursor='pointer'"
+<input class="backinbuon" type="submit" value="保存" onmouseover="this.style.cursor='pointer'"
        onmousemove="this.className='backinbuou'"  onmouseout="this.className='backinbuon'"/>
 </div>
+</form>
 </div>
 </div>
 
@@ -238,6 +479,7 @@ $.ajaxSetup({
 </div>
 <div class="back" id="backdivthree">
 <hr class="cut-back" />
+<form name="emailform" method="post">
 <div class="backinput" id="backinputthreeone">
 <div class="bain-left"><p class="current">当前邮箱：</p></div>
 <div class="bain-right"><p class="newdata">{{ user.email }}</p></div>
@@ -247,9 +489,10 @@ $.ajaxSetup({
 <div class="bain-right"><input type="text" class="backintext"></div>
 </div>
 <div class="backbutton" id="backbuttonthree">
-<input class="backinbuon" type="button" value="保存" onmouseover="this.style.cursor='pointer'"
+<input class="backinbuon" type="submit" value="保存" onmouseover="this.style.cursor='pointer'"
        onmousemove="this.className='backinbuou'"  onmouseout="this.className='backinbuon'"/>
 </div>
+</form>
 </div>
 </div>
 
@@ -267,6 +510,7 @@ $.ajaxSetup({
 </div>
 <div class="back" id="backdivfour">
 <hr class="cut-back" />
+<form id="pswdform" method="post">
 <div class="backinput" id="backinputfourone">
 <div class="bain-left"><p class="current">新密码：</p></div>
 <div class="bain-right"><input type="text" class="backintext"></div>
@@ -276,9 +520,10 @@ $.ajaxSetup({
 <div class="bain-right"><input type="text" class="backintext"></div>
 </div>
 <div class="backbutton" id="backbuttonfour">
-<input class="backinbuon" type="button" value="保存" onmouseover="this.style.cursor='pointer'"
+<input class="backinbuon" type="submit" value="保存" onmouseover="this.style.cursor='pointer'"
        onmousemove="this.className='backinbuou'"  onmouseout="this.className='backinbuon'"/>
 </div>
+</form>
 </div>
 </div>
 
@@ -306,7 +551,8 @@ $(document).ready(function () {
 			success: function(result) {
 				if (result == "success") {
 					$("#user_avatar").attr("src", "{% url 'user_avatar' %}?nocache="+Math.random());
-					$("#person>a>img").attr("src", "{% url 'user_avatar' %}?nocache");
+					// not for instance, it will take some resources that i do not want.
+					//$("#person>a>img").attr("src", "{% url 'user_avatar' %}?nocache");
 					alert("图片上传成功！");
 				}
 				else if (result == "1M") {

@@ -67,8 +67,9 @@ $(document).ready(function() {
 										"<td><input id='pay"+i+"' type='button' value='预定' onmouseover='this.style.cursor='pointer''/></td>"+
 									"</tr>");
 					var serial = ""+value.fields.serial;
+					// this place can use a url template with a var argument!
 					$("#pay"+i).click(function() {
-						window.location.href="/ticket/pay/?serial=" + serial;
+						window.location.href="/ticket/reserve/?serial=" + serial;
 					});
 					i = i + 1;
 				});}
@@ -156,7 +157,7 @@ $(document).ready(function() {
 				<th>班次</th>
 				<th>出发时间</th>
 				<th>历时</th>
-                <th>票价</th>
+                <th>标准票价</th>
                 <th>数量</th>
                 <th>操作</th>
             </tr>

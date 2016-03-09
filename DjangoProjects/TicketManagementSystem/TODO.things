@@ -1,1 +1,2 @@
 1.add csrf tokens in every form to avoid csrf!
+2.add email support in the designated server(163, qq, gmail, and so on)
