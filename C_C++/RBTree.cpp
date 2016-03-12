@@ -26,7 +26,7 @@ class RBTree {
 		void rb_left_insert_fixup(RBNode*);
 		void rb_insert_fixup(RBNode*);
 		void rb_delete(RBNode*);
-		void display();
+		void display(RBNode*);
 	protected:
 		RBNode* root;
 		RBNode* nil;
@@ -188,4 +188,18 @@ void RBTree::rb_insert_fixup(RBNode* z)
 	}
 	// fix the seconde property, that is the root color is always BLACK!
 	this->root->color = BLACK;
+}
+
+void RBTree::display(RBNode* z)
+{
+	static int level = 0;
+	if(z != this->nil)
+	{
+		cout << "level: " << level << " key: " << z->key << " color: " << z->color << endl;
+		level ++;
+		if(z->left != nil)
+			display(z->left);
+		if(z->right != nil)
+			display(z->right);
+	}
 }
