@@ -29,7 +29,7 @@ int main()
 	}
 	len2 = sizeof(buf);
 	send(sockfd, buf, len2, 0);
-	sleep(10);
+	sleep(5);
 	recv(sockfd, rebuf, 256, 0);
 	rebuf[sizeof(rebuf)-1] = '\0';
 	printf("receive message:\n %s\n", rebuf);
