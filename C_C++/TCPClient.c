@@ -5,7 +5,7 @@
 #include<netinet/in.h>					/* contain relative structs about AF_INET */
 #include<arpa/inet.h>					/* contain relative functions about AF_INET */
 
-#define PORT 3333
+#define PORT 5555
 
 int main()
 {
