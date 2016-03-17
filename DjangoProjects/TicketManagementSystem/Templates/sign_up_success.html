@@ -17,10 +17,10 @@ div.apostrophe{position:relative;height:50px;width:100px;float:left;margin-top:5
 <link rel="stylesheet" href="/static/css/turn_to.css" />
 <script type="text/javascript">
 function delayer(){
- window.location = "{% url 'sign_in' %}";
+ window.location.href = "{% url 'index' %}";
 }
 $(document).ready(function(){
- setTimeout('delayer()', 8000);
+ setTimeout('delayer()', 5000);
 });
 </script>
 <div class="mid">
@@ -38,7 +38,7 @@ $(document).ready(function(){
 </div>
 </div>
 
-<div class="remand"><p class="remword">用户注册成功， 请尽快完成邮箱激活，获取您完整的特权，感谢您对本网站的支持！</p></div>
+<div class="remand"><p class="remword">用户注册成功， 请尽快完成邮箱激活，<br/>获取您完整的特权，感谢您对本网站的支持！</p></div>
 
 <div class="apostrophe"</div>
 <div id="spinningSquaresG">

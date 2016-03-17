@@ -112,11 +112,12 @@ def turn_to_sign_in(request):
 # 登录之后不是渲染， 而是重定向！This is the tradition!
 import re
 def sign_in(request):
-    if request.method != "POST" and not re.findall('turn_to_sign_in', request.META['HTTP_REFERER'].encode('ascii')):
-        return HttpResponse("Illegal Access in signing in the site")
-    identifier = request.POST.get('usr', '')
-    pswd = request.POST.get('log_pswd', '')
-    user = auth.authenticate(username=identifier, password=pswd)
+    #if not re.findall('turn_to_sign_in', request.META['HTTP_REFERER'].encode('ascii')):
+    #    return HttpResponse("Illegal Access in signing in the site")
+    if request.method == 'POST':
+        identifier = request.POST.get('usr', '')
+        pswd = request.POST.get('log_pswd', '')
+        user = auth.authenticate(username=identifier, password=pswd)
     # do not know why request.path == ""!
     # and now, i know i need to add 'django.core.context_processers.request', it do this for me!
     if re.findall('train|fly|bus', request.META['HTTP_REFERER'].encode('ascii')):

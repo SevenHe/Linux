@@ -457,8 +457,13 @@ if ($(".untablelist .bordered tr").length == 1) {
 <div class="bain-left"><p class="current">新手机号：</p></div>
 <div class="bain-right"><input type="text" class="backintext"></div>
 </div>
+<script type="text/javascript">
+$("#save_pn").click(function () {
+	$("#backinputtwoone.bain-left.current").text($("#backinputtwotwo.bain-left.current").text());
+});
+</script>
 <div class="backbutton" id="backbuttontwo">
-<input class="backinbuon" type="submit" value="保存" onmouseover="this.style.cursor='pointer'"
+<input class="backinbuon" type="button" id="save_pn" value="保存" onmouseover="this.style.cursor='pointer'"
        onmousemove="this.className='backinbuou'"  onmouseout="this.className='backinbuon'"/>
 </div>
 </form>

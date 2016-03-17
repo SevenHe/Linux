@@ -83,6 +83,14 @@ $(document).ready(function() {
 	   });
 	   return false; // no refresh!
 	});
+	$("#follow_day").click(function () {
+		$("#items").hide();
+		$("#empty").show();
+	});
+	$("#prev_day").click(function () {
+		$("#items").show();
+		$("#empty").hide();
+	});
 });
 </script>    
 <form action="" method="get">    
@@ -141,11 +149,11 @@ $(document).ready(function() {
 
 <div class="listtop">
 <div class="before">
-<input type="button" value="前一日" class="beforeon" onmouseover="this.style.cursor='pointer'"
+<input type="button" id="prev_day" value="前一日" class="beforeon" onmouseover="this.style.cursor='pointer'"
        onmousemove="this.className='beforeou'"  onmouseout="this.className='beforeon'"/>  
 </div>
 <div class="after">
-<input type="button" value="后一日" class="beforeon" onmouseover="this.style.cursor='pointer'"
+<input type="button" id="follow_day" value="后一日" class="beforeon" onmouseover="this.style.cursor='pointer'"
        onmousemove="this.className='beforeou'"  onmouseout="this.className='beforeon'"/>  
 </div>
 </div>
