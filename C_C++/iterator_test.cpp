@@ -1,6 +1,7 @@
 #include<iostream>
 #include<iterator>
 #include<deque>
+#include<vector>
 #include<algorithm>
 using namespace std;
 
@@ -22,6 +23,12 @@ int main()
 	cout << endl;
 
 	copy(id.rbegin(), id.rend(), out);
+	cout << endl;
+
+	vector<int> vec;
+	vec.push_back(15);
+	vec.push_back(16);
+	copy(vec.begin(), vec.end(), out);
 	cout << endl;
 
 	Test a;
