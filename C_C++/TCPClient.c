@@ -1,5 +1,6 @@
 #include<sys/types.h>
 #include<sys/socket.h>
+#include<string.h>
 #include<stdio.h>
 #include<unistd.h>
 #include<netinet/in.h>					/* contain relative structs about AF_INET */
@@ -28,6 +29,13 @@ int main()
 		return 1;
 	}
 	len2 = sizeof(buf);
+	send(sockfd, buf, len2, 0);
+	sleep(5);
+	recv(sockfd, rebuf, 256, 0);
+	rebuf[sizeof(rebuf)-1] = '\0';
+	printf("receive message:\n %s\n", rebuf);
+	memset(buf, '\0', sizeof(buf));
+	scanf("%s", buf);
 	send(sockfd, buf, len2, 0);
 	sleep(5);
 	recv(sockfd, rebuf, 256, 0);
