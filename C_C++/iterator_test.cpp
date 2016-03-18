@@ -4,6 +4,14 @@
 #include<algorithm>
 using namespace std;
 
+class Test {
+	public:
+		inline int operator()(int value) { 
+			cout << "Get in the overload function!" << endl; 
+			return value; 
+		}
+};
+
 int main()
 {
 	ostream_iterator<int> out(cout, " ");
@@ -15,4 +23,8 @@ int main()
 
 	copy(id.rbegin(), id.rend(), out);
 	cout << endl;
+
+	Test a;
+
+	cout << "Test: " << Test()(20) << "and Test: " << a(15) << endl;
 }
