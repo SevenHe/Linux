@@ -8,7 +8,6 @@ int main()
 	int count[1024];
 	cin >> input;
 	int i = 0;
-	int index = 0;
 	char C = 'A';
 	char c = 'a';
 	int temp = 0;
@@ -44,6 +43,8 @@ int main()
 			}
 		}
 	}
+	if(output[temp] != 0)
+		cout << output[temp] << count[temp];
 }
 
 
