@@ -6,11 +6,11 @@ int main()
 	char input[1024];
 	char output[1024];
 	int count[1024];
-	cin >> input;
+	cin.getline(input, sizeof(char)*1024);
 	int i = 0;
 	char C = 'A';
 	char c = 'a';
-	int temp = 0;
+	int temp = -1;
 	bool have_find = false;
 	for( ; input[i]!='\0'; i++)
 	{
@@ -19,7 +19,7 @@ int main()
 		if(int(C) <= int(input[i]) && int(input[i]) <= int(C+25))
 		{
 			have_find = true;
-			if(temp == 0) 
+			if(temp == -1) 
 			{
 				temp = int(input[i]);
 				output[temp] = input[i];
