@@ -10,8 +10,11 @@ int main()
 	int i = 0;
 	int index = 0;
 	char C = 'A';
+	char c = 'a';
 	for( ; input[i]!='\0'; i++)
 	{
+		if(int(c) <= int(input[i]) && int(input[i]) <= int(c+25))
+			input[i] = int(C)-int(c) + input[i];
 		if(int(C) <= int(input[i]) && int(input[i]) <= int(C+25))
 		{
 			int j = i - 1;
