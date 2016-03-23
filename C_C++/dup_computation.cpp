@@ -11,12 +11,14 @@ int main()
 	char C = 'A';
 	char c = 'a';
 	int temp = 0;
+	bool have_find = false;
 	for( ; input[i]!='\0'; i++)
 	{
 		if(int(c) <= int(input[i]) && int(input[i]) <= int(c+25))
 			input[i] = int(C)-int(c) + input[i];
 		if(int(C) <= int(input[i]) && int(input[i]) <= int(C+25))
 		{
+			have_find = true;
 			if(temp == 0) 
 			{
 				temp = int(input[i]);
@@ -43,7 +45,7 @@ int main()
 			}
 		}
 	}
-	if(output[temp] != 0)
+	if(have_find && output[temp] != -1)
 		cout << output[temp] << count[temp];
 }
 
