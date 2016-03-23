@@ -7,11 +7,9 @@ count = 0
 temp_c = ''
 last = ''
 final = ''
-if len(inputs) < 1024:
+if len(inputs) <= 1024:
     for char in inputs:
-        if 'a' <= char <= 'z':
-            char = char.upper()
-        if 'A' <= char <= 'Z':
+        if 'A' <= char <= 'Z' or 'a' <= char <= 'z':
             if temp_c == '':
                 temp_c = char
                 count = 1
