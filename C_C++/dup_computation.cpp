@@ -11,47 +11,38 @@ int main()
 	int index = 0;
 	char C = 'A';
 	char c = 'a';
+	int temp = 0;
 	for( ; input[i]!='\0'; i++)
 	{
 		if(int(c) <= int(input[i]) && int(input[i]) <= int(c+25))
 			input[i] = int(C)-int(c) + input[i];
 		if(int(C) <= int(input[i]) && int(input[i]) <= int(C+25))
 		{
-			int j = i - 1;
-			bool duplicate = false;
-			while(j>=0)
+			if(temp == 0) 
 			{
-				if(input[j] == input[i])
+				temp = int(input[i]);
+				output[temp] = input[i];
+				count[temp] = 1;
+				continue;
+			}
+			else if(temp != 0)
+			{
+				if(temp == int(input[i]))
 				{
-					duplicate = true;
-					break;
+					count[temp] ++;
 				}
-				j --;
-			}
-			if(!duplicate)
-			{
-				output[index] = input[i];
-				count[index] = 1;
-				index ++;
-			}
-			else
-			{
-				int temp = index;
-				while(temp>=0)
+				else
 				{
-					if(output[temp] == input[i])
-					{
-						count[temp] ++;
-						break;
-					}
-					temp --;
+					cout << output[temp] << count[temp];
+					output[temp] = 0;
+					count[temp] = 0;
+					temp = int(input[i]);
+					output[temp] = input[i];
+					count[temp] = 1;
+					continue;
 				}
 			}
 		}
-	}
-	for(i=0; i<index; i++)
-	{
-		cout << output[i] << count[i];
 	}
 }
 
