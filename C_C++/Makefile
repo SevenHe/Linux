@@ -2,10 +2,13 @@ sources1 = TCPServer.c
 objects1 := $(patsubst %.c,%,$(sources1))
 sources2 = TCPClient.c
 objects2 := $(patsubst %.c,%,$(sources2))
-objects := $(objects1) $(objects2)
+sources3 = raw_socket.c
+objects3 := $(patsubst %.c,%,$(sources3))
+objects := $(objects1) $(objects2) $(objects3)
 FLAGS = -g
-server:$(objects1)
-client:$(objects2)
+server:$(sources1)
+client:$(sources3)
+raw_socket:$(sources3)
 $(objects): %: %.c
 	$(CC) $(FLAGS) $< -o $@
 #sinclude $(sources:.c=.d)
@@ -19,5 +22,5 @@ $(objects): %: %.c
 #putdata.o:putdata.c putdata.h
 .PHONY:clean
 clean:
-	-rm main
+	-@echo "clean test!!"
 
