@@ -32,11 +32,11 @@ print_message()
 				echo -ne "\033[1A \033[K"
 				echo -e "Stop Database [ \033[32mOK\033[0m ]"
 				echo -e "Stop uwsgi [ \033[31m..\033[0m ]"
-				killall -s 9 uwsgi > /dev/null
+				killall -s 9 uwsgi > /dev/null 2>&1
 				echo -ne "\033[1A \033[K"
 				echo -e "Stop uwsgi [ \033[32mOK\033[0m ]"
 				echo -e "Stop nginx [ \033[31m..\033[0m ]"
-				/etc/init.d/nginx stop > /dev/null
+				/etc/init.d/nginx stop > /dev/null 2>&1
 				echo -ne "\033[1A \033[K"
 				echo -e "Stop nginx [ \033[32mOK\033[0m ]"
 				exitCode=$?
