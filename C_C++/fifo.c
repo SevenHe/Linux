@@ -5,7 +5,7 @@
 #include<sys/types.h>
 #include<sys/stat.h>
 
-#define FIFO "/home/seven/Code/C/fifo-mk"
+#define FIFO "/home/seven/Code/C_C++/fifo-mk"
 
 //BUFSIZ is defined in the stdlib.h, it is a part of system config.
 int main(void)

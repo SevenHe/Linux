@@ -15,6 +15,7 @@ int main()
 		x[i] = 0;
 		printf("index%d=%1.4f \n", i, x[i]);
 	}
+	free(x);
 	return 0;
 }
 		

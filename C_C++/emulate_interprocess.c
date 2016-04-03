@@ -1,9 +1,7 @@
 /*
 	the implementation is based in buffering, and emulate/simulate 
 	the communication processes in Linux System about receiving and sending message.
-	
 	group:54130714, 19, 20.
-	
 	Issue:7.
 */
 
@@ -13,6 +11,7 @@
 #include <time.h>
 #include <string.h>
 #include <pthread.h>
+#include <unistd.h>
 #include "seven_df.h"
 
 typedef struct chain {
@@ -75,6 +74,7 @@ int main()
 	pthread_mutex_lock(&send_wait);
 	for(i=0; i<MAXSEND_T; i++)
 	{
+		// more than one arg, you can use a struct to pass
 		pthread_create(&sends[i].p_send, NULL, (void*)send_msg, &sends[i].index);
 	}
 	pthread_mutex_lock(&receive_wait);

@@ -55,7 +55,6 @@ void init_a_thread_in_pool(int trd)
 	}
 }
 
-
 void normal_exit(int signal)
 {
 	exit(0);

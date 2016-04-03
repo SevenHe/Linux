@@ -31,14 +31,16 @@ int main(int argc, char* argv[])
 	int status;
 	if((pid=fork())<0)
 	{
-		printf("child process eooro!\n");
+		printf("child process error!\n");
 		exit(0);
 	}
 	else if(pid == 0)
 	{
+		// get into the child process
 		printf("the child process!\n");
 		exit(2);
 	}
+	// wait the child process to exit, and return the child pid
 	if(wait(&status) != pid)
 	{
 		printf("this is a parent process!\nwait error!\n");

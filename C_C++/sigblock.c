@@ -25,7 +25,7 @@ int main()
 		perror("sigprocmask!\n");
 		exit(1);
 	}
-	printf("SIGQUIT is blocked!\n");
+	printf("SIGQUIT is blocked!\n");				/* so SIGINT is in the pend now */
    	printf("Try to Ctrl+C, program will suspend 5s to handler the event!\n");
    	sleep(5);
 	if(sigpending(&pend) < 0)						/* get the pending signal type */

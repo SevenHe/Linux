@@ -29,13 +29,16 @@ int main()
 	//daemon(0, 0);
 	
 	pid_t pid;
-  	if(pid=fork())
+  	if((pid=fork()))
     	exit(0);
   	else if(pid< 0)
     	exit(1);
 
+	// decouple the terminal, and set the child process as a group leader
   	setsid();
-  	if(pid=fork())
+	// produce one more process from the child process to set the new process as a independent process,
+	// with no terminal or group
+  	if((pid=fork()))
     	exit(0);
   	else if(pid< 0)
     	exit(1);
@@ -44,6 +47,8 @@ int main()
 	int size;
   	for(i=0,size=getdtablesize(); i<size; ++i)
     	close(i);
+
+	// the following two lines are needed sometimes.
   	//chdir("/tmp");
   	//umask(0);
 	
