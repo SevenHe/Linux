@@ -7,7 +7,7 @@ objects3 := $(patsubst %.c,%,$(sources3))
 objects := $(objects1) $(objects2) $(objects3)
 FLAGS = -g
 server:$(sources1)
-client:$(sources3)
+client:$(objects2)
 raw_socket:$(sources3)
 $(objects): %: %.c
 	$(CC) $(FLAGS) $< -o $@
