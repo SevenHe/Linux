@@ -56,7 +56,7 @@ print Dumper($testArray);
 # use ` ` to indicate the following string to file handle is a glob of commands.
 # But the after-effect is lines' color behind this line would not change!
 
-# the ussag of "<<[identifier]["" x times]", the last line must be "identifier" without anything else.
+# the usage of "<<[identifier]["" x times]", the last line must be "identifier" without anything else.
 print <<EOC;
 echo lo there
 EOC

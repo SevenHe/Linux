@@ -7,6 +7,8 @@ sub popmany {
 	for my $aref(@_) {
 		print "aref is '@$aref'!\n";
 		push @retlist, pop @$aref;
+		# so from right to left!
+		# print @retlist, @$aref;
 	}
 
 	return @retlist;
