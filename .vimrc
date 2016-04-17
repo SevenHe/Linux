@@ -46,11 +46,14 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:syntastic_enable_perl_checker = 1
 autocmd FileType php,java,ruby,python,c,perl,html,css,xml,shell,bash,zsh,text,vim let g:EclimCompletionMethod = 'omnifunc'
 set hlsearch
+set nu
 set tabstop=4
+set shiftwidth=4
 map <CR> :nohl <CR>
 let g:Powerline_symbols = 'fancy'
 set encoding=utf-8
 set smartindent 
+highlight LineNr ctermfg=6 cterm=italic 
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
