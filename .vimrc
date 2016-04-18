@@ -38,8 +38,8 @@ let g:syntastic_check_on_wq = 0
 "colorscheme monokai
 " my style with zsh
 hi Comment ctermfg=0 cterm=bold
-autocmd FileType sh syntax match itptType "^[#][!][/].\+$"
-autocmd FileType sh hi itptType ctermfg=6 cterm=bold,italic
+autocmd FileType sh,python,perl syntax match itptType "^[#][!][/].\+$"
+autocmd FileType sh,python,perl hi itptType ctermfg=5 cterm=italic
 "hi itptType ctermfg=6 cterm=bold
 "YCM
 let g:ycm_autoclose_preview_window_after_completion = 1
