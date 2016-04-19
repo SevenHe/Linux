@@ -204,3 +204,4 @@ void *business_worker(void* trdId)
 
 	pthread_mutex_unlock(&business_worker_mutex[(int)(*(int*)(trdId))]);
 }
+
