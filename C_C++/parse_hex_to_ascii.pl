@@ -5,7 +5,7 @@ open(FH, '<sock_hex_data.dt') or die "open file error: $!";
 while($line=<FH>)
 {
 	@hexs = split " ", $line;
-	print @hexs;
+	# print @hexs;
 	foreach my $hex (@hexs)
 	{
 		print chr(hex($hex)), ' ';

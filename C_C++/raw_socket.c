@@ -67,6 +67,16 @@ int main()
 			sprintf(temp, "%02x ", buf[i]);
 			strcat(output, temp);
 		}
+		if(buf[12] == 0x08 && buf[13] == 0x06)
+			printf("ARP packet:");
+		else if(buf[12] == 0x08 && buf[13] == 0x00)
+		{
+			printf("IP packet:");
+			if(buf[23] == 0x06)
+				printf(" TCP -- ");
+			else if(buf[23] == 0x11)
+				printf(" UDP -- ");
+		}
 		printf("data: %s, len: %d\n", output, len);
 		memset(output, 0, sizeof(output));
 	}
