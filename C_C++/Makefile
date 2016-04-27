@@ -4,13 +4,23 @@ sources2 = TCPClient.c
 objects2 := $(patsubst %.c,%,$(sources2))
 sources3 = raw_socket.c
 objects3 := $(patsubst %.c,%,$(sources3))
+sources4 = FTPServer.cpp
+sources5 = FTPClient.cpp
+objects4 := $(patsubst %.cpp,%,$(sources4))
+objects5 := $(patsubst %.cpp,%,$(sources5))
 objects := $(objects1) $(objects2) $(objects3)
+CPPobjects := $(objects4) $(objects5)
+
 FLAGS = -g
 server:$(sources1)
 client:$(objects2)
 raw_socket:$(sources3)
+FTPServer:$(objects4)
+FTPClient:$(objects5)
 $(objects): %: %.c
 	$(CC) $(FLAGS) $< -o $@
+$(CPPobjects): %: %.cpp
+	$(CPP) $(FLAGS) $< -o $@
 #sinclude $(sources:.c=.d)
 #%.d:%.c
 #	...;\
