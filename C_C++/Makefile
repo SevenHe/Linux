@@ -11,12 +11,14 @@ objects5 := $(patsubst %.cpp,%,$(sources5))
 objects := $(objects1) $(objects2) $(objects3)
 CPPobjects := $(objects4) $(objects5)
 
+CPP = g++
 FLAGS = -g
+
 server:$(sources1)
-client:$(objects2)
+client:$(sources2)
 raw_socket:$(sources3)
-FTPServer:$(objects4)
-FTPClient:$(objects5)
+FTPServer:$(sources4)
+FTPClient:$(sources5)
 $(objects): %: %.c
 	$(CC) $(FLAGS) $< -o $@
 $(CPPobjects): %: %.cpp
