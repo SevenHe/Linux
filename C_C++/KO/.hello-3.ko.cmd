@@ -1,0 +1,1 @@
+cmd_/home/seven/Code/C_C++/KO/hello-3.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/seven/Code/C_C++/KO/hello-3.ko /home/seven/Code/C_C++/KO/hello-3.o /home/seven/Code/C_C++/KO/hello-3.mod.o
