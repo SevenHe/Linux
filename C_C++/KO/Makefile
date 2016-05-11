@@ -2,6 +2,7 @@ sources := $(notdir $(wildcard $(PWD)/hello-[1-9].c))
 #sources += $(notdir $(wildcard $(PWD)/*.c))
 obj-m += $(patsubst %.c,%.o,$(sources))
 obj-m += test.o
+obj-m += chardev.o
 test-objs := start.o stop.o
 KMDIR := /lib/modules/$(shell uname -r)/build
 
