@@ -4,22 +4,29 @@ use warnings;
 open(DEVS, "/proc/devices") 
 	or die "Can not open the devices:$!";
 
+$status = 0;
 $devno = 0;
-$devname = "chardev";
+@devnames = ("chardev");
 $devminor = 111;	# random number!
 while($line=<DEVS>)
 {
-	if($line =~ /$devname/)
+	foreach my $devname (@devnames)
 	{
-		$devno = (split / /, $line)[0];
-		last;
-	}
+		if($line =~ /$devname/)
+		{
+			$devno = (split / /, $line)[0];
+			print "Get devno:", $devno, "\n";
+			$status = system("mknod $devname c $devno $devminor");
+			$status = system("mv $devname /dev/$devname");
+			$status = 1;
+			last if $status;
+		}
+	}	
+	last if $status;
 }
 close(DEVS);
-print "Get devno:", $devno, "\n";
 # This is not the same like perl rules, it return a non-zero when failed!
-$status = system("mknod $devname c $devno $devminor");
 #$oks = system("echo ok");
 #print "Make status: $status, \n";
-print "Make completely!" if not $status; 
+print "Make completely!" if $status; 
 	

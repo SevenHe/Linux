@@ -9,6 +9,7 @@
 #include <linux/fs.h>
 #include <asm/uaccess.h>	/* for put_user */
 
+#include "chardev.h"
 /*  
  *  Prototypes - this would normally go in a .h file
  */
@@ -16,6 +17,7 @@ static int device_open(struct inode *, struct file *);
 static int device_release(struct inode *, struct file *);
 static ssize_t device_read(struct file *, char *, size_t, loff_t *);
 static ssize_t device_write(struct file *, const char *, size_t, loff_t *);
+static long device_ioctl(struct file *, unsigned int, unsigned long);
 
 #define SUCCESS 0
 #define DEVICE_NAME "chardev"	/* Dev name as it appears in /proc/devices   */
@@ -35,6 +37,7 @@ static struct file_operations fops = {
 	.read = device_read,
 	.write = device_write,
 	.open = device_open,
+	.unlocked_ioctl = device_ioctl,
 	.release = device_release
 };
 
@@ -87,6 +90,9 @@ static void __exit my_cleanup_module(void)
  */
 static int device_open(struct inode *inode, struct file *file)
 {
+#ifdef DEBUG
+	printk("device_open %p \n", file);
+#endif
 	static int counter = 0;
 	if (Device_Open)
 		return -EBUSY;
@@ -103,6 +109,9 @@ static int device_open(struct inode *inode, struct file *file)
  */
 static int device_release(struct inode *inode, struct file *file)
 {
+#ifdef DEBUG
+	printk("device release %p\n", file);
+#endif
 	Device_Open--;		/* We're now ready for our next caller */
 
 	/* 
@@ -127,6 +136,9 @@ static ssize_t device_read(struct file *filp,	/* see include/linux/fs.h   */
 	 * Number of bytes actually written to the buffer 
 	 */
 	int bytes_read = 0;
+#ifdef DEBUG
+	printk("device read: %p, %p, %d\n", filp, buffer, length);
+#endif 
 
 	/*
 	 * If we're at the end of the message, 
@@ -162,10 +174,54 @@ static ssize_t device_read(struct file *filp,	/* see include/linux/fs.h   */
  * Called when a process writes to dev file: echo "hi" > /dev/hello 
  */
 static ssize_t
-	device_write(struct file *filp, const char *buff, size_t len, loff_t * off)
+	device_write(struct file *filp, const char __user *buff, size_t len, loff_t * off)
 {
-	printk("<1>Sorry, this operation isn't supported.\n");
-	return -EINVAL;
+	int i;
+#ifdef DEBUG
+	printk("device write: %p, %s, %d\n", filp, buff, len);
+#endif
+	for(i=0; i<len && i<BUF_LEN; i++)
+	{
+		get_user(msg[i], buff+i);
+	}
+	msg_Ptr = msg;
+	return i;
+}
+
+static long device_ioctl(struct file* file,
+			unsigned int ioctl_num,
+			unsigned long ioctl_param)
+{
+	int i;
+	char* temp;
+	char ch;
+
+	switch(ioctl_num)
+	{
+		case IOCTL_SET_MSG:
+		{
+			temp = (char*)ioctl_param;
+			get_user(ch, temp);
+			for(i=0; ch && i<BUF_LEN; i++, temp++)
+				get_user(ch, temp);
+			device_write(file, (char*)ioctl_param, i, 0);
+			printk(KERN_INFO "IOCTL_SET_MSG: %s", (char*)ioctl_param);
+			break;
+		}
+		case IOCTL_GET_MSG:
+		{
+			i = device_read(file, (char*)ioctl_param, 99, 0);
+			put_user('\0', (char*)ioctl_param+i);
+			break;
+		}
+		case IOCTL_GET_NTH_BYTE:
+		{
+			return msg[ioctl_param];
+			break;
+		}
+	}
+
+	return SUCCESS;
 }
 
 module_init(my_init_module);
