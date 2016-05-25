@@ -1,0 +1,1 @@
+cmd_/home/seven/Code/C_C++/KO/sleep.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/seven/Code/C_C++/KO/sleep.ko /home/seven/Code/C_C++/KO/sleep.o /home/seven/Code/C_C++/KO/sleep.mod.o
