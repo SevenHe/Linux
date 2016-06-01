@@ -1,5 +1,5 @@
-kernel//home/seven/Code/C_C++/KO/hello-5.ko
 kernel//home/seven/Code/C_C++/KO/hello-2.ko
+kernel//home/seven/Code/C_C++/KO/hello-5.ko
 kernel//home/seven/Code/C_C++/KO/hello-3.ko
 kernel//home/seven/Code/C_C++/KO/hello-1.ko
 kernel//home/seven/Code/C_C++/KO/test.ko
@@ -10,3 +10,4 @@ kernel//home/seven/Code/C_C++/KO/sleep.ko
 kernel//home/seven/Code/C_C++/KO/print_string.ko
 kernel//home/seven/Code/C_C++/KO/kbleds.ko
 kernel//home/seven/Code/C_C++/KO/sched.ko
+kernel//home/seven/Code/C_C++/KO/intrpt.ko

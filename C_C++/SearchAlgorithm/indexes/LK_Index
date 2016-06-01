@@ -1,0 +1,2375 @@
+int filp_close:1,1063
+int vfs_fallocate:1,227
+static int do_dentry_open:1,682
+static long do_sys_ftruncate:1,154
+int finish_open:1,790
+static long do_sys_truncate:1,120
+EXPORT_SYMBOL_GPL:1,318
+struct file *dentry_open:1,852
+SYSCALL_DEFINE4:1,1037
+SYSCALL_DEFINE5:1,609
+SYSCALL_DEFINE0:1,1109
+int generic_file_open:1,1124
+long do_sys_open:1,1001
+SYSCALL_DEFINE1:1,1090
+SYSCALL_DEFINE2:1,1052
+long vfs_truncate:1,68
+static int chmod_common:1,502
+SYSCALL_DEFINE3:1,1029
+			  int :1,684
+char *file_path:1,828
+struct file *file_open_root:1,990
+static int chown_common:1,567
+int open_check_o_direct:1,672
+int nonseekable_open:1,1139
+struct file *file_open_name:1,959
+int finish_no_open:1,821
+static inline int build_open_flags:1,883
+int vfs_open:1,840
+struct file *filp_open:1,977
+int do_truncate:1,37
+		int :1,791
+COMPAT_SYSCALL_DEFINE2:1,207
+EXPORT_SYMBOL:1,1145
+static int __init init_script_binfmt:2,116
+MODULE_LICENSE:2,129
+static int load_script:2,17
+module_exit:2,128
+core_initcall:2,127
+static void __exit exit_script_binfmt:2,122
+static void f_modown:3,84
+static int f_setown_ex:3,143
+struct fasync_struct *fasync_alloc:3,602
+static int setfl:3,32
+pid_t f_getown:3,132
+module_init:3,760
+int send_sigurg:3,526
+static int __init fcntl_init:3,737
+static int check_fcntl_cmd:3,344
+#define SETFL_MASK :3,30
+static void kill_fasync_rcu:3,699
+static int fasync_add_entry:3,658
+SYSCALL_DEFINE3:3,381
+static inline int sigio_perm:3,433
+int fasync_remove_entry:3,576
+static int f_getowner_uids:3,238
+static void fasync_free_rcu:3,561
+int fasync_helper:3,687
+static long do_fcntl:3,244
+void send_sigio:3,491
+void f_setown:3,110
+void fasync_free:3,612
+static void send_sigurg_to_task:3,519
+struct fasync_struct *fasync_insert_entry:3,624
+void __f_setown:3,102
+static void send_sigio_to_task:3,449
+static int f_getown_ex:3,183
+static DEFINE_SPINLOCK:3,558
+void kill_fasync:3,724
+void f_delown:3,127
+EXPORT_SYMBOL:3,735
+static inline void __clear_open_fd:4,265
+int f_dupfd:4,948
+SYSCALL_DEFINE2:4,918
+EXPORT_SYMBOL:4,982
+static int alloc_fd:4,555
+static void copy_fd_bitmaps:4,68
+struct files_struct *get_files_struct:4,418
+static void __put_unused_fd:4,566
+static int expand_fdtable:4,166
+	__releases:4,212
+SYSCALL_DEFINE1:4,933
+static inline void __clear_close_on_exec:4,251
+#define __const_min:4,29
+struct file *fget:4,717
+	.file_lock	= __SPIN_LOCK_UNLOCKED:4,477
+static void free_fdtable_rcu:4,55
+unsigned long __fdget:4,762
+void do_close_on_exec:4,658
+void set_close_on_exec:4,793
+static int expand_files:4,211
+int __alloc_fd:4,497
+#define BITBIT_SIZE:4,61
+int __close_fd:4,635
+static int do_dup2:4,818
+static struct fdtable *close_files:4,386
+unsigned long __fdget_pos:4,773
+static int count_open_files:4,271
+static struct fdtable * alloc_fdtable:4,104
+int replace_fd:4,862
+__releases:4,820
+void __fd_install:4,604
+int get_unused_fd_flags:4,560
+void exit_files:4,455
+void put_files_struct:4,431
+struct files_struct *dup_fd:4,290
+void put_unused_fd:4,574
+int sysctl_nr_open_max = __const_min:4,30
+static void *alloc_fdmem:4,33
+static inline void __set_close_on_exec:4,246
+		int :4,962
+	__acquires:4,213
+static void __free_fdtable:4,48
+void reset_files_struct:4,443
+void fd_install:4,625
+static struct file *__fget:4,694
+static unsigned long __fget_light:4,745
+static inline void __set_open_fd:4,257
+struct file *fget_raw:4,723
+static unsigned long find_next_fd:4,480
+SYSCALL_DEFINE3:4,884
+static void copy_fdtable:4,90
+bool get_close_on_exec:4,806
+int iterate_fd:4,961
+	.count		= ATOMIC_INIT:4,468
+unsigned long __fdget_raw:4,768
+#define BITBIT_NR:4,60
+static void clear_tfile_check_list:5,1777
+static int ep_insert:5,1293
+static inline struct epitem *ep_item_from_wait:5,350
+static DEFINE_MUTEX:5,268
+#define EP_UNACTIVE_PTR :5,107
+			      int :5,598
+#define EPOLLEXCLUSIVE_OK_BITS :5,99
+static unsigned int ep_eventpoll_poll:5,849
+static int ep_eventpoll_release:5,791
+SYSCALL_DEFINE1:5,1836
+static void ep_nested_calls_init:5,368
+static LIST_HEAD:5,292
+COMPAT_SYSCALL_DEFINE6:5,2092
+static int reverse_path_check:5,1236
+void eventpoll_release_file:5,912
+static inline void ep_wake_up_nested:5,487
+static int ep_loop_check_proc:5,1708
+#define EP_ITEM_COST :5,109
+#define EPOLLINOUT_BITS :5,97
+static inline struct epitem *ep_item_from_epqueue:5,356
+static inline void ep_pm_stay_awake_rcu:5,573
+static noinline void ep_destroy_wakeup_source:5,1275
+static void ep_rbtree_insert:5,1136
+static void path_count_init:5,1183
+static int ep_poll_wakeup_proc:5,494
+static inline int is_file_epoll:5,317
+static inline int ep_cmp_ffd:5,331
+static int __init eventpoll_init:5,2137
+static inline unsigned int ep_item_poll:5,801
+static inline bool ep_has_wakeup_source:5,567
+static int ep_send_events_proc:5,1495
+static int ep_remove:5,697
+		.maxlen		= sizeof:5,305
+static int ep_read_events_proc:5,808
+static int ep_poll_readyevents_proc:5,841
+static int ep_scan_ready_list:5,597
+static int ep_loop_check:5,1761
+static inline struct wakeup_source *ep_wakeup_source:5,553
+SYSCALL_DEFINE6:5,2051
+static void ep_unregister_pollwait:5,538
+static int ep_call_nested:5,403
+static void epi_rcu_free:5,687
+static int ep_create_wakeup_source:5,1253
+static int ep_modify:5,1421
+static inline int ep_is_linked:5,339
+static int ep_poll_callback:5,1004
+static int ep_send_events:5,1575
+static void ep_show_fdinfo:5,878
+static inline void ep_set_ffd:5,323
+static void ep_ptable_queue_proc:5,1114
+static inline int ep_events_available:5,382
+static struct epitem *ep_find:5,975
+static void ep_remove_wait_queue:5,521
+#define EP_PRIVATE_BITS :5,95
+static int ep_alloc:5,940
+static void ep_poll_safewake:5,511
+static inline struct eppoll_entry *ep_pwq_from_wait:5,344
+static inline void ep_pm_stay_awake:5,559
+static int reverse_path_check_proc:5,1191
+SYSCALL_DEFINE4:5,2005
+static void ep_free:5,739
+static int ep_poll:5,1614
+			  int :5,404
+fs_initcall:5,2177
+static int path_count_inc:5,1172
+static inline int ep_op_has_event:5,362
+#define EP_MAX_EVENTS :5,105
+static inline struct timespec ep_set_mstimeout:5,1586
+COMPAT_SYSCALL_DEFINE4:6,1352
+ssize_t __vfs_write:6,525
+static ssize_t new_sync_read:6,451
+loff_t default_llseek:6,237
+int rw_verify_area:6,418
+ssize_t vfs_write:6,563
+static inline loff_t file_pos_read:6,592
+loff_t no_seek_end_llseek_size:6,202
+unsigned long iov_shorten:6,677
+ssize_t vfs_copy_file_range:6,1376
+SYSCALL_DEFINE4:6,1314
+ssize_t vfs_iter_write:6,393
+SYSCALL_DEFINE5:6,343
+SYSCALL_DEFINE6:6,1433
+loff_t no_llseek:6,231
+static ssize_t do_iter_readv_writev:6,695
+loff_t vfs_llseek:6,292
+ssize_t rw_copy_check_uvector:6,739
+generic_file_llseek_size:6,87
+SYSCALL_DEFINE3:6,617
+static inline struct fd fdget_pos:6,305
+typedef ssize_t :6,27
+int vfs_clone_file_range:6,1518
+static ssize_t new_sync_write:6,507
+static inline void fdput_pos:6,310
+static ssize_t do_loop_readv_writev:6,711
+loff_t fixed_size_llseek:6,163
+loff_t noop_llseek:6,225
+loff_t generic_file_llseek:6,145
+loff_t vfs_setpos:6,55
+static inline int unsigned_offsets:6,38
+static inline void file_pos_write:6,597
+#define vrfy_dir:6,737
+ssize_t __vfs_read:6,468
+int vfs_dedupe_file_range:6,1569
+ssize_t __kernel_write:6,537
+ssize_t vfs_iter_read:6,373
+loff_t no_seek_end_llseek:6,182
+static int clone_verify_area:6,1495
+ssize_t vfs_read:6,480
+COMPAT_SYSCALL_DEFINE3:6,336
+EXPORT_SYMBOL:6,1670
+void fsstack_copy_attr_all:7,63
+EXPORT_SYMBOL_GPL:7,76
+void fsstack_copy_inode_size:7,10
+	if :8,687
+					 :8,634
+static int load_flat_binary:8,860
+				realdatastart = :8,566
+			old_reloc:8,784
+static unsigned long create_flat_tables:8,121
+				MAX_SHARED_LIBS * sizeof:8,657
+		result = flush_old_exec:8,520
+		current->mm->brk = :8,683
+			addr = flat_get_addr_from_rp:8,763
+	rlim = rlimit:8,510
+				result = read_code:8,650
+				if :8,770
+			result = decompress_exec:8,632
+		fpos = ntohl:8,580
+static int flat_core_dump:8,107
+	flush_icache_range:8,787
+			:8,694
+			relval = ntohl:8,752
+		printk:8,688
+			memmove:8,637
+		reloc = :8,623
+					:8,613
+			addr = flat_get_relocate_addr:8,755
+			relocs * sizeof:8,535
+			vm_munmap:8,656
+		len = text_len + data_len + extra + MAX_SHARED_LIBS * sizeof:8,604
+			if :8,753
+		realdatastart = textpos + ntohl:8,618
+				result = decompress_exec:8,642
+		textpos = vm_mmap:8,606
+						  - sizeof :8,635
+		len = PAGE_ALIGN:8,605
+					addr = ntohl:8,771
+				textpos = :8,611
+	memset:8,790
+		len = data_len + extra + MAX_SHARED_LIBS * sizeof:8,559
+			printk:8,655
+						   ntohl:8,651
+	libinfo->lib_list[id].build_date = ntohl:8,705
+			rp = :8,756
+				:8,578
+				addr = calc_reloc:8,772
+			result = read_code:8,648
+		DBG_FLT:8,577
+		set_personality:8,527
+		setup_new_exec:8,528
+#define FLAT_DATA_ALIGN	:8,63
+		for :8,783
+	libinfo->lib_list[id].entry = :8,704
+		datapos = ALIGN:8,619
+	start_code = textpos + sizeof :8,668
+				flat_put_addr_at_rp:8,779
+	extra = max_t:8,534
+static int load_flat_shared_library:8,809
+#define FLAT_STACK_ALIGN	max_t:8,70
+		realdatastart = vm_mmap:8,561
+COMPAT_SYSCALL_DEFINE4:9,542
+static int timerfd_setup:9,161
+COMPAT_SYSCALL_DEFINE2:9,559
+static long timerfd_ioctl:9,320
+void timerfd_clock_was_set:9,94
+static void timerfd_remove_cancel:9,115
+static bool timerfd_canceled:9,125
+static int do_timerfd_gettime:9,482
+static void timerfd_show:9,291
+static LIST_HEAD:9,46
+static enum alarmtimer_restart timerfd_alarmproc:9,79
+SYSCALL_DEFINE2:9,532
+static int timerfd_fget:9,363
+static ssize_t timerfd_read:9,235
+SYSCALL_DEFINE4:9,514
+static enum hrtimer_restart timerfd_tmrproc:9,71
+static DEFINE_SPINLOCK:9,47
+static unsigned int timerfd_poll:9,219
+static int timerfd_release:9,205
+static void timerfd_triggered:9,60
+static ktime_t timerfd_get_remaining:9,149
+static inline bool isalarm:9,49
+static void timerfd_setup_cancel:9,133
+int prepare_binprm:10,1340
+static void flush_arg_page:10,344
+EXPORT_SYMBOL:10,1692
+struct file *open_exec:10,804
+ssize_t read_code:10,834
+void would_dump:10,1124
+static void acct_arg_size:10,176
+static inline void put_binfmt:10,96
+void setup_new_exec:10,1131
+SYSCALL_DEFINE1:10,114
+int setup_arg_pages:10,647
+static LIST_HEAD:10,71
+static int compat_do_execve:10,1649
+void unregister_binfmt:10,87
+static int shift_arg_pages:10,582
+void set_dumpable:10,1697
+static inline void acct_arg_size:10,304
+static int do_execveat_common:10,1484
+static int count:10,429
+void install_exec_creds:10,1221
+int copy_strings_kernel:10,551
+void set_binfmt:10,1681
+static struct file *do_open_execat:10,760
+#define printable:10,1402
+static int exec_binprm:10,1459
+static void bprm_fill_uid:10,1287
+int remove_arg_zero:10,1363
+static int de_thread:10,893
+int search_binary_handler:10,1406
+char *get_task_comm:10,1058
+static int copy_strings:10,460
+static int compat_do_execveat:10,1664
+void __set_task_comm:10,1073
+static void put_arg_page:10,324
+static void free_bprm:10,1189
+static int bprm_mm_init:10,368
+static void free_arg_pages:10,336
+COMPAT_SYSCALL_DEFINE5:10,1739
+int flush_old_exec:10,1082
+SYSCALL_DEFINE5:10,1718
+bool path_noexec:10,101
+int kernel_read:10,817
+EXPORT_SYMBOL_GPL:10,1066
+int do_execveat:10,1637
+static struct page *get_arg_page:10,308
+int do_execve:10,1628
+static DEFINE_RWLOCK:10,72
+SYSCALL_DEFINE3:10,1710
+static bool valid_arg_len:10,355
+static const char __user *get_user_arg_ptr:10,405
+static void free_arg_page:10,328
+void __register_binfmt:10,74
+COMPAT_SYSCALL_DEFINE3:10,1732
+static void check_unsafe_exec:10,1251
+int bprm_change_interp:10,1206
+static int __bprm_mm_init:10,349
+static int exec_mmap:10,843
+int prepare_bprm_creds:10,1176
+static int ipipe_prep:11,1719
+COMPAT_SYSCALL_DEFINE4:11,1667
+static int write_pipe_buf:11,1063
+static int splice_from_pipe_next:11,811
+long do_splice_direct:11,1311
+static int link_pipe:11,1912
+static int page_cache_pipe_buf_confirm:11,99
+iter_file_splice_write:11,954
+EXPORT_SYMBOL_GPL:11,267
+static int pipe_to_sendpage:11,706
+ssize_t splice_from_pipe:11,920
+static int user_page_pipe_buf_steal:11,145
+SYSCALL_DEFINE4:11,2020
+static void page_cache_pipe_buf_release:11,88
+SYSCALL_DEFINE6:11,1687
+static long do_splice:11,1349
+ssize_t __splice_from_pipe:11,888
+void spd_release_page:11,269
+static int direct_splice_actor:11,1286
+ssize_t kernel_write:11,589
+static long do_tee:11,1993
+ssize_t default_file_splice_read:11,605
+static int page_cache_pipe_buf_steal:11,43
+ssize_t generic_splice_sendpage:11,1103
+static long vmsplice_to_pipe:11,1590
+static int pipe_to_user:11,1539
+static int get_iovec_page_array:11,1444
+static void splice_from_pipe_end:11,869
+static void wakeup_pipe_readers:11,163
+ssize_t generic_file_splice_read:11,521
+static long do_splice_to:11,1131
+static long do_splice_from:11,1114
+static void splice_from_pipe_begin:11,853
+__generic_file_splice_read:11,307
+int splice_grow_spd:11,278
+static int splice_pipe_to_pipe:11,1797
+static int generic_pipe_buf_nosteal:11,557
+static int opipe_prep:11,1757
+static ssize_t default_file_splice_write:11,1077
+static int splice_from_pipe_feed:11,753
+void splice_shrink_spd:11,297
+static long vmsplice_to_user:11,1550
+static void wakeup_pipe_writers:11,725
+ssize_t splice_direct_to_actor:11,1167
+ssize_t splice_to_pipe:11,182
+static ssize_t kernel_readv:11,573
+EXPORT_SYMBOL:11,1340
+static inline int buffer_busy:12,3170
+void block_invalidatepage:12,1524
+__bread_gfp:12,1419
+__find_get_block_slow:12,199
+int block_commit_write:12,2390
+int remove_inode_buffers:12,833
+static void end_bio_bh_io_sync:12,2931
+void mark_buffer_dirty_inode:12,596
+static void end_buffer_async_read:12,278
+void mark_buffer_dirty:12,1149
+static void free_more_memory:12,256
+static void end_buffer_read_nobh:12,2460
+static void recalc_bh_state:12,3301
+int try_to_free_buffers:12,3205
+static struct buffer_head *create_page_buffers:12,1654
+static void __set_page_dirty:12,626
+int bh_submit_read:12,3385
+static int submit_bh_wbc:12,2990
+SYSCALL_DEFINE2:12,3261
+EXPORT_SYMBOL:12,3402
+void ll_rw_block:12,3077
+static void __end_buffer_read_notouch:12,151
+int nobh_truncate_page:12,2722
+void end_buffer_read_sync:12,166
+void __breadahead:12,1396
+int submit_bh:12,3046
+static inline void check_irqs_on:12,1269
+void write_boundary_block:12,585
+void end_buffer_async_write:12,339
+void set_bh_page:12,1466
+static sector_t blkdev_max_block:12,935
+#define BH_ENTRY:12,52
+static void attach_nobh_buffers:12,2470
+static int __block_commit_write:12,1978
+static void mark_buffer_async_write_endio:12,412
+int block_truncate_page:12,2800
+static void do_thaw_one:12,527
+sector_t generic_block_bmap:12,2918
+void invalidate_bh_lrus:12,1460
+int inode_has_buffers:12,487
+int __set_page_dirty_buffers:12,666
+static void discard_buffer:12,1490
+static bool has_bh_in_lru:12,1447
+void end_buffer_write_sync:12,173
+void init_buffer:12,54
+int block_write_begin:12,2022
+int sync_dirty_buffer:12,3144
+void buffer_check_dirty_writeback:12,87
+static int buffer_cpu_notify:12,3352
+int __sync_dirty_buffer:12,3124
+void __lock_buffer:12,68
+int _submit_bh:12,3040
+int __block_write_begin:12,1896
+int generic_cont_expand_simple:12,2263
+int generic_write_end:12,2081
+static int fsync_buffers_list:12,724
+static void buffer_exit_cpu:12,3339
+int bh_uptodate_or_lock:12,3367
+static void mark_buffer_async_read:12,406
+lookup_bh_lru:12,1321
+int block_is_partially_uptodate:12,2128
+int block_write_full_page:12,2879
+void emergency_thaw_all:12,545
+__find_get_block:12,1356
+#define bh_lru_unlock:12,1266
+static void invalidate_bh_lru:12,1435
+int nobh_writepage:12,2675
+struct buffer_head *alloc_buffer_head:12,3314
+int nobh_write_end:12,2635
+void free_buffer_head:12,3328
+static inline int block_size_bits:12,1649
+__clear_page_buffers:12,128
+void write_dirty_buffer:12,3106
+void unmap_underlying_metadata:12,1625
+static void do_thaw_all:12,533
+void __brelse:12,1192
+void unlock_buffer:12,74
+struct buffer_head *alloc_page_buffers:12,865
+init_page_buffers:12,951
+__getblk_slow:12,1082
+static void buffer_io_error:12,135
+EXPORT_SYMBOL_GPL:12,3044
+grow_buffers:12,1053
+void page_zero_new_buffers:12,1859
+drop_buffers:12,3177
+__getblk_gfp:12,1381
+#define bh_lru_lock:12,1265
+void __bforget:12,1206
+void __wait_on_buffer:12,121
+int cont_write_begin:12,2366
+int block_read_full_page:12,2173
+static struct buffer_head *__bread_slow:12,1221
+static void __remove_assoc_queue:12,478
+void mark_buffer_async_write:12,419
+int block_write_end:12,2045
+void __init buffer_init:12,3404
+inline void touch_buffer:12,61
+static int cont_expand_zero:12,2288
+int block_page_mkwrite:12,2416
+void guard_bio_eod:12,2954
+link_dev_buffers:12,922
+int sync_mapping_buffers:12,567
+void create_empty_buffers:12,1579
+static void bh_lru_install:12,1279
+static int __block_write_full_page:12,1692
+static int osync_buffers_list:12,502
+int nobh_write_begin:12,2494
+grow_dev_page:12,985
+static void __exit exit_aout_binfmt:13,416
+MODULE_LICENSE:13,423
+static int load_aout_library:13,337
+static int aout_core_dump:13,46
+static int __init init_aout_binfmt:13,410
+module_exit:13,422
+static unsigned long __user *create_aout_tables:13,144
+#define BAD_ADDR:13,124
+static int load_aout_binary:13,202
+core_initcall:13,421
+static int set_brk:13,126
+generic_getxattr:14,694
+vfs_setxattr:14,122
+removexattr:14,572
+static ssize_t path_getxattr:14,445
+strcmp_prefix:14,639
+static int path_removexattr:14,586
+static int path_setxattr:14,344
+const char *xattr_full_name:14,792
+static int xattr_list_one:14,920
+vfs_listxattr:14,248
+EXPORT_SYMBOL_GPL:14,296
+xattr_getsecurity:14,146
+SYSCALL_DEFINE4:14,476
+listxattr:14,494
+SYSCALL_DEFINE5:14,381
+SYSCALL_DEFINE2:14,620
+SYSCALL_DEFINE3:14,555
+static ssize_t path_listxattr:14,525
+int simple_xattr_get:14,826
+void simple_xattr_list_add:14,978
+vfs_getxattr:14,212
+int __vfs_setxattr_noperm:14,92
+ssize_t simple_xattr_list:14,937
+setxattr:14,303
+#define for_each_xattr_handler:14,657
+generic_setxattr:14,745
+vfs_removexattr:14,268
+struct simple_xattr *simple_xattr_alloc:14,804
+xattr_resolve_name:14,666
+static bool xattr_is_trusted:14,915
+getxattr:14,403
+generic_listxattr:14,709
+xattr_permission:14,32
+vfs_getxattr_alloc:14,181
+int simple_xattr_set:14,864
+generic_removexattr:14,762
+EXPORT_SYMBOL:14,799
+static int no_blkdev_open:15,15
+static void cputime_to_compat_timeval:16,58
+static int fillonedir:17,77
+int iterate_dir:17,24
+SYSCALL_DEFINE3:17,277
+EXPORT_SYMBOL:17,51
+static int filldir:17,152
+static int filldir64:17,237
+#define kdebug:18,49
+static size_t elf_core_vma_data_size:18,1552
+static int elf_fdpic_core_dump:18,1570
+static int writenote:18,1302
+#define elf_check_fdpic:18,121
+static int __init init_elf_fdpic_binfmt:18,93
+static int load_elf_fdpic_binary:18,185
+static inline void fill_elf_note_phdr:18,1339
+static int elf_fdpic_fetch_phdrs:18,141
+static int elf_fdpic_map_file_by_direct_mmap:18,77
+static int elf_fdpic_transfer_args_to_stack:18,718
+static void __exit exit_elf_fdpic_binfmt:18,99
+static int elf_fdpic_map_file:18,756
+static int maydump:18,1217
+static int notesize:18,1289
+static int is_constdisp:18,128
+static bool elf_fdpic_dump_segments:18,1517
+static void fill_prstatus:18,1366
+static inline void fill_note:18,1352
+module_exit:18,105
+static int is_elf:18,107
+MODULE_LICENSE:18,58
+#define kdcore:18,55
+static int create_elf_fdpic_tables:18,493
+static void fill_extnum_info:18,1498
+static int elf_dump_thread_status:18,1464
+#define elf_check_const_displacement:18,125
+static inline void fill_elf_fdpic_header:18,1314
+static int elf_fdpic_map_file_constdisp_on_uclinux:18,939
+core_initcall:18,104
+static int fill_psinfo:18,1402
+static void inode_io_list_del_locked:19,159
+	if :19,255
+static void redirty_tail:19,991
+EXPORT_SYMBOL:19,2403
+static long wb_do_writeback:19,1833
+static long __writeback_inodes_wb:19,1581
+static long writeback_chunk_size:19,1399
+void wb_start_background_writeback:19,960
+static void requeue_inode:19,1193
+void writeback_inodes_sb_nr:19,2246
+void wakeup_flusher_threads:19,1910
+	__releases:19,1171
+#define DEFINE_WB_COMPLETION_ONSTACK:19,69
+static void inode_switch_wbs:19,454
+void sync_inodes_sb:19,2311
+int dirtytime_interval_handler:19,1972
+static DECLARE_DELAYED_WORK:19,1947
+static inline struct inode *wb_inode:19,87
+static long wb_split_bdi_pages:19,903
+int sync_inode:19,2379
+static long wb_writeback:19,1652
+static struct wb_writeback_work *get_next_work_item:19,1753
+void wbc_attach_and_unlock_inode:19,518
+static int move_expired_inodes:19,1042
+bool try_to_writeback_inodes_sb:19,2298
+static void inode_switch_wbs_rcu_fn:19,436
+static unsigned long get_nr_dirty_pages:19,1771
+int inode_congested:19,726
+void wbc_detach_inode:19,584
+static bool inode_dirtied_after:19,1021
+void wb_start_writeback:19,922
+void inode_io_list_del:19,973
+		wb_put:19,256
+static void wb_wakeup:19,168
+static long wb_check_background_flush:19,1778
+int write_inode_now:19,2351
+__initcall:19,1970
+static noinline void block_dump___mark_inode_dirty:19,1983
+#define MIN_WRITEBACK_PAGES	:19,36
+static void __inode_wait_for_writeback:19,1139
+static void __writeback_inodes_sb_nr:19,2214
+static int write_inode:19,1122
+static void wb_io_lists_depopulated:19,115
+__writeback_single_inode:19,1257
+locked_inode_to_wb_and_lock_list:19,883
+EXPORT_TRACEPOINT_SYMBOL_GPL:19,100
+static long writeback_sb_inodes:19,1439
+	__acquires:19,1141
+void wb_workfn:19,1866
+static void queue_io:19,1108
+void __mark_inode_dirty:19,2029
+static void requeue_io:19,1006
+void writeback_inodes_sb:19,2263
+static void wb_wait_for_completion:19,203
+static int __init start_dirtytime_writeback:19,1965
+void wbc_account_io:19,676
+EXPORT_SYMBOL_GPL:19,744
+static long wb_check_old_data_flush:19,1796
+void cgroup_writeback_umount:19,863
+static int writeback_single_inode:19,1342
+static void wakeup_dirtytime_writeback:19,1949
+static bool wb_io_lists_populated:19,102
+static bool inode_io_list_move_locked:19,135
+static void inode_sync_complete:19,1011
+static void wb_queue_work:19,176
+bool try_to_writeback_inodes_sb_nr:19,2278
+static void inode_switch_wbs_work_fn:19,320
+static struct bdi_writeback *inode_to_wb_and_lock_list:19,894
+fs_initcall:19,878
+int sync_inode_metadata:19,2394
+static void wait_sb_inodes:19,2154
+static long writeback_inodes_wb:19,1615
+static void inode_sleep_on_writeback:19,1170
+static void bdi_split_work_to_wbs:19,908
+void inode_wait_for_writeback:19,1158
+static int __init cgroup_writeback_init:19,871
+static int dax_load_hole:20,307
+int dax_writeback_mapping_range:20,487
+ssize_t dax_do_io:20,259
+static void dax_new_buf:20,114
+int dax_pfn_mkwrite:20,1056
+int dax_pmd_fault:20,1030
+static int dax_insert_mapping:20,544
+EXPORT_SYMBOL_GPL:20,1155
+#define DAX_PMD_INDEX:20,349
+int __dax_fault:20,612
+int dax_fault:20,760
+static sector_t to_sector:20,143
+#define dax_pmd_dbg:20,801
+int dax_zero_page_range:20,1098
+struct page *read_dax_sector:20,61
+static ssize_t dax_io:20,151
+static bool buffer_size_valid:20,137
+static long dax_map_atomic:20,35
+#define PG_PMD_COLOUR	:20,783
+static void dax_unmap_atomic:20,53
+static int dax_radix_entry:20,351
+static void __dax_dbg:20,785
+static bool buffer_written:20,125
+int __dax_pmd_fault:20,803
+static int copy_user_bh:20,329
+int dax_truncate_page:20,1150
+int dax_clear_sectors:20,86
+static int dax_writeback_one:20,421
+EXPORT_SYMBOL:20,749
+int seq_path_root:21,498
+static void seq_set_overflow:21,21
+struct hlist_node *seq_hlist_start_rcu:21,899
+int seq_open:21,61
+struct list_head *seq_list_next:21,822
+void seq_puts:21,663
+int seq_open_private:21,647
+static void *single_next:21,553
+struct list_head *seq_list_start_head:21,813
+void *__seq_open_private:21,621
+void seq_put_decimal_ull:21,683
+void seq_put_decimal_ll:21,710
+static void *seq_buf_alloc:21,26
+void seq_printf:21,410
+int seq_dentry:21,528
+void seq_pad:21,751
+static void *single_start:21,548
+void seq_putc:21,654
+char *mangle_path:21,431
+struct hlist_node *seq_hlist_start_head:21,858
+void seq_hex_dump:21,762
+int single_open:21,563
+void seq_vprintf:21,395
+static int traverse:21,100
+void seq_escape:21,384
+seq_hlist_next_percpu:21,992
+int seq_file_path:21,489
+struct hlist_node *seq_hlist_next:21,875
+ssize_t seq_read:21,168
+struct list_head *seq_list_start:21,801
+int single_open_size:21,584
+static void single_stop:21,559
+struct hlist_node *seq_hlist_start:21,839
+struct hlist_node *seq_hlist_start_head_rcu:21,923
+int seq_write:21,734
+seq_hlist_start_percpu:21,968
+int seq_release:21,365
+int seq_path:21,461
+struct hlist_node *seq_hlist_next_rcu:21,945
+int seq_release_private:21,611
+int single_release:21,602
+EXPORT_SYMBOL:21,1011
+MODULE_LICENSE:22,117
+static int __init init_em86_binfmt:22,104
+static void __exit exit_em86_binfmt:22,110
+static int load_em86:22,25
+module_exit:22,116
+core_initcall:22,115
+int inode_newsize_ok:23,99
+void setattr_copy:23,142
+EXPORT_SYMBOL:23,278
+int notify_change:23,190
+int inode_change_ok:23,31
+#define IS_MNT_NEW:24,16
+#define IS_MNT_LOCKED:24,22
+struct mount *copy_tree:24,52
+static inline void set_mnt_shared:24,35
+#define IS_MNT_SHARED:24,14
+void propagate_mount_unlock:24,46
+unsigned int mnt_get_count:24,49
+#define CL_COPY_ALL		:24,33
+#define CLEAR_MNT_SHARED:24,17
+#define IS_MNT_MARKED:24,19
+int propagate_umount:24,44
+void change_mnt_propagation:24,41
+void mnt_release_group_id:24,47
+int propagate_mount_busy:24,45
+#define IS_MNT_SLAVE:24,15
+int propagate_mnt:24,42
+void mnt_set_mountpoint:24,50
+#define SET_MNT_MARK:24,20
+int get_dominating_id:24,48
+bool is_path_reachable:24,53
+#define IS_MNT_UNBINDABLE:24,18
+#define CLEAR_MNT_MARK:24,21
+static void hash_dcookie:25,86
+static size_t dcookie_hash:25,59
+void dcookie_unregister:25,335
+static struct dcookie_struct * find_dcookie:25,65
+COMPAT_SYSCALL_DEFINE4:25,207
+SYSCALL_DEFINE3:25,149
+static int dcookie_init:25,217
+struct dcookie_user * dcookie_register:25,310
+static void dcookie_exit:25,284
+EXPORT_SYMBOL_GPL:25,350
+static inline unsigned long dcookie_value:25,53
+static LIST_HEAD:25,40
+static void free_dcookie:25,271
+static inline int is_live:25,46
+static DEFINE_MUTEX:25,41
+int get_dcookie:25,116
+static struct dcookie_struct *alloc_dcookie:25,93
+int simple_write_begin:26,391
+EXPORT_SYMBOL:26,1101
+int simple_rename:26,323
+int noop_fsync:26,1016
+int simple_unlink:26,300
+int simple_transaction_release:26,737
+int simple_setattr:26,364
+void simple_release_fs:26,559
+int simple_write_end:26,436
+simple_nosetlease:26,1083
+static ssize_t empty_dir_listxattr:26,1141
+ssize_t generic_read_dir:26,182
+static int anon_set_page_dirty:26,1033
+char *simple_transaction_get:26,695
+static struct dentry *empty_dir_lookup:26,1106
+			:26,903
+int simple_link:26,266
+int generic_file_fsync:26,971
+static int empty_dir_setattr:26,1119
+static ssize_t empty_dir_getxattr:26,1130
+void make_empty_dir_inode:26,1177
+static int empty_dir_getattr:26,1111
+void simple_transaction_set:26,680
+int dcache_readdir:26,144
+bool is_empty_dir_inode:26,1192
+int simple_rmdir:26,311
+int simple_pin_fs:26,538
+struct dentry *mount_pseudo:26,211
+static loff_t empty_dir_llseek:26,1157
+int simple_statfs:26,33
+int simple_getattr:26,23
+ssize_t simple_transaction_read:26,727
+static int empty_dir_readdir:26,1163
+		int fh_len, int fh_type, struct inode *:26,902
+struct dentry *generic_fh_to_dentry:26,868
+static int empty_dir_setxattr:26,1124
+static DEFINE_SPINLOCK:26,536
+int __generic_file_fsync:26,933
+struct dentry *simple_lookup:26,61
+static int empty_dir_removexattr:26,1136
+int simple_open:26,258
+int simple_fill_super:26,472
+	int :26,748
+struct dentry *generic_fh_to_parent:26,901
+EXPORT_SYMBOL_GPL:26,919
+int always_delete_dentry:26,46
+int simple_empty:26,279
+const char *simple_get_link:26,1090
+static inline unsigned char dt_type:26,133
+int simple_readpage:26,381
+int dcache_dir_open:26,72
+loff_t dcache_dir_lseek:26,89
+int dcache_dir_close:26,82
+int generic_check_addressable:26,993
+struct inode *alloc_anon_inode:26,1043
+static void sync_fs_one_sb:27,76
+SYSCALL_DEFINE1:27,230
+#define VALID_FLAGS :27,20
+static int __sync_filesystem:27,30
+int vfs_fsync_range:27,183
+static void fdatawrite_one_bdev:27,82
+static void fdatawait_one_bdev:27,87
+SYSCALL_DEFINE0:27,107
+void emergency_sync:27,140
+SYSCALL_DEFINE4:27,368
+EXPORT_SYMBOL:27,211
+int sync_filesystem:27,47
+static int do_fsync:27,213
+static void do_sync_work:27,122
+static void sync_inodes_one_sb:27,70
+int vfs_fsync:27,207
+static bool nsec_valid:28,43
+SYSCALL_DEFINE3:28,203
+long do_utimes:28,136
+static int utimes_common:28,51
+SYSCALL_DEFINE2:28,231
+SYSCALL_DEFINE4:28,185
+static inline struct mount *real_mount:29,72
+extern void __detach_mounts:29,94
+static inline void lock_mount_hash:29,110
+static inline void unlock_mount_hash:29,115
+extern struct mount *__lookup_mnt:29,88
+static inline void get_mnt_ns:29,103
+static inline int mnt_has_parent:29,77
+static inline int is_mounted:29,82
+extern int __legitimize_mnt:29,91
+extern struct mount *__lookup_mnt_last:29,89
+static inline bool is_local_mountpoint:29,132
+extern bool legitimize_mnt:29,92
+	int :29,123
+static inline void detach_mounts:29,96
+extern bool __is_local_mountpoint:29,131
+void deactivate_super:30,328
+mount_fs:30,1105
+	void *data, int :30,922
+	void :30,558
+EXPORT_SYMBOL:30,1374
+static void destroy_super_rcu:30,149
+static void destroy_super:30,162
+void iterate_supers_type:30,557
+void deactivate_locked_super:30,295
+int get_anon_bdev:30,842
+void iterate_supers:30,522
+void generic_shutdown_super:30,408
+static void __put_super:30,261
+static void do_emergency_remount:30,788
+static LIST_HEAD:30,39
+struct super_block *user_get_super:30,678
+void drop_super:30,506
+int do_remount_sb:30,714
+static void sb_freeze_unlock:30,1230
+int thaw_super:30,1342
+void __sb_end_write:30,1161
+struct super_block *get_super_thawed:30,633
+int freeze_super:30,1274
+static void put_super:30,276
+struct super_block *get_super:30,592
+int set_anon_super:30,885
+struct dentry *mount_nodev:30,1055
+void kill_block_super:30,1040
+struct super_block *sget:30,453
+static int grab_super:30,351
+static struct super_block *alloc_super:30,181
+static unsigned long super_cache_count:30,112
+static int set_bdev_super:30,947
+void kill_litter_super:30,901
+static int ns_test_super:30,910
+static int test_bdev_super:30,960
+struct super_block *get_active_super:30,655
+struct dentry *mount_ns:30,921
+static DEFINE_SPINLOCK:30,40
+void free_anon_bdev:30,874
+	int :30,1082
+bool trylock_super:30,382
+void emergency_remount:30,819
+static unsigned long super_cache_scan:30,55
+			int :30,455
+static void destroy_super_work:30,138
+static int compare_single:30,1075
+static int ns_set_super:30,915
+static void sb_wait_write:30,1214
+static DEFINE_IDA:30,835
+int __sb_start_write:30,1171
+void kill_anon_super:30,892
+struct dentry *mount_single:30,1080
+struct dentry *mount_bdev:30,965
+	  Direct Access :31,39
+# Meta block cache for Extended Attributes :31,18
+	depends on X86 || IA64 || SPARC64 || :31,178
+	  POSIX Access Control Lists :31,145
+	depends on !:31,37
+	bool "Direct Access :31,35
+	  the kernel or by users :31,166
+          for filesystems like NFS and for the flock:31,74
+	bool "Tmpfs virtual memory file system support :31,127
+	  ld.so :32,23
+	  here, you still can't run any ELF binaries :32,21
+	  but replaced the traditional Linux a.out formats :32,10
+	depends on MMU && :32,3
+	  If any crucial components of your system :32,122
+	  ELF :32,6
+	depends on !MMU && :32,84
+	  A.out :32,108
+	  because it is portable :32,11
+	  the Linux DOS emulator DOSEMU :32,156
+	depends on :32,36
+	  Say Y if you are using OSF/1 binaries :32,130
+static void clean_buffers:33,440
+mpage_writepages:33,683
+int mpage_writepage:33,713
+map_buffer_to_page:33,98
+do_mpage_readpage:33,140
+mpage_alloc:33,67
+static void mpage_end_io:33,45
+static struct bio *mpage_bio_submit:33,58
+mpage_readpages:33,356
+EXPORT_SYMBOL:33,730
+int mpage_readpage:33,394
+static int __mpage_writepage:33,465
+static int flags_by_mnt:34,12
+SYSCALL_DEFINE3:34,202
+static int statfs_by_dentry:34,49
+int user_statfs:34,77
+static int do_statfs64:34,148
+static int flags_by_sb:34,33
+static int do_statfs_native:34,106
+int vfs_statfs:34,66
+SYSCALL_DEFINE2:34,228
+static int calculate_f_flags:34,43
+int fd_statfs:34,95
+EXPORT_SYMBOL:34,75
+int vfs_ustat:34,216
+int drop_caches_sysctl_handler:35,42
+static void drop_pagecache_sb:35,16
+static struct inode *find_inode:36,778
+int dentry_needs_remove_privs:36,1705
+struct inode *iget_locked:36,1087
+void evict_inodes:36,597
+EXPORT_SYMBOL:36,2042
+void inode_dio_wait:36,2001
+int generic_delete_inode:36,1433
+void drop_nlink:36,277
+void __insert_inode_hash:36,466
+static void dispose_list:36,575
+int insert_inode_locked4:36,1389
+static enum lru_status inode_lru_isolate:36,697
+static int no_open:36,116
+static long get_nr_inodes:36,78
+int invalidate_inodes:36,646
+void set_nlink:36,311
+int file_update_time:36,1776
+static struct inode *find_inode_fast:36,807
+static int __init set_ihash_entries:36,1846
+int inode_needs_sync:36,1811
+void clear_nlink:36,294
+static inline long get_nr_inodes_unused:36,87
+void address_space_init_once:36,344
+void inc_nlink:36,333
+struct inode *ilookup5:36,1263
+static __cacheline_aligned_in_smp DEFINE_SPINLOCK:36,58
+void unlock_new_inode:36,948
+static void evict:36,527
+void inode_init_owner:36,1940
+static int relatime_need_update:36,1540
+unsigned int get_next_ino:36,848
+void __destroy_inode:36,228
+int insert_inode_locked:36,1347
+static int __remove_privs:36,1724
+int should_remove_suid:36,1677
+void lockdep_annotate_inode_mutex_key:36,921
+bool inode_owner_or_capable:36,1961
+ino_t iunique:36,1174
+void unlock_two_nondirectories:36,986
+static void inode_lru_list_add:36,400
+void init_special_inode:36,1914
+struct inode *find_inode_nowait:36,1320
+static void init_once:36,376
+static void inode_lru_list_del:36,420
+struct inode *ilookup:36,1282
+void free_inode_nonrcu:36,222
+void touch_atime:36,1640
+void lock_two_nondirectories:36,969
+void inode_init_once:36,361
+static unsigned long hash:36,448
+void __init inode_init:36,1883
+int inode_init_always:36,129
+int generic_update_time:36,1569
+struct inode *igrab:36,1197
+long prune_icache_sb:36,763
+static inline void inode_sb_list_del:36,439
+void __remove_inode_hash:36,484
+		int :36,1390
+void iput:36,1495
+static void i_callback:36,250
+struct inode *new_inode:36,907
+int file_remove_privs:36,1740
+void ihold:36,394
+static int test_inode_iunique:36,1143
+void inode_set_flags:36,2024
+static struct inode *alloc_inode:36,199
+struct inode *ilookup5_nowait:36,1232
+struct inode *iget5_locked:36,1015
+int proc_nr_inodes:36,107
+void __init inode_init_early:36,1858
+__setup:36,1853
+void inode_nohighmem:36,2038
+long get_nr_dirty_inodes:36,96
+EXPORT_SYMBOL_GPL:36,437
+static int update_time:36,1593
+static void __inode_dio_wait:36,1978
+void __iget:36,386
+void inode_sb_list_add:36,431
+static void destroy_inode:36,256
+static void iput_final:36,1449
+sector_t bmap:36,1526
+bool atime_needs_update:36,1612
+void clear_inode:36,494
+static void __wait_on_freeing_inode:36,1832
+				int :36,1322
+struct inode *new_inode_pseudo:36,882
+void inode_add_lru:36,411
+static DEFINE_PER_CPU:36,846
+static enum d_walk_ret check_mount:37,1271
+char *simple_dname:37,3126
+static int __init set_dhash_entries:37,3368
+struct dentry *d_alloc:37,1617
+static void __d_instantiate:37,1746
+static enum d_walk_ret umount_check:37,1406
+void d_instantiate:37,1775
+__cacheline_aligned_in_smp DEFINE_SEQLOCK:37,87
+static struct dentry *__d_instantiate_unique:37,1803
+void d_set_d_op:37,1662
+static inline struct hlist_bl_head *d_hash:37,107
+static void get_fs_root_rcu:37,3047
+static inline int dentry_string_cmp:37,202
+static char *__dentry_path:37,3141
+void d_invalidate:37,1491
+static void _d_rehash:37,2422
+int have_submounts:37,1288
+static void dentry_lock_for_move:37,2532
+static long get_nr_dentry_unused:37,145
+void d_set_fallthru:37,1703
+struct dentry *d_hash_and_lookup:37,2343
+void dentry_update_name_case:37,2456
+SYSCALL_DEFINE2:37,3241
+EXPORT_SYMBOL:37,3437
+static int prepend_name:37,2853
+static void dentry_unlock_for_move:37,2559
+struct dentry *d_add_ci:37,2051
+static inline void __d_clear_type_and_inode:37,285
+char *__d_path:37,2991
+static long get_nr_dentry:37,136
+static void __d_free:37,253
+struct dentry *d_alloc_name:37,1651
+static struct dentry *dentry_kill:37,558
+static void d_lru_shrink_move:37,436
+void __d_drop:37,468
+struct dentry *d_alloc_pseudo:37,1645
+int d_set_mounted:37,1306
+void __init vfs_caches_init:37,3445
+char *dynamic_dname:37,3108
+static inline struct dentry *lock_parent:37,585
+static void d_lru_isolate:37,428
+static inline void dentry_rcuwalk_invalidate:37,318
+static enum lru_status dentry_lru_isolate_shrink:37,1092
+void d_exchange:37,2678
+static void __d_free_external:37,260
+int d_instantiate_no_diralias:37,1871
+		   void :37,1161
+__setup:37,3375
+static void __d_move:37,2594
+static enum d_walk_ret detach_and_collect:37,1460
+static struct dentry * __d_find_any_alias:37,1906
+static int path_with_deleted:37,3028
+static int prepend:37,2825
+static void dentry_iput:37,330
+static void d_lru_add:37,390
+static void __init dcache_init_early:37,3377
+struct dentry *d_lookup:37,2235
+struct dentry *d_find_alias:37,891
+void d_rehash:37,2434
+static enum d_walk_ret d_genocide_kill:37,3331
+static void d_shrink_add:37,414
+int proc_nr_dentry:37,154
+static int __d_unalias:37,2720
+static int prepend_path:37,2892
+static inline void __dget_dlock:37,793
+static noinline enum slow_d_compare slow_dentry_cmp:37,2100
+void d_prune_aliases:37,908
+void d_delete:37,2381
+char *d_absolute_path:37,3008
+#define D_FLAG_VERIFY:37,389
+bool is_subdir:37,3305
+static void do_one_tree:37,1429
+static void dentry_free:37,294
+struct dentry *__d_lookup_rcu:37,2147
+static enum lru_status dentry_lru_isolate:37,1011
+static unsigned d_flags_for_inode:37,1711
+static void dentry_unlink_inode:37,355
+static void shrink_dentry_list:37,931
+static void d_lru_del:37,398
+struct dentry *__d_alloc:37,1545
+static inline void __dget:37,798
+static void __init dcache_init:37,3402
+	__releases:37,559
+void shrink_dcache_parent:37,1387
+struct dentry *d_instantiate_unique:37,1838
+static void check_and_drop:37,1473
+struct dentry *d_obtain_root:37,2029
+static inline struct external_name *external_name:37,248
+void d_drop:37,491
+struct dentry *d_ancestor:37,2700
+long prune_dcache_sb:37,1081
+struct dentry *d_obtain_alias:37,2008
+		   enum d_walk_ret :37,1160
+void shrink_dcache_for_umount:37,1440
+struct dentry *d_find_any_alias:37,1924
+static inline int dentry_cmp:37,216
+static void d_shrink_del:37,406
+EXPORT_SYMBOL_GPL:37,85
+struct dentry *d_splice_alias:37,2771
+static void copy_name:37,2514
+void __init vfs_caches_init_early:37,3439
+void d_genocide:37,3346
+static struct dentry *__d_find_alias:37,857
+#if defined:37,122
+static inline int dname_external:37,267
+static void __d_rehash:37,2413
+struct dentry *__d_lookup:37,2265
+static enum d_walk_ret select_collect:37,1352
+static void __dentry_kill:37,499
+static struct dentry *__d_obtain_alias:37,1935
+void d_move:37,2665
+static inline void __d_set_inode_and_type:37,272
+void d_tmpfile:37,3351
+char *dentry_path_raw:37,3186
+static int prepend_unreachable:37,3042
+void shrink_dcache_sb:37,1120
+static void d_walk:37,1159
+char *d_path:37,3073
+char *dentry_path:37,3192
+static inline bool fast_dput:37,627
+struct dentry *dget_parent:37,803
+static void swap_names:37,2469
+static void get_fs_root_and_pwd_rcu:37,3211
+void dput:37,749
+static DEFINE_PER_CPU:37,120
+static void dentry_lru_add:37,447
+struct dentry *d_make_root:37,1889
+extern void inode_add_lru:38,116
+extern int do_remount_sb:38,86
+extern void __init chrdev_init:38,46
+extern int vfs_open:38,110
+extern long vfs_ioctl:38,160
+extern void __mnt_drop_write:38,70
+extern void __mnt_drop_write_file:38,71
+extern struct dentry *mount_fs:38,88
+extern void inode_io_list_del:38,121
+extern long prune_dcache_sb:38,132
+extern int invalidate_inodes:38,125
+extern long get_nr_dirty_inodes:38,123
+static inline int __sync_blockdev:38,32
+extern void group_pin_kill:38,147
+extern long prune_icache_sb:38,115
+extern long do_handle_open:38,107
+extern int rw_verify_area:38,137
+extern struct file *do_filp_open:38,102
+extern void chroot_fs_refs:38,76
+extern int vfs_path_lookup:38,52
+extern void guard_bio_eod:38,41
+extern void mnt_pin_kill:38,148
+extern struct super_block *user_get_super:38,90
+extern int __mnt_want_write_file:38,69
+extern struct vfsmount *lookup_mnt:38,61
+extern char *copy_mount_string:38,59
+static inline void bdev_cache_init:38,28
+extern int open_check_o_direct:38,109
+extern void __init bdev_cache_init:38,23
+extern int __mnt_want_write:38,68
+extern int d_set_mounted:38,131
+extern struct dentry *__d_alloc:38,130
+extern int user_path_mountpoint_at:38,51
+extern bool trylock_super:38,87
+extern int sb_prepare_remount_readonly:38,64
+extern int finish_automount:38,62
+extern void *copy_mount_options:38,58
+extern struct file *get_empty_filp:38,81
+extern int __sync_blockdev:38,25
+extern int do_vfs_ioctl:38,158
+extern void evict_inodes:38,124
+extern struct file *do_file_open_root:38,104
+extern void __init mnt_init:38,66
+long do_handle_open:39,214
+static long do_sys_name_to_handle:39,15
+SYSCALL_DEFINE3:39,255
+static int vfs_dentry_acceptable:39,133
+static struct vfsmount *get_vfsmount_from_fd:39,114
+SYSCALL_DEFINE5:39,92
+static int handle_to_path:39,166
+static int do_handle_to_path:39,138
+#define IGNORE_IOCTL:40,843
+static int do_ioctl:40,127
+__initcall:40,1657
+#define convert_in_user:40,120
+#define COMPATIBLE_IOCTL:40,835
+static int do_video_set_spu_palette:40,224
+static int w_long:40,138
+static int __init init_sys32_ioctl:40,1651
+static int do_video_get_event:40,163
+static int __init init_sys32_ioctl_cmp:40,1639
+#define VFAT_IOCTL_READDIR_SHORT32      _IOR:40,1428
+COMPAT_SYSCALL_DEFINE3:40,1557
+IGNORE_IOCTL:40,1446
+#define XFORM:40,833
+static long do_ioctl_trans:40,1457
+#define VFAT_IOCTL_READDIR_BOTH32       _IOR:40,1427
+static int do_video_stillpicture:40,193
+static int compat_ioctl_check_table:40,1535
+COMPATIBLE_IOCTL:40,1421
+static int blkdev_mmap:41,1771
+struct block_device *lookup_bdev:41,1825
+static struct bd_holder_disk *bd_find_holder_disk:41,900
+int sb_set_blocksize:41,126
+static struct block_device *bd_start_claiming:41,843
+EXPORT_SYMBOL:41,1878
+static void bdev_evict_inode:41,552
+static struct dentry *bd_mount:41,575
+static int blkdev_close:41,1607
+struct super_block *freeze_bdev:41,226
+void bd_unlink_disk_holder:41,1014
+long nr_blockdev_pages:41,677
+static void bdev_write_inode:41,53
+static void bdev_i_callback:41,515
+int thaw_bdev:41,272
+static int blkdev_dax_fault:41,1743
+int __invalidate_device:41,1859
+static int bdev_test:41,618
+int bdev_read_page:41,394
+static LIST_HEAD:41,629
+void kill_bdev:41,74
+static bool bd_may_claim:41,759
+static int add_symlink:41,911
+int bdev_write_page:41,431
+void check_disk_size_change:41,1068
+static int __blkdev_get:41,1167
+static  __cacheline_aligned_in_smp DEFINE_SPINLOCK:41,504
+static int blkdev_open:41,1486
+static inline struct bdev_inode *BDEV_I:41,42
+void iterate_bdevs:41,1880
+void bd_set_size:41,1141
+ssize_t blkdev_read_iter:41,1670
+static int bd_prepare_to_claim:41,795
+static int blkdev_readpage:41,307
+void __init bdev_cache_init:41,590
+int blkdev_fsync:41,355
+int set_blocksize:41,104
+static int blkdev_writepage:41,302
+static struct block_device *bd_acquire:41,696
+void bdput:41,689
+ssize_t blkdev_write_iter:41,1638
+static struct inode *bdev_alloc_inode:41,507
+int revalidate_disk:41,1092
+int bd_link_disk_holder:41,949
+static void init_once:41,528
+struct block_device *bdget:41,631
+void blkdev_put:41,1559
+static int blkdev_dax_pmd_fault:41,1754
+static inline void __bd_forget:41,545
+static void flush_disk:41,1046
+long bdev_direct_access:41,469
+static inline unsigned long hash:41,613
+static int blkdev_releasepage:41,1690
+int fsync_bdev:41,202
+static void del_symlink:41,916
+void invalidate_bdev:41,87
+static void __blkdev_put:41,1514
+static int blkdev_readpages:41,312
+int ioctl_by_bdev:41,1805
+EXPORT_SYMBOL_GPL:41,1684
+static long block_ioctl:41,1614
+static void bdev_destroy_inode:41,523
+static loff_t block_llseek:41,344
+static int blkdev_write_end:41,326
+static int blkdev_write_begin:41,318
+int blkdev_get:41,1341
+struct block_device *bdgrab:41,670
+static int blkdev_dax_pfn_mkwrite:41,1748
+struct block_device *I_BDEV:41,47
+void bd_forget:41,731
+static int bdev_set:41,623
+int check_disk_change:41,1122
+static int blkdev_writepages:41,1700
+struct block_device *blkdev_get_by_dev:41,1469
+struct block_device *blkdev_get_by_path:41,1424
+static int mounts_release:42,291
+static void show_type:42,85
+static int show_sb_opts:42,42
+static int show_mountinfo:42,128
+static unsigned mounts_poll:42,18
+static int show_vfsmnt:42,94
+static int mountstats_open:42,310
+static void show_mnt_opts:42,61
+#include "proc/internal.h" /* only for get_proc_task:42,13
+static inline void mangle:42,80
+			      int :42,236
+static int mountinfo_open:42,305
+static int mounts_open_common:42,235
+static int mounts_open:42,300
+static int show_vfsstat:42,190
+static inline int drop_refcount:43,1060
+dio_bio_alloc:43,358
+static int get_more_blocks:43,598
+module_init:43,1352
+static inline int dio_refill_pages:43,159
+EXPORT_SYMBOL_GPL:43,355
+static inline void dio_bio_submit:43,388
+static inline int dio_new_bio:43,656
+void dio_end_io:43,346
+static inline unsigned dio_pages_present:43,151
+submit_page_section:43,778
+static void clean_blockdev_aliases:43,838
+static inline int dio_bio_reap:43,516
+static inline struct page *dio_get_page:43,201
+static void dio_aio_complete_work:43,279
+static inline void dio_zero_block:43,860
+static void dio_bio_end_aio:43,291
+static int sb_init_dio_done_wq:43,545
+static inline void dio_cleanup:43,419
+ssize_t __blockdev_direct_IO:43,1323
+do_blockdev_direct_IO:43,1108
+static int dio_bio_complete:43,465
+static inline int dio_send_cur_page:43,713
+static void dio_await_completion:43,499
+static __init int dio_init:43,1347
+static int do_direct_IO:43,911
+static void dio_bio_end_io:43,324
+static ssize_t dio_complete:43,227
+static inline int dio_bio_add_page:43,681
+static int dio_set_defer_completion:43,563
+static struct bio *dio_await_one:43,431
+EXPORT_SYMBOL:43,1345
+obj-$:44,128
+ifeq :44,16
+SYSCALL_DEFINE4:45,4518
+int vfs_rename:45,4237
+#define EMBEDDED_NAME_MAX	:45,122
+int user_path_at_empty:45,2395
+struct dentry *lookup_one_len_unlocked:45,2338
+int __inode_permission:45,402
+int follow_down:45,1357
+static int do_tmpfile:45,3300
+static int follow_dotdot:45,1418
+int generic_permission:45,328
+path_mountpoint:45,2520
+void path_put:45,488
+static inline int handle_dots:45,1654
+inline struct dentry *user_path_create:45,3543
+void page_put_link:45,4612
+static int lookup_slow:45,1625
+static long do_rmdir:45,3762
+static void drop_links:45,588
+static bool legitimize_links:45,637
+SYSCALL_DEFINE2:45,4524
+EXPORT_SYMBOL:45,4675
+struct dentry *kern_path_locked:45,2221
+static inline int lookup_last:45,2103
+static void set_nameidata:45,519
+static int follow_dotdot_rcu:45,1298
+static int pick_link:45,1667
+int vfs_path_lookup:45,2262
+int __page_symlink:45,4632
+static int follow_managed:45,1167
+user_path_mountpoint_at:45,2574
+void putname:45,244
+getname_flags:45,125
+static bool legitimize_path:45,620
+static int nd_jump_root:45,839
+static int lookup_open:45,3000
+static inline int should_follow_link:45,1707
+static inline int may_follow_link:45,899
+static const char *trailing_symlink:45,2091
+static inline u64 hash_name:45,1873
+SYSCALL_DEFINE5:45,4375
+static struct dentry *lookup_dcache:45,1450
+static int check_acl:45,258
+struct file *do_file_open_root:45,3426
+static void terminate_walk:45,598
+static struct dentry *lookup_real:45,1490
+struct file *do_filp_open:45,3409
+static inline int d_revalidate:45,760
+int generic_readlink:45,4564
+static int lookup_fast:45,1527
+getname_kernel:45,210
+static inline void path_to_nameidata:45,827
+const char *page_get_link:45,4583
+int vfs_create:45,2716
+struct dentry *kern_path_create:45,3526
+static int link_path_walk:45,1897
+void unlock_rename:45,2706
+static bool safe_hardlink_source:45,940
+int follow_up:45,1059
+static void follow_mount:45,1405
+static long do_unlinkat:45,3890
+void dentry_unhash:45,3713
+const char *get_link:45,995
+int page_symlink:45,4664
+getname:45,204
+static struct dentry *filename_create:45,3455
+static struct dentry *__lookup_hash:45,1509
+SYSCALL_DEFINE3:45,4000
+int vfs_mknod:45,3550
+static const char *path_init:45,1997
+static int acl_permission_check:45,289
+static inline void put_link:45,873
+static int may_o_create:45,2814
+static int unlazy_link:45,742
+mountpoint_last:45,2449
+#define fold_hash:45,1803
+static int unlazy_walk:45,675
+static struct filename *filename_parentat:45,2193
+static int handle_truncate:45,2785
+int vfs_unlink:45,3844
+int vfs_symlink:45,3979
+unsigned int full_name_hash:45,1860
+static int complete_walk:45,775
+static bool path_connected:45,568
+static int walk_component:45,1725
+static inline int do_inode_permission:45,376
+static void path_put_conditional:45,820
+void nd_jump_link:45,863
+struct dentry *lock_rename:45,2675
+static int atomic_open:45,2840
+int __check_sticky:45,2588
+static int path_parentat:45,2174
+static void restore_nameidata:45,530
+void path_get:45,475
+static int path_lookupat:45,2118
+static inline int open_to_namei_flags:45,2807
+static int filename_lookup:45,2148
+filename_mountpoint:45,2539
+static inline int may_create:45,2662
+static inline int nd_alloc_stack:45,579
+kern_path_mountpoint:45,2581
+int page_readlink:45,4618
+SYSCALL_DEFINE1:45,3974
+static int do_last:45,3071
+static int may_open:45,2737
+static int may_delete:45,2619
+void done_path_create:45,3534
+static int follow_automount:45,1087
+int vfs_whiteout:45,4529
+int vfs_rmdir:45,3723
+int vfs_mkdir:45,3642
+user_path_parent:45,2410
+static struct file *path_openat:45,3358
+int vfs_link:45,4055
+struct dentry *lookup_one_len:45,2284
+static void set_root:45,803
+static int __nd_alloc_stack:45,541
+int inode_permission:45,458
+int kern_path:45,2247
+int readlink_copy:45,4543
+static inline int may_lookup:45,1642
+static int may_linkat:45,975
+static int may_mknod:45,3578
+static int sb_permission:45,434
+static inline unsigned int fold_hash:45,1796
+struct file *anon_inode_getfile:46,70
+static char *anon_inodefs_dname:46,31
+int anon_inode_getfd:46,139
+EXPORT_SYMBOL_GPL:46,163
+static struct dentry *anon_inodefs_mount:46,41
+fs_initcall:46,178
+static int __init anon_inode_init:46,165
+posix_acl_xattr_list:47,827
+int simple_set_acl:47,850
+int simple_acl_create:47,867
+void forget_all_cached_acls:47,84
+EXPORT_SYMBOL_GPL:47,848
+posix_acl_create:47,546
+posix_acl_to_xattr:47,726
+static int posix_acl_create_masq:47,380
+struct posix_acl *get_cached_acl:47,37
+posix_acl_chmod:47,519
+posix_acl_from_xattr:47,657
+void posix_acl_fix_xattr_to_user:47,645
+posix_acl_alloc:47,141
+posix_acl_clone:47,156
+static void posix_acl_fix_xattr_userns:47,598
+struct posix_acl **acl_by_type:47,24
+void forget_cached_acl:47,71
+posix_acl_init:47,130
+void set_cached_acl:47,58
+posix_acl_xattr_get:47,765
+__posix_acl_create:47,483
+static int __posix_acl_chmod_masq:47,437
+posix_acl_equiv_mode:47,243
+posix_acl_valid:47,174
+EXPORT_SYMBOL :47,762
+struct posix_acl *get_acl:47,99
+__posix_acl_chmod:47,501
+struct posix_acl *get_cached_acl_rcu:47,52
+posix_acl_permission:47,312
+posix_acl_xattr_set:47,790
+void posix_acl_fix_xattr_from_user:47,637
+posix_acl_from_mode:47,289
+EXPORT_SYMBOL:47,543
+static inline bool peers:48,205
+static inline struct mount *next_peer:48,17
+static void mark_umount_candidates:48,395
+static int propagate_one:48,210
+static int do_make_slave:48,68
+static void __propagate_umount:48,416
+void propagate_mount_unlock:48,377
+static struct mount *next_group:48,167
+static inline struct mount *first_slave:48,22
+static inline int do_refcount_check:48,330
+static struct mount *get_peer_under_root:48,32
+int propagate_umount:48,450
+void change_mnt_propagation:48,119
+static inline struct mount *next_slave:48,27
+int propagate_mount_busy:48,345
+int propagate_mnt:48,278
+static struct mount *propagation_next:48,146
+int get_dominating_id:48,55
+int vfs_getattr_nosec:49,52
+void __inode_add_bytes:49,447
+#  define INIT_STRUCT_STAT_PADDING:49,226
+void inode_set_bytes:49,501
+SYSCALL_DEFINE4:49,433
+void generic_fillattr:49,21
+static long cp_new_stat64:49,363
+static int cp_old_stat:49,140
+SYSCALL_DEFINE2:49,422
+int vfs_fstatat:49,90
+#  define choose_32_64:49,219
+int vfs_stat:49,121
+SYSCALL_DEFINE3:49,349
+#if !defined:49,290
+void inode_sub_bytes:49,480
+loff_t inode_get_bytes:49,489
+void inode_add_bytes:49,458
+#define valid_dev:49,222
+void __inode_sub_bytes:49,467
+int vfs_fstat:49,77
+static int cp_new_stat:49,229
+#define encode_dev:49,223
+int vfs_lstat:49,127
+#if defined:49,357
+int vfs_getattr:49,65
+#  define INIT_STRUCT_STAT64_PADDING:49,360
+EXPORT_SYMBOL:49,499
+void set_fs_pwd:50,32
+EXPORT_SYMBOL_GPL:50,152
+struct fs_struct *copy_fs_struct:50,110
+static inline int replace_path:50,48
+int current_umask:50,154
+void exit_fs:50,93
+void chroot_fs_refs:50,56
+void set_fs_root:50,13
+	.lock		= __SPIN_LOCK_UNLOCKED:50,163
+EXPORT_SYMBOL:50,158
+void free_fs_struct:50,86
+	.seq		= SEQCNT_ZERO:50,164
+int unshare_fs_struct:50,131
+static int userfaultfd_wake:51,1009
+static int userfaultfd_unregister:51,881
+static int userfaultfd_wake_function:51,73
+int handle_userfault:51,260
+static void userfaultfd_show_fdinfo:51,1200
+static void userfaultfd_ctx_put:51,131
+static void init_once_userfaultfd_ctx:51,1242
+static inline void msg_init:51,145
+static void __wake_userfault:51,648
+static ssize_t userfaultfd_read:51,618
+static __always_inline int validate_range:51,697
+static long userfaultfd_ioctl:51,1167
+static int userfaultfd_copy:51,1041
+static void userfaultfd_ctx_get:51,117
+static inline struct userfaultfd_wait_queue *find_userfault:51,486
+static inline bool userfaultfd_must_wait:51,191
+static int userfaultfd_register:51,717
+static int userfaultfd_zeropage:51,1089
+static int userfaultfd_api:51,1136
+static int userfaultfd_release:51,426
+static unsigned int userfaultfd_poll:51,505
+static inline struct uffd_msg userfault_msg:51,155
+static __always_inline void wake_userfault:51,666
+static struct file *userfaultfd_file_create:51,1266
+static ssize_t userfaultfd_ctx_read:51,542
+int do_select:52,399
+static int do_poll:52,781
+int poll_select_set_timeout:52,272
+static long do_pselect:52,646
+static int pollwake:52,208
+static inline unsigned int do_pollfd:52,750
+void poll_initwait:52,119
+SYSCALL_DEFINE5:52,991
+SYSCALL_DEFINE6:52,700
+static inline void wait_key_set:52,388
+#define POLL_TABLE_FULL:52,101
+SYSCALL_DEFINE1:52,725
+SYSCALL_DEFINE3:52,957
+#define FDS_IN:52,336
+int poll_schedule_timeout:52,234
+#define N_STACK_PPS :52,867
+void poll_freewait:52,136
+#define POLLIN_SET :52,384
+#define POLLOUT_SET :52,385
+#define MAX_SLACK	:52,48
+static void __pollwait:52,219
+#define POLLEX_SET :52,386
+static struct poll_table_entry *poll_get_entry:52,158
+#define BITS:52,340
+static long do_restart_poll:52,935
+static int __pollwake:52,182
+#define POLLFD_PER_PAGE  :52,741
+#define FDS_EX:52,338
+static int poll_select_copy_remaining:52,289
+static void free_poll_entry:52,130
+int core_sys_select:52,547
+long select_estimate_accuracy:52,73
+static int max_select_fd:52,342
+#define FDS_OUT:52,337
+static long __estimate_accuracy:52,50
+int do_sys_poll:52,870
+EXPORT_SYMBOL:52,259
+static int locks_show:53,2647
+lease_setup:53,509
+static int posix_lock_inode_wait:53,1206
+int vfs_lock_file:53,2130
+void locks_remove_file:53,2507
+lease_break_callback:53,502
+static void locks_delete_global_blocked:53,626
+static int flock_lock_inode_wait:53,1889
+vfs_setlease:53,1831
+int locks_mandatory_locked:53,1232
+static void lock_get_status:53,2571
+locks_delete_lock_ctx:53,734
+static void locks_insert_global_locks:53,588
+static struct file_lock *lease_alloc:53,552
+int lease_modify:53,1333
+int vfs_test_lock:53,2006
+static int locks_conflict:53,746
+static int posix_locks_conflict:53,758
+EXPORT_SYMBOL:53,2544
+SYSCALL_DEFINE2:53,1950
+generic_add_lease:53,1627
+check_fmode_for_setlk:53,2165
+static int assign_type:53,423
+locks_check_ctx_lists:53,247
+#define IS_POSIX:53,137
+void locks_copy_conflock:53,348
+locks_dispose_list:53,326
+locks_unlink_lock_ctx:53,722
+void locks_copy_lock:53,367
+static int posix_locks_deadlock:53,866
+static void time_out_leases:53,1365
+locks_remove_lease:53,2488
+int fcntl_setlk64:53,2327
+void locks_init_lock:53,337
+any_leases_conflict:53,1391
+#define IS_OFDLCK:53,140
+static void posix_lock_to_flock64:53,2037
+static int flock_locks_conflict:53,776
+locks_insert_lock_ctx:53,714
+static int posix_same_owner:53,579
+static int locks_open:53,2733
+static bool leases_conflict:53,1381
+static void lease_clear_pending:53,1321
+static void locks_wake_up_blocks:53,686
+static void locks_insert_global_blocked:53,619
+static void locks_insert_block:53,673
+posix_test_lock:53,790
+#define IS_FLOCK:53,138
+int generic_setlease:53,1782
+static int lease_init:53,534
+static int generic_delete_lease:53,1741
+static void __locks_delete_block:53,638
+posix_owner_key:53,612
+static int do_fcntl_add_lease:53,1840
+locks_dump_ctx_list:53,237
+	if :53,536
+static int posix_lock_to_flock:53,2015
+void locks_free_lock:53,313
+int locks_lock_inode_wait:53,1914
+static int target_leasetype:53,147
+static void locks_stop:53,2719
+static DEFINE_SPINLOCK:53,199
+		return cmd & :53,387
+flock_make_lock:53,401
+int fcntl_getlease:53,1572
+static int posix_lock_inode:53,964
+static int flock64_to_posix_lock:53,437
+int __break_lease:53,1418
+	__releases:53,2720
+int locks_mandatory_area:53,1269
+locks_remove_flock:53,2462
+static void locks_init_lock_heads:53,274
+static void locks_delete_global_locks:53,597
+static void __locks_insert_block:53,662
+core_initcall:53,2772
+static void locks_delete_block:53,645
+void locks_release_private:53,294
+int fcntl_setlease:53,1875
+fs_initcall:53,2751
+static struct file_lock *what_owner_is_waiting_for:53,854
+static int __init filelock_init:53,2754
+check_conflicting_open:53,1608
+#define IS_LEASE:53,139
+void lease_get_mtime:53,1525
+	__acquires:53,2701
+EXPORT_SYMBOL_GPL:53,2560
+struct file_lock *locks_alloc_lock:53,283
+int fcntl_setlk:53,2182
+static bool past_time:53,1357
+static DEFINE_HASHTABLE:53,180
+int fcntl_getlk:53,2051
+locks_free_lock_context:53,264
+static void *locks_next:53,2711
+static inline int locks_overlap:53,570
+static int flock_lock_inode:53,896
+int fcntl_getlk64:53,2280
+static bool lease_breaking:53,142
+void locks_remove_posix:53,2426
+void show_fd_locks:53,2682
+int vfs_cancel_lock:53,2553
+int posix_lock_file:53,1192
+static void __show_fd_locks:53,2662
+static void *locks_start:53,2700
+static int flock_to_posix_lock:53,487
+DEFINE_STATIC_LGLOCK:53,165
+posix_unblock_lock:53,2532
+static int __init proc_locks_init:53,2746
+locks_get_lock_context:53,205
+static DEFINE_PER_CPU:53,166
+static int do_lock_file_wait:53,2139
+static void signalfd_show_fdinfo:54,234
+static int signalfd_copyinfo:54,80
+static unsigned int signalfd_poll:54,60
+void signalfd_cleanup:54,35
+SYSCALL_DEFINE3:54,309
+static ssize_t signalfd_read:54,204
+static ssize_t signalfd_dequeue:54,159
+COMPAT_SYSCALL_DEFINE4:54,316
+COMPAT_SYSCALL_DEFINE3:54,337
+static int signalfd_release:54,54
+SYSCALL_DEFINE4:54,255
+static struct mount *alloc_vfsmnt:55,201
+static DECLARE_RWSEM:55,65
+static int m_show:55,1262
+static void mnt_free_id:55,117
+static void mntput_no_expire:55,1090
+static int do_new_mount:55,2384
+static inline bool may_mount:55,1582
+static void delayed_mntput:55,1078
+static int do_move_mount:55,2241
+static int invent_group_ids:55,1825
+static struct mount *skip_mnt_tree:55,922
+struct mnt_namespace *to_mnt_ns:55,1662
+__cacheline_aligned_in_smp DEFINE_SEQLOCK:55,79
+static int mnt_make_readonly:55,493
+void __init mnt_init:55,3114
+static void umount_tree:55,1398
+static inline struct hlist_head *mp_hash:55,89
+static inline bool may_mandlock:55,1587
+struct vfsmount *mnt_clone_internal:55,1156
+static void *m_next:55,1248
+unsigned int mnt_get_count:55,177
+static void m_stop:55,1257
+static void put_mountpoint:55,769
+int may_umount_tree:55,1285
+EXPORT_SYMBOL:55,3186
+SYSCALL_DEFINE2:55,2986
+static int mntns_install:55,3316
+static int mnt_is_readonly:55,318
+bool is_path_reachable:55,2941
+static bool fs_fully_visible:55,3217
+static int attach_recursive_mnt:55,1905
+static void detach_mnt:55,826
+bool current_chrooted:55,3193
+struct vfsmount *mntget:55,1148
+static int graft_tree:55,1998
+static inline void namespace_lock:55,1354
+static inline void mnt_dec_writers:55,293
+bool our_mnt:55,3188
+int __mnt_is_readonly:55,274
+static void attach_shadowed:55,870
+struct vfsmount *kern_mount_data:55,3162
+void mark_mounts_for_expiry:55,2482
+static LLIST_HEAD:55,1077
+static bool mnt_ns_loop:55,1667
+static bool disconnect_mount:55,1365
+static struct mount *next_mnt:55,906
+void mnt_set_expiry:55,2467
+void save_mount_options:55,1207
+static int do_change_type:55,2030
+static int mnt_alloc_id:55,100
+struct mount *__lookup_mnt:55,629
+SYSCALL_DEFINE5:55,2902
+__setup:55,53
+static bool is_mnt_ns_file:55,1655
+void put_mnt_ns:55,3154
+static int __init set_mhash_entries:55,36
+static DEFINE_IDA:55,57
+static struct mount *clone_mnt:55,966
+void replace_mount_options:55,1214
+static int do_umount:55,1450
+int finish_automount:55,2432
+static inline void mangle:55,1166
+static inline void mnt_inc_writers:55,284
+static void drop_mountpoint:55,193
+int may_umount:55,1322
+static inline int tree_contains_unbindable:55,2231
+int sb_prepare_remount_readonly:55,542
+void mnt_drop_write:55,475
+static unsigned int mnt_get_writers:55,302
+int mnt_want_write:55,382
+char *copy_mount_string:55,2644
+struct vfsmount *clone_private_mount:55,1782
+int mnt_want_write_file:55,440
+static void *m_start:55,1227
+static void __mnt_unmake_readonly:55,535
+long do_mount:55,2663
+static void free_vfsmnt:55,578
+static DECLARE_DELAYED_WORK:55,1088
+static atomic64_t mnt_ns_seq = ATOMIC64_INIT:55,2755
+static int do_loopback:55,2078
+static void unhash_mnt:55,812
+static int change_mount_flags:55,2141
+static DEFINE_SPINLOCK:55,58
+int generic_show_options:55,1177
+static struct ns_common *mntns_get:55,3295
+struct vfsmount *lookup_mnt:55,678
+void *copy_mount_options:55,2612
+bool legitimize_mnt:55,612
+static void free_mnt_ns:55,2741
+static int select_submounts:55,2522
+void mnt_release_group_id:55,151
+struct mount *__lookup_mnt_last:55,644
+static void umount_mnt:55,836
+vfs_kern_mount:55,933
+static void shrink_submounts:55,2568
+static void namespace_unlock:55,1338
+void kern_unmount:55,3177
+static void cleanup_group_ids:55,1815
+void mnt_set_mountpoint:55,846
+static void attach_mnt:55,861
+static struct mnt_namespace *alloc_mnt_ns:55,2757
+int __legitimize_mnt:55,593
+int mnt_clone_write:55,406
+static void delayed_free_vfsmnt:55,587
+static void unlock_mount:55,1990
+static struct mountpoint *new_mountpoint:55,746
+void __mnt_drop_write_file:55,482
+EXPORT_SYMBOL_GPL:55,3175
+static inline void mnt_add_count:55,163
+static void touch_mnt_namespace:55,790
+static void commit_tree:55,887
+SYSCALL_DEFINE1:55,1648
+static int do_remount:55,2163
+static void __touch_mnt_namespace:55,801
+static int mnt_alloc_group_id:55,132
+struct dentry *mount_subtree:55,2872
+static void __cleanup_mnt:55,1072
+void mnt_drop_write_file:55,487
+struct mnt_namespace *copy_mnt_ns:55,2781
+static bool has_locked_children:55,2062
+static struct mnt_namespace *create_mnt_ns:55,2858
+int __mnt_want_write_file:55,425
+bool path_is_under:55,2951
+static int flags_to_propagation_type:55,2014
+int __mnt_want_write:55,343
+static struct mountpoint *lookup_mountpoint:55,729
+void drop_collected_mounts:55,1764
+int iterate_mounts:55,1800
+static long exact_copy_from_user:55,2590
+void __detach_mounts:55,1554
+static inline struct hlist_head *m_hash:55,81
+static void mntns_put:55,3311
+static void __init init_mount_tree:55,3084
+struct mount *copy_tree:55,1680
+static int __init set_mphash_entries:55,46
+void mntput:55,1136
+bool __is_local_mountpoint:55,709
+static inline int check_mnt:55,782
+static struct mountpoint *lock_mount:55,1959
+void __mnt_drop_write:55,460
+struct vfsmount *collect_mounts:55,1749
+static int format_corename:56,186
+static int cn_print_exe_file:56,151
+static int expand_corename:56,62
+void do_coredump:56,531
+int dump_align:56,824
+static void coredump_finish:56,440
+static void wait_for_dump_helpers:56,479
+static __printf:56,113
+static bool dump_interrupted:56,468
+int dump_emit:56,780
+EXPORT_SYMBOL:56,831
+static int umh_pipe_setup:56,513
+int cn_esc_printf:56,114
+static int coredump_wait:56,406
+int dump_skip:56,801
+mb_cache_shrink_scan:57,248
+mb_cache_shrink_count:57,291
+mb_cache_entry_insert:57,579
+mb_cache_entry_alloc:57,502
+__mb_cache_entry_unhash_block:57,154
+module_init:57,856
+__mb_cache_entry_unhash_unlock:57,182
+mb_cache_entry_find_first:57,786
+#define mb_assert:57,83
+static LIST_HEAD:57,129
+static DECLARE_WAIT_QUEUE_HEAD:57,101
+#define MB_CACHE_WRITER :57,95
+__spin_lock_mb_cache_entry:57,133
+mb_cache_entry_find_next:57,824
+#define mb_error:57,90
+MODULE_AUTHOR:57,105
+mb_cache_entry_free:57,638
+MODULE_DESCRIPTION:57,106
+#if !defined:57,716
+__spin_unlock_mb_cache_entry:57,140
+mb_cache_entry_release:57,627
+mb_cache_shrink:57,396
+module_exit:57,857
+__mb_cache_entry_forget:57,191
+MODULE_LICENSE:57,107
+static int __init init_mbcache:57,845
+mb_cache_destroy:57,452
+# define mb_debug:57,87
+__mb_cache_entry_is_block_hashed:57,147
+mb_cache_create:57,325
+__mb_cache_entry_is_index_hashed:57,161
+#define	MB_CACHE_ENTRY_LOCK_INDEX:57,98
+# define mb_assert:57,88
+#define MB_CACHE_ENTRY_LOCK_BITS	ilog2:57,97
+__mb_cache_entry_unhash_index:57,167
+__mb_cache_entry_release:57,201
+static void __exit exit_mbcache:57,851
+mb_cache_entry_get:57,661
+__mb_cache_entry_find:57,719
+static DEFINE_SPINLOCK:57,130
+EXPORT_SYMBOL:57,119
+void free_pipe_info:58,641
+static long pipe_set_size:58,1000
+void generic_pipe_buf_release:58,211
+static inline void __pipe_unlock:58,89
+static char *pipefs_dname:58,663
+static struct inode * get_pipe_inode:58,673
+void pipe_wait:58,109
+fs_initcall:58,1170
+static void wake_up_partner:58,855
+int generic_pipe_buf_confirm:58,196
+int generic_pipe_buf_steal:58,152
+static inline void __pipe_lock:58,84
+pipe_write:58,344
+static inline int is_packetized:58,338
+void pipe_lock:58,68
+SYSCALL_DEFINE1:58,838
+SYSCALL_DEFINE2:58,816
+void generic_pipe_buf_get:58,181
+static void put_pipe_info:58,536
+struct pipe_inode_info *get_pipe_info:58,1080
+pipe_fasync:58,574
+static void anon_pipe_buf_release:58,124
+long pipe_fcntl:58,1085
+static int wait_for_partner:58,843
+struct pipe_inode_info *alloc_pipe_info:58,610
+static bool too_many_pipe_buffers_hard:58,604
+pipe_release:58,552
+static long pipe_ioctl:58,481
+static int __do_pipe_flags:58,766
+static int fifo_open:58,860
+static struct dentry *pipefs_mount:58,1143
+pipe_read:58,235
+static void pipe_lock_nested:58,62
+void pipe_unlock:58,77
+pipe_poll:58,506
+static void account_pipe_buffers:58,592
+static bool too_many_pipe_buffers_soft:58,598
+void pipe_double_lock:58,94
+static inline unsigned int round_pipe_size:58,1050
+static int __init init_pipe_fs:58,1156
+int do_pipe_flags:58,801
+int create_pipe_files:58,713
+int pipe_proc_fn:58,1062
+EXPORT_SYMBOL:58,216
+COMPAT_SYSCALL_DEFINE4:59,1098
+#define MAX_AIO_SUBMITS 	:59,634
+COMPAT_SYSCALL_DEFINE6:59,1398
+static long do_compat_pselect:59,1347
+static int cp_compat_stat:59,129
+int compat_set_fd_set:59,1194
+static int get_compat_flock:59,350
+static int do_nfs4_super_data_conv:59,754
+convert_fcntl_cmd:59,403
+copy_iocb:59,620
+static inline void compat_nfs_string:59,726
+static int compat_filldir:59,919
+int compat_printk:59,59
+static void *do_ncp_super_data_conv:59,684
+static int get_compat_flock64:59,375
+static int put_compat_flock:59,362
+static int put_compat_statfs:59,212
+ssize_t compat_rw_copy_check_uvector:59,546
+#define __COMPAT_NFDBITS       :59,1103
+int compat_core_sys_select:59,1233
+#define vrfy_dir:59,544
+int compat_get_fd_set:59,1161
+static int put_compat_flock64:59,389
+static int poll_select_copy_remaining:59,1105
+static int put_compat_statfs64:59,268
+COMPAT_SYSCALL_DEFINE1:59,1337
+static int compat_filldir64:59,1006
+COMPAT_SYSCALL_DEFINE3:59,1475
+COMPAT_SYSCALL_DEFINE2:59,504
+COMPAT_SYSCALL_DEFINE5:59,1417
+static int compat_fillonedir:59,849
+int fiemap_check_flags:60,138
+static int ioctl_fionbio:60,496
+static int ioctl_fiemap:60,173
+static int ioctl_fsthaw:60,558
+int fiemap_fill_next_extent:60,85
+int do_vfs_ioctl:60,613
+#define SET_NOT_ALIGNED_FLAGS	:60,84
+long vfs_ioctl:60,36
+SYSCALL_DEFINE3:60,680
+int __generic_block_fiemap:60,273
+static long ioctl_file_clone:60,218
+static long ioctl_file_clone_range:60,231
+static int ioctl_fsfreeze:60,541
+static inline sector_t logical_to_blk:60,243
+static int fiemap_check_ranges:60,151
+static int file_ioctl:60,477
+#define SET_UNKNOWN_FLAGS	:60,82
+int ioctl_preallocate:60,453
+static long ioctl_file_dedupe_range:60,571
+static int ioctl_fibmap:60,50
+#define SET_NO_UNMOUNTED_IO_FLAGS	:60,83
+#define FIEMAP_MAX_EXTENTS	:60,23
+int generic_block_fiemap:60,432
+static int ioctl_fioasync:60,519
+static inline loff_t blk_to_logical:60,248
+EXPORT_SYMBOL:60,442
+void cdev_init:61,538
+struct cdev *cdev_alloc:61,520
+void cdev_put:61,335
+static DEFINE_MUTEX:61,29
+static struct kobject *cdev_get:61,322
+static void cdev_purge:61,408
+void __init chrdev_init:61,554
+int cdev_add:61,452
+int register_chrdev_region:61,174
+int alloc_chrdev_region:61,210
+static int chrdev_open:61,347
+void cd_forget:61,400
+static void cdev_default_release:61,488
+__unregister_chrdev_region:61,146
+static struct kobject *base_probe:61,546
+static void cdev_unmap:61,469
+void chrdev_show:61,48
+static int exact_lock:61,436
+void cdev_del:61,481
+int __register_chrdev:61,242
+static struct kobject *exact_match:61,430
+static inline int major_to_index:61,41
+void __unregister_chrdev:61,309
+static void cdev_dynamic_release:61,497
+void unregister_chrdev_region:61,285
+__register_chrdev_region:61,74
+static DEFINE_SPINLOCK:61,320
+EXPORT_SYMBOL:61,569
+static void bm_evict_inode:62,575
+#define MISC_FMT_PRESERVE_ARGV0 :62,43
+static Node *check_file:62,84
+static void __exit exit_misc_binfmt:62,827
+static char *check_special_flags:62,262
+static ssize_t bm_status_write:62,739
+#define MISC_FMT_OPEN_BINARY :62,44
+static ssize_t bm_register_write:62,663
+static void entry_status:62,523
+static LIST_HEAD:62,39
+bm_entry_read:62,604
+static DEFINE_RWLOCK:62,59
+MODULE_ALIAS_FS:62,817
+static int bm_fill_super:62,785
+module_exit:62,834
+static Node *create_entry:62,301
+MODULE_LICENSE:62,835
+static ssize_t bm_entry_write:62,622
+#define pr_fmt:62,10
+static struct inode *bm_get_inode:62,562
+static int __init init_misc_binfmt:62,819
+static int load_misc_binary:62,126
+bm_status_read:62,732
+static void kill_node:62,581
+static int parse_command:62,500
+static char *scanarg:62,245
+static struct dentry *bm_mount:62,800
+#define MISC_FMT_CREDENTIALS :62,45
+core_initcall:62,833
+int ns_get_name:63,109
+static struct dentry *nsfs_mount:63,154
+static char *ns_dname:63,15
+void __init nsfs_init:63,166
+void *ns_get_path:63,47
+static void nsfs_evict:63,40
+struct file *proc_ns_fget:63,122
+static int nsfs_show_path:63,140
+static void ns_prune_dentry:63,24
+static void eventfd_free_ctx:64,70
+static unsigned int eventfd_poll:64,117
+static void eventfd_ctx_do_read:64,137
+EXPORT_SYMBOL_GPL:64,375
+__u64 eventfd_signal:64,54
+struct eventfd_ctx *eventfd_ctx_get:64,88
+struct eventfd_ctx *eventfd_ctx_fdget:64,347
+ssize_t eventfd_ctx_read:64,186
+struct file *eventfd_file_create:64,391
+void eventfd_ctx_put:64,102
+static void eventfd_free:64,75
+static void eventfd_show_fdinfo:64,290
+static ssize_t eventfd_read:64,226
+struct eventfd_ctx *eventfd_ctx_fileget:64,368
+int eventfd_ctx_remove_wait_queue:64,156
+static int eventfd_release:64,108
+struct file *eventfd_fget:64,322
+static ssize_t eventfd_write:64,242
+void iget_failed:65,208
+static ssize_t bad_inode_listxattr:65,115
+static int bad_inode_rename2:65,74
+static int bad_inode_readlink:65,81
+static int bad_inode_setattr:65,98
+bool is_bad_inode:65,195
+static int bad_inode_permission:65,87
+static int bad_inode_removexattr:65,121
+static int bad_inode_unlink:65,46
+static int bad_inode_setxattr:65,103
+void make_bad_inode:65,170
+static int bad_inode_create :65,28
+static int bad_inode_rmdir :65,63
+static int bad_inode_mknod :65,68
+EXPORT_SYMBOL:65,214
+static struct dentry *bad_inode_lookup:65,34
+static int bad_inode_mkdir:65,57
+static int bad_inode_link :65,40
+static ssize_t bad_inode_getxattr:65,109
+static int bad_inode_getattr:65,92
+static int bad_file_open:65,18
+static int bad_inode_symlink :65,51
+static struct file_system_type **find_filesystem:66,46
+int register_filesystem:66,69
+SYSCALL_DEFINE3:66,184
+void put_filesystem:66,41
+static DEFINE_RWLOCK:66,33
+module_init:66,256
+int unregister_filesystem:66,101
+static int filesystems_proc_open:66,239
+static int __init proc_filesystems_init:66,251
+static struct file_system_type *__get_fs_type:66,259
+static int fs_maxindex:66,169
+static int filesystems_proc_show:66,223
+EXPORT_SYMBOL:66,288
+int __init get_filesystem_list:66,205
+static int fs_index:66,125
+struct file_system_type *get_fs_type:66,271
+void get_filesystem:66,36
+static int fs_name:66,149
+SYSCALL_DEFINE2:67,1316
+EXPORT_SYMBOL:67,548
+static struct dentry *aio_mount:67,236
+void kiocb_set_cancel_fn:67,533
+static struct kioctx *lookup_ioctx:67,1029
+static int aio_setup_ring:67,436
+SYSCALL_DEFINE1:67,1352
+static void refill_reqs_available:67,938
+static int kiocb_cancel:67,550
+#define AIO_EVENTS_PER_PAGE	:67,529
+static int io_submit_one:67,1496
+static void free_ioctx_users:67,601
+static void put_reqs_available:67,884
+#define pr_fmt:67,11
+static void aio_free_ring:67,285
+static int aio_ring_mmap:67,348
+static long aio_read_events_ring:67,1162
+lookup_kiocb:67,1647
+#if IS_ENABLED:67,431
+static ssize_t aio_run_iocb:67,1403
+#define AIO_EVENTS_FIRST_PAGE	:67,530
+void exit_aio:67,843
+static void put_aio_ring_file:67,269
+static void aio_complete:67,1059
+static int ioctx_add_table:67,622
+static void user_refill_reqs_available:67,967
+#define KIOCB_CANCELLED		:67,170
+static int aio_setup_vectored_rw:67,1384
+__initcall:67,267
+static void kiocb_free:67,1020
+static struct file *aio_private_file:67,205
+static bool aio_read_events:67,1243
+static long read_events:67,1260
+static DEFINE_SPINLOCK:67,192
+SYSCALL_DEFINE5:67,1726
+long do_io_submit:67,1572
+static int __init aio_setup:67,249
+static inline struct aio_kiocb *aio_get_req:67,997
+static void free_ioctx_reqs:67,584
+#define AIO_EVENTS_OFFSET	:67,531
+static int aio_migratepage:67,360
+typedef ssize_t :67,1382
+SYSCALL_DEFINE3:67,1674
+static void aio_nr_sub:67,677
+static void free_ioctx:67,571
+static int aio_ring_mremap:67,311
+static bool get_reqs_available:67,901
+static struct kioctx *ioctx_alloc:67,690
+struct file *alloc_file:68,158
+#if defined:68,78
+int proc_nr_files:68,86
+void fput:68,264
+EXPORT_SYMBOL_GPL:68,73
+void put_filp:68,304
+void flush_delayed_fput:68,257
+static void file_free_rcu:68,44
+struct file *get_empty_filp:68,103
+static long get_nr_files:68,61
+static inline void file_free:68,52
+unsigned long get_max_files:68,69
+void __init files_init:68,312
+void __fput_sync:68,293
+EXPORT_SYMBOL:68,302
+static void delayed_fput:68,231
+static LLIST_HEAD:68,230
+static void __fput:68,186
+void __init files_maxfiles_init:68,323
+static void ____fput:68,242
+static DECLARE_DELAYED_WORK:68,262
+static void fill_auxv_note:69,1483
+static int notesize:69,1334
+module_exit:69,2339
+static int elf_core_dump:69,2128
+#define STACK_ADD:69,135
+#define STACK_ROUND:69,136
+static void fill_extnum_info:69,2105
+static void fill_note:69,1393
+static int fill_note_info:69,1948
+#define ELF_PAGESTART:69,80
+#define PRSTATUS_SIZE:69,1628
+static inline int arch_check_elf:69,505
+#define MAX_FILE_NOTE_SIZE :69,1503
+static unsigned long elf_map:69,337
+static int set_brk:69,94
+core_initcall:69,2338
+static int elf_dump_thread_status:69,1874
+static bool always_dump_vma:69,1206
+static unsigned long randomize_stack_top:69,650
+#define PR_REG_SIZE:69,1624
+#define STACK_ALLOC:69,138
+static int write_note_info:69,2033
+create_elf_tables:69,151
+static inline int arch_elf_pt_proc:69,481
+#define PR_REG_PTR:69,1632
+static int fill_files_note:69,1515
+#define SET_PR_FPVALID:69,1636
+#define ELF_PAGEALIGN:69,82
+MODULE_LICENSE:69,2340
+#define ELF_PAGEOFFSET:69,81
+static void fill_elf_header:69,1357
+static int load_elf_library:69,1112
+static unsigned long vma_dump_size:69,1232
+static int elf_note_info_init:69,1922
+static void __exit exit_elf_binfmt:69,2332
+static int fill_thread_core_info:69,1639
+#define BAD_ADDR:69,92
+static int load_elf_binary:69,667
+static size_t get_note_info_size:69,2020
+static unsigned long total_mapping_size:69,373
+static void free_note_info:69,2056
+static int __init init_elf_binfmt:69,2326
+static int writenote:69,1345
+static void fill_prstatus:69,1407
+static struct vm_area_struct *first_vma:69,2079
+static int padzero:69,113
+static void do_thread_regset_writeback:69,1616
+static void fill_siginfo_note:69,1493
+static struct vm_area_struct *next_vma:69,2092
+static int fill_psinfo:69,1440
+static unsigned long load_elf_interp:69,520
+static struct elf_phdr *load_elf_phdrs:69,400
+static void fill_elf_note_phdr:69,1380
+void pin_kill:70,35
+static DEFINE_SPINLOCK:70,7
+void pin_insert:70,30
+void group_pin_kill:70,90
+void pin_remove:70,9
+void mnt_pin_kill:70,76
+void pin_insert_group:70,21
