@@ -3,6 +3,7 @@
 #include <sstream> 		/* stringstream */
 #include <string>
 #include <tr1/unordered_map>
+#include <vector>
 using namespace std;
 
 /* May be 500 is enough for one line characters. */
@@ -11,12 +12,14 @@ using namespace std;
 #define MAX_COLUMNS 500
 
 string index_file_name = INDEX_FILE;
+string output_file_name = OUTPUT_FILE;
+unsigned int m_c = MAX_COLUMNS;
 
 /* TODO--to judge it is a reference or definition, so need a embedded hash_map one-to-many */
 
 int index_detect_output(const char* path)
 {
-	static int file_no = 1;
+	static int file_no = 0;
 	ifstream in(path);
 	/* no existence, no reading from it. */
 	/*
@@ -31,7 +34,7 @@ int index_detect_output(const char* path)
 	*/
 	int line_nr = 1;
 	string s;
-	tr1::unordered_map<string, string> index;
+	tr1::unordered_map<string, vector<string> > index;
 
 	/* ostringstream uses the same cache with the ostream, so it will be not what you want
 	 * And use this, << and >>, get it flush!
@@ -42,6 +45,8 @@ int index_detect_output(const char* path)
 	bool in_brackets = false;
 	bool in_comments = false;
 	bool in_macros = false;
+	bool in_func_head = false;
+	file_no++;
 	while(getline(in, s))
 	{
 
@@ -98,7 +103,7 @@ int index_detect_output(const char* path)
 		 * func(...,
 		 		int ()(),..
 				...)
-		 *
+		 */
 		/* find the functions' indexes */
 		if(!in_brackets)
 		{
@@ -115,7 +120,22 @@ int index_detect_output(const char* path)
 					ss.clear();
 					ss << file_no << "," << line_nr << endl;
 					ss >> value;
-					index[key] = value;
+					tmpos = s.rfind(')');
+					if(tmpos == s.size()-1)
+					{
+						if(!in_func_head)
+							index[key].push_back(value);
+						else
+							in_func_head = false;
+					}
+					else if(tmpos > MAX_COLUMNS)
+					{
+						if(!in_func_head)
+						{		
+							index[key].push_back(value);
+							in_func_head = true;
+						}
+					}
 					//cout << "key:" << key << ", value:" << value << endl;
 					//cout << "file:" << file_no << ", line:" << line_nr << ", index:" << key << endl;
 				}
@@ -131,12 +151,15 @@ int index_detect_output(const char* path)
 					tmpos = s.find('(');
 					if(tmpos < MAX_COLUMNS)
 					{
-						string key = s.substr(0, tmpos);
-						string value;
-						ss.clear();
-						ss << file_no << "," << line_nr;
-						ss >> value;
-						index[key] = value;
+						if(s[tmpos-1] != ' ')
+						{
+							string key = s.substr(0, tmpos);
+							string value;
+							ss.clear();
+							ss << file_no << "," << line_nr;
+							ss >> value;
+							index[key].push_back(value);
+						}
 					//cout << "file:" << file_no << ", line:" << line_nr << ", index:" << key << endl;
 					}
 				}
@@ -150,14 +173,21 @@ int index_detect_output(const char* path)
 		}
 		line_nr ++;
 	}
-	file_no++;
 	in.close();
 	ofstream out(OUTPUT_FILE, ios::app);
-	tr1::unordered_map<string, string>::const_iterator it = index.begin();
+	tr1::unordered_map<string, vector<string> >::const_iterator it = index.begin();
+	vector<string>::const_iterator vit;
 	while(it != index.end())
 	{
-		out << it->first << ":" << it->second << endl;
-		cout << it->first << ":" << it->second << endl;
+		out << it->first << ":";
+		cout << it->first << ":";
+		for(vit = it->second.begin(); vit != it->second.end(); vit ++)
+		{
+			out << *vit << " ";
+			cout << *vit << " ";
+		}
+		out << endl;
+		cout << endl;
 		//cout.flush();
 		it ++;
 	}

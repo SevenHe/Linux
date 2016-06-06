@@ -1,0 +1,8 @@
+#define MASTER_PORT 9527
+#define SLAVE_PORT 9528
+#define MAX_SLAVE 10
+#define BUF_MAX_LEN 256
+#define MASTER_ADDR 127.0.0.1
+#define SLAVE_DATA 0x01
+#define SLAVE_LAST_DATA 0x10
+#define WAIT_DELAY_TIME 2000
