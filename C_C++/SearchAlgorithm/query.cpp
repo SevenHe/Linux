@@ -15,6 +15,7 @@ extern string index_file_name;
 extern string output_file_name;
 extern unsigned int m_c;
 extern void run_as_a_master();
+extern void run_as_a_slave();
 
 /* for the identifier master/slave */
 static short id = 0;
@@ -134,6 +135,11 @@ int main()
 	{
 		cout << "Run as the master..." << endl;
 		run_as_a_master();
+	}
+	else
+	{
+		cout << "Run as a slave..." << endl;
+		run_as_a_slave();
 	}
 	return 0;
 }

@@ -12,13 +12,14 @@ exc1 = query
 exc2 = update
 
 CPP = g++
-CPFLAGS = -g -Wall
+CPFLAGS = -g -Wall -std=c++11 
+OFLAGS = -lpthread
 
 query:$(objs1)
-	$(CPP) $(objs1) -o $(exc1)
+	$(CPP) $(objs1) -o $(exc1) $(OFLAGS)
 
 update:$(objs2)
-	$(CPP) $(objs2) -o $(exc2)
+	$(CPP) $(objs2) -o $(exc2) $(OFLAGS)
 
 $(objs): %.o: %.cpp
 	$(CPP) $(CPFLAGS) -c $<  

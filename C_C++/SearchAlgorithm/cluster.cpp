@@ -1,7 +1,10 @@
 #include <iostream>
+#include <sstream>
 #include <cstdlib>
+#include <cstring> 		/* for memset */
 #ifndef __STRING__
 #include <string>
+#include <thread>
 #include <vector>
 #include <map>
 #endif
@@ -72,13 +75,28 @@ void run_as_a_master()
 	vector<string>::iterator it;
 	while(1)
 	{
+		cout << "Search: ";
 		getline(cin, input);
-		result = query(input);
-		for(it = result.begin(); it != result.end(); it++)
-			cout << "From Master: " << *it << endl;
+		thread master_job([&](){
+			result = query(input);
+			for(it = result.begin(); it != result.end(); it++)
+				cout << "From Master: " << *it << endl;
+		});
+		/* we need not to wait it. */
+		//master_job.join();
 
+	  /* iterate the node set */
+	  while(1)
+	  {
 		int i;
+		/* just for one node, if we need more, extend the is_complete as a vector. */
+		bool is_complete = false;
 		nfds = epoll_wait(epfd, events, MAX_SLAVE, WAIT_DELAY_TIME);
+		//cout << "event: " << nfds << endl;
+		//cout << "events.fd: " << events[0].data.fd << endl;
+		//cout << "listenfd: " << listenfd << endl;
+		if(0 == nfds)
+			break;
 		for(i=0; i<nfds; i++)
 		{
 			if(events[i].data.fd == listenfd)
@@ -93,10 +111,11 @@ void run_as_a_master()
 				epoll_ctl(epfd, EPOLL_CTL_ADD, sockfd, &ev);
 
 				/* map the slave with the sockfd */
-				string idfr = "Slave";
-				idfr += ' ';
-				idfr += slave_id;
-				slaves[sockfd] = idfr;
+				stringstream ss;
+				ss << "Slave " << slave_id;
+				slaves[sockfd] = ss.str();
+				
+				cout << "Assign " << slaves[sockfd] << " at fd " << sockfd << "." << endl;
 				slave_id ++;
 			}
 			else if(events[i].events & EPOLLIN)
@@ -113,6 +132,7 @@ void run_as_a_master()
 							close(sockfd);
 							ev.data.fd = -1;
 							cout << slaves[sockfd] << " gets a RST!" << endl;
+							is_complete = true;
 							break;
 						}
 						else if(errno == EINTR) continue;
@@ -121,6 +141,8 @@ void run_as_a_master()
 							close(sockfd);
 							ev.data.fd = -1;
 							cout << slaves[sockfd] << " is unrecoverable!" << endl;
+							cout << "So the task is cancelled!" << endl;
+							is_complete = true;
 							break;
 						}
 					}
@@ -129,17 +151,21 @@ void run_as_a_master()
 						close(sockfd);
 						ev.data.fd = -1;
 						cout << slaves[sockfd] << " shuts down normally!" << endl;
+						cout << "So the task is cancelled!" << endl;
+						is_complete = true;
+						break;
 					}
 					else if(BUF_MAX_LEN == recvNum)
 					{
-						if(buffer[0] == 0x01)
+						if(buffer[0] == SLAVE_DATA)
 						{
 							cout << "From " << slaves[sockfd] << ": " << buffer+1 << endl;
 							continue; 
 						}
-						else if(buffer[0] == 0x10)
+						else if(buffer[0] == SLAVE_LAST_DATA)
 						{
 							cout << "From " << slaves[sockfd] << ": " << buffer+1 << endl;
+							is_complete = true;
 							break;
 						}
 					}
@@ -147,29 +173,80 @@ void run_as_a_master()
 					{
 						close(sockfd);
 						ev.data.fd = -1;
+						is_complete = true;
 						break;
 					}
 				}
-				ev.data.fd = sockfd;
-				ev.events = EPOLLET | EPOLLOUT;
-				epoll_ctl(epfd, EPOLL_CTL_MOD, sockfd, &ev);
+				if(is_complete)
+				{
+					ev.data.fd = sockfd;
+					ev.events = EPOLLET | EPOLLOUT;
+					epoll_ctl(epfd, EPOLL_CTL_MOD, sockfd, &ev);
+				}
 			}
 			else if(events[i].events & EPOLLOUT)
 			{
 				sockfd = events[i].data.fd;
-				write(sockfd, input.c_str(), sizeof(input.c_str()));
-				cout << "Master has published a task to " << slaves[sockfd] << "." << endl;
+				int ret = write(sockfd, input.c_str(), sizeof(input.c_str()));
+				if(ret > 0)
+					cout << "Master has published a task to " << slaves[sockfd] << "." << endl;
 				/* change the ev to do read jobs. */
 				ev.data.fd = sockfd;
 				ev.events = EPOLLET | EPOLLIN;
 				epoll_ctl(epfd, EPOLL_CTL_MOD, sockfd, &ev);
 			}
 		}
+		/* A serach is complete. */ 
+		if(is_complete)
+			break;
+	  }
+	  master_job.join();
 	}
 		
 }
 
 void run_as_a_slave()
 {
-	/* TODO this */
+	int serverfd,len;
+	struct sockaddr_in server_addr;
+	char buffer[BUF_MAX_LEN];
+	vector<string> query_result;
+	vector<string>::iterator it;
+	vector<string>::iterator tmp;
+	
+	serverfd = socket(AF_INET, SOCK_STREAM, 0);
+	server_addr.sin_family = AF_INET;
+	server_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+	server_addr.sin_port = MASTER_PORT;	
+
+	if(connect(serverfd, (struct sockaddr*)&server_addr, sizeof(server_addr)) < 0)
+	{
+		cerr << "Connect to the master node error!" << endl;
+		cout << "Please check the configuration." << endl;
+		exit(1);
+	}
+	else
+		cout << "The connection to the master has been established!" << endl;	
+	
+	while(1)
+	{
+		memset(buffer, 0, BUF_MAX_LEN);
+		recv(serverfd, buffer, BUF_MAX_LEN, 0);
+		cout << "From Master: get the task -- " <<  buffer << endl;
+		query_result = query(buffer);
+		for(it = query_result.begin(); it != query_result.end(); it++)
+		{
+			memset(buffer, 0, BUF_MAX_LEN);
+			tmp = it;
+			if((++tmp) != query_result.end())
+				buffer[0] = SLAVE_DATA;
+			else
+				buffer[0] = SLAVE_LAST_DATA;
+			strcat(buffer+1, (*(it)).c_str());
+			/* TODO- to check the security and completeness in the future */
+			len = send(serverfd, buffer, BUF_MAX_LEN, 0);
+			cout << "Send " << len << "B to Master: " << buffer << endl;
+		}
+	}
+
 }
