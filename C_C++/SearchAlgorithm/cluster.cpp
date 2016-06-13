@@ -73,8 +73,10 @@ void run_as_a_master()
 	string input;
 	vector<string> result;
 	vector<string>::iterator it;
+	clock_t start, finish;
 	while(1)
 	{
+		start = clock();
 		cout << "Search: ";
 		getline(cin, input);
 		thread master_job([&](){
@@ -201,6 +203,9 @@ void run_as_a_master()
 			break;
 	  }
 	  master_job.join();
+	  finish = clock();
+	  cout << "Elapsed Time: " << double(finish-start)*1000/CLOCKS_PER_SEC << "ms." << endl;
+	  cout << endl;
 	}
 		
 }
