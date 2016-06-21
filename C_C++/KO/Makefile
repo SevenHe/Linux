@@ -7,8 +7,11 @@ obj-m += print_string.o kbleds.o sched.o intrpt.o
 test-objs := start.o stop.o
 KMDIR := /lib/modules/$(shell uname -r)/build
 
+ccflags-y := -DDEBUG
+
+
 all:
-	make -C $(KMDIR) M=$(PWD) modules
+	make $(KOFLAGS) -C $(KMDIR) M=$(PWD) modules
 
 test:
 	@echo $(sources)

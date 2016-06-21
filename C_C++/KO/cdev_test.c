@@ -56,9 +56,15 @@ void ioctl_get_nth_byte(int file_desc)
 
 int main()
 {
-	int file_desc, ret;
+	int file_desc;
+	int len = 128;
+	char buf[128];
 	char* msg = "Message passed by ioctl\n";
 	file_desc = open(DEVICE_FILE_NAME, 0);
+	int tmp = read(file_desc, buf, len);
+	printf("Read msg: %s, len %d\n", buf, tmp);
+	tmp = write(file_desc, msg, len);
+	printf("Write msg: %s, len %d\n", msg, tmp);
 	if(file_desc < 0)
 	{
 		printf("cannot open the device file: %s\n", DEVICE_FILE_NAME);

@@ -88,12 +88,12 @@ static void __exit my_cleanup_module(void)
  * Called when a process tries to open the device file, like
  * "cat /dev/mycharfile"
  */
+static int counter = 0;
 static int device_open(struct inode *inode, struct file *file)
 {
 #ifdef DEBUG
 	printk("device_open %p \n", file);
 #endif
-	static int counter = 0;
 	if (Device_Open)
 		return -EBUSY;
 	Device_Open++;
@@ -137,7 +137,7 @@ static ssize_t device_read(struct file *filp,	/* see include/linux/fs.h   */
 	 */
 	int bytes_read = 0;
 #ifdef DEBUG
-	printk("device read: %p, %p, %d\n", filp, buffer, length);
+	printk("device read: %p, %p, %d\n", filp, buffer, (int)length);
 #endif 
 
 	/*
@@ -147,6 +147,7 @@ static ssize_t device_read(struct file *filp,	/* see include/linux/fs.h   */
 	if (*msg_Ptr == 0)
 		return 0;
 
+	printk("Module msg: %s\n", msg_Ptr);
 	/* 
 	 * Actually put the data into the buffer 
 	 */
@@ -178,7 +179,7 @@ static ssize_t
 {
 	int i;
 #ifdef DEBUG
-	printk("device write: %p, %s, %d\n", filp, buff, len);
+	printk("device write: %p, %s, %d\n", filp, buff, (int)len);
 #endif
 	for(i=0; i<len && i<BUF_LEN; i++)
 	{
@@ -205,13 +206,15 @@ static long device_ioctl(struct file* file,
 			for(i=0; ch && i<BUF_LEN; i++, temp++)
 				get_user(ch, temp);
 			device_write(file, (char*)ioctl_param, i, 0);
-			printk(KERN_INFO "IOCTL_SET_MSG: %s", (char*)ioctl_param);
+			printk(KERN_INFO "IOCTL_SET_MSG: %s\n", (char*)ioctl_param);
 			break;
 		}
 		case IOCTL_GET_MSG:
 		{
 			i = device_read(file, (char*)ioctl_param, 99, 0);
-			put_user('\0', (char*)ioctl_param+i);
+			copy_to_user((char*)ioctl_param, "i am a test", 20);
+			put_user('\0', (char*)ioctl_param+20);
+			printk(KERN_INFO "IOCTL_GET_MSG: %s\n", (char*)ioctl_param);
 			break;
 		}
 		case IOCTL_GET_NTH_BYTE:
