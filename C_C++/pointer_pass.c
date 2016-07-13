@@ -26,4 +26,9 @@ int main()
 	printf("%s, %s\n", t1, t2);
 	swap1(a, &t2);
 	printf("%s, %s\n", t1, t2);
+	int arr[10];
+	int *p = arr;
+	printf("p:%p, %p\n", p, p+1);
+	p = &arr;
+	printf("p:%p, %p\n", p, p+1);
 }
