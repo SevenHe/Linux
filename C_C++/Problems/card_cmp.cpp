@@ -19,7 +19,7 @@
 /*
  * 某些觉得复杂的地方，写一个函数，取得返回值，则逻辑变得很清楚，不要强加在一起写。
  */
-
+/*
 #include <iostream>
 #include <string>
 #include <cstdlib>
@@ -96,7 +96,7 @@ int find_min(string s)
 	sort(card.begin(), card.end());
 	return card[0];
 }
-	
+
 
 int main()
 {
@@ -142,10 +142,10 @@ int main()
 			cout << s2 << endl;
 	}
 	else if(s1_type == BOMB && (s2_type == SINGLE || s2_type == PAIR || s2_type == TRIPLE
-					|| s2_type == STRAIGHT))
+				|| s2_type == STRAIGHT))
 		cout << s1 << endl;
 	else if(s2_type == BOMB && (s1_type == SINGLE || s1_type == PAIR || s1_type == TRIPLE
-					|| s1_type == STRAIGHT))
+				|| s1_type == STRAIGHT))
 		cout << s2 << endl;
 	else if(s1_type == DJOKER)
 		cout << s1 << endl;
@@ -154,4 +154,99 @@ int main()
 	else
 		cout << "ERROR" << endl;
 	return 0;
+}*/
+/*
+   两个搜狐的程序员加了一个月班，终于放假了，于是他们决定扎金花渡过愉快的假期 。
+
+   游戏规则：
+   共52张普通牌，牌面为2,3,4,5,6,7,8,9,10,J,Q,K,A之一，大小递增，各四张； 每人抓三张牌。两人比较手中三张牌大小，大的人获胜。 
+
+   对于牌型的规则如下： 
+   1.三张牌一样即为豹子 
+   2.三张牌相连为顺子（A23不算顺子） 
+   3.有且仅有两张牌一样为对子 豹子>顺子>对子>普通牌型 在牌型一样时，比较牌型数值大小（如AAA>KKK,QAK>534，QQ2>10104） 在二人均无特殊牌型时，依次比较三张牌中最大的。大的人获胜，如果最大的牌一样，则比较第二大，以此类推（如37K>89Q） 如二人牌面相同，则为平局。 
+ */
+/*
+ * 对于扑克牌,将不在附近的JQKA和10,交换成IJKLM<=>10,J,Q,K,A,则替换后非常好处理.
+ * 对于字符串,也可以采用sort算法,替换后可以很好的进行排序.
+ */
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+pair<int, int> judgeType(string& s)
+{
+	int len = s.size();
+    cout << s << endl;
+    sort(s.begin(), s.end());
+    cout << "sort:" << s << endl;
+    if(s[0] == s[1] && s[1] == s[2])
+        return make_pair(6, s[0]);	// KKK
+    else if(s[1]-s[0] == 1 && s[2]-s[1] == 1)
+        return make_pair(5, s[0]);
+    if(s[0] == s[1])
+        return make_pair(4, s[0]); 	// JJA
+    else if(s[0] == s[2])
+        return make_pair(4, s[0]);
+    else if(s[1] == s[2])
+        return make_pair(4, s[1]);
+    return make_pair(3, *max_element(s.begin(), s.end()));
 }
+
+string& exchange(string& raw, string ns, string ne)
+{
+    int len = raw.size();
+    int p1 = raw.find(ns);
+    while(p1 < len && p1 >= 0)
+    {
+        raw.replace(raw.begin()+p1, raw.begin()+p1+ns.size(), ne);
+        p1 = raw.find(ns, p1);
+    }
+    return raw;
+}
+
+
+int main()
+{
+	string s1;
+	string s2;
+	while(cin >> s1 >> s2)
+	{
+        //I-J-K-L-M-N <=> 10, J, Q, K ,A
+        s1 = exchange(s1, "10", "I");
+        s1 = exchange(s1, "K", "L");
+        s1 = exchange(s1, "Q", "K");
+        s1 = exchange(s1, "A", "M");
+        s2 = exchange(s2, "10", "I");
+        s2 = exchange(s2, "K", "L");
+        s2 = exchange(s2, "Q", "K");
+        s2 = exchange(s2, "A", "M");
+		pair<int, int> t1 = judgeType(s1);
+		pair<int, int> t2 = judgeType(s2);
+        cout << s1 << "," << s2 << endl;
+		if(s1 == s2)
+			cout << "0" << endl;
+		else
+		{
+			if(t1.first > t2.first)
+				cout << "1" << endl;
+			else if(t1.first < t2.first)
+				cout << "-1" << endl;
+			else
+			{
+                cout << t1.second << "," << t2.second << "," << (t1.second > t2.second) << endl; 
+				if(t2.second != t1.second)
+                    cout << (t1.second > t2.second ? "1" : "-1") << endl;
+                else if(s1[1] != s2[1])
+                    cout << (s1[1] > s2[1] ? "1" : "-1") << endl;
+                else if(s1[0] != s2[0])
+                    cout << (s1[0] > s2[0] ? "1" : "-1") << endl;
+                else
+                    cout << "0" << endl;
+            }
+		}
+	}
+	return 0;
+}
+
