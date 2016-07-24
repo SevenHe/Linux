@@ -1,0 +1,1 @@
+cmd_/home/seven/Code/C_C++/KO/test_new_kernel.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/seven/Code/C_C++/KO/test_new_kernel.ko /home/seven/Code/C_C++/KO/test_new_kernel.o /home/seven/Code/C_C++/KO/test_new_kernel.mod.o

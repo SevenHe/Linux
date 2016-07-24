@@ -4,6 +4,7 @@ obj-m += $(patsubst %.c,%.o,$(sources))
 obj-m += test.o
 obj-m += chardev.o procfs1.o procfs2.o sleep.o
 obj-m += print_string.o kbleds.o sched.o intrpt.o
+obj-m += test_new_kernel.o
 test-objs := start.o stop.o
 KMDIR := /lib/modules/$(shell uname -r)/build
 
