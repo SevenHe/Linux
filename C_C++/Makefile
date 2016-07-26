@@ -12,7 +12,8 @@ objects := $(objects1) $(objects2) $(objects3)
 CPPobjects := $(objects4) $(objects5)
 
 CPP = g++
-FLAGS = -g
+FLAGS = -g -DDEBUG
+LFLAGS = -lboost_system -lboost_thread -lpthread
 
 server:$(sources1)
 client:$(sources2)
@@ -22,7 +23,7 @@ FTPClient:$(sources5)
 $(objects): %: %.c
 	$(CC) $(FLAGS) $< -o $@
 $(CPPobjects): %: %.cpp
-	$(CPP) $(FLAGS) $< -o $@
+	$(CPP) $(FLAGS) $< -o $@ $(LFLAGS)
 #sinclude $(sources:.c=.d)
 #%.d:%.c
 #	...;\

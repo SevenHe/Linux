@@ -11,9 +11,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <dirent.h>
-#include <stdlib.h>
 #include <signal.h>
-#include <errno.h>
 #include <stdio.h>                   /* FOR sprintf */
 
 #include <iostream>
@@ -22,6 +20,8 @@
 #include <string>
 #endif
 #include <cstring>
+#include <cstdlib>
+#include <cerrno>
 #include <vector>
 #include <map>
 #include <algorithm>
@@ -199,6 +199,7 @@ sizeof(server_data_addr)) < 0)
             /* Listenfd starts working. */
             if (events[i].data.fd == listenfd)
             {
+				char cfb[128];
                 connfd = accept(listenfd, (struct sockaddr*)&client_addr, &c_len);
                 /* Allocation is failed. */
                 if (connfd < 0)
@@ -208,8 +209,9 @@ sizeof(server_data_addr)) < 0)
                     break;
                 }
                 set_no_blocking(connfd);
-                cout << FTP_LOG_HEAD << " Get a client control connection: " << inet_ntoa(client_addr.sin_addr) 
-                    << ", at: " << connfd << endl;
+				const char *cfb_ptr = inet_ntop(AF_INET, &client_addr, cfb, sizeof(cfb));
+                cout << FTP_LOG_HEAD << " Get a client control connection: " << cfb_ptr
+                    << ", at: " << connfd << ", ready to read" << endl;
                 clients[connfd].set_id(connfd);
                 // Add the connfd to the socks set.
                 socks.push_back(connfd);
@@ -424,6 +426,7 @@ sizeof(server_data_addr)) < 0)
                     ev_cntl.data.fd = sockfd;
                     ev_cntl.events = EPOLLOUT | EPOLLET;
                     epoll_ctl(epfd, EPOLL_CTL_MOD, sockfd, &ev_cntl);
+					cout << FTP_LOG_HEAD << " " << sockfd << " is ready to write." << endl;
                 }
                 else
                 {
@@ -553,7 +556,7 @@ string process_request(char* p_cmd, int sock, int type)
                     temp += " ";
                     temp += ptr->d_name;
                     // TODO-- This place, the file name may be greater than 50 place.
-                    for (int pos = temp.length(); pos<25; pos++)
+                    for (int pos = temp.length(); pos<40; pos++)
                         rt += " ";
                     rt += byte2std(file_stat.st_size);
                     rt += "\n";

@@ -7,8 +7,8 @@
 
 #define _FTP_SERVER_PORT 21
 #define _FTP_DATA_PORT 20
-#define CMD_MAX_LENGTH 127
-#define FB_MAX_LENGTH 127
+#define CMD_MAX_LENGTH 128
+#define FB_MAX_LENGTH 512
 #define FILE_MAX_BUFFER 1024
 #define SHELL_HAED "ftp>"
 #define _FTP_CLINET_QUIT "Quit"
@@ -17,12 +17,29 @@
 #include <cstring>
 #include <fstream>
 #include <string>
+#include <boost/thread/thread.hpp>
 using namespace std;
 
 void print_server_info()
 {
     cout << "FTP Server v1.0" << endl;
     cout << "Freedom and Welcome!" << endl;
+}
+
+void thread_parallel_test(int num)
+{
+	int sfd = socket(AF_INET, SOCK_STREAM, 0);
+	struct sockaddr_in addr;
+	addr.sin_family = AF_INET;
+	addr.sin_addr.s_addr = htonl(INADDR_ANY);
+	addr.sin_port = _FTP_SERVER_PORT;
+	if (connect(sfd, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
+		cerr << "Connect to server failed : thread " << num << endl;
+		return;
+	}
+	string cmd = "List";
+	int ret = send(sfd, cmd.c_str(), CMD_MAX_LENGTH, 0);
+	cout << "Thread " << num << ": send " << ret << endl;
 }
 
 int main()
@@ -43,6 +60,14 @@ int main()
     // inet_aton("49.140.62.120", &addr.sin_addr); -- real use
     addr.sin_port = _FTP_SERVER_PORT;
     
+
+	/* Parallel Test */
+	for (int i=0; i<200; i++) {
+		boost::thread td(boost::bind(&thread_parallel_test, i));
+		cout << "Thread " << i << " is running..." << endl;
+		td.join();
+	}
+
     /* Start connecting to the server */
     len = sizeof(addr);
     state = connect(sockfd, (struct sockaddr*)&addr, len);
@@ -79,10 +104,17 @@ int main()
                 break;
         }
         // string.substr is a alternate method.
-        //cout << "str: " << rcmd << ", " << args << endl;
+        //cout << "sock " << sockfd << ": " << rcmd << ", " << args << endl;
 		if(rcmd != "Get" && rcmd != "Put")
 		{
-        	send(sockfd, cmd, CMD_MAX_LENGTH, 0);
+        	int ret = send(sockfd, cmd, CMD_MAX_LENGTH, 0);
+#ifdef DEBUG
+		cout << "Send to the server: " << ret << endl;
+#endif
+			if (ret < 0) {
+				cerr << "The server is closed for you now....." << endl;
+				exit(1);
+			}
        	 	recv(sockfd, feedback, FB_MAX_LENGTH, 0);
             if(feedback[0] == 0x01)
             {

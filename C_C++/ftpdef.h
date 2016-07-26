@@ -1,12 +1,12 @@
 /* FTP SERVER CONFIG */
-#define FTP_MAX_QUEUE 100
+#define FTP_MAX_QUEUE 1500
 #define FTP_DIR "/home/seven/Code/C_C++/FTP_Files/"
 #define FTP_CONTROL_PORT 21
 #define FTP_CONTROL_TYPE 1
 #define FTP_DATA_PORT 20
 #define FTP_DATA_TYPE 0
-#define CMD_MAX_LENGTH 127
-#define FB_MAX_LENGTH 127
+#define CMD_MAX_LENGTH 128
+#define FB_MAX_LENGTH 512
 #define FILE_MAX_BUFFER 1024
 #define MAX_FILE_NAME 64
 
