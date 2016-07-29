@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 /* so, pass the '&' address, and in the function, do the * to get the real var.
  * and, we can change it.
@@ -18,6 +19,17 @@ void swap2(char* ss1, char* ss2)
 	ss2 = tmp;
 }
 
+char* testc()
+{
+	char* tmp = (char*)malloc(sizeof(char)*20);
+	tmp[0] = 'i';
+	tmp[1] = 'a';
+	tmp[2] = 'm';
+	tmp[3] = 'o';
+	tmp[4] = 'k'; 
+	return tmp;
+}
+
 int main()
 {
 	char* t1 = "iamok!";
@@ -29,6 +41,10 @@ int main()
 	int arr[10];
 	int *p = arr;
 	printf("p:%p, %p\n", p, p+1);
-	p = &arr;
+	// p = &arr; will raise a warning! int *a[10] <=> int *a;
+	p = &(arr[0]);
 	printf("p:%p, %p\n", p, p+1);
+	char* t3 = testc();
+	printf("t3:%s\n", t3);
+	free(t3);
 }
