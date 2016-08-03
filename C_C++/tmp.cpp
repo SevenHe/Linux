@@ -5,8 +5,36 @@ using namespace std;
 
 #include <stdio.h>
 
+/* the p or ptr is just a pointer, point to an array, but the array does not has memory to store data! */
+int (*(*p)[10])(int*);
+int (*(*ptr)[10]);
+
+int test(int* a)
+{
+	return 1;
+}
+
 int main()
 {
+	int buf[10] = {1, 2};
+	int *bb[10];
+	int (*pr)[10];
+	pr = &buf;
+	(*pr)[2] = 3;
+	int a = 2;
+	int b = 0;
+	cout << "pr=" << (*pr)[2] << endl;
+	ptr = &bb;
+	(*ptr)[0] = &a;
+	cout << "ptr=" << *(*ptr)[0] << endl;
+	int (*bbb[10])(int*);
+	//bbb[0] = &test;
+	p = &bbb;
+	(*p)[0] = test;
+	b = ((*p)[0])(&a);
+	//b = (bbb[0])(&a);
+	printf("b=%d\n", b);
+	/*
 	unsigned int n, l;
 	while(cin >> n >> l)
 	{
@@ -32,7 +60,7 @@ int main()
 		else
 			printf("%.2f\n", max_length);
 	}
-
+	*/
 
 	return 0;
 }
