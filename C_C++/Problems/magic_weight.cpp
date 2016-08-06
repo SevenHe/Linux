@@ -10,6 +10,9 @@
    在当前位置，选择一个值，然后进行下一次全排列，再恢复状态，选择下一个作为当前位置的值，不断n循环+递归！！
    注意，下标和状态一一对应！！
  */
+/*new是c++中申请内存的方法，一个operator,首先执行指定的构造函数，然后为对象分配内存,对应delete;
+malloc是c中申请内存的方法，传入申请的空间的大小，返回void*指针让用户自己强制转换，同类函数有malloc,realloc,calloc,对应free.
+*/
 #include <iostream>
 #include <vector>
 #include <string>
