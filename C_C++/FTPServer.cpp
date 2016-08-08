@@ -27,68 +27,6 @@
 #include <algorithm>
 using namespace std;
 
-#ifndef __FTPDEF_H
-#include "ftpdef.h"
-#endif
-
-/* 
- * Put these classes to an another file in the future. 
- * And encrypt the data.
- */
-class FTPClient
-{
-	private:
-		int id;
-        int data_port;  /* FOR PASV MODE */
-        char pswd[20];
-	public:
-        bool is_logged;
-        char last_feedback[FB_MAX_LENGTH];
-        char user[10];
-        
-        /* Constructor */
-        FTPClient()
-        {
-            this->id = -1;
-            this->data_port = 0;
-            this->is_logged = false;
-        }
-        
-        /* ID GETTER AND SETTER */
-		int get_id()
-		{
-			return this->id;
-		}
-		void set_id(int id)
-		{
-			this->id = id;
-		}
-		
-		/* DATA_PORT GETTER AND SETTER */
-		int get_data_port()
-        {
-            return this->data_port;
-        }
-        void set_data_port(int port)
-        {
-            this->data_port = port;
-        }
-        
-        /* OTHER NECESSARY FUNCTIONS */
-        void set_password(const char* password)
-        {
-            strcpy(this->pswd, password);
-        }
-        void reset()
-        {
-            this->id = -1;
-            this->is_logged = false;
-            memset(last_feedback, 0, sizeof(last_feedback));
-            memset(user, 0, sizeof(user));
-            memset(pswd, 0, sizeof(pswd));
-        }
-};
-
 void exit_confirm(int signal)
 {
 	string cfm;

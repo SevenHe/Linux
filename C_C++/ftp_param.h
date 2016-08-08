@@ -1,3 +1,6 @@
+#ifndef FTP_PARAM_H
+#define FTP_PARAM_H
+
 /* FTP SERVER CONFIG */
 #define FTP_MAX_QUEUE 1500
 #define FTP_DIR "/home/seven/Code/C_C++/FTP_Files/"
@@ -42,7 +45,4 @@
 
 #define FTP_LOG_HEAD "[LOG]"
 
-#include <string>
-void set_no_blocking(int sock);
-string byte2std(int size);
-string get_help_info();
+#endif
