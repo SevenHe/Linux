@@ -16,7 +16,7 @@
 #include <unistd.h>
 using namespace std;
 
-extern ftp_server_start();
+extern void ftp_server_start();
 
 string user, pswd;
 
@@ -34,7 +34,7 @@ int main(int argc, char** argv)
 {
     cout << "Input Local Database User Name: ";
     cin >> user;
-    pswd = getpass("Password: ");
+    pswd.assign(getpass("Password: "));
     ftp_server_start();
     
     return 0;

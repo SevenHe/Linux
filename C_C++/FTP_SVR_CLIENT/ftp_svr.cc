@@ -15,16 +15,13 @@
 #include <netinet/in.h>              /* SOCKET STRUCT */
 #include <arpa/inet.h>               /* NETWORK FUNCTIONS */
 #include <fcntl.h>
-#include <unistd.h>
 #include <dirent.h>
 #include <signal.h>
-#include <stdio.h>                   /* FOR sprintf */
 
-#include <iostream>
-#include <fstream>
-#include <string>
 #include <cstdlib>
 #include <cerrno>
+#include <cstdio>
+#include <ctime>
 #include <vector>
 #include <queue>
 #include <tr1/unordered_map>
@@ -44,13 +41,15 @@ using namespace sql;
 extern string get_user_name();
 extern string get_password();
 
+/* Thread Pool */
+thread_pool my_thread_pool(FTP_MAX_QUEUE);
 mysql::MySQL_Driver* driver = mysql::get_driver_instance();
 Connection* con;
 
 /* According to the type, get the client. */
-static inline FTPClient& type_of(const vector<FTPClient>& clients,
-        const tr1::unordered_map<int, int>& d_c,
-        const tr1::unordered_map<int, int>& socks,
+static inline FTPClient& type_of(vector<FTPClient>& clients,
+        tr1::unordered_map<int, int>& d_c,
+        tr1::unordered_map<int, int>& socks,
         const int& sockfd,
         const int& type)
 {
@@ -60,7 +59,7 @@ static inline FTPClient& type_of(const vector<FTPClient>& clients,
 }
 
 /* According to the type, release and reset the resource. */
-static void release_reset(const FTPClient& client,
+static void release_reset(FTPClient& client,
         queue<int>& av_q,
         tr1::unordered_map<int, int>& d_c,
         tr1::unordered_map<int, int>& socks,
@@ -78,7 +77,7 @@ static void release_reset(const FTPClient& client,
     }
 }
 
-/* Catch the signal to exit the server. */
+/* Catch the signal to exit the server, CTRL+C or Kill */
 static void exit_confirm(int signal) throw()
 {
     string cfm;
@@ -96,23 +95,31 @@ void ftp_server_start()
     /* Global db connection. */
     con = driver->connect(DB_PATH, get_user_name(), get_password());
     if (con)
-        cout << FTP_LOG_HEAD << " Connect to the database successfully!" << endl;
+        cout << "Connect to the database successfully!" << endl;
+    else {
+        cout << "Invalid input, please try again!" << endl;
+        exit(0);
+    }
+
     /* The Data Structure. */
     vector<FTPClient> clients(FTP_MAX_QUEUE);
-    queue<int> available_queue;
-    /* Thread Pool */
-    thread_pool thread_pool(FTP_MAX_QUEUE);
+    std::queue<int> available_queue;
     /* MEMORY POOL IN FUTURE */
 
     /* Handle the signals */
     signal(SIGPIPE, SIG_IGN);
     signal(SIGCHLD, SIG_IGN);
+	/* TODO -- A Small Bug 
+	 * Boost always catches the signal as an assertion and return false.
+	 */
     signal(SIGINT, &exit_confirm);
+	signal(SIGKILL, &exit_confirm);
+	signal(SIGHUP, &exit_confirm);
 
     /* Server variables */
     int listenfd, datafd, connfd, sockfd, epfd;
     int nfds;
-    struct epoll_event ev_cntl, ev_data, events[3*FTP_MAX_QUEUE/2];
+    struct epoll_event ev_cntl, ev_data, events[3 * FTP_MAX_QUEUE / 2];
     struct sockaddr_in server_cntl_addr, server_data_addr;
     struct sockaddr_in client_addr;
     socklen_t c_len;
@@ -162,8 +169,12 @@ void ftp_server_start()
     listen(datafd, FTP_MAX_QUEUE);
 
     /* Server has been started. */
-    /* TODO-- ADD A TIMESTAMP */
-    cout << FTP_LOG_HEAD << " Server is running!" << endl;
+    time_t t;
+    time(&t);
+    cout << "=================================" << endl;
+    cout << " Time: " << ctime(&t);
+    cout << "=================================" << endl;
+    cout << FTP_LOG_HEAD << " FTP Server has been started!" << endl;
 
     /* Default mode is standard. */
     while (1) {
@@ -230,6 +241,7 @@ void ftp_server_start()
                         //cout << "Recv:" << recvNum << endl;
                     }
                     else if (type == FTP_DATA_TYPE) {
+                        /* TODO -- contact with the client for the data_fd. */
                         recvNum = read(sockfd, client.get_buffer(), FILE_MAX_BUFFER);
                     }
                     if (recvNum < 0) {
@@ -239,26 +251,26 @@ void ftp_server_start()
                             cout << FTP_LOG_HEAD << " " << sockfd << " get a RESET!" << endl;
 
                             release_reset(client, available_queue, data_cntl, socks, sockfd, type);
-                            
+
                             break;
                         }
                         else if (errno == EINTR) continue;
                         else {
                             cout << FTP_LOG_HEAD << " " << sockfd << " is unrecoverable!" << endl;
-                            
+
                             release_reset(client, available_queue, data_cntl, socks, sockfd, type);
-                            
+
                             break;
                         }
                     }
                     else if (recvNum == 0) {
                         cout << FTP_LOG_HEAD << " " << sockfd << " shuts down normally!" << endl;
-                        
+
                         release_reset(client, available_queue, data_cntl, socks, sockfd, type);
                     }
                     if (type == FTP_CONTROL_TYPE && recvNum <= CMD_MAX_LENGTH) {
-                        strncpy(client.last_c_feedback, 
-                                (process_request(cmd, client, type)).c_str(), 
+                        strncpy(client.last_c_feedback,
+                                (process_request(cmd, client, type)).c_str(),
                                 FB_MAX_LENGTH);
 
                         //cout << "GET A FEEDBACK:" << feedback << endl;
@@ -267,19 +279,19 @@ void ftp_server_start()
                     else if (type == FTP_DATA_TYPE && recvNum <= FILE_MAX_BUFFER) {
                         /* TODO--Read and map the client with the data fd. */
                         string ret = process_request(client.get_buffer(), client, type);
-                        if (ret ==  FTP_RSP_FT_END)
+                        if (ret[0] == FTP_RSP_FT_END)
                             dequeue_data_con(data_cntl, sockfd);
-                        /* Occur an error, so just return and close. */
-                        else if (ret == FTP_RSP_ERR) {
+                            /* Occur an error, so just return and close. */
+                        else if (ret[0] == FTP_RSP_ERR) {
                             write(sockfd, ret.c_str(), ret.size());
                             close(sockfd);
                         }
-                                
+
                         break;
                     }
                     else {
                         release_reset(client, available_queue, data_cntl, socks, sockfd, type);
-                        
+
                         break;
                     }
                 }
@@ -298,10 +310,10 @@ void ftp_server_start()
             } /* Write events */
             else if (events[i].events & EPOLLOUT) {
                 sockfd = events[i].data.fd;
-                
+
                 type = judge_sock_type(socks, sockfd);
                 FTPClient& client = type_of(clients, data_cntl, socks, sockfd, type);
-                
+
                 if (type == FTP_CONTROL_TYPE) {
                     write(sockfd, client.last_c_feedback, FB_MAX_LENGTH);
                     ev_cntl.data.fd = sockfd;
@@ -320,6 +332,7 @@ void ftp_server_start()
         }
     }
 
+    my_thread_pool.join_all();
     delete con;
     return;
 }
@@ -341,7 +354,7 @@ void set_no_blocking(const int& sock)
 }
 
 /* Process the requests from the clients, and return the feedback */
-string process_request(char* p_cmd, const FTPClient& client, const int& type)
+string process_request(char* p_cmd, FTPClient& client, const int& type)
 {
     string rt;
     string rcmd; // REAL CMD
@@ -380,9 +393,13 @@ string process_request(char* p_cmd, const FTPClient& client, const int& type)
                  * This place should do some checks and encryption to avoid
                  * security problems just like SQL Injection.
                  */
-                ResultSet* res = stmt->executeQuery("select password from "
-                                        +USER_TABLE+"where name = '"
-                                        +client.user+"'");
+                string sentence = "select password from ";
+                sentence += USER_TABLE;
+                sentence += " where name = '";
+                sentence += client.user;
+                sentence += "'";
+
+                ResultSet* res = stmt->executeQuery(sentence);
                 if (args == res->getString(1)) {
                     client.is_logged = true;
                     client.set_password(args.c_str());
@@ -424,7 +441,7 @@ string process_request(char* p_cmd, const FTPClient& client, const int& type)
                     for (int pos = temp.length(); pos < 40; pos++)
                         rt += " ";
                     rt += "|";
-                    for (int pos = 40; pos < 50; pos)
+                    for (int pos = 40; pos < 50; pos++)
                         rt += " ";
                     rt += byte2std(file_stat.st_size);
                     rt += "\n";
@@ -469,19 +486,19 @@ string process_request(char* p_cmd, const FTPClient& client, const int& type)
         return rt;
     }
     else {
-        work w(client);
-        if (thread_pool.push_work(w)) {
+        work* w = new work(&client);
+        if (my_thread_pool.push_work(w)) {
             rt = FTP_RSP_FT_END;
         }
         else
             rt = FTP_RSP_ERR;
-        
+
         return rt;
     }
 }
 
 /* Judge the sock is for control or data. */
-static inline uint8_t judge_sock_type(const tr1::unordered_map<int, int>& s, const int& sock)
+static inline uint8_t judge_sock_type(tr1::unordered_map<int, int>& s, const int& sock)
 {
     if (s.find(sock) != s.end())
         return FTP_CONTROL_TYPE;
@@ -489,26 +506,26 @@ static inline uint8_t judge_sock_type(const tr1::unordered_map<int, int>& s, con
 }
 
 /* Dequeue the client with the specified sock. */
-static inline void demap_socks(const tr1::unordered_map<int, int>& socks, const int& sock)
+static inline void demap_socks(tr1::unordered_map<int, int>& socks, const int& sock)
 {
     socks.erase(sock);
 }
 
 /* Data connection is finished. */
-static inline void dequeue_data_con(const tr1::unordered_map<int, int>& d_c, const int& sock)
+static inline void dequeue_data_con(tr1::unordered_map<int, int>& d_c, const int& sock)
 {
     if (d_c.find(sock) != d_c.end())
         d_c.erase(sock);
 }
 
 /* Release a client and add it into available queue. */
-static inline void enqueue_client(const queue<int>& av_q, const int& ava_id)
+static inline void enqueue_client(queue<int>& av_q, const int& ava_id)
 {
     av_q.push(ava_id);
 }
 
 /* Get a client that has not been used. */
-static inline int get_next_client(const queue<int>& av_q)
+static inline int get_next_client(queue<int>& av_q)
 {
     if (!av_q.empty()) {
         int ret = av_q.front();

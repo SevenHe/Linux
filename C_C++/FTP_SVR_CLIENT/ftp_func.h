@@ -15,11 +15,12 @@
 #define FTP_FUNC_H
 
 void set_no_blocking(const int&);
-static uint8_t judge_sock_type(const std::tr1::unordered_map<int, int>&, const int&);
-static void demap_socks(const std::tr1::unordered_map<int, int>&, const int&);
-static void enqueue_client(const std::queue<int>&, const int&);
-static int get_next_client(const std::queue<int>&);
-std::string process_request(char* p_cmd, const FTPClient& client, const int& type);
+static uint8_t judge_sock_type(std::tr1::unordered_map<int, int>&, const int&);
+static void demap_socks(std::tr1::unordered_map<int, int>&, const int&);
+static void dequeue_data_con(std::tr1::unordered_map<int, int>& d_c, const int& sock);
+static void enqueue_client(std::queue<int>&, const int&);
+static int get_next_client(std::queue<int>&);
+std::string process_request(char* p_cmd, FTPClient& client, const int& type);
 std::string byte2std(const int& size);
 
 #endif /* FTP_FUNC_H */
