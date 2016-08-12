@@ -1,3 +1,6 @@
+/*
+ * User Client Simple Implement
+ */
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/stat.h>                   /* For future human-friendly format */ 
@@ -9,9 +12,10 @@
 #define _FTP_DATA_PORT 20
 #define CMD_MAX_LENGTH 128
 #define FB_MAX_LENGTH 512
-#define FILE_MAX_BUFFER 1024
-#define SHELL_HAED "ftp>"
+#define FILE_MAX_BUFFER 2500
+#define SHELL_HAED "ftp> "
 #define _FTP_CLINET_QUIT "Quit"
+#define VERSION "1.1"
 
 #include <iostream>
 #include <cstring>
@@ -22,7 +26,7 @@ using namespace std;
 
 void print_server_info()
 {
-    cout << "FTP Server v1.0" << endl;
+    cout << "FTP Server v" << VERSION << endl;
     cout << "Freedom and Welcome!" << endl;
 }
 
@@ -40,6 +44,7 @@ void thread_parallel_test(int num)
 	string cmd = "List";
 	int ret = send(sfd, cmd.c_str(), CMD_MAX_LENGTH, 0);
 	cout << "Thread " << num << ": send " << ret << endl;
+	close(sfd);
 }
 
 int main()
@@ -62,11 +67,13 @@ int main()
     
 
 	/* Parallel Test */
+	boost::thread_group tg;
 	for (int i=0; i<200; i++) {
 		boost::thread td(boost::bind(&thread_parallel_test, i));
+		tg.add_thread(&td);
 		cout << "Thread " << i << " is running..." << endl;
-		td.join();
 	}
+	tg.join_all();
 
     /* Start connecting to the server */
     len = sizeof(addr);
