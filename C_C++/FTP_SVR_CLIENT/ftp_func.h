@@ -20,7 +20,8 @@ static void demap_socks(std::tr1::unordered_map<int, int>&, const int&);
 static void dequeue_data_con(std::tr1::unordered_map<int, int>& d_c, const int& sock);
 static void enqueue_client(std::queue<int>&, const int&);
 static int get_next_client(std::queue<int>&);
-std::string process_request(char* p_cmd, FTPClient& client, const int& type);
+std::string process_request(char* p_cmd, FTPClient& client, 
+        const int& type, const int& sockfd) throw();
 std::string byte2std(const int& size);
 
 #endif /* FTP_FUNC_H */

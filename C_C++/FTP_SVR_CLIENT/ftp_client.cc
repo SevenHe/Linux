@@ -21,13 +21,20 @@
 #include <cstring>
 #include <fstream>
 #include <string>
+#include <algorithm>
+#include <ctime>
 #include <boost/thread/thread.hpp>
 using namespace std;
 
 void print_server_info()
 {
-    cout << "FTP Server v" << VERSION << endl;
-    cout << "Freedom and Welcome!" << endl;
+	time_t tt;
+	time(&tt);
+	cout << "+------------------------------+" << endl;
+	cout << "+ " << ctime(&tt);
+    cout << "+ FTP Server v" << VERSION << endl;
+    cout << "+ Freedom and Welcome!" << endl;
+	cout << "+------------------------------+" << endl;
 }
 
 void thread_parallel_test(int num)
@@ -54,6 +61,7 @@ int main()
     int sockfd;
     int len;
     int state;
+    int sock_on_server;
     char cmd[CMD_MAX_LENGTH] = "IM A USER";
     char feedback[FB_MAX_LENGTH];
     char buffer[FILE_MAX_BUFFER];
@@ -67,6 +75,7 @@ int main()
     
 
 	/* Parallel Test */
+    /*
 	boost::thread_group tg;
 	for (int i=0; i<200; i++) {
 		boost::thread td(boost::bind(&thread_parallel_test, i));
@@ -74,7 +83,8 @@ int main()
 		cout << "Thread " << i << " is running..." << endl;
 	}
 	tg.join_all();
-
+    */
+    
     /* Start connecting to the server */
     len = sizeof(addr);
     state = connect(sockfd, (struct sockaddr*)&addr, len);
@@ -86,6 +96,14 @@ int main()
     
     /* Send and receive the data */
     print_server_info();
+    
+    /* Negotiate withe the server */
+    char nego[5];
+    read(sockfd, nego, sizeof(nego));
+    if (nego[0] == 0x15)
+        sock_on_server = atoi(nego+1);
+    
+	/* Usage: 'cmd arg' */ 
     string rcmd = "DFLT";
     string args = "NONE";
     while(rcmd != _FTP_CLINET_QUIT)
@@ -95,6 +113,10 @@ int main()
         args = "";
         cout << SHELL_HAED;
         cin.getline(cmd, CMD_MAX_LENGTH);
+
+		transform(cmd, cmd+strlen(cmd), cmd, ::toupper);
+		transform(cmd+1, cmd+strlen(cmd), cmd+1, ::tolower);
+
 		int i;
         for(i=0; i<CMD_MAX_LENGTH; i++)
         {
@@ -110,6 +132,7 @@ int main()
             else
                 break;
         }
+
         // string.substr is a alternate method.
         //cout << "sock " << sockfd << ": " << rcmd << ", " << args << endl;
 		if(rcmd != "Get" && rcmd != "Put")
@@ -141,6 +164,9 @@ int main()
                         cout << "Authorized!" << endl;
                     else if(feedback[0] == 0x03)
                         cout << "Wrong password!" << endl;
+					else {
+						cout << "An exception occurs, please report this!" << endl;
+					}
                 }
                 else
                     cout << "Invalid input!" << endl;
@@ -149,8 +175,10 @@ int main()
             {
                 /* List the server dir. */
                 int i;
-                cout << "- - Server Files:" << endl;
+				cout << "+--------------------------------------------------------+" << endl;
+                cout << "++ Server Files:" << endl;
                 cout << feedback+1;
+				cout << "+--------------------------------------------------------+" << endl;
             }
             else if(feedback[0] == 0x08)
             {
@@ -164,7 +192,12 @@ int main()
             else if(feedback[0] == 0x10)
             {
                 /* So the client will quit. */
+				break;
             }
+			else
+			{
+				cout << "Unknown error!" << endl;
+			}
 		}
 		else
 		{
@@ -183,22 +216,28 @@ int main()
                 continue;
             }
             
-            /* Send or tell the start action. */
+            /* Mapping the data link with the control link on the server */
+            char contact[5];
+            contact[0] = 0x15;
+            snprintf(contact+1, sizeof(contact)-1, "%d", sock_on_server);
+            send(datafd, contact, sizeof(contact), 0);
+            
+            /* Send or tell the start action with the control link. */
             send(sockfd, cmd, CMD_MAX_LENGTH, 0);
-            recv(sockfd, feedback, CMD_MAX_LENGTH, 0);
+            recv(sockfd, feedback, FB_MAX_LENGTH, 0);
             
             memset(buffer, 0, sizeof(buffer));
             if(feedback[0] == 0x05)
             {
                 ifstream ifs;
-                ifs.open(args.c_str(), ios::binary);
+                ifs.open(args.c_str());
                 if(!ifs)
                 {
                     cout << "Not a invalid file name, please check it!" << endl;
                     buffer[0] = 0x13;
-                    send(datafd, buffer, FILE_MAX_BUFFER, 0);
+                    send(datafd, buffer, 1, 0);
                     memset(buffer, 0, sizeof(buffer));
-                    recv(datafd, buffer, FILE_MAX_BUFFER, 0);
+                    recv(datafd, buffer, 1, 0);
                 }
                 else
                 {
@@ -206,24 +245,24 @@ int main()
                     {
                         buffer[0] = 0x11;
                         ifs.read(buffer+1, sizeof(buffer)-1);
-                        send(datafd, buffer, FILE_MAX_BUFFER, 0);
+                        send(datafd, buffer, ifs.gcount(), 0);
                         memset(buffer, 0, sizeof(buffer));
-                        recv(datafd, buffer, FILE_MAX_BUFFER, 0);
-                        if(buffer[0] != 0x11)
-                            break;
                     }
                     if(buffer[0] == 0x20)
                     {
                         cout << "Occur an error while file sending, please try it again." << endl;
+                        /* TODO -- ERROR CHECKS */
                     }
                     else
                     {
-                        /* Handle the tail. */
+                        /* Handle the tail as an active end. */
                         buffer[0] = 0x13;
-                        send(datafd, buffer, FILE_MAX_BUFFER, 0);
+                        send(datafd, buffer, 1, 0);
                         memset(buffer, 0, sizeof(buffer));
-                        recv(datafd, buffer, FILE_MAX_BUFFER, 0);
-                        cout << args << "  ---->  Server" << "  [OK]" << endl;
+                        if (recv(datafd, buffer, 1, 0))
+                        	cout << args << "  ---->  Server" << "  [OK]" << endl;
+						else
+							cout << "Get an error when transferring completed." << endl;
                     }
                     ifs.close();
                 }
@@ -231,38 +270,33 @@ int main()
             else if(feedback[0] == 0x06)
             {
                 ofstream ofs;
-                ofs.open(args.c_str(), ios::binary);
+                ofs.open(args.c_str());
                 if(!ofs)
                 {
                     cout << "Occur an error while file creating, please check it!" << endl;
                     buffer[0] = 0x14;
-                    send(datafd, buffer, FILE_MAX_BUFFER, 0);
+                    send(datafd, buffer, 1, 0);
                     memset(buffer, 0, sizeof(buffer));
-                    recv(datafd, buffer, FILE_MAX_BUFFER, 0);
+                    recv(datafd, buffer, 1, 0);
                 }
                 else
                 {
-                    while(buffer[0] != 0x14)
+                    while(buffer[0] != 0x14 && buffer[0] != 0x20)
                     {
-                        buffer[0] = 0x12;
-                        send(datafd, buffer, FILE_MAX_BUFFER, 0);
-                        memset(buffer, 0, sizeof(buffer));
                         recv(datafd, buffer, FILE_MAX_BUFFER, 0);
                         int b_len = strlen(buffer);
-                        for (int d = 1; d<b_len; d++)
-                            ofs.put(buffer[d]);
+                        ofs.write(buffer+1, b_len-1);
                     }
                     if(buffer[0] == 0x20)
                     {
                         cout << "Occur an error while file receiving, please try it again." << endl;
+                        /* TODO -- ERROR REPAIRING. */
                     }
                     else
                     {
-                        /* Handle the tail. */
+                        /* Handle the tail as a passive end. */
                         buffer[0] = 0x14;
-                        send(datafd, buffer, FILE_MAX_BUFFER, 0);
-                        memset(buffer, 0, sizeof(buffer));
-                        recv(datafd, buffer, FILE_MAX_BUFFER, 0);
+                        send(datafd, buffer, 1, 0);
                         cout << "Server  ---->  " << args << "  [OK]" << endl;
                     }
                     ofs.close();

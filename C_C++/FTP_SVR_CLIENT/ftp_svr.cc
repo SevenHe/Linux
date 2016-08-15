@@ -19,7 +19,6 @@
 #include <signal.h>
 
 #include <cstdlib>
-#include <cerrno>
 #include <cstdio>
 #include <ctime>
 #include <vector>
@@ -77,7 +76,7 @@ static void release_reset(FTPClient& client,
     }
 }
 
-/* Catch the signal to exit the server, CTRL+C or Kill */
+/* Catch the signal to exit the server. */
 static void exit_confirm(int signal) throw()
 {
     string cfm;
@@ -85,8 +84,14 @@ static void exit_confirm(int signal) throw()
     cout << "Are you sure to shut down the server?[Y/N]" << endl;
     cin >> cfm;
     transform(cfm.begin(), cfm.end(), cfm.begin(), ::toupper);
+    cerr.clear();
     if (cfm == "Y" || cfm == "YES")
         exit(0);
+}
+
+static void exit_from_error(int signal) throw()
+{
+    exit(0);
 }
 
 /*=====The Most Important Function:Start the ftp server.=====*/
@@ -106,15 +111,12 @@ void ftp_server_start()
     std::queue<int> available_queue;
     /* MEMORY POOL IN FUTURE */
 
-    /* Handle the signals */
+    /* Handle the signals, exit with CTRL+\ or CTRL+C */
     signal(SIGPIPE, SIG_IGN);
     signal(SIGCHLD, SIG_IGN);
-	/* TODO -- A Small Bug 
-	 * Boost always catches the signal as an assertion and return false.
-	 */
     signal(SIGINT, &exit_confirm);
-	signal(SIGKILL, &exit_confirm);
-	signal(SIGHUP, &exit_confirm);
+    signal(SIGABRT, &exit_from_error);
+    signal(SIGQUIT, &exit_confirm);
 
     /* Server variables */
     int listenfd, datafd, connfd, sockfd, epfd;
@@ -205,6 +207,16 @@ void ftp_server_start()
                 int alloc_id = get_next_client(available_queue);
                 socks[connfd] = alloc_id;
                 clients[alloc_id].set_id(alloc_id);
+
+                /* Negotiate with the client, this time the connection has just established.
+                 * So there must be not blocking!
+                 */
+                char nego[5];
+                nego[0] = FTP_NEGOTIATE;
+                snprintf(nego + 1, sizeof(nego) - 1, "%d", connfd);
+                write(connfd, nego, sizeof(nego));
+                cout << FTP_LOG_HEAD << " Have negotiated the id with the client!" << endl;
+
                 ev_cntl.data.fd = connfd;
                 ev_cntl.events = EPOLLIN | EPOLLET;
                 epoll_ctl(epfd, EPOLL_CTL_ADD, connfd, &ev_cntl);
@@ -222,7 +234,7 @@ void ftp_server_start()
                 set_no_blocking(connfd);
                 cout << FTP_LOG_HEAD << " Get a client data connection: " << inet_ntoa(client_addr.sin_addr) <<
                         ":" << ntohs(client_addr.sin_port) << ", at: " << connfd << endl;
-                /* Can speed up here in future. */
+
                 ev_data.data.fd = connfd;
                 ev_data.events = EPOLLIN | EPOLLET;
                 epoll_ctl(epfd, EPOLL_CTL_ADD, connfd, &ev_data);
@@ -241,8 +253,18 @@ void ftp_server_start()
                         //cout << "Recv:" << recvNum << endl;
                     }
                     else if (type == FTP_DATA_TYPE) {
-                        /* TODO -- contact with the client for the data_fd. */
-                        recvNum = read(sockfd, client.get_buffer(), FILE_MAX_BUFFER);
+                        /* Contact with the control link */
+                        char contact[5];
+                        recvNum = recv(sockfd, contact, sizeof(contact), 0);
+                        if (contact[0] == FTP_NEGOTIATE) {
+                            char arg[4];
+                            strncpy(arg, contact + 1, sizeof(arg));
+                            int sock_on_svr_from_data = atoi(arg);
+                            data_cntl[sockfd] = sock_on_svr_from_data;
+                            clients[socks[sock_on_svr_from_data]].set_data_fd(sockfd);
+                            cout << FTP_LOG_HEAD << " Map the data connection " << sockfd
+                                    << " with the control connection " << sock_on_svr_from_data << endl;
+                        }
                     }
                     if (recvNum < 0) {
                         /* FULL */
@@ -267,18 +289,20 @@ void ftp_server_start()
                         cout << FTP_LOG_HEAD << " " << sockfd << " shuts down normally!" << endl;
 
                         release_reset(client, available_queue, data_cntl, socks, sockfd, type);
+
+                        break;
                     }
                     if (type == FTP_CONTROL_TYPE && recvNum <= CMD_MAX_LENGTH) {
                         strncpy(client.last_c_feedback,
-                                (process_request(cmd, client, type)).c_str(),
+                                (process_request(cmd, client, type, sockfd)).c_str(),
                                 FB_MAX_LENGTH);
 
                         //cout << "GET A FEEDBACK:" << feedback << endl;
                         break;
                     }
                     else if (type == FTP_DATA_TYPE && recvNum <= FILE_MAX_BUFFER) {
-                        /* TODO--Read and map the client with the data fd. */
-                        string ret = process_request(client.get_buffer(), client, type);
+                        /* For the data type, we do nothing, just make the same look. */
+                        string ret = process_request(client.last_d_feedback, client, type, sockfd);
                         if (ret[0] == FTP_RSP_FT_END)
                             dequeue_data_con(data_cntl, sockfd);
                             /* Occur an error, so just return and close. */
@@ -316,6 +340,15 @@ void ftp_server_start()
 
                 if (type == FTP_CONTROL_TYPE) {
                     write(sockfd, client.last_c_feedback, FB_MAX_LENGTH);
+                    
+                    if (client.last_c_feedback[0] == FTP_RSP_SF_START ||
+                            client.last_c_feedback[0] == FTP_RSP_RF_START) {
+                        work* w = new work(&client);
+                        if (my_thread_pool.push_work(w)) {
+                            /* nothing for now, this place is for statistics. */
+                        }
+                    }
+                    
                     ev_cntl.data.fd = sockfd;
                     ev_cntl.events = EPOLLIN | EPOLLET;
                     epoll_ctl(epfd, EPOLL_CTL_MOD, sockfd, &ev_cntl);
@@ -354,15 +387,15 @@ void set_no_blocking(const int& sock)
 }
 
 /* Process the requests from the clients, and return the feedback */
-string process_request(char* p_cmd, FTPClient& client, const int& type)
+string process_request(char* p_cmd, FTPClient& client, const int& type, const int& sockfd) throw()
 {
     string rt;
     string rcmd; // REAL CMD
     string args;
     if (type == FTP_CONTROL_TYPE) {
-#ifdef DEBUG
-        cout << FTP_LOG_HEAD << " Get a control cmd: " << p_cmd << ", at " << sock << endl;
-#endif
+
+        cout << FTP_LOG_HEAD << " Get a control cmd: " << p_cmd << ", at " << sockfd << endl;
+
         /* Split the command. */
         int i;
         int len = strlen(p_cmd);
@@ -382,7 +415,7 @@ string process_request(char* p_cmd, FTPClient& client, const int& type)
             /* Request a password */
             rt = FTP_RSP_R_PASS;
             /* Get from the MySQL Database. */
-            strncpy(client.user, rcmd.c_str(), USER_INFO_LENGTH);
+            strncpy(client.user, args.c_str(), USER_INFO_LENGTH);
         }
         else if (rcmd == FTP_CMD_PASS) {
             /* In the future, this can be another work in the thread pool. */
@@ -392,18 +425,28 @@ string process_request(char* p_cmd, FTPClient& client, const int& type)
                 /* 
                  * This place should do some checks and encryption to avoid
                  * security problems just like SQL Injection.
+                 * PS:
+                 * Key words must be uppercase.
                  */
-                string sentence = "select password from ";
+                string sentence = "SELECT password FROM ";
                 sentence += USER_TABLE;
-                sentence += " where name = '";
+                sentence += " WHERE name = '";
                 sentence += client.user;
                 sentence += "'";
 
                 ResultSet* res = stmt->executeQuery(sentence);
-                if (args == res->getString(1)) {
-                    client.is_logged = true;
-                    client.set_password(args.c_str());
-                    rt = FTP_RSP_P_PASS;
+                try {
+                    if (res->next() && args == res->getString(1)) {
+                        client.is_logged = true;
+                        client.set_password(args.c_str());
+                        rt = FTP_RSP_P_PASS;
+                    }
+                    else
+                        rt = FTP_RSP_E_PASS;
+                } catch (exception& e) {
+                    cout << FTP_LOG_HEAD << " " << e.what() << endl;
+                } catch (...) {
+                    cout << FTP_LOG_HEAD << " An unknown error occurs!" << endl;
                 }
                 delete res;
                 delete stmt;
@@ -486,12 +529,8 @@ string process_request(char* p_cmd, FTPClient& client, const int& type)
         return rt;
     }
     else {
-        work* w = new work(&client);
-        if (my_thread_pool.push_work(w)) {
-            rt = FTP_RSP_FT_END;
-        }
-        else
-            rt = FTP_RSP_ERR;
+        /* Just get a work, but we push the work after ft starting!*/
+        rt = FTP_RSP_FT_END;
 
         return rt;
     }
@@ -541,17 +580,17 @@ string byte2std(const int& size)
     string result;
     char std[31];
     if (size >= 1024 * 1024) {
-        sprintf(std, "%g", (double) (size / 1024 / 1024));
+        snprintf(std, sizeof(std), "%g", (double) (size / 1024 / 1024));
         result = std;
         result += "MB";
     }
     else if (size >= 1024) {
-        sprintf(std, "%g", (double) (size / 1024));
+        snprintf(std, sizeof(std), "%g", (double) (size / 1024));
         result = std;
         result += "KB";
     }
     else {
-        sprintf(std, "%d", size);
+        snprintf(std, sizeof(std), "%d", size);
         result = std;
         result += "B";
     }

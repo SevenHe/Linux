@@ -48,7 +48,11 @@
 MKDIR=mkdir
 CP=cp
 CCADMIN=CCadmin
+ftp_client:=ftp_client.cc
 
+# client
+client: 
+	g++ -g $(ftp_client) -o $(patsubst %.cc,%,$(ftp_client)) -lboost_system -lboost_thread
 
 # build
 build: .build-post
@@ -122,7 +126,7 @@ help: .help-post
 
 
 # include project implementation makefile
-include nbproject/Makefile-impl.mk
+#include nbproject/Makefile-impl.mk
 
 # include project make variables
-include nbproject/Makefile-variables.mk
+#include nbproject/Makefile-variables.mk

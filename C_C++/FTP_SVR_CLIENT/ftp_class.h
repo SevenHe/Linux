@@ -68,7 +68,7 @@ public:
         this->data_fd = -1;
         this->data_port = 0;
         this->is_logged = false;
-        this->mode = 0; /* 0 FOR OUTPUT, 1 FOR INPUT */
+        this->mode = 0; /* 0 FOR OUTPUT(ofstream), 1 FOR INPUT(ifstream) */
     }
 
     /* Copy Constructor for the ifstream and ofstream. */
