@@ -85,6 +85,7 @@ static void exit_confirm(int signal) throw()
     cin >> cfm;
     transform(cfm.begin(), cfm.end(), cfm.begin(), ::toupper);
     cerr.clear();
+    
     if (cfm == "Y" || cfm == "YES")
         exit(0);
 }
@@ -202,11 +203,17 @@ void ftp_server_start()
                 set_no_blocking(connfd);
                 cout << FTP_LOG_HEAD << " Get a client control connection: " << cfb_ptr
                         << ", at: " << connfd << endl;
-                clients[connfd].set_id(connfd);
+
                 /* Add the connfd to the socks set. */
                 int alloc_id = get_next_client(available_queue);
-                socks[connfd] = alloc_id;
-                clients[alloc_id].set_id(alloc_id);
+                if (alloc_id != -1) {
+                    /* There is one available client to use. */
+                    socks[connfd] = alloc_id;
+                    clients[alloc_id].set_id(alloc_id);
+                }
+                else {
+                    /* TODO -- To put them into a wait queue. */
+                }
 
                 /* Negotiate with the client, this time the connection has just established.
                  * So there must be not blocking!
