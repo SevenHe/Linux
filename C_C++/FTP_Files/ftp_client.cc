@@ -23,7 +23,6 @@
 #include <string>
 #include <algorithm>
 #include <ctime>
-#include <vector>
 #include <boost/thread/thread.hpp>
 using namespace std;
 
@@ -44,7 +43,7 @@ void thread_parallel_test(int num)
 	struct sockaddr_in addr;
 	addr.sin_family = AF_INET;
 	addr.sin_addr.s_addr = htonl(INADDR_ANY);
-	addr.sin_port = htons(_FTP_SERVER_PORT);
+	addr.sin_port = _FTP_SERVER_PORT;
 	if (connect(sfd, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
 		cerr << "Connect to server failed : thread " << num << endl;
 		return;
@@ -74,15 +73,17 @@ int main()
     // inet_aton("49.140.62.120", &addr.sin_addr); -- real use
     addr.sin_port = htons(_FTP_SERVER_PORT);
     
-	
-	/* Parallel Test 
-	for (int i=0; i<1000; i++) {
+
+	/* Parallel Test */
+    /*
+	boost::thread_group tg;
+	for (int i=0; i<200; i++) {
 		boost::thread td(boost::bind(&thread_parallel_test, i));
-		//tds[i] = boost::move(td);
+		tg.add_thread(&td);
 		cout << "Thread " << i << " is running..." << endl;
-		td.join();
 	}
-	*/	
+	tg.join_all();
+    */
     
     /* Start connecting to the server */
     len = sizeof(addr);

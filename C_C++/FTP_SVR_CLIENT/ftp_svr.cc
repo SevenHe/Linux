@@ -1,7 +1,7 @@
 /*
  * The ftp server, with the quick big file transferring, control options and so on.
  * Base on Linux epoll + boost::thread/mutex .
- * Every 1000 parallel connections need less than 10M memory.
+ * Every 500 parallel connections need less than 10M memory.
  * If you did a memory pool just like the boost, it would be more effective.
  * The client code could be rewrite.
  * 
@@ -85,7 +85,7 @@ static void exit_confirm(int signal) throw()
     cin >> cfm;
     transform(cfm.begin(), cfm.end(), cfm.begin(), ::toupper);
     cerr.clear();
-    
+
     if (cfm == "Y" || cfm == "YES")
         exit(0);
 }
@@ -122,6 +122,7 @@ void ftp_server_start()
     /* Server variables */
     int listenfd, datafd, connfd, sockfd, epfd;
     int nfds;
+    /* The events number can be increased when many parallel connections! */
     struct epoll_event ev_cntl, ev_data, events[3 * FTP_MAX_QUEUE / 2];
     struct sockaddr_in server_cntl_addr, server_data_addr;
     struct sockaddr_in client_addr;
@@ -153,12 +154,14 @@ void ftp_server_start()
     server_cntl_addr.sin_family = AF_INET;
     // inet_aton("49.140.62.120", &server_cntl_addr.sin_addr); -- real use
     server_cntl_addr.sin_addr.s_addr = htonl(INADDR_ANY);
-    server_cntl_addr.sin_port = FTP_CONTROL_PORT;
+    server_cntl_addr.sin_port = htons(FTP_CONTROL_PORT);
     server_data_addr.sin_family = AF_INET;
     //inet_aton("49.140.62.120", &server_data_addr.sin_addr);
     server_data_addr.sin_addr.s_addr = htonl(INADDR_ANY);
-    server_data_addr.sin_port = FTP_DATA_PORT;
+    server_data_addr.sin_port = htons(FTP_DATA_PORT);
 
+    /* To use the port that is not open. */
+    setuid(0);
     /* Bind the listenfd and the datafd. */
     if (bind(listenfd, (struct sockaddr*) &server_cntl_addr,
             sizeof(server_cntl_addr)) < 0) {
@@ -253,6 +256,11 @@ void ftp_server_start()
                 type = judge_sock_type(socks, sockfd);
                 FTPClient& client = type_of(clients, data_cntl, socks, sockfd, type);
 
+                /*
+                 * When the connection exits, we should DEL the fd in the epoll_set.
+                 * That is to avoid the more and more parallel connections.
+                 * This feature is for future!
+                 */
                 while (1) {
                     int recvNum;
                     if (type == FTP_CONTROL_TYPE) {
@@ -347,7 +355,7 @@ void ftp_server_start()
 
                 if (type == FTP_CONTROL_TYPE) {
                     write(sockfd, client.last_c_feedback, FB_MAX_LENGTH);
-                    
+
                     if (client.last_c_feedback[0] == FTP_RSP_SF_START ||
                             client.last_c_feedback[0] == FTP_RSP_RF_START) {
                         work* w = new work(&client);
@@ -355,7 +363,7 @@ void ftp_server_start()
                             /* nothing for now, this place is for statistics. */
                         }
                     }
-                    
+
                     ev_cntl.data.fd = sockfd;
                     ev_cntl.events = EPOLLIN | EPOLLET;
                     epoll_ctl(epfd, EPOLL_CTL_MOD, sockfd, &ev_cntl);

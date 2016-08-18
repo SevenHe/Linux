@@ -40,6 +40,7 @@ namespace mine {
 
 /* 
  * User connection, FTP client.
+ * Alignment of memory and compression in the future!
  */
 class FTPClient {
 private:

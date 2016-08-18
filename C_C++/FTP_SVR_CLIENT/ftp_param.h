@@ -2,7 +2,7 @@
 #define FTP_PARAM_H
 
 /* FTP SERVER CONFIG */
-#define FTP_MAX_QUEUE 1500
+#define FTP_MAX_QUEUE 10000
 #define FTP_DIR "/home/seven/Code/C_C++/FTP_Files/"
 #define FTP_CONTROL_PORT 21
 #define FTP_CONTROL_TYPE 1
