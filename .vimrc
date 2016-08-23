@@ -1,43 +1,20 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
+syntax on
+"filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin('~/Downloads/vim-plugins')
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'Lokaltog/vim-powerline'
-Plugin 'scrooloose/syntastic'
-Plugin 'c9s/perlomni.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Git plugin not hosted on GitHub
-" git repos on your local machine (i.e. when working on your own plugin)
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Avoid a name conflict with L9
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+" auto vimrc								"%.. 
+autocmd! BufWritePost $HOME/.vimrc source ~/.vimrc 
 "syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_always_populate_loc_list = 1
 "let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 "colorscheme monokai
-" my style with zsh
-hi Comment ctermfg=0 cterm=bold
+"match #!/user/bin/...
 autocmd FileType sh,python,perl syntax match itptType "^[#][!][/].\+$"
 autocmd FileType sh,python,perl hi itptType ctermfg=5 cterm=italic
 "hi itptType ctermfg=6 cterm=bold
@@ -53,6 +30,8 @@ map <CR> :nohl <CR>
 let g:Powerline_symbols = 'fancy'
 set encoding=utf-8
 set smartindent 
+" my style with zsh
+highlight Comment ctermfg=black cterm=bold
 highlight LineNr ctermfg=6 cterm=italic 
 " To ignore plugin indent changes, instead use:
 "filetype plugin on

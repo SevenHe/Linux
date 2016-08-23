@@ -76,8 +76,8 @@ public:
     FTPClient(const FTPClient& fc) {
         /* 
          * We do not use this, but just make compiler happy,
-         * because of compiler check the ifstream and ofstream has a copy constructor,
-         * but they do not have, so we make a outside copy constructor to meet it.
+         * because compiler check the ifstream and ofstream has a copy constructor,
+         * and they do not really have, so we make a outside copy constructor to meet it.
          */
     }
     
@@ -104,24 +104,24 @@ public:
     }
 
     void clear_file_buffer() {
-        memset(this->file_name, 0, sizeof (this->file_name));
-        memset(this->buffer, 0, sizeof (this->buffer));
-        memset(this->last_d_feedback, 0, sizeof (this->last_d_feedback));
-    }
+		memset(this->file_name, 0, sizeof (this->file_name));
+		memset(this->buffer, 0, sizeof (this->buffer));
+		memset(this->last_d_feedback, 0, sizeof (this->last_d_feedback));
+	}
 
-    /* ID GETTER AND SETTER */
-    int get_id() {
-        return this->id;
-    }
+	/* ID GETTER AND SETTER */
+	int get_id() {
+		return this->id;
+	}
 
-    void set_id(const int id) {
-        this->id = id;
-    }
+	void set_id(const int id) {
+		this->id = id;
+	}
 
-    /* DATA_FD GETTER AND SETTER */
-    int get_data_fd() {
-        return this->data_fd;
-    }
+	/* DATA_FD GETTER AND SETTER */
+	int get_data_fd() {
+		return this->data_fd;
+	}
 
     void set_data_fd(const int dfd) {
         this->data_fd = dfd;

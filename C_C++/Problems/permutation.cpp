@@ -1,64 +1,36 @@
 #include <iostream>
-#include <cstring>
-#include <map>
 #include <vector>
-#include <string>
 using namespace std;
 
-map<int, vector<int> > sodier;
-int count = 0;
-int size = 0;
+bool flag[10] = {0};
 
-void perm_next(int index, int selection[])
+void permutation(vector<int>& a, int cur, vector<int>& ret)
 {
-	if(index >= size)
-	{
-		count ++;
+	if (cur == a.size()) {
+		for (int i=0; i<a.size(); i++) {
+			if (flag[i])
+				cout << ret[i] << " ";
+		}
+		cout << endl;
 		return;
 	}
-	else
-	{
-		for(vector<int>::iterator it = sodier[index].begin();
-				it != sodier[index].end(); it++)
-		{
-			//cout << index << ": " << *it << endl;
-			int selection2[6];
-			memcpy(selection2, selection, sizeof(int)*6);
-			if(selection2[*it] == -1)
-			{
-				selection2[*it] = index;
-			//	cout << index << " select: " << *it << endl;
-				perm_next(index+1, selection2);
-			}
-			//else
-			//	cout << "selection error:" << *it << "," << selection2[*it] << endl;
+	for (int i=0; i<a.size(); i++) {
+		if (!flag[i]) {
+			flag[i] = true;
+			ret.push_back(a[i]);
+			permutation(a, cur+1, ret);
+			ret.pop_back();
+			flag[i] = false;
 		}
 	}
+	return;
 }
 
 int main()
 {
-	int n;
-	while(cin >> n)
-	{
-		sodier.clear();
-		size = n;
-		count = 0;
-		int id = 0;
-		string s;
-		while(n--)
-		{
-			cin >> s;
-			int len = s.size();
-			for(int i=0; i<len; i++)
-				sodier[id].push_back((int)(s[i]-'0'));
-			id ++;
-		}
-		int selection[6];
-		memset(selection, -1, sizeof(selection));
-
-		perm_next(0, selection);
-		cout << count << endl;
-	}
+	int arr[4] = {1, 4, 5, 6};
+	vector<int> a(arr, arr+4);
+	vector<int> ret;
+	permutation(a, 0, ret);
 	return 0;
 }
