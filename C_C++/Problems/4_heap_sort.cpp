@@ -3,8 +3,8 @@ using namespace std;
 
 void heap_sort(int* a, int size, int cur)
 {
-	int left = cur*2;
-	int right = cur*2+1;
+	int left = cur*2+1;
+	int right = cur*2+2;
 	if (a[left] < a[cur])
 		a[cur] = a[cur] + a[left] - (a[left] = a[cur]);
 	if (right < size && a[right] < a[cur])

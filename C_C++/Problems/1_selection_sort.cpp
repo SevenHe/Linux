@@ -1,7 +1,8 @@
 #include <iostream>
 using namespace std;
 
-void selection(int* a, int size) {
+void selection(int* a, int size)
+{
 	for (int i=0; i<size-1; i++) {
 		int max = i;
 		for (int j=i+1; j<size; j++) {
