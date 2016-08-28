@@ -76,8 +76,8 @@ public:
     FTPClient(const FTPClient& fc) {
         /* 
          * We do not use this, but just make compiler happy,
-         * because compiler check the ifstream and ofstream has a copy constructor,
-         * and they do not really have, so we make a outside copy constructor to meet it.
+         * because of compiler check the ifstream and ofstream has a copy constructor,
+         * but they do not have, so we make a outside copy constructor to meet it.
          */
     }
     
@@ -104,24 +104,24 @@ public:
     }
 
     void clear_file_buffer() {
-		memset(this->file_name, 0, sizeof (this->file_name));
-		memset(this->buffer, 0, sizeof (this->buffer));
-		memset(this->last_d_feedback, 0, sizeof (this->last_d_feedback));
-	}
+        memset(this->file_name, 0, sizeof (this->file_name));
+        memset(this->buffer, 0, sizeof (this->buffer));
+        memset(this->last_d_feedback, 0, sizeof (this->last_d_feedback));
+    }
 
-	/* ID GETTER AND SETTER */
-	int get_id() {
-		return this->id;
-	}
+    /* ID GETTER AND SETTER */
+    int get_id() {
+        return this->id;
+    }
 
-	void set_id(const int id) {
-		this->id = id;
-	}
+    void set_id(const int id) {
+        this->id = id;
+    }
 
-	/* DATA_FD GETTER AND SETTER */
-	int get_data_fd() {
-		return this->data_fd;
-	}
+    /* DATA_FD GETTER AND SETTER */
+    int get_data_fd() {
+        return this->data_fd;
+    }
 
     void set_data_fd(const int dfd) {
         this->data_fd = dfd;
@@ -182,13 +182,15 @@ struct work {
 
     /* Copy constructor and Assign constructor because of a pointer.*/
     work(const work& w) {
-        this->c = w.c;
+        if (w && w.c)
+            this->c = w.c;
     }
 
     work& operator=(const work& w) {
         if (this == &w)
             return *this;
-        this->c = w.c;
+        else if (w && w.c)
+            this->c = w.c;
         return *this;
     }
 
@@ -217,13 +219,15 @@ struct thread_T {
      * so there is a problem when using a pointer!
      */
     thread_T(const thread_T<T>& tT) {
-        this->t = tT.t;
+        if (tT && tT.t)
+            this->t = tT.t;
     }
 
     thread_T<T>& operator=(const thread_T<T>& tT) {
         if (this == &tT)
             return *this;
-        this->t = tT.t;
+        else if (tT && tT.t)
+            this->t = tT.t;
         return *this;
     }
 
@@ -302,7 +306,7 @@ public:
 
     /* Push a work, it will run automatically. */
     bool push_work(work_t w) {
-        if (work_queue.push(w)) {
+        if (w->c && work_queue.push(w)) {
             cv.notify_one();
             return true;
         }
