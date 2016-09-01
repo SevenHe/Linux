@@ -44,9 +44,9 @@ namespace mine {
  */
 class FTPClient {
 private:
-    int id;
-    int data_fd;
-    int data_port; /* FOR PASV MODE */
+    unsigned int id : 16;
+    unsigned int data_fd : 16;
+    unsigned short data_port; /* FOR PASV MODE */
     char pswd[USER_INFO_LENGTH];
     char buffer[FILE_MAX_BUFFER];
     uint8_t mode;
@@ -182,14 +182,14 @@ struct work {
 
     /* Copy constructor and Assign constructor because of a pointer.*/
     work(const work& w) {
-        if (w && w.c)
+        if (w.c)
             this->c = w.c;
     }
 
     work& operator=(const work& w) {
         if (this == &w)
             return *this;
-        else if (w && w.c)
+        else if (w.c)
             this->c = w.c;
         return *this;
     }
@@ -219,14 +219,14 @@ struct thread_T {
      * so there is a problem when using a pointer!
      */
     thread_T(const thread_T<T>& tT) {
-        if (tT && tT.t)
+        if (tT.t)
             this->t = tT.t;
     }
 
     thread_T<T>& operator=(const thread_T<T>& tT) {
         if (this == &tT)
             return *this;
-        else if (tT && tT.t)
+        else if (tT.t)
             this->t = tT.t;
         return *this;
     }

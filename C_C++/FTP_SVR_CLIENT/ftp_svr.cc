@@ -216,6 +216,12 @@ void ftp_server_start()
                 }
                 else {
                     /* TODO -- To put them into a wait queue. */
+                    /* For now, just new a struct. */
+                    available_queue.push(clients.size());
+                    clients.push_back(new FTPClient());
+                    alloc_id = get_next_client(available_queue);
+                    socks[connfd] = alloc_id;
+                    clients[alloc_id].set_id(alloc_id);
                 }
 
                 /* Negotiate with the client, this time the connection has just established.
