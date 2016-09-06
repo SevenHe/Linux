@@ -21,6 +21,13 @@ int perfect_squares(int n)
 			dp[i+j*j] = min(dp[i+j*j], dp[i]+1);
 		}
 	}
+	/* more efficient!
+	for (int i=1, i2; (i2 = i*i) <=n; i++) {
+		for (int j=i2; j<=n; j++) {
+			dp[j] = min(dp[j], dp[j-i2]+1);
+		}
+	}
+	*/
 
 	return dp[n];
 }
