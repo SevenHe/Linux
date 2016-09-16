@@ -44,8 +44,8 @@ namespace mine {
  */
 class FTPClient {
 private:
-    unsigned int id : 16;
-    unsigned int data_fd : 16;
+    int id : 16;
+    int data_fd : 16;
     unsigned short data_port; /* FOR PASV MODE */
     char pswd[USER_INFO_LENGTH];
     char buffer[FILE_MAX_BUFFER];

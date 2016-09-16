@@ -218,7 +218,7 @@ void ftp_server_start()
                     /* TODO -- To put them into a wait queue. */
                     /* For now, just new a struct. */
                     available_queue.push(clients.size());
-                    clients.push_back(new FTPClient());
+                    clients.push_back(FTPClient());
                     alloc_id = get_next_client(available_queue);
                     socks[connfd] = alloc_id;
                     clients[alloc_id].set_id(alloc_id);

@@ -49,7 +49,11 @@ void thread_parallel_test(int num)
 		cerr << "Connect to server failed : thread " << num << endl;
 		return;
 	}
-	string cmd = "List";
+
+    char nego[5];
+    read(sfd, nego, sizeof(nego));
+	
+	string cmd = _FTP_CLINET_QUIT;
 	int ret = send(sfd, cmd.c_str(), CMD_MAX_LENGTH, 0);
 	cout << "Thread " << num << ": send " << ret << endl;
 	close(sfd);
@@ -75,14 +79,14 @@ int main()
     addr.sin_port = htons(_FTP_SERVER_PORT);
     
 	
-	/* Parallel Test 
+	///* Parallel Test 
 	for (int i=0; i<1000; i++) {
 		boost::thread td(boost::bind(&thread_parallel_test, i));
 		//tds[i] = boost::move(td);
 		cout << "Thread " << i << " is running..." << endl;
 		td.join();
 	}
-	*/	
+	//*/	
     
     /* Start connecting to the server */
     len = sizeof(addr);
