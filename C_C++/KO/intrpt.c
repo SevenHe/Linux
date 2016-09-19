@@ -26,8 +26,8 @@ static void get_char(struct work_struct* tp)
 	// offsetof(type, member) ((size_t) & ((type*)0)->member )
 	*/
 	struct my_work* mp = container_of(tp, struct my_work, work);
-	printk("Scan Code %x %s.\n", 
-			(int)*((char*)&(mp->scancode)) & 0x7F,
+	printk("Scan Code %c %s.\n", 
+			*((char*)&(mp->scancode)),
 			*((char*)&(mp->scancode)) & 0x80 ? "Released" : "Pressed");
 }
 
