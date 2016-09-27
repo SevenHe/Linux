@@ -1,4 +1,5 @@
-#include<iostream>
+#include <iostream>
+#include <fstream>
 using namespace std;
 
 struct xx {
@@ -29,6 +30,7 @@ int main()
 	int* p;
 	char x[2];
 	FILE* fp;
+	ofstream ofs;
 	cout << "sizof(static int)=" << sizeof(xx::_x5) << endl;
 	cout << "sizof(int)=" << sizeof(xx::_x3) << endl;
 	cout << "sizof(long long)=" << sizeof(xx::_x1) << endl;
@@ -38,6 +40,7 @@ int main()
 	cout << "sizeof(*p)=" << sizeof(p) << endl;
 	cout << "sizeof(FILE*)=" << sizeof(fp) << endl;
 	cout << "sizeof(union)=" << sizeof(yy) << endl;
+	cout << "sizeof(ofs)=" << sizeof(ofs) << endl;
 
 	return 0;
 }
