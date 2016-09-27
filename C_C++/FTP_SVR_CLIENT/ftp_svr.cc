@@ -34,14 +34,16 @@ using namespace std;
 #include "cppconn/resultset.h"
 using namespace sql;
 
-#include "ftp_class.h"
+#include "ftp_class.hpp"
 #include "ftp_func.h"
 
 extern string get_user_name();
 extern string get_password();
 
 /* Thread Pool */
+#ifdef USE_THREAD_POOL
 thread_pool my_thread_pool(FTP_MAX_QUEUE);
+#endif
 mysql::MySQL_Driver* driver = mysql::get_driver_instance();
 Connection* con;
 
@@ -95,7 +97,11 @@ static void exit_from_error(int signal) throw()
     exit(0);
 }
 
-/*=====The Most Important Function:Start the ftp server.=====*/
+/* =====The Most Important Function:Start the ftp server.===== */
+/* XXX --
+ * To make it more portable, the process in the epoll_loop should be put in the backend,
+ * so every backend would be process a kind of packets, not just for the FTP
+ */
 void ftp_server_start()
 {
     /* Global db connection. */
@@ -109,7 +115,11 @@ void ftp_server_start()
 
     /* The Data Structure. */
     vector<FTPClient> clients(FTP_MAX_QUEUE);
+#ifdef USE_THREAD_POOL
     std::queue<int> available_queue;
+    for (int i = 0; i < FTP_MAX_QUEUE; i++)
+        available_queue.push(i);
+#endif
     /* MEMORY POOL IN FUTURE */
 
     /* Handle the signals, exit with CTRL+\ or CTRL+C */
@@ -135,8 +145,6 @@ void ftp_server_start()
     tr1::unordered_map<int, int> data_cntl;
 
     /* Start from here. */
-    for (int i = 0; i < FTP_MAX_QUEUE; i++)
-        available_queue.push(i);
     epfd = epoll_create(FTP_MAX_QUEUE);
     listenfd = socket(AF_INET, SOCK_STREAM, 0);
     datafd = socket(AF_INET, SOCK_STREAM, 0);

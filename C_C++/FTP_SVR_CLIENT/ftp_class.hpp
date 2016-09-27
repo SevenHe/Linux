@@ -15,6 +15,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
+#include <cinttypes>
 
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/scoped_thread.hpp>
@@ -44,29 +45,48 @@ namespace mine {
  */
 class FTPClient {
 private:
-    int id : 16;
-    int data_fd : 16;
-    unsigned short data_port; /* FOR PASV MODE */
+	/* the index in the available queue! */
+    int16_t id;
+
+	/* mapping the data link with this client */
+    uint16_t data_fd;
+    uint16_t data_port; /* FOR PASV MODE */
+
+	/* flags */
+    uint16_t mode : 8;
+	uint16_t status : 8;
+
+	/* buffer - times of 8 */
     char pswd[USER_INFO_LENGTH];
     char buffer[FILE_MAX_BUFFER];
-    uint8_t mode;
+
+	/* XXX - file pointers */
+	FILE* ofs;
+	FILE* ifs;
+
     std::ofstream ofs;
     std::ifstream ifs;
 public:
     bool is_logged;
+	
+	/* the last client link feedback, make it alignment - times of 8 + 7 */
     char last_c_feedback[FB_MAX_LENGTH];
+
+	/* the cache of the file name - times of 8 + 1 for the next feedback */
+    char file_name[MAX_FILE_NAME];
+
+	/* the last data link feedback */
     char last_d_feedback[FB_MAX_LENGTH];
     /* 
      * When using strncpy with a const obj, there is a bug,
      * that is we need to convert user from const char* to char*.
      */
     char user[USER_INFO_LENGTH];
-    char file_name[MAX_FILE_NAME];
 
     /* Constructor */
     FTPClient() {
         this->id = -1;
-        this->data_fd = -1;
+        this->data_fd = 0;
         this->data_port = 0;
         this->is_logged = false;
         this->mode = 0; /* 0 FOR OUTPUT(ofstream), 1 FOR INPUT(ifstream) */
@@ -152,7 +172,7 @@ public:
 
     void reset() {
         this->id = -1;
-        this->data_fd = -1;
+        this->data_fd = 0;
         this->data_port = 0;
         this->is_logged = false;
         this->mode = 0;

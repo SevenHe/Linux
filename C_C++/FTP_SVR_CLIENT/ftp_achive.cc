@@ -9,7 +9,7 @@
 #include <cerrno>
 using namespace std;
 
-#include "ftp_class.h"
+#include "ftp_class.hpp"
 
 /* 
  * Open a file in the server or get from the client. 

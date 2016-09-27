@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * XXX - there are some methods that have not been completed!
  */
 
 /* 
@@ -23,6 +21,11 @@ static int get_next_client(std::queue<int>&);
 std::string process_request(char* p_cmd, FTPClient& client, 
         const int& type, const int& sockfd) throw();
 std::string byte2std(const int& size);
+
+/* For the future */
+static void client_conn_process();
+static void client_req_process();
+static void client_fin_process();
 
 #endif /* FTP_FUNC_H */
 

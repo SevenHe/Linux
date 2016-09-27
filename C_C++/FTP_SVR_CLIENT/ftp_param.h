@@ -1,6 +1,8 @@
 #ifndef FTP_PARAM_H
 #define FTP_PARAM_H
 
+#define USE_THREAD_POOL
+
 /* FTP SERVER CONFIG */
 #define FTP_MAX_QUEUE 3000
 #define FTP_DIR "/home/seven/Code/C_C++/FTP_Files/"
@@ -9,10 +11,10 @@
 #define FTP_DATA_PORT 20
 #define FTP_DATA_TYPE 0
 #define CMD_MAX_LENGTH 128
-#define FB_MAX_LENGTH 512
-#define FILE_MAX_BUFFER 2500
-#define USER_INFO_LENGTH 20
-#define MAX_FILE_NAME 64
+#define FB_MAX_LENGTH 511
+#define FILE_MAX_BUFFER 2048
+#define USER_INFO_LENGTH 16
+#define MAX_FILE_NAME 63
 #define DB_PATH "tcp://127.0.0.1:3306/ftp_svr"
 #define USER_TABLE "ftp_user"
 
