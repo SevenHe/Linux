@@ -84,12 +84,8 @@ public:
     char user[USER_INFO_LENGTH];
 
     /* Constructor */
-    FTPClient() {
-        this->id = -1;
-        this->data_fd = 0;
-        this->data_port = 0;
-        this->is_logged = false;
-        this->mode = 0; /* 0 FOR OUTPUT(ofstream), 1 FOR INPUT(ifstream) */
+    FTPClient() : id(-1), data_fd(0), data_port(0), is_logged(false), mode(0) {
+        //mode : 0 FOR OUTPUT, 1 FOR INPUT
     }
 
     /* Copy Constructor for the ifstream and ofstream. */
@@ -193,8 +189,7 @@ struct work {
      */
     FTPClient* c;
     
-    work() {
-        this->c = NULL;
+    work() : c(NULL) {
     }
 
     work(FTPClient* client) : c(client) {
@@ -230,8 +225,7 @@ template <typename T = boost::thread>
 struct thread_T {
     T* t;
 
-    thread_T() {
-        t = NULL;
+    thread_T() : t(NULL) {
     }
 
     /* 

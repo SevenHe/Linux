@@ -5,10 +5,18 @@ void heap_sort(int* a, int size, int cur)
 {
 	int left = cur*2+1;
 	int right = cur*2+2;
-	if (a[left] < a[cur])
+	int maxval = cur;
+	if (left < size && a[left] < a[cur]) {
 		a[cur] = a[cur] + a[left] - (a[left] = a[cur]);
-	if (right < size && a[right] < a[cur])
+		maxval = left;
+	}
+	if (right < size && a[right] < a[cur]) {
 		a[cur] = a[cur] + a[right] - (a[right] = a[cur]);
+		maxval = right;
+	}
+	if (maxval != cur) {
+		heap_sort(a, size, maxval);
+	}
 }
 
 void build_heap(int* a, int size)
