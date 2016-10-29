@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <tr1/unordered_map>
+#include <unordered_map>
 #include <vector>
 #include <string>
 #include <cstdlib>
@@ -21,8 +21,8 @@ extern void run_as_a_slave();
 static short id = 0;
 
 /* for the query */
-tr1::unordered_map<string, vector<string> > index;
-tr1::unordered_map<int, string> mapping;
+unordered_map<string, vector<string>> index;
+unordered_map<int, string> mapping;
 
 void exit_normally(int signal)
 {
@@ -34,7 +34,7 @@ vector<string> query(string key)
 {
 	// Completely todo-- approximately match them!
 	//cout << "get input" << input << endl;
-	tr1::unordered_map<string, vector<string> >::const_iterator mit = index.find(key);
+	unordered_map<string, vector<string> >::const_iterator mit = index.find(key);
 	vector<string>::const_iterator vit;
 	vector<string> result;
 	bool has_found = false;

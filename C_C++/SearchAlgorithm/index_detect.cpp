@@ -2,7 +2,7 @@
 #include <fstream>
 #include <sstream> 		/* stringstream */
 #include <string>
-#include <tr1/unordered_map>
+#include <unordered_map>
 #include <vector>
 using namespace std;
 
@@ -34,7 +34,7 @@ int index_detect_output(const char* path)
 	*/
 	int line_nr = 1;
 	string s;
-	tr1::unordered_map<string, vector<string> > index;
+	unordered_map<string, vector<string> > index;
 
 	/* ostringstream uses the same cache with the ostream, so it will be not what you want
 	 * And use this, << and >>, get it flush!
@@ -175,7 +175,7 @@ int index_detect_output(const char* path)
 	}
 	in.close();
 	ofstream out(OUTPUT_FILE, ios::app);
-	tr1::unordered_map<string, vector<string> >::const_iterator it = index.begin();
+	unordered_map<string, vector<string> >::const_iterator it = index.begin();
 	vector<string>::const_iterator vit;
 	while(it != index.end())
 	{
