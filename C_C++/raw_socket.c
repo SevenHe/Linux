@@ -7,8 +7,23 @@
 #include <net/if.h>	// struct ifreq
 #include <sys/ioctl.h>	// ioctl
 #include <netinet/in.h>
+
+#ifdef __LINUX__
+
 #include <netinet/ether.h>
 #include <netpacket/packet.h>	// struct sockaddr_ll
+#define IFNAME "enp5s0f1"
+
+#elif __APPLE__
+
+/* different interfaces compared with Linux */
+/* use bpf: a device */
+#include <netinet/if_ether.h>
+#include <net/bpf.h>
+#include <netinet/ethernet.h>
+#define IFNAME "en0"
+
+#endif
 
 void normally_exit(int signal)
 {
@@ -34,7 +49,7 @@ int main()
 	// set the interface as promisc mode
 	struct ifreq ethreq;
 
-	strncpy(ethreq.ifr_name, "enp5s0f1", IFNAMSIZ);
+	strncpy(ethreq.ifr_name, IFNAME, IFNAMSIZ);
 	// get net interface
 	if((ioctl(fd, SIOCGIFINDEX, &ethreq)) == -1)
 	{
