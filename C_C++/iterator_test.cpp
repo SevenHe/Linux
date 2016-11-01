@@ -1,8 +1,8 @@
-#include<iostream>
-#include<iterator>
-#include<deque>
-#include<vector>
-#include<algorithm>
+#include <iostream>
+#include <iterator>
+#include <deque>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
 class Test {
@@ -18,7 +18,9 @@ int main()
 	ostream_iterator<int> out(cout, " ");
 
 	int ia[] = {0, 1, 2, 3, 4, 5};
-	deque<int> id(ia, ia+6);
+	//deque<int> id(ia, ia+6);
+	// c++ 11
+	deque<int> id {0, 1, 2, 3, 4, 5};
 	copy(id.begin(), id.end(), out);
 	cout << endl;
 
